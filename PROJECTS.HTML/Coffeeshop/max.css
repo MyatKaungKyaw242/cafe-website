@@ -1,0 +1,318 @@
+@media screen and (max-width: 950px) {
+    nav{
+        padding: 0 20px;
+    }
+    .social-links{
+        display: none;
+    }
+    .nav-links{
+        position: absolute;
+        top: 100px;
+        background: #daadad87;
+        padding: 50px;
+        left: 0;
+        /* width: 50%; */
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+        justify-content: center;
+        transform: scale(0);
+        transition: all 0.4s  ease-in;
+        transform-origin: right;
+    }
+    .show{
+        transform: scale(1);
+    }
+    #menu{
+         display: block;
+        background: rgba(0, 0, 0, 0.156);
+        cursor: pointer;
+        padding: 4px 6px;
+    }
+    .banner h1{
+        font-size: 2.5rem;
+    } 
+    .about{
+        flex-direction: column;
+    }
+    .img-container img{
+        width: 200px;
+        height: 200px;
+        transform: scale(1);
+    }
+    .img-2{
+        left: 70px;
+        top: 70px;
+    }
+    .img-2{
+        display: none;
+    }
+    .img-1{
+        top: 30px;
+    }
+  
+}
+
+@media screen and (max-width: 1400px){
+    .circle-1 {
+            width: 150px;
+            height: 150px;
+        }
+        .boxes img{
+            width: 100px;
+            height: 100px;
+        }
+
+                .product-container {
+                    display: grid;
+                    grid-template-columns: repeat(3, 300px);
+                    gap: 30px;
+        
+                    padding-top: 100px;
+                    justify-content: center;
+        
+                }
+
+  .container-one {
+      display: grid;
+      grid-template-columns: repeat(2, 600px);
+      gap: 30px;
+      padding: 0 80px;
+      margin-top: 10px;
+      justify-content: center;
+
+  }
+  .texts h2{
+font-size: 1.2rem;
+  }
+  .texts p{
+    font-size: 1rem;
+  }
+  .photo img{
+    width: 200px;
+        height: 200px;
+        object-fit: contain;
+        object-position: center;
+  }
+  
+}
+@media screen and (max-width: 1160px ){
+        .container-one {
+                display: grid;
+                grid-template-columns: repeat(2, 500px);
+                gap: 20px;
+                padding: 0 80px;
+                margin-top: 10px;
+                justify-content: center;
+        
+            }
+                          .texts h2 {
+                              font-size: 0.8rem;
+                          }
+            
+                          .texts p {
+                              font-size: 0.8rem;
+                          }
+
+  .photo img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      object-position: center;
+  }
+ 
+}
+
+@media screen and (max-width:900px){
+ .container {
+     flex-direction: column;
+     gap: 20px;
+ }
+}
+@media screen and (max-width: 1100px){
+    .boxx-text h2{
+        font-size: 2rem;
+    }
+        .boxx-text h3 {
+            font-size: 1.5rem;
+        }
+}
+@media screen and (max-width: 950px) {
+    .boxx-text h2 {
+        font-size: 1.7rem;
+    }
+
+    .boxx-text h3 {
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width:500px){
+    .container-1{
+        flex-direction: column;
+    }
+    .boxx-text h2{
+        font-size: 2.1rem;
+    }
+    .boxx-text h3{
+        font-size: 1.8rem;
+    }
+
+    .container-11{
+        flex-direction: column;
+    }
+        .product-container{
+            display: flex;
+            flex-direction: column;
+        }
+
+
+.container-one{
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+
+}
+.texts {
+
+    padding-left: 15px;
+        padding-right: 15px;
+        align-items: flex-start;
+    gap: 10px;
+}
+.container-first,
+.container-second {
+    flex-direction: column;
+    /* stack image below text */
+    height: auto;
+    /* let height grow naturally */
+    align-items: center;
+}
+.texts h2{
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+.texts p{
+    font-size: 0.95rem;
+}
+
+.photo {
+    justify-content: center;
+    width: 100%;
+}
+
+.photo img {
+    width: 180px;
+    height: 180px;
+}
+
+.another{
+    height: auto !important;
+}
+.another-container{
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    padding-top: 20px;
+    padding:15px;
+}
+.another-one{
+    flex-direction: column !important;
+    align-items: center;
+    padding: 20px 15px;
+    min-height: 250px;
+}
+.text-btn {
+    padding-left: 0 !important;
+    text-align: center;
+    width: 100%;
+}
+
+.another-text {
+    margin-top: 10px !important;
+}
+
+.another-btn {
+    margin-top: 20px !important;
+}
+
+.another-img {
+    justify-content: center !important;
+    /* align-items: center; */
+}
+
+.another-img img {
+    width: 140px !important;
+    height: 200px !important;
+}
+
+/* Product grid: 1 column on mobile */
+.another-two {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 10px;
+}
+
+/* Each product card */
+.another-box-1,
+.another-box-2,
+.another-box-3,
+.another-box-4 {
+    padding: 8px;
+}
+
+.photo-of-another img {
+    width: 100px;
+    height: 100px;
+}
+
+.text-of-another h4 {
+    font-size: 0.85rem;
+}
+
+/* Hide the + symbol — looks odd in single column */
+.another-two::after {
+    display: none;
+}
+
+
+    
+}
+@media screen and (max-width: 700px){
+    .container-11{
+        flex-direction: column;
+    }
+        .box-11 img {
+            object-fit: contain;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+    
+        }
+}
+@media screen and (max-width: 1600px){
+    .another-container {
+            display: grid;
+            grid-template-columns: 400px 900px;
+            gap: 30px;
+            justify-content: center;
+            padding-top: 100px;
+            background: white;
+        }
+
+                .another-btn {
+        
+                    text-align: center;
+                    margin-top: 150px;
+                }
+        
+                .another-btn a {
+                    padding: 10px 8px;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    background: lightpink;
+                    color: white;
+        
+                }
+}
+      

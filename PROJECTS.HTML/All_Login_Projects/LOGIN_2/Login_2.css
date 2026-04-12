@@ -1,0 +1,139 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    text-transform: none;
+    color: rgb(235, 235, 235);
+}
+h2{
+    text-align: center;
+    margin: 10px 0;
+    font-size: 2.5rem;
+}
+body{
+    width: 100%;
+    height: 100vh;
+   background-image: url(../LOGIN_2/thlt-lcx-hTKDL0n2UeA-unsplash.jpg);
+   background-size: cover;
+   
+   /* display: grid;
+   place-items: center; */
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+
+    
+}
+
+
+
+form{
+
+    /* position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); */
+
+    width: 400px;
+    height: auto;
+    max-height: 500px;
+    background: #a9930488;
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px #000000;
+    padding:  30px;
+   /* margin: auto; */
+/* ----------------------------------------------------------------------- */
+animation: formSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes formSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+/* ------------------------------------------------------------ */
+h2 {
+  animation: fadeDown 0.6s 0.3s ease both;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* 
+--------------------------------------------------------------------- */
+
+
+
+label{
+    font-size: 1.25rem;
+}
+
+input{
+    color: black;
+    
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px #000000;
+    border: none;
+    outline: none;
+}
+button{
+   
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.468);
+    cursor: pointer;
+    border-radius: 20px;
+    outline: none;
+    display: block;
+    margin: 15px auto 0;
+    /* margin: auto; */
+    /* margin-top: 10px; */
+}
+/* ------------------------------------------ */
+.control{
+    margin-bottom: 10px;
+    position: relative;
+    animation: fadeUp 0.55s ease both;
+}
+.control:nth-child(2) {
+    animation-delay: 0.35s;
+}
+
+.control:nth-child(3) {
+    animation-delay: 0.48s;
+}
+
+.control:nth-child(4) {
+    animation-delay: 0.61s;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ----------------------------------------------------- */
+label,input {
+    display: block;
+    width: 100%;
+
+}
+
+
+

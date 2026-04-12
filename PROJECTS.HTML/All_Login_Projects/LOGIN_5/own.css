@@ -1,0 +1,60 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    background-image: url(./horizon-zero-dawn-embracing-the-night-2v-1920x1200.jpg);
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form{
+    width: 400px;
+    height: auto;
+    min-height: 300px;
+    background: rgba(255, 255, 255, 0.271);
+
+  
+    border-radius: 20px;
+    padding: 30px 40px;
+    box-shadow: inset 0 0 10px black;
+
+}
+h1{
+    margin-bottom: 20px;
+    text-align: center;
+}
+.container ,label{
+    display: block;
+    font-size: 17px;
+        opacity: 0.9;
+}
+.container,input{
+    width: 100%;
+    padding: 11px 5px;
+        border: none;
+    border-radius: 15px;
+    
+    outline: none;  
+}
+button{
+    width: 50%;
+    padding: 14px 20px;
+    margin: 15px auto 0 auto;
+    display: block;
+    border-radius: 20px;
+    color: white;
+    background: lightgreen;
+    border: none;
+    font-size: 17px;
+        font-weight: bold;
+
+}

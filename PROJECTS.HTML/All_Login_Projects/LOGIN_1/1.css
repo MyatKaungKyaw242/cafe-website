@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    background-image: url(./image/horizon-zero-dawn-ps4-1f-1920x1200.jpg);
+    background-position: center;
+    background-size:  cover;   
+}
+form{
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+
+    width: 400px;
+    height: auto;
+    background: rgba(83, 180, 255, 0.499);
+    margin: auto;
+    margin-top: 250px;
+    border-radius: 25px;
+    padding: 15px 35px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.441);
+    /* box-shadow: 0 0 15px 5px #06d1f1; */
+}
+h2{
+   text-align: center; 
+   font-size: 2rem;
+   margin-bottom: 13px;
+   color: rgba(255, 255, 255, 0.803);
+}
+.control{
+    margin-bottom: 10px;
+}
+label,input{
+    display: block;
+    width: 100%;
+}
+input{
+    padding: 10px 15px;
+    background: rgba(238, 242, 254, 0.815);
+    border: none;
+    outline: none;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.441);
+    border-radius: 5px;
+}
+label{
+    margin-bottom: 15px;
+    font-size: 17px;
+}
+.btm{
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.441);
+    background: rgba(238, 242, 254, 0.815);
+    padding: 10px 22px;
+    width: 35%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 8px;
+    display: block;
+    margin: auto;
+}
+input::placeholder{
+    color: rgba(1, 1, 1, 0.216)
+}
