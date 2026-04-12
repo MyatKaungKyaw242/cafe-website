@@ -1134,13 +1134,6 @@ font-size: 1rem;
     display: flex;
 }
 
-/* .img-22 img,
-.img-33 img {
-    margin-left: 0;
-} */
-
-
-
 .stars-for {
     background: transparent;
     padding-top: 0;
@@ -1218,7 +1211,7 @@ font-size: 1rem;
     
 }
 .detail-img{
-    
+    padding-top: 0;
     padding-top: 0;
     /* display: flex;
         flex-direction: column;
@@ -1229,12 +1222,13 @@ font-size: 1rem;
 
 .detail-img h3,
 .detail-img p {
-  
+    
     font-size: 1.2rem;
 }
 
 .detail-img h3 {
     font-weight: 700;
+    background: red;
 }
 
 
