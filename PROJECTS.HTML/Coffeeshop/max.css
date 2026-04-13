@@ -8,7 +8,7 @@
     .nav-links{
         position: absolute;
         top: 100px;
-        background: #daadad87;
+        background: rgba(44, 26, 14, 0.92);
         padding: 50px;
         left: 0;
         /* width: 50%; */
@@ -25,9 +25,9 @@
     .show{
         transform: scale(1);
     }
-    #menu{
+    #hamburger{
          display: block;
-        background: rgba(0, 0, 0, 0.156);
+        background: rgba(44, 26, 14, 0.15);
         cursor: pointer;
         padding: 4px 6px;
     }
@@ -297,7 +297,7 @@ font-size: 1.2rem;
             gap: 30px;
             justify-content: center;
             padding-top: 100px;
-            background: white;
+            background: #FFF8F2;
         }
 
                 .another-btn {
@@ -310,7 +310,7 @@ font-size: 1.2rem;
                     padding: 10px 8px;
                     font-size: 1rem;
                     font-weight: 600;
-                    background: lightpink;
+                    background: #C8963E;
                     color: white;
         
                 }
