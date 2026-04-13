@@ -53,7 +53,7 @@ nav{
     padding: 10px 25px;
     border-radius: 30px;
 }
-#menu{
+#hamburger{
     display: none;
 }
 .banner{
@@ -455,13 +455,13 @@ margin: 0;
     
  }
  .product-info{
-flex: 1;
-background: rgb(255, 254, 254);
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 20px;
-flex-direction: column;
+    flex: 1;
+    background: rgb(255, 254, 254);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-direction: column;
  }
  .bttn-sm{
     padding:  7px 10px;
@@ -471,15 +471,8 @@ flex-direction: column;
     border-radius: 7px;
     box-shadow: inset 0 0 5px 2px rgba(144, 232, 238, 0.57);
  }
- .product-into, .product-img{
+ .product-info, .product-img{
     flex: 1;
- }
- .product-info{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
  }
  .product-img{
     display: flex;
@@ -675,20 +668,10 @@ flex-direction: column;
 }
 
 .photo-of-another{
-    /* flex: 200px; */
     flex: 0.3;
-    /* width: 200px; */
-}
-.text-of-another{
-    /* flex: 800px; */
-    /* width: 400px; */
-    flex: 1;
-}
-.photo-of-another{
-    
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 .photo-of-another img{
     object-fit: contain;
@@ -697,7 +680,7 @@ flex-direction: column;
     height: 220px;
 }
 .text-of-another{
-    
+    flex: 1;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -832,7 +815,7 @@ flex-direction: column;
     border-top: 1px solid #e0e0e0;
     margin-bottom: 8px;
  }
- .big-top-bar hr{
+ hr.big-top-bar{
     width: 100%;
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.316);
@@ -864,7 +847,7 @@ flex-direction: column;
 }
 .customer-text h1{
     font-size: 2rem;
-    font-weight: 600px;
+    font-weight: 600;
     line-height: 40px;
 }
 .customer-rating{
@@ -872,7 +855,7 @@ flex-direction: column;
 }
 .customer-rating h1{
     font-size: 2rem;
-    font-weight: 600px;
+    font-weight: 600;
     line-height: 40px;
 }
 .customer-rating span{
@@ -880,7 +863,7 @@ flex-direction: column;
     font-size: 1.6rem;
 }
 .customer-rating p{
-    font-weight: 600px;
+    font-weight: 600;
     font-size: 1.3rem;
 }
 
@@ -1106,7 +1089,28 @@ flex-direction: column;
 
 .detail-img h3 {
     font-weight: 700;
-   
+
+}
+
+.contact {
+    background: #fafad2;
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contact-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.contact-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+.contact-container p {
+    font-size: 1.1rem;
 }
 
 
