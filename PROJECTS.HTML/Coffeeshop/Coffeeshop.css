@@ -1113,6 +1113,149 @@ margin: 0;
     font-size: 1.1rem;
 }
 
+.blog {
+    /* background: lightblue; */
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 30px;
+}
+
+.one-layer {
+
+    text-align: center;
+}
+
+.one-layer h5 {
+    color: red;
+    font-size: 1rem;
+}
+
+.one-layer h1 {
+    font-size: 1.8rem;
+}
+
+.second-layer {
+    background: rgb(5, 108, 226);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 30px;
+    gap: 50px;
+
+}
+
+.three-layer {
+    background: lightseagreen;
+    /* background: white; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    flex: 1;
+    max-width: 500px;
+    min-height: 470px;
+    border-radius: 30px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.377);
+
+
+}
+
+.for-img-12 {
+    display: flex;
+    border-radius: 30px;
+    width: 100%;
+    height: 280px;
+}
+
+.for-img-12 img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+}
+
+.for-middle-text {
+    /* background: lightgreen; */
+
+    width: 100%;
+    padding: 0 20px;
+    padding-top: 20px;
+}
+
+.for-middle-text h4 {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.for-middle-text p {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.for-pp {
+    display: flex;
+    gap: 50px;
+    padding-bottom: 20px;
+}
+
+.just-line {
+    border: none;
+    border-top: 0.5px solid rgba(0, 0, 0, 0.171);
+    width: 90%;
+    /* margin: 12px auto; */
+    /* margin: 20px auto; */
+    margin-top: 20px;
+}
+
+.for-buttom-texts {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* background: lightpink; */
+    width: 100%;
+    padding-top: 20px;
+}
+
+.for-buttom-texts a {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.for-buttom-texts p {
+    font-weight: 500;
+    font-size: 1rem;
+
+
+}
+
+.for-buttom-texts a::after {
+    content: "→";
+    margin-left: 4px;
+    color: rgba(33, 28, 28, 0.351);
+
+    font-size: 1.2rem;
+
+}
+
+.for-buttom-texts p::before {
+    content: "💬";
+    font-size: 0.9rem;
+    margin-right: 5px;
+}
+
+.for-middle-text p {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+
 
 
 
