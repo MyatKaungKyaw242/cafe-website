@@ -840,7 +840,7 @@ flex-direction: column;
  
 
  .customer{
-    background: rgba(9, 123, 223, 0.629);
+    
     min-height: 50vh;
     display: grid;
         grid-template-rows: 200px 1fr;
@@ -849,21 +849,17 @@ flex-direction: column;
  
     
 .customer-1{
-    background: rgba(192, 17, 227, 0.522);
+  
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 40px;
-    /* width: 100%;
-    align-items: end; */
-
-    /* position: relative; */
+  
 }
 .customer-text{
-    background: red;   
+    
     margin-top: auto;
     
-    /* position: absolute;
-    bottom: 0; */
+   
     padding-left: 40px;
 }
 .customer-text h1{
@@ -872,9 +868,6 @@ flex-direction: column;
     line-height: 40px;
 }
 .customer-rating{
-    background: blue;
-    /* position: absolute;
-    right: 0; */
     margin-top: auto;
 }
 .customer-rating h1{
@@ -894,108 +887,11 @@ flex-direction: column;
 .customer-2{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    /* justify-content: space-between; */
-    /* justify-content: space-evenly; */
     padding: 0 20px;
-    background: green;
-   /* width: 100%; */
-    
-  
-}
-/* .all-boxes-1 {
-    margin: 20px;
-    border-radius: 30px;
-    padding: 30px 30px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.447);
-    min-height: 400px;
-   
-} */
- /* .all-boxes-1 {
-     margin: 20px;
-     border-radius: 30px;
-     padding: 30px;
-     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.447);
-     min-height: 400px;
-     background: white;
-     display: flex;
-     flex-direction: column;
-     justify-content: space-between;
-     /* pushes bottom section down */
- 
- 
-/* .for-text-1{
-    line-height: 27px;
-    color: #0d1b3e;
-    color: #0d1b3e;
-    
-}
-.for-text-1 h1 {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #e84c1e;
-   
-}
-.for-text-1 h2{
-    text-align: left;
-}
-.for-text-1 h4{
-  
-    padding-top: 70px;
-}
-.for-text-1 hr{
-    width: 80%;
-    border: none;
-    border: 1px solid rgba(245, 245, 245, 0.493);
-    
-    margin-top: 60px;
 }
 
 
-.for-img-btn{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 5px;
 
-}
-.for-img-11{
-    
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background: transparent;
-  
-}
-.for-img-11 img{
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    border: 3px solid white;
-}  */
-/* .reviews{
-   
-background: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.reviews h5{
-font-size: 1rem;
-    color: #333;
-   
-}
-.stars-for{
-    
-    background: transparent;
-    padding-top: 10px;
-    
-  
-}
-.stars-for span{
-    font-size: 1rem;
-    font-weight: 600;
-    color: orange;
-    
-} */
 
 .all-boxes-1 {
     margin: 20px;
@@ -1015,7 +911,7 @@ font-size: 1rem;
     flex-direction: column;
     gap: 12px;
     color: white;
-    background: yellow;
+    /* background: yellow; */
 }
 
 .for-text-1 h1 {
@@ -1051,7 +947,7 @@ font-size: 1rem;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background: purple;
+    /* background: purple; */
 }
 
 .trustpilot-divider {
@@ -1088,16 +984,10 @@ font-size: 1rem;
     padding-top: 0;
 }
 
-/* Green trustpilot star before "Trustpilot" text */
-/* .for-text-1 h4::before {
-    content: "★";
-    color: #00b67a;
-    font-size: 1.2rem;
-} */
 
-/* Bottom avatar + stars row */
+
 .for-img-btn {
-    background: lightgoldenrodyellow;
+    
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1107,10 +997,10 @@ font-size: 1rem;
 .for-img-11 {
     display: flex;
     align-items: center;
-    background: lightblue;
+    /* background: lightblue; */
 }
 .reviews {
-    background: lightcoral;
+    /* background: lightcoral; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -1141,7 +1031,7 @@ font-size: 1rem;
 
 .stars-for span {
     font-size: 1.1rem;
-    color: #ff6b35;
+    /* color: #ff6b35; */
     /* orange-red like the reference */
 }
 
@@ -1150,18 +1040,6 @@ font-size: 1rem;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
 }
-
-/* .img-22 img{
-    margin-left: -20px;
-}
-.img-33 img{
-    margin-left: -20px;
-} */
-
-
-
-
-
 
 .all-boxes {
     background: white;
@@ -1176,7 +1054,7 @@ font-size: 1rem;
     padding-bottom: 13px;
 }
 .new-stars span{
-    color: orange;
+    /* color: orange; */
     font-size: 1.5rem;
 }
 .for-text p{
@@ -1211,7 +1089,7 @@ font-size: 1rem;
     
 }
 .detail-img{
-    padding-top: 0;
+   
     padding-top: 0;
     /* display: flex;
         flex-direction: column;
@@ -1228,10 +1106,11 @@ font-size: 1rem;
 
 .detail-img h3 {
     font-weight: 700;
-    background: red;
+   
 }
 
 
 
 
-  
+
+
