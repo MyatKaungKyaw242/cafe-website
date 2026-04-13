@@ -28,7 +28,7 @@ nav{
     
     height: 100px;
     width: 100%;
-    background: #fafad2;
+    background: #FDF6EC;
 
     display: flex;
     justify-content: space-between;
@@ -49,7 +49,7 @@ nav{
     font-size: 1.6rem;
 }
 .nav-links a{
-    background: rgba(255, 0, 0, 0.337);
+    background: rgba(44, 26, 14, 0.1);
     padding: 10px 25px;
     border-radius: 30px;
 }
@@ -77,11 +77,11 @@ nav{
 .banner p {
     font-size: 1.5rem;
     text-shadow: 2px 2px 4px white;
-    color: #fbca7e;
+    color: #C8963E;
 }
 .btn{
-    color: #c0784c;
-     background: #fbca7e;
+    color: #2C1A0E;
+     background: #C8963E;
      border-radius: 12px;
      padding: 10px 30px;
      font-size: 1.3rem;
@@ -97,7 +97,7 @@ section{
     padding: 40px;
 }
 .about{
-    background: #fafad2;
+    background: #FDF6EC;
     display: flex;   
     
 }
@@ -149,7 +149,7 @@ z-index: 2;
 
 
 .menu{
-    background: #fafad2;
+    background: #FDF6EC;
     min-height: 55vh;
 }
 h2{
@@ -197,19 +197,19 @@ h2{
     box-shadow: 0 10px 10px rgba(229, 27, 5, 0.599);
 }
 .cake{
-    background: lightslategray;
+    background: #8B7355;
 }
 .coke{
-    background: lightcoral;
+    background: #C45C3E;
 }
 .salade{
-    background: lightgreen;
+    background: #5A7A4A;
 }
 .pizzar{
-    background: lightgoldenrodyellow;
+    background: #D4A853;
 }
 .burger{
-    background: lightseagreen;
+    background: #2C7873;
 }
 
 .boxes p{
@@ -234,7 +234,7 @@ h2{
 
 
 .shop{
-    background: #fafad2;
+    background: #FDF6EC;
     min-height: 50vh;
 }
 
@@ -281,29 +281,26 @@ h2{
 }
 .btn-1 a{
     display: inline-block;
-       color: #c0784c;
-        background: #fbca7e;
+       color: #2C1A0E;
+        background: #C8963E;
         
         text-decoration: none;
         font-weight: bold;
         padding: 10px 25px;
-    box-shadow: 0 0 15px rgba(251, 202, 126, 0.8);
+    box-shadow: 0 0 15px rgba(200, 150, 62, 0.8);
 }
 
 .btn-1 a {
     background: linear-gradient(135deg,
-            #ffe08a,
-            
-            #fbca7e,
-            
-            #e89f4d
-            
+            #D4A853,
+            #C8963E,
+            #A67C2E
         );
 }
 
 .btn-1 a:hover {
-    background: linear-gradient(135deg, #fff0b3, #fbca7e, #e89f4d);
-    box-shadow: 0 0 25px rgba(251, 202, 126, 1);
+    background: linear-gradient(135deg, #DDB863, #C8963E, #A67C2E);
+    box-shadow: 0 0 25px rgba(200, 150, 62, 1);
     transform: scale(1.05);
    
     transition: all 0.3s ease;
@@ -316,7 +313,7 @@ h2{
 .boxx h2{
     /* background: red; */
     /* position: absolute; */
-    color: #fafad2;
+    color: #FDF6EC;
     font-size: 2.5rem;
     padding: 0 8px;
     margin: 13px 0 10px 0; 
@@ -325,13 +322,13 @@ h2{
     /* background: black; */
     /* position: absolute; */
 font-size: 2rem;
-color: #fafad2;
+color: #FDF6EC;
 padding: 0 8px;
 margin: 0;
 }
 
 .gallery-1{
-    background: #fafad2;
+    background: #FDF6EC;
     min-height: 50vh;
     
 }
@@ -428,7 +425,7 @@ margin: 0;
     background-color: lightseagreen;
 } */
  .products{
-    background: #fafad2;
+    background: #FDF6EC;
     min-height: 40vh;
     
  }
@@ -456,7 +453,7 @@ margin: 0;
  }
  .product-info{
     flex: 1;
-    background: rgb(255, 254, 254);
+    background: #FFF8F2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -487,17 +484,17 @@ margin: 0;
  }
     
  .product-1{
-    background: rgb(255, 255, 255);
+    background: #FFF8F2;
  }
  .product-2{
-    background: rgb(254, 255, 255);  
+    background: #FFF8F2;
  }
  .product-3{
-    background: rgba(254, 254, 254, 0.984); 
+    background: #FFF8F2;
  }
 
 .new-one{
-    background: #fafad2;
+    background: #FDF6EC;
     min-height: 40vh; 
 }
 .container-one{
@@ -557,7 +554,8 @@ margin: 0;
         letter-spacing: 1px;
 }
 .texts a{
-    background: lightcyan;
+    background: #C8963E;
+    color: #FFF8F2;
     padding: 13px 20px;
     outline: none;
     border: none;
@@ -569,7 +567,7 @@ margin: 0;
 
 
 .another{
-    background: white;
+    background: #FFF8F2;
     min-height: 50vh;
     padding-bottom: 40px;
 }
@@ -585,7 +583,7 @@ margin: 0;
 .another-one{
     display: flex;
     padding: 20px;
-    background:#fafad2;
+    background:#FDF6EC;
 }
 .text-btn, .another-img{
     flex: 1;
@@ -595,7 +593,7 @@ margin: 0;
 .text-btn{
     
     padding-left: 50px;
-    /* background: #fafad2; */
+    /* background: #FDF6EC; */
 }
 .another-text{
     
@@ -613,7 +611,7 @@ margin: 0;
     padding: 12px 10px;
     font-size: 1.3rem;
     font-weight: 600;
-    background: lightpink;
+    background: #C8963E;
     color: white;
 
 }
@@ -661,7 +659,7 @@ margin: 0;
 
 .another-box-1,.another-box-2,.another-box-3,.another-box-4{
     display: flex;
-    background: whitesmoke;
+    background: #FAF4EC;
     /* position: relative; */
     
     
@@ -784,7 +782,7 @@ margin: 0;
     border-radius: 0;
 }
  .small-btn{
-    background: white;
+    background: #FFF8F2;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -1025,7 +1023,7 @@ margin: 0;
 }
 
 .all-boxes {
-    background: white;
+    background: #FFF8F2;
     margin: 20px;
     border-radius: 30px;
     padding: 30px 30px;
@@ -1093,7 +1091,7 @@ margin: 0;
 }
 
 .contact {
-    background: #fafad2;
+    background: #FDF6EC;
     min-height: 30vh;
     display: flex;
     align-items: center;
