@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhoneZone — Buy Phones Online</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fa-solid fa-mobile-screen-button"></i> PhoneZone
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Phones</a></li>
+        <li><a href="#brands">Brands</a></li>
+        <li><a href="#deals">Deals</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn" id="searchBtn"><i class="fa-solid fa-search"></i></button>
+        <button class="icon-btn cart-btn" id="cartBtn">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+      <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#products">Phones</a>
+    <a href="#brands">Brands</a>
+    <a href="#deals">Deals</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="badge">New Arrivals 2025</span>
+      <h1>The Latest<br /><span class="gradient-text">Smartphones</span><br />Are Here.</h1>
+      <p>Explore top-tier phones from Apple, Samsung, Google & more — with fast delivery and easy returns.</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn btn-primary">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#deals" class="btn btn-outline">View Deals</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="phone-showcase">
+        <div class="phone-glow"></div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="screen-content">
+              <div class="screen-time">9:41</div>
+              <div class="screen-icons">
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND PILLS -->
+  <section class="brands" id="brands">
+    <div class="container">
+      <h2 class="section-title">Shop By Brand</h2>
+      <div class="brand-pills">
+        <button class="pill active" data-brand="all">All</button>
+        <button class="pill" data-brand="apple">Apple</button>
+        <button class="pill" data-brand="samsung">Samsung</button>
+        <button class="pill" data-brand="google">Google</button>
+        <button class="pill" data-brand="oneplus">OnePlus</button>
+        <button class="pill" data-brand="xiaomi">Xiaomi</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Featured Phones</h2>
+        <p class="section-sub">Handpicked for performance, design & value</p>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <!-- DEALS BANNER -->
+  <section class="deals-banner" id="deals">
+    <div class="container">
+      <div class="deal-card">
+        <div class="deal-text">
+          <span class="badge badge-white">Limited Time</span>
+          <h2>Up to <span>30% OFF</span> on select models</h2>
+          <p>Don't miss out — deals end Sunday at midnight.</p>
+          <a href="#products" class="btn btn-white">Grab the Deal</a>
+        </div>
+        <div class="deal-visual">
+          <i class="fa-solid fa-tags"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fa-solid fa-truck-fast"></i>
+          <h4>Free Delivery</h4>
+          <p>On all orders above $499</p>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-rotate-left"></i>
+          <h4>30-Day Returns</h4>
+          <p>No questions asked</p>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h4>2-Year Warranty</h4>
+          <p>On all devices sold</p>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-lock"></i>
+          <h4>Secure Payment</h4>
+          <p>256-bit SSL encryption</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo"><i class="fa-solid fa-mobile-screen-button"></i> PhoneZone</a>
+          <p>Your one-stop shop for the latest smartphones.</p>
+          <div class="socials">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h5>Quick Links</h5>
+          <a href="#">About Us</a>
+          <a href="#">Contact</a>
+          <a href="#">FAQ</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div class="footer-links">
+          <h5>Support</h5>
+          <a href="#">Track Order</a>
+          <a href="#">Returns</a>
+          <a href="#">Warranty</a>
+          <a href="#">Live Chat</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 PhoneZone. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-btn" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty" id="cartEmpty">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <p>Your cart is empty</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <button class="btn btn-primary full-width">Checkout <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

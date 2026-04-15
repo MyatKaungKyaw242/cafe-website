@@ -750,7 +750,8 @@ h2{
     margin: 0;
     /* background: yellow; */
     /* width: 280px; */
-    width: 100%;
+    /* width: 100%; */
+    width: clamp(200px, 22vw, 300px);
     
  }
  
@@ -796,6 +797,8 @@ h2{
     justify-content: center;
     flex-direction: column;
     line-height: 30px;
+    
+    
  }
  .detail-small h3{
     margin-bottom: 20px;
@@ -1245,10 +1248,133 @@ h2{
     gap: 6px;
 }
 
+.last-one{
+    background: lightblue;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+   
+    align-items: center;
+    
+
+}
+/* .last-1{
+     background: lightcoral;
+     flex: 100px; 
+     margin-top: 100px; 
+} */
 
 
 
+.last-2{
+    background: lightblue;
+}
+.three-inside-box{
+    /* background: lightgreen; */
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+    
+    min-height: 320px;
+    max-width: 80%;
+    margin: 0 auto;
+
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    
+}
+
+.first-box{
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.first-box img{
+    object-fit: cover;
+    object-position: center;
+    
+    min-height: 360px;
+    border-radius: 30px;
+    margin-left: 50px;
+}
+.second-box{
+    background: white;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  text-align: right;
+  padding: 30px 40px;
+  
+}
+.third-box{
+    background: black;
+    color: white;
+    border-radius: 30px;
+    text-align: right;
+    margin-right: 130px;
+    padding: 30px 40px;
+}
+ .first-box{
+    margin-right: -80px;
+    z-index: 3;
+}
+.second-box {
+    z-index: 2;
+}
+.third-box{
+margin-left: -80px;
+z-index: 1;
+
+/* display: flex; */
+}
+.three-lists{
+    line-height: 35px;
+
+    
+}
+.example-test{
+   
+    line-height: 60px;
+}
+.second-box p{
+    font-size: 1.1rem;
+}
+.three-lists li::after{
+    content: "Ø";
+    margin-left: 5px;
+}
 
 
 
+.last-3 {
+    /* background: #fffbeb; */
+    padding: 80px 20px;
+    text-align: center;
+}
 
+.last-3 h3 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.last-3 hr {
+    border: none;
+    border-top: 2px solid black;
+    width: 100%;
+    margin: 0 auto 30px auto;
+}
+
+.space-letters {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    /* space between spans */
+    flex-wrap: wrap;
+    /* simple wrap on mobile */
+}
+
+.space-letters span {
+    font-size: 17px;
+}
