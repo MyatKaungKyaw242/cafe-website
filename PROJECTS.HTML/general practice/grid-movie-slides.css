@@ -1,0 +1,26 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    text-transform: none;
+    text-decoration: none;
+}
+.product-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,300px);
+    justify-content: center;
+    gap: 1em;
+}
+.product{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.product p {
+    font-weight: 600;
+}
+.product img{
+    height: auto;
+    border-radius: 10px;
+}
