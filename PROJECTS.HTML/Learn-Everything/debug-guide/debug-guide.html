@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Debugging Guide | Web Dev 0 to Hero</title>
+  <link rel="stylesheet" href="debug-guide.css" />
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="back-btn">← Home</a>
+    <div class="logo">Debugging <span>Guide</span></div>
+    <p class="subtitle">Your code is broken. Don't panic. Work through these steps.</p>
+    <div class="tip-note">🐛 The best developers aren't the ones who never get bugs — they're the ones who fix them fastest</div>
+  </header>
+
+  <main>
+
+    <!-- SECTION 1: HTML/CSS -->
+    <div>
+      <div class="debug-section-title">
+        <div class="debug-section-icon">🎨</div>
+        <div>
+          <h2>My HTML or CSS isn't working</h2>
+          <p>Layout broken, styles not applying, elements in the wrong place</p>
+        </div>
+      </div>
+
+      <div class="debug-steps s-html">
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div><h3>Check for typos in class names</h3><p>The #1 CSS bug — a mismatch between HTML and CSS</p></div>
+          </div>
+          <div class="step-body">
+            <p>CSS is case-sensitive. <code>.Card</code> and <code>.card</code> are different. A single letter typo means the style never applies and no error is shown anywhere.</p>
+            <ul>
+              <li>In HTML: <code>class="nav-btn"</code></li>
+              <li>In CSS: <code>.nav-btn { ... }</code> — must match exactly</li>
+              <li>Check for <code>navbtn</code> vs <code>nav-btn</code> vs <code>nav_btn</code></li>
+              <li>Right-click the element → Inspect → check what classes are applied</li>
+            </ul>
+            <div class="fix-box"><strong>Quick check:</strong> In DevTools, click the element. Does the class show in the Styles panel? If not, the class name doesn't match.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div><h3>Check if the CSS file is actually linked</h3><p>Styles don't apply at all — every element looks plain</p></div>
+          </div>
+          <div class="step-body">
+            <p>If your whole page looks unstyled, the CSS file probably isn't loading. Check your <code>&lt;link&gt;</code> tag path.</p>
+            <pre><code>&lt;!-- Check the href path is correct --&gt;
+&lt;link rel="stylesheet" href="style.css" /&gt;      &lt;!-- same folder --&gt;
+&lt;link rel="stylesheet" href="css/style.css" /&gt;  &lt;!-- in a subfolder --&gt;
+&lt;link rel="stylesheet" href="../style.css" /&gt;   &lt;!-- one folder up --&gt;</code></pre>
+            <ul>
+              <li>Open DevTools → Network tab → reload the page</li>
+              <li>Look for your CSS file — if it shows red or 404, the path is wrong</li>
+              <li>Check spelling — <code>styles.css</code> vs <code>style.css</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">3</div>
+            <div><h3>Check for specificity conflicts</h3><p>Your style is being overridden by another rule</p></div>
+          </div>
+          <div class="step-body">
+            <p>You wrote the CSS but it still doesn't show. Another rule is winning. Open DevTools → click the element → Styles panel shows all rules. Crossed-out styles are being overridden.</p>
+            <ul>
+              <li>A rule with an ID (<code>#nav</code>) beats one with a class (<code>.nav</code>)</li>
+              <li>A rule with more selectors beats a simpler one</li>
+              <li>A rule that comes later in the file beats an earlier one</li>
+              <li>Never use <code>!important</code> to "force" a style — fix the specificity instead</li>
+            </ul>
+            <div class="fix-box"><strong>DevTools trick:</strong> In the Styles panel, hover over a crossed-out property to see which rule is winning. Click the winning rule to jump to it.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">4</div>
+            <div><h3>Layout not behaving — check the Box Model</h3><p>Margins, padding, sizes look wrong</p></div>
+          </div>
+          <div class="step-body">
+            <p>Open DevTools → click an element → look at the Box Model diagram in the Computed tab. It shows you exactly how much space is content, padding, border, and margin.</p>
+            <ul>
+              <li>Element wider than expected? Check <code>padding</code> — it adds to width unless you use <code>box-sizing: border-box</code></li>
+              <li>Margin not working? Margins collapse between siblings and between parent/child vertically</li>
+              <li>Element overflowing its parent? Try <code>overflow: hidden</code> on the parent to diagnose</li>
+              <li>Always have <code>* { box-sizing: border-box; }</code> at the top of your CSS</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">5</div>
+            <div><h3>Flexbox or Grid not working</h3><p>Items not aligning or sizing correctly</p></div>
+          </div>
+          <div class="step-body">
+            <p>The most common mistake: applying flex properties to the wrong element. <code>justify-content</code> and <code>align-items</code> go on the <strong>parent (container)</strong>, not the children.</p>
+            <pre><code>/* ❌ Wrong — centering on the child does nothing */
+.child { justify-content: center; }
+
+/* ✅ Correct — centering goes on the parent */
+.parent {
+  display: flex;
+  justify-content: center;  /* horizontal */
+  align-items: center;      /* vertical */
+}</code></pre>
+            <ul>
+              <li>Is <code>display: flex</code> or <code>display: grid</code> on the parent? Check in DevTools</li>
+              <li>Grid not creating columns? Make sure <code>grid-template-columns</code> is set</li>
+              <li>Items not wrapping? Add <code>flex-wrap: wrap</code></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 2: JAVASCRIPT -->
+    <div>
+      <div class="debug-section-title">
+        <div class="debug-section-icon">⚡</div>
+        <div>
+          <h2>My JavaScript isn't working</h2>
+          <p>Button does nothing, function not running, wrong output</p>
+        </div>
+      </div>
+
+      <div class="debug-steps s-js">
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div><h3>Open the Console first — always</h3><p>Most JS errors show up here as red text</p></div>
+          </div>
+          <div class="step-body">
+            <p>Press <strong>F12</strong> → Console tab. Every error, warning, and <code>console.log</code> output appears here. The error message tells you exactly what went wrong and on which line. Read it before anything else.</p>
+            <ul>
+              <li><code>Uncaught ReferenceError: x is not defined</code> — you used a variable that doesn't exist in that scope</li>
+              <li><code>TypeError: Cannot read properties of null</code> — you're accessing a property on something that is null</li>
+              <li><code>SyntaxError: Unexpected token</code> — a typo in your code structure (missing bracket, comma, etc.)</li>
+              <li>Click the filename:line number on the right of the error to jump to that exact line</li>
+            </ul>
+            <div class="fix-box"><strong>Shortcut:</strong> Right-click anywhere on a page → Inspect → Console. Or F12 → Console. Keep it open while coding.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div><h3>Use console.log to see what's actually happening</h3><p>Your code runs but gives the wrong result</p></div>
+          </div>
+          <div class="step-body">
+            <p><code>console.log</code> is your best friend. Drop it at different points to see what value a variable has at that moment. This is called "print debugging" and it's what every developer does.</p>
+            <pre><code>const calculateTotal = (items) => {
+  console.log("items received:", items); // what did we get?
+
+  const total = items.reduce((sum, item) => {
+    console.log("current sum:", sum, "item price:", item.price);
+    return sum + item.price;
+  }, 0);
+
+  console.log("final total:", total); // what did we produce?
+  return total;
+};</code></pre>
+            <ul>
+              <li>Log at the start of a function to confirm it's being called</li>
+              <li>Log the input to check you're receiving what you expect</li>
+              <li>Log at each step to find where the value goes wrong</li>
+              <li>Use <code>console.log({ variableName })</code> — the curly braces show the name and value together</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">3</div>
+            <div><h3>My function is never running</h3><p>A click or event doesn't trigger anything</p></div>
+          </div>
+          <div class="step-body">
+            <p>Add a <code>console.log("function called!")</code> as the very first line of your function. If it doesn't appear in the console when you click, the event listener is the problem.</p>
+            <ul>
+              <li>Check if the element actually exists: <code>console.log(document.getElementById("btn"))</code> — if null, the ID is wrong or the script runs before the DOM loads</li>
+              <li>Is the script tag at the bottom of the body (before <code>&lt;/body&gt;</code>)? If it's in <code>&lt;head&gt;</code>, the elements don't exist yet when the script runs</li>
+              <li>Did you accidentally call the function instead of passing it? <code>onClick={handleClick()}</code> calls immediately — remove the <code>()</code></li>
+              <li>Check for typos in the event name: <code>"click"</code> not <code>"Click"</code> or <code>"onclick"</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">4</div>
+            <div><h3>TypeError: Cannot read properties of null / undefined</h3><p>The most common JS crash</p></div>
+          </div>
+          <div class="step-body">
+            <p>You're trying to access a property or method on something that doesn't exist. The error tells you what is null/undefined and what property you tried to access.</p>
+            <pre><code>// Error: Cannot read properties of null (reading 'innerHTML')
+// Means: document.getElementById(...) returned null
+document.getElementById("header").innerHTML = "Hello";
+// Fix: check the ID — "header" doesn't exist in your HTML
+
+// Error: Cannot read properties of undefined (reading 'name')
+// Means: user is undefined
+console.log(user.name);
+// Fix: check where user comes from — it may not be set yet
+console.log(user); // log it first to see what it actually is</code></pre>
+            <ul>
+              <li>Log the variable before accessing its property to see what it actually is</li>
+              <li>Use optional chaining: <code>user?.name</code> won't crash if user is undefined</li>
+              <li>Check if you're accessing data before it's loaded (async timing issue)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">5</div>
+            <div><h3>Check your JS file is linked correctly</h3><p>Script does absolutely nothing</p></div>
+          </div>
+          <div class="step-body">
+            <p>Same as CSS — if the file path is wrong, the script silently never loads. Check the Network tab for a red 404 error on your JS file.</p>
+            <pre><code>&lt;!-- Place script at the BOTTOM, before &lt;/body&gt; --&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;      &lt;!-- same folder --&gt;
+&lt;script src="js/script.js"&gt;&lt;/script&gt;   &lt;!-- in a subfolder --&gt;
+
+&lt;!-- If in &lt;head&gt;, you MUST use defer --&gt;
+&lt;script src="script.js" defer&gt;&lt;/script&gt;</code></pre>
+            <div class="warn-box"><strong>Common mistake:</strong> Script in <code>&lt;head&gt;</code> without <code>defer</code> — the script runs before the HTML is parsed, so <code>document.getElementById()</code> returns null for everything.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 3: REACT -->
+    <div>
+      <div class="debug-section-title">
+        <div class="debug-section-icon">⚛</div>
+        <div>
+          <h2>My React isn't working</h2>
+          <p>Component not updating, state not changing, errors in console</p>
+        </div>
+      </div>
+
+      <div class="debug-steps s-react">
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div><h3>How to read a React error message</h3><p>Red screen with a wall of text — here's how to decode it</p></div>
+          </div>
+          <div class="step-body">
+            <p>React error messages look scary but they follow a pattern. Read from the top:</p>
+            <ul>
+              <li><strong>Line 1:</strong> The error type and message — this is the most important part. Read it carefully.</li>
+              <li><strong>Line 2–5:</strong> The component stack — where in your component tree the error happened</li>
+              <li><strong>Rest:</strong> The full call stack — usually React internals, mostly ignore these</li>
+            </ul>
+            <pre><code>// Example error:
+TypeError: Cannot read properties of undefined (reading 'map')
+  at ProductList (ProductList.jsx:12)
+
+// What it means:
+// You called .map() on something that is undefined
+// Line 12 of ProductList.jsx
+// Fix: the data you're trying to map over hasn't loaded yet
+// Add a loading check: if (!products) return &lt;Spinner /&gt;;</code></pre>
+            <div class="fix-box"><strong>Quick tip:</strong> The error always shows you the file and line number. Click it to jump straight to the problem.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div><h3>State changed but screen didn't update</h3><p>You called setState but nothing re-rendered</p></div>
+          </div>
+          <div class="step-body">
+            <p>React only re-renders when it sees a <em>new</em> value. If you mutate an array or object directly, the reference stays the same and React thinks nothing changed.</p>
+            <pre><code>// ❌ WRONG — mutating the array directly
+const addItem = (item) => {
+  items.push(item);       // mutates in-place
+  setItems(items);        // same reference — React doesn't re-render!
+};
+
+// ✅ CORRECT — create a new array
+const addItem = (item) => {
+  setItems(prev => [...prev, item]); // new array = new reference = re-render ✓
+};
+
+// ❌ WRONG — mutating an object
+user.name = "New Name";
+setUser(user); // same reference!
+
+// ✅ CORRECT
+setUser(prev => ({ ...prev, name: "New Name" }));</code></pre>
+            <div class="warn-box"><strong>Rule:</strong> Never use push, pop, splice, or direct property assignment on state. Always create a new array or object.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">3</div>
+            <div><h3>useEffect running in an infinite loop</h3><p>Page keeps re-rendering, freezes, or network tab shows endless requests</p></div>
+          </div>
+          <div class="step-body">
+            <p>An infinite loop in useEffect means the effect runs, changes state, which triggers a re-render, which runs the effect again — forever. Two common causes:</p>
+            <pre><code>// CAUSE 1 — No deps array (runs after every render)
+useEffect(() => {
+  setData(fetchedData); // this sets state
+});                     // no array = runs again = infinite loop!
+
+// FIX — Add the deps array
+useEffect(() => {
+  setData(fetchedData);
+}, []); // ← empty array = runs once only
+
+// CAUSE 2 — Object/array in deps array
+useEffect(() => {
+  doSomething(config);
+}, [config]); // if config is { key: "val" }, it's a NEW object every render!
+
+// FIX — Use a primitive value or useMemo
+useEffect(() => {
+  doSomething(config);
+}, [config.key]); // use the primitive value inside the object</code></pre>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">4</div>
+            <div><h3>Component shows old/stale data</h3><p>State updates don't seem to take effect immediately</p></div>
+          </div>
+          <div class="step-body">
+            <p>React state updates are <strong>asynchronous</strong>. Calling <code>setState</code> doesn't change the value immediately — the new value is only available on the next render. Reading state right after setting it still gives you the old value.</p>
+            <pre><code>// ❌ Wrong expectation — count is still 0 here
+const handleClick = () => {
+  setCount(count + 1);
+  console.log(count); // still 0! update hasn't happened yet
+};
+
+// ✅ Use useEffect to react to state changes
+useEffect(() => {
+  console.log("count changed:", count); // runs after re-render with new value
+}, [count]);
+
+// ✅ Or use the functional update form if you need the latest value
+setCount(prev => {
+  const newCount = prev + 1;
+  console.log("new count:", newCount); // correct!
+  return newCount;
+});</code></pre>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">5</div>
+            <div><h3>Common React error messages decoded</h3><p>The errors you'll see most often</p></div>
+          </div>
+          <div class="step-body">
+            <ul>
+              <li><code>Each child in a list should have a unique "key" prop</code> → You're using <code>.map()</code> without adding a <code>key</code> prop to each element</li>
+              <li><code>Hooks can only be called inside a function component</code> → You called a hook outside a component or inside a loop/if statement</li>
+              <li><code>Cannot update a component while rendering a different component</code> → You're calling <code>setState</code> directly in the render (not in an event handler or useEffect)</li>
+              <li><code>Objects are not valid as a React child</code> → You tried to render a plain JS object. You must access a property: <code>{user.name}</code> not <code>{user}</code></li>
+              <li><code>Too many re-renders</code> → You're calling <code>setState</code> directly in the component body (not in an event or effect). React hits a loop.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 4: DEVTOOLS -->
+    <div>
+      <div class="debug-section-title">
+        <div class="debug-section-icon">🛠</div>
+        <div>
+          <h2>DevTools Quick Reference</h2>
+          <p>The tools that make debugging 10x faster</p>
+        </div>
+      </div>
+
+      <div class="debug-steps s-devtools">
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div><h3>Elements Tab — inspect HTML &amp; CSS live</h3><p>See and edit your HTML/CSS in real time</p></div>
+          </div>
+          <div class="step-body">
+            <ul>
+              <li><strong>Right-click any element → Inspect</strong> — jumps to that element in the HTML</li>
+              <li>Styles panel on the right — all CSS rules applied to the selected element</li>
+              <li>Crossed-out rules — being overridden by a more specific rule</li>
+              <li>Click a CSS value to edit it live — great for experimenting without touching your files</li>
+              <li>Computed tab — shows the final resolved values after all rules are applied</li>
+              <li>Box Model diagram at the bottom of the Computed tab</li>
+            </ul>
+            <div class="fix-box"><strong>Shortcut:</strong> F12 → Elements, or right-click → Inspect. Changes here are temporary — they reset on refresh.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div><h3>Console Tab — run JS and see errors</h3><p>Your main debugging window</p></div>
+          </div>
+          <div class="step-body">
+            <ul>
+              <li>All <code>console.log</code> output appears here</li>
+              <li>Red text = errors (your code is broken)</li>
+              <li>Yellow text = warnings (things to be aware of)</li>
+              <li>Click the file:line link on the right of any error to jump to that code</li>
+              <li>You can type JavaScript directly in the console and run it — great for testing snippets</li>
+              <li>Type <code>$0</code> to reference the currently selected element in the Elements tab</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">3</div>
+            <div><h3>Network Tab — debug API calls</h3><p>See every request your page makes</p></div>
+          </div>
+          <div class="step-body">
+            <ul>
+              <li>Reload the page with the Network tab open to see all requests</li>
+              <li>Filter by "Fetch/XHR" to see only API calls</li>
+              <li>Red items = failed requests (404 not found, 500 server error)</li>
+              <li>Click any request → Response tab to see the actual data returned</li>
+              <li>Click any request → Headers tab to see the URL, method, and status code</li>
+              <li>Status 200 = success. 404 = not found. 401 = unauthorized. 500 = server error</li>
+            </ul>
+            <div class="fix-box"><strong>Most useful for:</strong> Checking if your fetch() is hitting the right URL and what data the server is actually sending back.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">4</div>
+            <div><h3>The Debugging Process — a repeatable system</h3><p>How to approach any bug methodically</p></div>
+          </div>
+          <div class="step-body">
+            <p>When your code breaks, don't randomly change things. Follow this process:</p>
+            <div class="checklist">
+              <div class="check">Open the Console. Read the error message carefully — what does it say, and on which line?</div>
+              <div class="check">If no error, add <code>console.log</code> at the start of the function — confirm it's being called.</div>
+              <div class="check">Log the inputs — is the function receiving what you expect?</div>
+              <div class="check">Log at each step — where does the value first go wrong?</div>
+              <div class="check">Isolate the problem — comment out half the code. Does the bug still happen? Keep narrowing it down.</div>
+              <div class="check">Google the exact error message in quotes — someone has had this exact error before.</div>
+              <div class="check">Read your code out loud — explain what each line does. You'll often spot the bug yourself.</div>
+              <div class="check">Take a break — fresh eyes catch bugs that tired eyes miss.</div>
+            </div>
+            <div class="fix-box"><strong>Remember:</strong> Every bug has a logical cause. It's not magic. Work through it step by step and you will find it.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    Debugging Guide &nbsp;|&nbsp; <a href="../glossary/glossary.html">Glossary →</a> &nbsp;|&nbsp; <a href="../index.html">← Home</a>
+  </footer>
+
+</body>
+</html>

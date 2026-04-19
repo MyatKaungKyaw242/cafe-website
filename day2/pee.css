@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.app{
+    background: green;
+    /* width: 50%; */
+    width: 600px;
+    height: 200px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+h1{
+    background: yellow;
+    /* width: 25%; */width: 800px;
+}
+p{
+    background: rgb(209, 10, 192);
+    /* width: 50%; */
+    height: 300px;
+}
+a{
+    background: #000;
+}
+.box{
+    width: 200px;
+    height: 200px;
+    background: lightblue;
+    border-radius: 30px;
+}

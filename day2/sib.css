@@ -1,0 +1,21 @@
+.active{
+    text-decoration: underline;
+    color: red;
+}
+a[href="//www.google.com"]{
+    color: aqua;
+}
+a[href="//facebook.com"]{
+    color: blue;
+}
+
+
+/* general sibling */
+.active~li{
+    background: rgb(227, 247, 3);
+    margin-bottom: 5px;
+}
+/* adjacent sibling */
+.active+li{
+    background: green;
+}

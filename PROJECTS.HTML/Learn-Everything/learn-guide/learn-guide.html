@@ -1,0 +1,2671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Layout — Complete Learning Guide</title>
+  <link rel="stylesheet" href="learn-guide.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">Web Layout <span>Complete Guide</span></div>
+      <p class="subtitle">All 26 topics — everything you need to build AND ship any website on the internet</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <a href="foundations.html" style="display:inline-block;padding:10px 24px;background:rgba(253,203,110,0.15);color:#fdcb6e;text-decoration:none;border-radius:30px;font-size:0.85rem;font-weight:700;border:1px solid rgba(253,203,110,0.35);transition:opacity 0.2s ease;">⭐ Start Here First (Foundations)</a>
+        <a href="tips.html" class="tips-btn" style="margin-top:0;">⚡ View Tips &amp; Tricks →</a>
+        <a href="../js-guide/js-guide.html" style="display:inline-block;padding:10px 24px;background:rgba(247,223,30,0.12);color:#f7df1e;text-decoration:none;border-radius:30px;font-size:0.85rem;font-weight:700;border:1px solid rgba(247,223,30,0.3);transition:opacity 0.2s ease;">⚡ JS 0 to Hero →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SIDEBAR NAV -->
+  <div class="layout">
+
+    <aside class="sidebar">
+      <p class="nav-label">Topics</p>
+      <a href="#step1">1. grid-template-areas</a>
+      <a href="#step2">2. grid-template-columns</a>
+      <a href="#step3">3. grid-template-rows</a>
+      <a href="#step4">4. grid-auto-rows</a>
+      <a href="#step5">5. Flexbox</a>
+      <a href="#step6">6. Gap</a>
+      <a href="#step7">7. Media Queries</a>
+      <div class="nav-divider"></div>
+      <p class="nav-label">Additions</p>
+      <a href="#add1">8. Position</a>
+      <a href="#add2">9. Z-index</a>
+      <a href="#add3">10. Transitions & Animations</a>
+      <a href="#add4">11. CSS Variables</a>
+      <a href="#add5">12. Overflow</a>
+      <a href="#add6">13. JavaScript DOM</a>
+      <a href="#add7">14. clamp / min / max</a>
+      <div class="nav-divider"></div>
+      <p class="nav-label">Complete Developer</p>
+      <a href="#extra1">15. HTML Semantics</a>
+      <a href="#extra2">16. Forms & Inputs</a>
+      <a href="#extra3">17. CSS Pseudo-classes</a>
+      <a href="#extra4">18. Accessibility</a>
+      <a href="#extra5">19. SEO Basics</a>
+      <a href="#extra6">20. Performance</a>
+      <a href="#extra7">21. Fonts & Icons</a>
+      <a href="#extra8">22. JavaScript Beyond DOM</a>
+      <div class="nav-divider"></div>
+      <p class="nav-label">Ship It</p>
+      <a href="#ship1">23. VS Code Workflow</a>
+      <a href="#ship2">24. Browser DevTools</a>
+      <a href="#ship3">25. Git & Version Control</a>
+      <a href="#ship4">26. Hosting & Deployment</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+      <!-- ════════════════════════════════ -->
+      <!-- STEP 1: grid-template-areas      -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="step1">
+        <div class="topic-header step1">
+          <span class="step-num">01</span>
+          <div>
+            <h2>grid-template-areas</h2>
+            <p>The Page Skeleton</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>It's like drawing a <strong>blueprint before building a house</strong>. You name each section of your page and arrange them visually in your CSS.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of a <strong>newspaper layout</strong> — header at top, big story in the middle, smaller stories on the side, footer at the bottom. <code>grid-template-areas</code> lets you draw exactly that.</p>
+          </div>
+
+          <pre><code>body {
+  display: grid;
+  grid-template-areas:
+    "header  header"
+    "nav     nav"
+    "sidebar main"
+    "footer  footer";
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 70px 50px 1fr 60px;
+  min-height: 100vh;
+}
+
+header  { grid-area: header; }
+nav     { grid-area: nav; }
+.sidebar { grid-area: sidebar; }
+main    { grid-area: main; }
+footer  { grid-area: footer; }</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Forgetting to add <code>grid-area: name</code> on the HTML element</li>
+              <li>Making rows unequal — e.g. 3 words in row 1 but 2 in row 2</li>
+              <li>Not adding <code>display: grid</code> on the parent</li>
+              <li>Using the same name twice for different elements</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Draws your page like a blueprint</li>
+              <li>Every row must have the same number of columns</li>
+              <li>You must assign <code>grid-area</code> to each HTML element</li>
+              <li>Repeated names = element spans those columns</li>
+              <li>A <code>.</code> means leave that cell empty</li>
+              <li>Only works on the parent with <code>display: grid</code></li>
+              <li>Use it for the big structure only, not small components</li>
+              <li>Think of it as the skeleton before adding muscles</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — News Page Layout</h3>
+            <p>Build a news page skeleton with these areas:</p>
+            <ul>
+              <li>Header across the full top</li>
+              <li>Nav bar below header</li>
+              <li>A wide main article on the left</li>
+              <li>A narrow sidebar on the right</li>
+              <li>Footer across the full bottom</li>
+            </ul>
+            <p>Give each area a different background color so you can see the layout clearly. Don't worry about real content yet — just the structure.</p>
+            <div class="project-goal">
+              <strong>Goal:</strong> Use only <code>grid-template-areas</code> and <code>grid-area</code> to build the layout. No flexbox yet.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- STEP 2: grid-template-columns    -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="step2">
+        <div class="topic-header step2">
+          <span class="step-num">02</span>
+          <div>
+            <h2>grid-template-columns</h2>
+            <p>Controlling Column Widths</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>After placing sections on the grid, you control <strong>how wide each column is</strong>. Think of a spreadsheet — you can drag column widths to make column A narrow and column B wide.</p>
+          </div>
+
+          <pre><code>/* Sidebar + main content */
+body {
+  grid-template-columns: 250px 1fr;
+}
+
+/* 4 equal product columns */
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Dashboard: sidebar | content | widgets */
+.dashboard {
+  display: grid;
+  grid-template-columns: 200px 1fr 300px;
+}</code></pre>
+
+          <div class="explain">
+            <h3>Units Explained</h3>
+            <table>
+              <tr><th>Unit</th><th>Meaning</th><th>Example</th></tr>
+              <tr><td><code>px</code></td><td>Fixed size</td><td><code>250px</code></td></tr>
+              <tr><td><code>fr</code></td><td>Fraction of remaining space</td><td><code>1fr 2fr</code></td></tr>
+              <tr><td><code>%</code></td><td>Percentage of parent</td><td><code>50%</code></td></tr>
+              <tr><td><code>auto</code></td><td>Fits content size</td><td><code>auto</code></td></tr>
+              <tr><td><code>minmax()</code></td><td>Between min and max</td><td><code>minmax(200px, 1fr)</code></td></tr>
+              <tr><td><code>repeat()</code></td><td>Repeat a pattern</td><td><code>repeat(3, 1fr)</code></td></tr>
+            </table>
+          </div>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Using <code>%</code> instead of <code>fr</code> — <code>%</code> ignores the gap</li>
+              <li>Forgetting <code>repeat()</code> and writing <code>1fr 1fr 1fr 1fr</code> manually</li>
+              <li>Too many fixed <code>px</code> columns — breaks on smaller screens</li>
+              <li>Not understanding <code>fr</code> fills what's left after fixed columns</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Defines how wide each column is</li>
+              <li><code>fr</code> is the most flexible unit — use it most</li>
+              <li><code>repeat(n, size)</code> saves repeating the same value</li>
+              <li><code>minmax(min, max)</code> gives flexible size range</li>
+              <li><code>px</code> = rigid, <code>fr</code> = flexible</li>
+              <li><code>auto</code> sizes to the content</li>
+              <li><code>1fr 2fr</code> means second column is twice as wide</li>
+              <li>Always test on different screen sizes</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Product Grid</h3>
+            <p>Build an e-commerce product grid with:</p>
+            <ul>
+              <li>4 equal columns on desktop using <code>repeat(4, 1fr)</code></li>
+              <li>Each card has a colored box (product image placeholder), product name, and price</li>
+              <li>A container with a max-width of 1200px centered on the page</li>
+              <li>At least 8 product cards total</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Practice <code>repeat()</code>, <code>fr</code> units, and <code>minmax()</code> for card sizing.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- STEP 3: grid-template-rows       -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="step3">
+        <div class="topic-header step3">
+          <span class="step-num">03</span>
+          <div>
+            <h2>grid-template-rows</h2>
+            <p>Controlling Row Heights</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Same as columns but for <strong>height of each row</strong>. Think of a building floor plan — ground floor is the lobby (tall), upper floors are offices (equal), top floor is the penthouse (tallest).</p>
+          </div>
+
+          <pre><code>body {
+  display: grid;
+  grid-template-rows:
+    70px      /* header — short and fixed */
+    50px      /* nav bar */
+    100vh     /* hero — full screen height */
+    auto      /* content — grows with content */
+    200px     /* CTA section */
+    80px;     /* footer */
+}</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Setting all rows to fixed <code>px</code> — content overflows when text is long</li>
+              <li>Forgetting <code>auto</code> — it lets the row grow naturally</li>
+              <li>Using <code>100vh</code> on multiple rows — only the hero should be full screen</li>
+              <li>Not knowing rows auto-create when you have more content than defined rows</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Defines how tall each row is</li>
+              <li><code>auto</code> is the safest — grows with content</li>
+              <li><code>100vh</code> = full screen height, use only for hero</li>
+              <li>Fixed <code>px</code> rows can overflow — use carefully</li>
+              <li>Rows without a defined height default to <code>auto</code></li>
+              <li>Works hand-in-hand with <code>grid-template-areas</code></li>
+              <li>Think of rows like floors in a building</li>
+              <li>Use <code>min-height</code> instead of <code>height</code> to prevent overflow</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Landing Page Structure</h3>
+            <p>Build a single-page website structure with exactly these row heights:</p>
+            <ul>
+              <li>Header: <code>70px</code></li>
+              <li>Hero section: <code>100vh</code> with centered text and a button</li>
+              <li>Features section: <code>auto</code> with 3 feature boxes side by side</li>
+              <li>Footer: <code>80px</code></li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Practice mixing <code>px</code>, <code>vh</code>, and <code>auto</code> row heights in one layout.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- STEP 4: grid-auto-rows           -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="step4">
+        <div class="topic-header step4">
+          <span class="step-num">04</span>
+          <div>
+            <h2>grid-auto-rows & grid-auto-columns</h2>
+            <p>Auto Generated Cells</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>When grid creates <strong>extra rows automatically</strong> (because you have more items than defined), <code>grid-auto-rows</code> controls the size of those auto-created rows. Think of a <strong>photo gallery</strong> — you don't know how many photos a user will upload.</p>
+          </div>
+
+          <pre><code>/* Photo gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 250px;
+  gap: 16px;
+}
+
+/* Card grid with flexible height */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(150px, auto);
+  /* at least 150px tall, grows if content is longer */
+}</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Confusing <code>grid-template-rows</code> with <code>grid-auto-rows</code></li>
+              <li>Setting a fixed <code>px</code> without <code>minmax()</code> — content overflows</li>
+              <li>Forgetting it exists — manually defining every row</li>
+              <li>Not using <code>minmax(150px, auto)</code> as the default safe value</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Controls height of automatically created rows</li>
+              <li>Use when you don't know how many rows you'll have</li>
+              <li><code>minmax(150px, auto)</code> is the safest value</li>
+              <li>Perfect for card grids, galleries, blog posts</li>
+              <li>Works automatically — no need to count rows manually</li>
+              <li><code>grid-auto-columns</code> does the same for auto columns</li>
+              <li>Think of it as a default row height rule for extra rows</li>
+              <li>Always pair with <code>grid-template-columns</code></li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Dynamic Blog Grid</h3>
+            <p>Build a blog post grid where:</p>
+            <ul>
+              <li>3 columns using <code>repeat(3, 1fr)</code></li>
+              <li>Rows are auto-created using <code>grid-auto-rows: minmax(200px, auto)</code></li>
+              <li>Create 9 blog post cards — each with a title, short paragraph, and a "Read More" link</li>
+              <li>Make some cards have more text than others to test the auto height</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> See how <code>grid-auto-rows</code> handles different content lengths automatically.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- STEP 5: Flexbox                  -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="step5">
+        <div class="topic-header step5">
+          <span class="step-num">05</span>
+          <div>
+            <h2>Flexbox</h2>
+            <p>Aligning Items Inside Components</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Flexbox works in <strong>one direction</strong> — either a row or a column. Use it inside grid cells to align and position smaller elements like buttons, text, icons, nav links. Think of a <strong>toolbar in a phone</strong> — all icons arranged in a horizontal row, evenly spaced.</p>
+          </div>
+
+          <pre><code>/* Navbar */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Center a button in a section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card with icon + text side by side */
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}</code></pre>
+
+          <div class="explain">
+            <h3>Key Properties</h3>
+            <table>
+              <tr><th>Property</th><th>What it does</th></tr>
+              <tr><td><code>flex-direction</code></td><td>row (horizontal) or column (vertical)</td></tr>
+              <tr><td><code>justify-content</code></td><td>Aligns along the main axis</td></tr>
+              <tr><td><code>align-items</code></td><td>Aligns along the cross axis</td></tr>
+              <tr><td><code>gap</code></td><td>Space between items</td></tr>
+              <tr><td><code>flex-wrap</code></td><td>Allows items to wrap to next line</td></tr>
+              <tr><td><code>flex: 1</code></td><td>Item grows to fill available space</td></tr>
+            </table>
+          </div>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Confusing <code>justify-content</code> and <code>align-items</code> — they swap when you change <code>flex-direction</code></li>
+              <li>Using flexbox for the whole page layout instead of just components</li>
+              <li>Forgetting <code>flex-wrap: wrap</code> — items overflow instead of wrapping</li>
+              <li>Using <code>margin</code> on every item instead of <code>gap</code></li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Works in one direction — row or column</li>
+              <li><code>justify-content</code> = align along the main direction</li>
+              <li><code>align-items</code> = align along the opposite direction</li>
+              <li>Use <code>gap</code> instead of <code>margin</code> for spacing</li>
+              <li><code>flex: 1</code> makes an item fill all remaining space</li>
+              <li><code>flex-wrap: wrap</code> lets items move to the next line</li>
+              <li>Best for navbars, cards, buttons — not full page layouts</li>
+              <li>Think of it as the furniture arranger inside each grid room</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Navbar + Profile Card</h3>
+            <p>Build two components using only flexbox:</p>
+            <ul>
+              <li><strong>Navbar:</strong> Logo on the left, nav links in the center, a button on the right — all perfectly vertically centered</li>
+              <li><strong>Profile card:</strong> Avatar circle on the left, name + bio text on the right, a follow button at the bottom right of the card</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Practice <code>justify-content</code>, <code>align-items</code>, <code>gap</code>, and <code>flex: 1</code> together.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- STEP 6: Gap                      -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="step6">
+        <div class="topic-header step6">
+          <span class="step-num">06</span>
+          <div>
+            <h2>gap</h2>
+            <p>Spacing Between Items</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p><code>gap</code> adds space <strong>between</strong> grid or flex items — like gutters between columns in a magazine. It does NOT add space on the outer edges.</p>
+          </div>
+
+          <pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;           /* same gap everywhere */
+}
+
+/* Control each direction separately */
+.grid {
+  row-gap: 32px;       /* only between rows */
+  column-gap: 16px;    /* only between columns */
+}</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Using <code>margin</code> on every item instead of <code>gap</code> on the parent</li>
+              <li>Forgetting <code>gap</code> doesn't add space on outside edges — use <code>padding</code> on parent</li>
+              <li>Using old <code>grid-gap</code> — use <code>gap</code> instead</li>
+              <li>Setting different gaps per item with margins when <code>column-gap</code> / <code>row-gap</code> would work</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Adds space between items, not outside them</li>
+              <li>Use <code>gap</code> on the parent, not <code>margin</code> on children</li>
+              <li><code>row-gap</code> and <code>column-gap</code> control each direction</li>
+              <li>Works on both grid and flexbox</li>
+              <li>Replaces the old <code>grid-gap</code></li>
+              <li>For outer spacing use <code>padding</code> on the container</li>
+              <li>Keeps spacing consistent and easy to update</li>
+              <li>One <code>gap</code> value beats dozens of individual margins</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Photo Gallery</h3>
+            <p>Build a photo gallery grid with:</p>
+            <ul>
+              <li>4 columns of colored boxes (representing photos)</li>
+              <li><code>gap: 12px</code> between all items</li>
+              <li>Different <code>row-gap</code> and <code>column-gap</code> values</li>
+              <li>Outer padding on the container so the gallery doesn't touch the screen edges</li>
+              <li>At least 12 "photo" boxes</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Feel the difference between <code>gap</code>, <code>row-gap</code>, <code>column-gap</code>, and <code>padding</code>.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- STEP 7: Media Queries            -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="step7">
+        <div class="topic-header step7">
+          <span class="step-num">07</span>
+          <div>
+            <h2>Media Queries</h2>
+            <p>Responsive Layout</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Media queries let you <strong>change the layout based on screen size</strong>. Think of water — it changes shape to fit whatever container it's in. Media queries make your website do the same.</p>
+          </div>
+
+          <pre><code>/* Desktop: 4 columns */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  body {
+    grid-template-areas:
+      "header"
+      "nav"
+      "main"
+      "sidebar"
+      "footer";
+    grid-template-columns: 1fr;
+  }
+}
+
+/* IMPORTANT: always include this in HTML */
+/* meta name="viewport" content="width=device-width, initial-scale=1.0" */</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Only designing for desktop and adding mobile as afterthought</li>
+              <li>Using too many breakpoints — 2 or 3 is usually enough</li>
+              <li>Forgetting the viewport <code>meta</code> tag in HTML</li>
+              <li>Changing too many properties inside media queries</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Changes layout at specific screen widths</li>
+              <li>Most common breakpoints: <code>768px</code> mobile, <code>1024px</code> tablet</li>
+              <li>Always include the viewport meta tag in HTML</li>
+              <li>Mobile-first = write mobile styles first, add desktop with <code>min-width</code></li>
+              <li>Desktop-first = write desktop first, shrink with <code>max-width</code></li>
+              <li>Keep media query changes small and targeted</li>
+              <li>Test on real phone sizes using Chrome DevTools</li>
+              <li>2-3 breakpoints covers 99% of real world cases</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Fully Responsive Page</h3>
+            <p>Take your product grid from Step 2 and make it fully responsive:</p>
+            <ul>
+              <li>Desktop: 4 columns</li>
+              <li>Tablet (max 1024px): 2 columns</li>
+              <li>Mobile (max 768px): 1 column, stacked layout</li>
+              <li>Hide the sidebar on mobile</li>
+              <li>Make the navbar stack vertically on mobile</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Write 3 breakpoints that completely transform your layout across screen sizes.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- ADD 1: Position                  -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="add1">
+        <div class="topic-header add1">
+          <span class="step-num">08</span>
+          <div>
+            <h2>position</h2>
+            <p>Placing Elements Outside the Normal Flow</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>By default every element sits in the <strong>normal flow</strong>. <code>position</code> lets you break out of that flow and place elements exactly where you want.</p>
+          </div>
+
+          <pre><code>/* relative — nudge from original spot */
+.badge {
+  position: relative;
+  top: -5px;
+  left: 10px;
+}
+
+/* absolute — placed inside nearest positioned parent */
+.card { position: relative; }
+.card .sale-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* fixed — always visible, never scrolls away */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* sticky — scrolls then sticks at threshold */
+.section-title {
+  position: sticky;
+  top: 0;
+  background: white;
+}</code></pre>
+
+          <div class="explain">
+            <h3>The 5 Values</h3>
+            <table>
+              <tr><th>Value</th><th>Behavior</th></tr>
+              <tr><td><code>static</code></td><td>Default — normal flow, ignore it</td></tr>
+              <tr><td><code>relative</code></td><td>Nudge from original spot, stays in flow</td></tr>
+              <tr><td><code>absolute</code></td><td>Removed from flow, placed inside positioned parent</td></tr>
+              <tr><td><code>fixed</code></td><td>Always visible in same spot on screen</td></tr>
+              <tr><td><code>sticky</code></td><td>Flows normally then sticks at a threshold</td></tr>
+            </table>
+          </div>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Using <code>absolute</code> without <code>position: relative</code> on parent — element flies to page corner</li>
+              <li>Forgetting <code>width: 100%</code> on a fixed navbar</li>
+              <li>Using <code>fixed</code> when they meant <code>sticky</code></li>
+              <li>Using <code>position</code> for layouts — that's grid/flexbox's job</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li><code>static</code> — default, ignore it</li>
+              <li><code>relative</code> — nudge + anchor point for absolute children</li>
+              <li><code>absolute</code> — removed from flow, inside positioned parent</li>
+              <li><code>fixed</code> — always visible in same screen position</li>
+              <li><code>sticky</code> — flows then sticks at a scroll threshold</li>
+              <li>Always set <code>position: relative</code> on parent when using absolute on child</li>
+              <li>Position is for exceptions — not for main layout</li>
+              <li>Think of it as placing stickers on top of your normal layout</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Product Card with Badges</h3>
+            <p>Build a product card that uses all 3 main position values:</p>
+            <ul>
+              <li>A "SALE" badge in the top-right corner of the card using <code>absolute</code></li>
+              <li>A sticky navbar at the top of the page using <code>fixed</code></li>
+              <li>A tooltip that appears above the product name on hover using <code>absolute</code></li>
+              <li>The card itself as <code>relative</code> to anchor the badge</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Understand parent-child positioning with <code>relative</code> + <code>absolute</code>.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- ADD 2: Z-index                   -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="add2">
+        <div class="topic-header add2">
+          <span class="step-num">09</span>
+          <div>
+            <h2>z-index</h2>
+            <p>Who Appears On Top</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>When elements overlap, <code>z-index</code> decides which one is <strong>on top</strong>. Think of it as layers in Photoshop — higher number = on top.</p>
+          </div>
+
+          <pre><code>.modal-overlay {
+  position: fixed;
+  z-index: 1000;
+}
+
+.navbar {
+  position: fixed;
+  z-index: 100;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Good z-index scale system */
+:root {
+  --z-base:     1;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-modal:    300;
+  --z-toast:    400;
+}</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Using random huge numbers like <code>z-index: 99999</code></li>
+              <li>Forgetting to add <code>position</code> — <code>z-index</code> silently does nothing on static elements</li>
+              <li>Not understanding stacking context — child can't escape parent's layer</li>
+              <li>Setting <code>z-index</code> on every element — only use where elements overlap</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Higher <code>z-index</code> = appears on top</li>
+              <li>Only works on elements with <code>position</code> that is not static</li>
+              <li>Use a scale system — don't use random numbers</li>
+              <li>Stacking context traps children within parent's layer</li>
+              <li>Use <code>1, 100, 200, 300</code> not <code>1, 99, 999, 9999</code></li>
+              <li>Modals should always have the highest <code>z-index</code></li>
+              <li>Navbars need <code>z-index</code> to stay above scrolling content</li>
+              <li>When something disappears behind another — check <code>z-index</code> first</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Modal Popup</h3>
+            <p>Build a modal popup system:</p>
+            <ul>
+              <li>A page with content cards and a fixed navbar</li>
+              <li>A "Open Modal" button that shows a popup overlay</li>
+              <li>The overlay covers everything including the navbar</li>
+              <li>A close button (×) inside the modal</li>
+              <li>Use CSS variables for your z-index scale</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Practice layering navbar, content, overlay, and modal at different z-index levels.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- ADD 3: Transitions & Animations  -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="add3">
+        <div class="topic-header add3">
+          <span class="step-num">10</span>
+          <div>
+            <h2>transitions & animations</h2>
+            <p>Making it Feel Alive</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p><code>transition</code> smoothly changes a CSS property over time. <code>animation</code> creates complex multi-step movements using <code>@keyframes</code>.</p>
+          </div>
+
+          <pre><code>/* Transition — smooth hover effect */
+.button {
+  background: #e94560;
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.button:hover {
+  background: #c73652;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Animation — multi-step movement */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-text {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Infinite pulse */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.06); }
+}
+
+.notification {
+  animation: pulse 1.5s ease-in-out infinite;
+}</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Transitioning <code>width</code> or <code>height</code> — use <code>transform</code> instead</li>
+              <li>Using <code>transition: all</code> — transitions every property, causes bugs</li>
+              <li>Forgetting <code>forwards</code> on animations — element snaps back</li>
+              <li>Making animations too long — over <code>0.5s</code> feels slow</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li><code>transition</code> = smooth change between two states</li>
+              <li><code>animation</code> = multi-step movement with <code>@keyframes</code></li>
+              <li>Always specify which property to transition — not <code>all</code></li>
+              <li><code>ease</code> is the most natural timing</li>
+              <li>Keep transitions short — <code>0.2s</code> to <code>0.4s</code> is the sweet spot</li>
+              <li>Use <code>transform</code> for movement — never animate <code>width</code> or <code>height</code></li>
+              <li><code>forwards</code> keeps the element in its final animation state</li>
+              <li>Subtle animations = professional. Too many = amateur</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Animated Card Showcase</h3>
+            <p>Build a card grid where:</p>
+            <ul>
+              <li>Cards lift up and cast a bigger shadow on hover</li>
+              <li>The card image zooms in slightly on hover (using <code>transform: scale</code>)</li>
+              <li>Cards fade in one by one when the page loads using <code>@keyframes</code> and <code>animation-delay</code></li>
+              <li>A button that changes color, scale, and shadow smoothly on hover</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Build smooth, professional interactions using only <code>transition</code> and <code>@keyframes</code>.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- ADD 4: CSS Variables             -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="add4">
+        <div class="topic-header add4">
+          <span class="step-num">11</span>
+          <div>
+            <h2>CSS Variables</h2>
+            <p>Your Design System</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>CSS variables let you store values once and reuse them everywhere. Change one variable and it updates across your whole site — perfect for colors, fonts, spacing, and dark mode.</p>
+          </div>
+
+          <pre><code>/* Define in :root (globally available) */
+:root {
+  --primary:    #e94560;
+  --dark:       #1a1a2e;
+  --light:      #f0f2f5;
+  --text:       #333;
+  --font-main:  'Segoe UI', Arial, sans-serif;
+  --radius:     8px;
+  --shadow:     0 4px 12px rgba(0,0,0,0.1);
+  --transition: 0.3s ease;
+}
+
+/* Use anywhere with var() */
+.button {
+  background: var(--primary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+/* Dark mode with variables */
+:root {
+  --bg:   #ffffff;
+  --text: #333333;
+}
+
+body.dark-mode {
+  --bg:   #1a1a2e;
+  --text: #e0e0f0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  /* Automatically switches with the class toggle */
+}</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Defining variables inside a specific selector — they won't be global</li>
+              <li>Using hardcoded colors alongside variables — defeats the purpose</li>
+              <li>Not using variables for repeated values like spacing and border-radius</li>
+              <li>Naming variables poorly — <code>--color1</code> tells nothing, <code>--primary</code> does</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Define variables in <code>:root</code> to make them globally available</li>
+              <li>Use <code>var(--name)</code> to apply them anywhere</li>
+              <li>Change one variable = updates everywhere it's used</li>
+              <li>Perfect for colors, fonts, spacing, shadows, border-radius</li>
+              <li>Makes dark mode trivially easy to implement</li>
+              <li>Name them by purpose — <code>--primary</code> not <code>--red</code></li>
+              <li>Variables make your CSS a proper design system</li>
+              <li>Saves you from find-and-replace nightmares when redesigning</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Theme Switcher</h3>
+            <p>Build a website with a working light/dark mode toggle:</p>
+            <ul>
+              <li>Define at least 6 CSS variables in <code>:root</code> — background, text, primary color, card color, border, shadow</li>
+              <li>Override all variables in a <code>body.dark</code> class</li>
+              <li>A toggle button in the navbar that switches the theme</li>
+              <li>The whole site — navbar, cards, footer — updates with one class toggle</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Experience how CSS variables + one JS class toggle can retheme an entire site instantly.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- ADD 5: Overflow                  -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="add5">
+        <div class="topic-header add5">
+          <span class="step-num">12</span>
+          <div>
+            <h2>overflow</h2>
+            <p>Controlling What Spills Out</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>When content is bigger than its container, <code>overflow</code> decides what happens — show it, hide it, or make it scrollable.</p>
+          </div>
+
+          <pre><code>/* Image zoom that stays inside card */
+.card {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.card img {
+  transition: transform 0.4s ease;
+}
+
+.card:hover img {
+  transform: scale(1.08);
+}
+
+/* Scrollable sidebar */
+.sidebar {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Fix horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+}</code></pre>
+
+          <div class="explain">
+            <h3>The 4 Values</h3>
+            <table>
+              <tr><th>Value</th><th>Behavior</th></tr>
+              <tr><td><code>visible</code></td><td>Default — content spills out</td></tr>
+              <tr><td><code>hidden</code></td><td>Clips content at container edge</td></tr>
+              <tr><td><code>scroll</code></td><td>Always shows scrollbar</td></tr>
+              <tr><td><code>auto</code></td><td>Scrollbar only when needed</td></tr>
+            </table>
+          </div>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Using <code>overflow: hidden</code> to hide a broken layout — fixes symptom not cause</li>
+              <li><code>overflow: hidden</code> also clips box shadows — shadow disappears at edge</li>
+              <li>Not using <code>overflow-y: auto</code> on fixed-height containers</li>
+              <li>Using <code>overflow: scroll</code> instead of <code>auto</code> — always shows scrollbar</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li><code>visible</code> = default, content spills out</li>
+              <li><code>hidden</code> = clips content at container edge</li>
+              <li><code>auto</code> = scrollbar only when needed — use this most</li>
+              <li><code>scroll</code> = always shows scrollbar — rarely what you want</li>
+              <li><code>hidden</code> clips children's box shadows — be careful</li>
+              <li>Use <code>overflow-y: auto</code> for scrollable panels</li>
+              <li><code>overflow-x: hidden</code> on body fixes horizontal scroll on mobile</li>
+              <li>Don't use <code>hidden</code> to cover up layout bugs</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Image Card with Zoom</h3>
+            <p>Build a product card showcase using overflow:</p>
+            <ul>
+              <li>Cards with rounded corners where the image zooms on hover but stays inside — using <code>overflow: hidden</code></li>
+              <li>A sidebar panel with a fixed height and scrollable content using <code>overflow-y: auto</code></li>
+              <li>A horizontal scrollable row of tags/chips using <code>overflow-x: auto</code> and <code>white-space: nowrap</code></li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Use <code>overflow</code> in 3 different real-world scenarios in one page.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- ADD 6: JavaScript DOM            -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="add6">
+        <div class="topic-header add6">
+          <span class="step-num">13</span>
+          <div>
+            <h2>JavaScript DOM</h2>
+            <p>Adding Interactivity</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>JavaScript lets you <strong>change the page after it loads</strong> — toggle menus, show modals, switch dark mode, validate forms. Without it your site is just a static picture.</p>
+          </div>
+
+          <pre><code>/* Select elements */
+const btn = document.querySelector('.btn');
+const cards = document.querySelectorAll('.card');
+
+/* Toggle class on click — most used pattern */
+btn.addEventListener('click', () => {
+  nav.classList.toggle('hidden');
+});
+
+/* Dark mode toggle */
+const toggle = document.querySelector('.dark-toggle');
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+});
+
+/* Sticky navbar on scroll */
+const navbar = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+/* Loop through multiple elements */
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.toggle('active');
+  });
+});</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Using <code>getElementById</code> — <code>querySelector</code> is cleaner</li>
+              <li>Writing <code>onclick</code> directly in HTML — use <code>addEventListener</code></li>
+              <li>Manipulating CSS directly in JS — toggle classes instead</li>
+              <li>Not adding <code>defer</code> on the script tag — JS runs before HTML loads</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li><code>querySelector</code> selects one, <code>querySelectorAll</code> selects many</li>
+              <li><code>addEventListener('click', fn)</code> responds to interactions</li>
+              <li><code>classList.toggle()</code> is the most powerful pattern</li>
+              <li>Keep styling in CSS, keep logic in JS — never mix</li>
+              <li><code>defer</code> on script tag ensures HTML loads before JS runs</li>
+              <li>Dark mode = toggle a class on body + CSS variables do the rest</li>
+              <li>Scroll events trigger effects based on scroll position</li>
+              <li>JS + CSS classes together = almost any interactive effect</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Interactive Navbar</h3>
+            <p>Build a fully interactive navbar with:</p>
+            <ul>
+              <li>A hamburger menu button that toggles the mobile nav open/closed</li>
+              <li>The navbar changes background color after scrolling 80px down</li>
+              <li>A dark/light mode toggle button that switches the whole page theme</li>
+              <li>All styling handled by CSS classes — JS only adds/removes classes</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Use <code>classList.toggle()</code>, <code>scroll</code> events, and CSS variables together.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- ADD 7: clamp / min / max         -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="add7">
+        <div class="topic-header add7">
+          <span class="step-num">14</span>
+          <div>
+            <h2>clamp() / min() / max()</h2>
+            <p>Fluid Sizing Without Media Queries</p>
+          </div>
+        </div>
+
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>These functions let values <strong>scale fluidly</strong> between a minimum and maximum — no breakpoints needed. Text and spacing that automatically adapt to any screen size.</p>
+          </div>
+
+          <pre><code>/* clamp(min, preferred, max) */
+h1 {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  /* small screen → 1.5rem */
+  /* medium screen → 4vw (scales) */
+  /* large screen → 3rem */
+}
+
+section {
+  padding: clamp(20px, 5vw, 80px);
+}
+
+/* min(a, b) — picks the smaller value */
+.container {
+  width: min(90%, 1200px);
+  /* 90% on small, caps at 1200px on large */
+  margin: 0 auto;
+}
+
+/* max(a, b) — picks the larger value */
+.sidebar {
+  width: max(200px, 25%);
+  /* always at least 200px, grows to 25% on large screens */
+}
+
+/* Combined with CSS variables */
+:root {
+  --font-h1: clamp(1.8rem, 5vw, 4rem);
+  --font-h2: clamp(1.4rem, 3vw, 2.5rem);
+  --padding: clamp(16px, 4vw, 60px);
+}</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Using <code>vw</code> for font sizes without <code>clamp</code> — unreadably tiny or huge</li>
+              <li>Forgetting the order in <code>clamp</code> — always <code>min, preferred, max</code></li>
+              <li>Using these instead of media queries for layout changes — they're for sizing, not layout</li>
+              <li>Not combining with CSS variables — misses the full power</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li><code>clamp(min, preferred, max)</code> — fluid value between a floor and ceiling</li>
+              <li><code>min(a, b)</code> — always picks the smaller of two values</li>
+              <li><code>max(a, b)</code> — always picks the larger of two values</li>
+              <li><code>vw</code> in the preferred value makes it scale with screen width</li>
+              <li>Perfect for font sizes, padding, container widths</li>
+              <li>Reduces the number of media queries you need</li>
+              <li><code>width: min(90%, 1200px)</code> is the cleanest container pattern</li>
+              <li>Combine with CSS variables for a complete fluid design system</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Fluid Typography Page</h3>
+            <p>Build a landing page hero section where everything scales fluidly:</p>
+            <ul>
+              <li>H1 title uses <code>clamp(2rem, 6vw, 5rem)</code></li>
+              <li>Paragraph uses <code>clamp(1rem, 2vw, 1.3rem)</code></li>
+              <li>Section padding uses <code>clamp(30px, 8vw, 120px)</code></li>
+              <li>Container uses <code>width: min(90%, 1100px)</code></li>
+              <li>Resize your browser window and watch everything scale smoothly — no breakpoints</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Build a section that looks perfect on any screen size without writing a single media query.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- EXTRA 1: HTML Semantics          -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="extra1">
+        <div class="topic-header extra1">
+          <span class="step-num">15</span>
+          <div>
+            <h2>HTML Semantics</h2>
+            <p>Using the Right Tags</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Semantic HTML means using tags that <strong>describe what the content is</strong>, not just how it looks. A <code>&lt;div&gt;</code> means nothing — a <code>&lt;nav&gt;</code> tells everyone (browsers, Google, screen readers) "this is navigation".</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of a <strong>library</strong> — books are labeled by genre (Fiction, Science, History). Without labels you'd have to open every book to find what you want. Semantic HTML labels your content so browsers and Google don't have to guess.</p>
+          </div>
+
+          <pre><code>&lt;!-- Bad — meaningless divs everywhere --&gt;
+&lt;div class="header"&gt;
+  &lt;div class="nav"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="main"&gt;
+  &lt;div class="article"&gt;...&lt;/div&gt;
+  &lt;div class="sidebar"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Good — semantic tags --&gt;
+&lt;header&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h1&gt;Article Title&lt;/h1&gt;
+    &lt;p&gt;Content here...&lt;/p&gt;
+  &lt;/article&gt;
+  &lt;aside&gt;Sidebar content&lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+
+          <div class="explain">
+            <h3>Key Semantic Tags</h3>
+            <table>
+              <tr><th>Tag</th><th>Use it for</th></tr>
+              <tr><td><code>&lt;header&gt;</code></td><td>Top of page or section — logo, nav</td></tr>
+              <tr><td><code>&lt;nav&gt;</code></td><td>Navigation links</td></tr>
+              <tr><td><code>&lt;main&gt;</code></td><td>The primary content of the page — only one per page</td></tr>
+              <tr><td><code>&lt;section&gt;</code></td><td>A thematic group of content with a heading</td></tr>
+              <tr><td><code>&lt;article&gt;</code></td><td>Self-contained content — blog post, news story, card</td></tr>
+              <tr><td><code>&lt;aside&gt;</code></td><td>Sidebar, related links, ads</td></tr>
+              <tr><td><code>&lt;footer&gt;</code></td><td>Bottom of page or section</td></tr>
+              <tr><td><code>&lt;figure&gt;</code></td><td>Image with a caption</td></tr>
+              <tr><td><code>&lt;time&gt;</code></td><td>Dates and times</td></tr>
+            </table>
+          </div>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Using <code>&lt;div&gt;</code> for everything — no meaning, bad for SEO</li>
+              <li>Using <code>&lt;h1&gt;</code> multiple times on one page — there should only be one</li>
+              <li>Skipping heading levels — going from <code>&lt;h1&gt;</code> straight to <code>&lt;h4&gt;</code></li>
+              <li>Using <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> instead of <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code></li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Semantic tags describe the purpose of content</li>
+              <li>Use <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code> instead of divs</li>
+              <li>Only one <code>&lt;h1&gt;</code> per page — it's the main title</li>
+              <li>Never skip heading levels — h1 → h2 → h3</li>
+              <li>Google reads semantic tags to understand your page</li>
+              <li>Screen readers use them to help visually impaired users</li>
+              <li><code>&lt;article&gt;</code> = standalone content, <code>&lt;section&gt;</code> = grouped content</li>
+              <li>Better semantics = better SEO + better accessibility</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Semantic Blog Page</h3>
+            <p>Rebuild a simple blog page using only semantic tags:</p>
+            <ul>
+              <li>A <code>&lt;header&gt;</code> with the blog name and a <code>&lt;nav&gt;</code> with 3 links</li>
+              <li>A <code>&lt;main&gt;</code> with two <code>&lt;article&gt;</code> elements — each with a title, date using <code>&lt;time&gt;</code>, and a paragraph</li>
+              <li>An <code>&lt;aside&gt;</code> with "Related Posts"</li>
+              <li>A <code>&lt;footer&gt;</code> with copyright text</li>
+              <li>Zero <code>&lt;div&gt;</code> tags allowed</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Write a complete page structure using only semantic HTML — no divs, no classes needed yet.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- EXTRA 2: Forms & Inputs          -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="extra2">
+        <div class="topic-header extra2">
+          <span class="step-num">16</span>
+          <div>
+            <h2>Forms & Inputs</h2>
+            <p>Login Pages, Contact Forms, Search Bars</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Forms are how users <strong>send information</strong> to a website — logging in, signing up, searching, contacting. Every real website has at least one form.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of a <strong>paper application form</strong> — it has labeled boxes you fill in, checkboxes you tick, and a submit button at the end. HTML forms are exactly that, but digital.</p>
+          </div>
+
+          <pre><code>&lt;!-- Login Form --&gt;
+&lt;form action="/login" method="POST"&gt;
+
+  &lt;label for="email"&gt;Email&lt;/label&gt;
+  &lt;input type="email" id="email" name="email"
+         placeholder="you@example.com" required /&gt;
+
+  &lt;label for="password"&gt;Password&lt;/label&gt;
+  &lt;input type="password" id="password" name="password"
+         placeholder="••••••••" required /&gt;
+
+  &lt;button type="submit"&gt;Log In&lt;/button&gt;
+
+&lt;/form&gt;
+
+/* Styling inputs */
+input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: #e94560;
+}</code></pre>
+
+          <div class="explain">
+            <h3>Common Input Types</h3>
+            <table>
+              <tr><th>Type</th><th>Use it for</th></tr>
+              <tr><td><code>text</code></td><td>Names, usernames, general text</td></tr>
+              <tr><td><code>email</code></td><td>Email addresses — validates format</td></tr>
+              <tr><td><code>password</code></td><td>Passwords — hides characters</td></tr>
+              <tr><td><code>number</code></td><td>Numbers only</td></tr>
+              <tr><td><code>checkbox</code></td><td>Yes/no options</td></tr>
+              <tr><td><code>radio</code></td><td>Choose one from multiple options</td></tr>
+              <tr><td><code>textarea</code></td><td>Multi-line text — messages, bio</td></tr>
+              <tr><td><code>select</code></td><td>Dropdown menu</td></tr>
+            </table>
+          </div>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Not using <code>&lt;label&gt;</code> — inputs without labels are inaccessible</li>
+              <li>Forgetting <code>required</code> attribute — form submits with empty fields</li>
+              <li>Using wrong <code>type</code> — using <code>text</code> for email misses built-in validation</li>
+              <li>Not connecting label to input with matching <code>for</code> and <code>id</code></li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Always wrap inputs in a <code>&lt;form&gt;</code> tag</li>
+              <li>Every input needs a <code>&lt;label&gt;</code> — connect with <code>for</code> and <code>id</code></li>
+              <li>Use the correct <code>type</code> — it gives free built-in validation</li>
+              <li><code>required</code> prevents empty form submission</li>
+              <li>Use <code>:focus</code> to style inputs when user clicks them</li>
+              <li><code>placeholder</code> shows hint text inside the input</li>
+              <li><code>name</code> attribute is required for form data to be sent</li>
+              <li>Style inputs with padding, border, border-radius for clean look</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Login & Signup Page</h3>
+            <p>Build a styled login/signup page with:</p>
+            <ul>
+              <li>A centered card with a login form — email, password, submit button</li>
+              <li>All inputs have labels, placeholders, and <code>required</code></li>
+              <li>Input border changes color on <code>:focus</code></li>
+              <li>A "Remember me" checkbox</li>
+              <li>A "Forgot password?" link below the form</li>
+              <li>A toggle between Login and Signup forms using JavaScript</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Build a complete, accessible, styled form that looks professional.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- EXTRA 3: CSS Pseudo-classes      -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="extra3">
+        <div class="topic-header extra3">
+          <span class="step-num">17</span>
+          <div>
+            <h2>CSS Pseudo-classes</h2>
+            <p>Targeting Specific States & Positions</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Pseudo-classes let you style elements based on their <strong>state or position</strong> — when hovered, when focused, when it's the first child, when a checkbox is checked. They start with a colon <code>:</code>.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of a <strong>traffic light</strong> — the same light changes appearance based on its state (red, yellow, green). Pseudo-classes do the same — same element, different style based on what's happening to it.</p>
+          </div>
+
+          <pre><code>/* State-based pseudo-classes */
+a:hover   { color: #e94560; }         /* mouse over */
+a:visited { color: purple; }          /* already clicked */
+input:focus { border-color: blue; }   /* currently typing */
+button:active { transform: scale(0.97); } /* being clicked */
+
+/* Position-based pseudo-classes */
+li:first-child { font-weight: bold; }  /* first item */
+li:last-child  { border: none; }       /* last item */
+li:nth-child(2) { color: red; }        /* 2nd item */
+li:nth-child(odd)  { background: #f5f5f5; } /* 1, 3, 5... */
+li:nth-child(even) { background: white; }   /* 2, 4, 6... */
+
+/* Useful extras */
+p:not(.special) { color: gray; } /* everything except .special */
+input:required  { border-left: 3px solid red; }
+input:checked + label { color: green; }</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Confusing <code>:nth-child()</code> counts — it counts ALL siblings, not just matching ones</li>
+              <li>Using <code>:first-child</code> when they need <code>:first-of-type</code></li>
+              <li>Forgetting pseudo-classes work on the element itself, not its parent</li>
+              <li>Not using <code>:focus</code> on inputs — critical for accessibility</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Pseudo-classes start with <code>:</code> and target states or positions</li>
+              <li><code>:hover</code> = mouse over, <code>:focus</code> = clicked/tabbed into</li>
+              <li><code>:active</code> = element being clicked right now</li>
+              <li><code>:nth-child(n)</code> targets by position in parent</li>
+              <li><code>odd</code> and <code>even</code> inside <code>:nth-child()</code> for alternating styles</li>
+              <li><code>:not()</code> styles everything except what you specify</li>
+              <li><code>:first-child</code> and <code>:last-child</code> for edge items</li>
+              <li>Always style <code>:focus</code> on interactive elements for accessibility</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Interactive Table & Menu</h3>
+            <p>Build two components using only pseudo-classes:</p>
+            <ul>
+              <li><strong>Table:</strong> alternating row colors using <code>:nth-child(odd/even)</code>, first row bold, last row has no border</li>
+              <li><strong>Dropdown menu:</strong> menu items that change background on <code>:hover</code>, first and last items have rounded corners only on their outer edges</li>
+              <li>All without adding any extra classes to HTML</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Style elements entirely based on their position and state — zero extra classes in HTML.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- EXTRA 4: Accessibility           -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="extra4">
+        <div class="topic-header extra4">
+          <span class="step-num">18</span>
+          <div>
+            <h2>Accessibility (a11y)</h2>
+            <p>Building for Everyone</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Accessibility means building websites that <strong>everyone can use</strong> — including people who use screen readers, can't use a mouse, or have visual impairments. It's also required by law in many countries for professional websites.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of a <strong>building with a wheelchair ramp</strong> — the ramp doesn't hurt anyone who can walk, but it makes the building usable for people in wheelchairs. Accessibility features are the same — they don't hurt normal users but open your site to millions more people.</p>
+          </div>
+
+          <pre><code>&lt;!-- Always add alt text to images --&gt;
+&lt;img src="coffee.jpg" alt="A hot latte with leaf art in foam" /&gt;
+
+&lt;!-- Decorative image — empty alt so screen reader skips it --&gt;
+&lt;img src="divider.png" alt="" /&gt;
+
+&lt;!-- ARIA labels for icon-only buttons --&gt;
+&lt;button aria-label="Close menu"&gt;✕&lt;/button&gt;
+
+&lt;!-- Skip to main content link (for keyboard users) --&gt;
+&lt;a href="#main" class="skip-link"&gt;Skip to main content&lt;/a&gt;
+
+/* Never remove focus outline — keyboard users need it */
+/* Bad */
+button:focus { outline: none; }
+
+/* Good — custom styled focus */
+button:focus {
+  outline: 2px solid #e94560;
+  outline-offset: 3px;
+}
+
+/* Sufficient color contrast */
+/* Bad — light gray on white */
+p { color: #aaa; background: #fff; }
+
+/* Good — dark text on light background */
+p { color: #333; background: #fff; }</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Removing <code>outline: none</code> on focus — keyboard users can't see where they are</li>
+              <li>Missing <code>alt</code> on images — screen readers say "image" with no context</li>
+              <li>Low color contrast — light gray text on white background fails accessibility checks</li>
+              <li>Using <code>&lt;div&gt;</code> as a button — not keyboard navigable by default</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Always add <code>alt</code> text to images — describe what's in the image</li>
+              <li>Never remove <code>:focus</code> outline — restyle it but keep it visible</li>
+              <li>Use real <code>&lt;button&gt;</code> and <code>&lt;a&gt;</code> tags — not clickable divs</li>
+              <li>Color contrast ratio must be at least 4.5:1 for normal text</li>
+              <li><code>aria-label</code> describes elements that have no visible text</li>
+              <li>Use semantic HTML — screen readers depend on it</li>
+              <li>Test keyboard navigation — tab through your site without a mouse</li>
+              <li>Accessibility = better UX for everyone, not just disabled users</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Accessible Card Component</h3>
+            <p>Build a product card that passes accessibility checks:</p>
+            <ul>
+              <li>Product image with descriptive <code>alt</code> text</li>
+              <li>Proper heading hierarchy — <code>h2</code> for product name</li>
+              <li>A "Add to Cart" button that is keyboard focusable with a visible focus style</li>
+              <li>Text has sufficient contrast — use dark text on light background</li>
+              <li>An icon button with an <code>aria-label</code></li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Tab through your card with only the keyboard — every interactive element must be reachable and visible.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- EXTRA 5: SEO Basics              -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="extra5">
+        <div class="topic-header extra5">
+          <span class="step-num">19</span>
+          <div>
+            <h2>SEO Basics</h2>
+            <p>Getting Found on Google</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>SEO (Search Engine Optimization) is how you make Google <strong>find, understand, and rank</strong> your website. The better your SEO, the higher you appear in search results.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of Google as a <strong>librarian</strong> — when someone searches "best coffee shop", the librarian looks for books (websites) that are clearly labeled, well-organized, and actually about coffee shops. SEO is how you label and organize your site for the librarian.</p>
+          </div>
+
+          <pre><code>&lt;head&gt;
+  &lt;!-- Page title — shows in browser tab and Google results --&gt;
+  &lt;title&gt;BrewBolt — Premium Coffee Delivery&lt;/title&gt;
+
+  &lt;!-- Description — shows under title in Google results --&gt;
+  &lt;meta name="description"
+    content="Order fresh specialty coffee delivered to your door.
+    Free shipping on orders over $30." /&gt;
+
+  &lt;!-- Tell Google your page is mobile-friendly --&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+
+  &lt;!-- Canonical URL — prevents duplicate content issues --&gt;
+  &lt;link rel="canonical" href="https://brewbolt.com/" /&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;!-- One h1 per page — your main keyword --&gt;
+  &lt;h1&gt;Fresh Coffee Delivered to Your Door&lt;/h1&gt;
+
+  &lt;!-- Descriptive image alt text — Google reads this too --&gt;
+  &lt;img src="coffee.jpg" alt="Freshly brewed pour-over coffee" /&gt;
+
+  &lt;!-- Descriptive link text — not "click here" --&gt;
+  &lt;a href="/menu"&gt;Browse Our Coffee Menu&lt;/a&gt;
+&lt;/body&gt;</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Missing or duplicate <code>&lt;title&gt;</code> tags — every page needs a unique title</li>
+              <li>No meta description — Google shows a random snippet instead</li>
+              <li>Using multiple <code>&lt;h1&gt;</code> tags — confuses Google about the main topic</li>
+              <li>Using "click here" as link text — Google can't tell what the link is about</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Every page needs a unique, descriptive <code>&lt;title&gt;</code></li>
+              <li>Meta description is what shows under your title in Google — keep it under 160 chars</li>
+              <li>One <code>&lt;h1&gt;</code> per page — put your main keyword in it</li>
+              <li>Descriptive image <code>alt</code> text helps Google understand images</li>
+              <li>Use meaningful link text — not "click here" or "read more"</li>
+              <li>Fast loading = better ranking — optimize images</li>
+              <li>Semantic HTML helps Google understand your page structure</li>
+              <li>Mobile-friendly pages rank higher — always use viewport meta tag</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — SEO-Optimized Landing Page</h3>
+            <p>Build a landing page for an imaginary business with full SEO:</p>
+            <ul>
+              <li>A unique <code>&lt;title&gt;</code> with the business name and main keyword</li>
+              <li>A meta description under 160 characters</li>
+              <li>One <code>&lt;h1&gt;</code>, two <code>&lt;h2&gt;</code> sections, proper heading hierarchy</li>
+              <li>All images have descriptive <code>alt</code> text</li>
+              <li>All links have meaningful text — no "click here"</li>
+              <li>Semantic HTML throughout — no div soup</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Build a page that Google can fully understand and rank — check it with a free SEO tool like Google's Lighthouse.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- EXTRA 6: Performance             -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="extra6">
+        <div class="topic-header extra6">
+          <span class="step-num">20</span>
+          <div>
+            <h2>Performance</h2>
+            <p>Making Your Site Load Fast</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Performance is how <strong>fast your website loads</strong>. Studies show that 53% of users leave a site that takes more than 3 seconds to load. Fast sites also rank higher on Google.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of a <strong>fast food restaurant vs a slow one</strong> — same food, but people choose the faster one. Your website is the same — a slow site drives users to your competitor's faster site.</p>
+          </div>
+
+          <pre><code>&lt;!-- 1. Lazy load images — only loads when user scrolls to them --&gt;
+&lt;img src="product.jpg" alt="Product" loading="lazy" /&gt;
+
+&lt;!-- 2. Use modern image formats --&gt;
+&lt;img src="hero.webp" alt="Hero image" /&gt;
+&lt;!-- WebP = same quality as JPEG but 30% smaller file size --&gt;
+
+&lt;!-- 3. Load CSS in head, JS at bottom with defer --&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="style.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  ...content...
+  &lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+/* 4. Use transform instead of top/left for animations */
+/* Bad — causes layout recalculation */
+.box { left: 100px; }
+
+/* Good — GPU-accelerated, much faster */
+.box { transform: translateX(100px); }
+
+/* 5. Use system fonts for fastest load */
+body {
+  font-family: -apple-system, BlinkMacSystemFont,
+               'Segoe UI', Arial, sans-serif;
+}</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Using giant unoptimized images — a 5MB hero image kills load time</li>
+              <li>Loading JavaScript in <code>&lt;head&gt;</code> without <code>defer</code> — blocks page render</li>
+              <li>Animating <code>top</code>, <code>left</code>, <code>width</code> — use <code>transform</code> instead</li>
+              <li>Loading huge Google Font libraries with every font weight</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Add <code>loading="lazy"</code> to all images below the fold</li>
+              <li>Use WebP format — same quality, 30% smaller than JPEG</li>
+              <li>Always add <code>defer</code> to script tags</li>
+              <li>Use <code>transform</code> for animations — not <code>top/left/width</code></li>
+              <li>Compress images before uploading — use squoosh.app</li>
+              <li>Fewer HTTP requests = faster site — combine files when possible</li>
+              <li>Test performance with Google Lighthouse in Chrome DevTools</li>
+              <li>A score above 90 in Lighthouse = fast, well-optimized site</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Optimized Image Gallery</h3>
+            <p>Build a photo gallery with performance best practices:</p>
+            <ul>
+              <li>First 3 images load normally — the rest use <code>loading="lazy"</code></li>
+              <li>All images have defined <code>width</code> and <code>height</code> attributes to prevent layout shift</li>
+              <li>Hover zoom effect uses <code>transform: scale()</code> not <code>width</code> change</li>
+              <li>JavaScript file uses <code>defer</code></li>
+              <li>Open Chrome DevTools → Lighthouse → run a Performance audit</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Build a gallery and get a Lighthouse Performance score above 85.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- EXTRA 7: Fonts & Icons           -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="extra7">
+        <div class="topic-header extra7">
+          <span class="step-num">21</span>
+          <div>
+            <h2>Fonts & Icons</h2>
+            <p>Google Fonts & Font Awesome</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Custom fonts and icons make your website look <strong>professional and polished</strong>. Default browser fonts (Times New Roman, Arial) look amateur. Google Fonts gives you hundreds of free fonts. Font Awesome gives you thousands of free icons.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of a <strong>professional business card vs a handwritten one</strong> — same information, but the printed one with a nice font looks far more trustworthy. Fonts are the same for websites — they set the entire mood and professionalism level.</p>
+          </div>
+
+          <pre><code>&lt;!-- 1. Google Fonts — add in head --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"&gt;
+
+/* Use the font in CSS */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2 { font-weight: 700; }
+p { font-weight: 400; }
+
+&lt;!-- 2. Font Awesome Icons — add in head --&gt;
+&lt;link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"&gt;
+
+&lt;!-- Use icons in HTML --&gt;
+&lt;i class="fa-solid fa-house"&gt;&lt;/i&gt;       &lt;!-- home icon --&gt;
+&lt;i class="fa-solid fa-magnifying-glass"&gt;&lt;/i&gt; &lt;!-- search --&gt;
+&lt;i class="fa-brands fa-github"&gt;&lt;/i&gt;     &lt;!-- GitHub logo --&gt;
+&lt;i class="fa-regular fa-heart"&gt;&lt;/i&gt;     &lt;!-- heart outline --&gt;
+
+/* Style icons like text */
+i {
+  font-size: 1.5rem;
+  color: #e94560;
+}</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Loading too many font weights — only load the weights you actually use</li>
+              <li>Forgetting <code>rel="preconnect"</code> — slows down font loading</li>
+              <li>Using more than 2 fonts on one page — looks messy and unprofessional</li>
+              <li>Using emoji as icons — they look different on every device and OS</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Google Fonts — free, hundreds of options, add via <code>&lt;link&gt;</code> in head</li>
+              <li>Only load the font weights you need — 400 and 700 covers most cases</li>
+              <li>Use max 2 fonts — one for headings, one for body text</li>
+              <li>Font Awesome gives thousands of scalable vector icons</li>
+              <li>Icons are styled with CSS like text — <code>font-size</code>, <code>color</code></li>
+              <li>Add <code>rel="preconnect"</code> for faster Google Fonts loading</li>
+              <li>Use <code>display=swap</code> in Google Fonts URL — shows fallback while loading</li>
+              <li>Never use emoji as UI icons — inconsistent across devices</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Styled Navigation with Icons</h3>
+            <p>Build a sidebar navigation using Google Fonts and Font Awesome:</p>
+            <ul>
+              <li>Load "Inter" from Google Fonts with weights 400 and 600</li>
+              <li>Each nav link has a Font Awesome icon on the left and a label on the right</li>
+              <li>Active nav item has a highlighted background and colored icon</li>
+              <li>Icons and text are aligned using flexbox</li>
+              <li>A profile section at the top with an avatar circle and username</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Build a sidebar that looks like a real app — like VS Code or Notion's sidebar.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- EXTRA 8: JavaScript Beyond DOM   -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="extra8">
+        <div class="topic-header extra8">
+          <span class="step-num">22</span>
+          <div>
+            <h2>JavaScript Beyond DOM</h2>
+            <p>Fetch, Local Storage & Form Validation</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Beyond toggling classes, JavaScript can <strong>fetch data from the internet</strong>, <strong>remember user preferences</strong>, and <strong>validate forms</strong> before submission — skills every real website uses.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of a <strong>weather app</strong> — it fetches today's weather from a server (Fetch API), remembers your city preference next time you open it (localStorage), and shows an error if you type letters instead of a zip code (form validation).</p>
+          </div>
+
+          <pre><code>// 1. FETCH API — get data from the internet
+fetch('https://api.example.com/products')
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(product => {
+      console.log(product.name);
+    });
+  });
+
+// 2. LOCAL STORAGE — save data in the browser
+// Save
+localStorage.setItem('theme', 'dark');
+localStorage.setItem('username', 'Myat');
+
+// Read
+const theme = localStorage.getItem('theme');
+document.body.classList.add(theme);
+
+// Remove
+localStorage.removeItem('theme');
+
+// 3. FORM VALIDATION — check before submitting
+const form = document.querySelector('form');
+const email = document.querySelector('#email');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // stop form from submitting
+
+  if (email.value === '') {
+    showError('Email is required');
+    return;
+  }
+
+  if (!email.value.includes('@')) {
+    showError('Please enter a valid email');
+    return;
+  }
+
+  // All good — submit the form
+  console.log('Form submitted!');
+});
+
+function showError(message) {
+  const error = document.querySelector('.error');
+  error.textContent = message;
+  error.style.display = 'block';
+}</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Forgetting <code>e.preventDefault()</code> — page refreshes on form submit before you can validate</li>
+              <li>Not handling fetch errors — app breaks silently when API fails</li>
+              <li>Storing sensitive data in localStorage — it's readable by anyone, never store passwords</li>
+              <li>Only relying on frontend validation — always validate on the server too</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Fetch API gets data from external servers — returns a Promise</li>
+              <li>Always <code>.then(res => res.json())</code> to convert response to usable data</li>
+              <li>localStorage saves key-value pairs in the browser permanently</li>
+              <li>localStorage survives page refresh — sessionStorage clears on tab close</li>
+              <li>Always call <code>e.preventDefault()</code> first in form submit handler</li>
+              <li>Never store passwords or tokens in localStorage — use cookies or sessions</li>
+              <li>Show clear error messages next to the specific input that failed</li>
+              <li>Frontend validation = good UX. Backend validation = real security</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Contact Form with Validation & Memory</h3>
+            <p>Build a contact form that:</p>
+            <ul>
+              <li>Validates name (required), email (valid format), message (min 20 chars) before submitting</li>
+              <li>Shows a red error message below each invalid field</li>
+              <li>On successful submit, shows a green success message</li>
+              <li>Saves the user's name in localStorage — pre-fills the name field next time they visit</li>
+              <li>A "Clear saved data" button that removes localStorage entries</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Build a form that validates, gives feedback, and remembers the user — like a real production form.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- SHIP 1: VS Code Workflow         -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="ship1">
+        <div class="topic-header ship1">
+          <span class="step-num">23</span>
+          <div>
+            <h2>VS Code Workflow</h2>
+            <p>Work Faster & Smarter</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>VS Code is the code editor you write your HTML, CSS, and JavaScript in. Knowing its <strong>shortcuts, extensions, and features</strong> makes you build 3x faster. Most beginners use 10% of what VS Code can do — this teaches you the important 90%.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of a <strong>carpenter who knows their tools</strong> — they don't just know how to hammer a nail, they know every feature of every tool in their belt. VS Code is your main tool as a developer. Knowing it deeply = building faster and making fewer mistakes.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Essential Keyboard Shortcuts</h3>
+            <table>
+              <tr><th>Shortcut</th><th>What it does</th></tr>
+              <tr><td><code>Ctrl + S</code></td><td>Save file</td></tr>
+              <tr><td><code>Ctrl + Z</code></td><td>Undo</td></tr>
+              <tr><td><code>Ctrl + /</code></td><td>Toggle comment on selected line</td></tr>
+              <tr><td><code>Alt + Up/Down</code></td><td>Move a line up or down</td></tr>
+              <tr><td><code>Ctrl + D</code></td><td>Select next occurrence of word</td></tr>
+              <tr><td><code>Ctrl + Shift + P</code></td><td>Open command palette — search any VS Code action</td></tr>
+              <tr><td><code>Ctrl + `</code></td><td>Open/close the terminal inside VS Code</td></tr>
+              <tr><td><code>Ctrl + B</code></td><td>Toggle sidebar</td></tr>
+              <tr><td><code>Alt + Click</code></td><td>Add multiple cursors — edit many lines at once</td></tr>
+              <tr><td><code>Ctrl + Shift + K</code></td><td>Delete entire line</td></tr>
+            </table>
+          </div>
+
+          <div class="explain">
+            <h3>Emmet — Write HTML in Seconds</h3>
+            <p>Emmet is built into VS Code. Type a shortcut and press <code>Tab</code> — it expands into full HTML.</p>
+          </div>
+
+          <pre><code>/* Type this → press Tab → get this */
+
+!                    → full HTML boilerplate
+div.card             → &lt;div class="card"&gt;&lt;/div&gt;
+ul&gt;li*5             → &lt;ul&gt; with 5 &lt;li&gt; items
+nav&gt;a*4             → &lt;nav&gt; with 4 &lt;a&gt; tags
+.hero&gt;h1+p+button   → div.hero with h1, p, button inside
+section#about       → &lt;section id="about"&gt;&lt;/section&gt;
+input:email         → &lt;input type="email" /&gt;
+img[src=""][alt=""] → &lt;img src="" alt="" /&gt;
+
+/* Numbers in content */
+ul&gt;li*3&gt;a{Item $}  → 3 list items with text "Item 1", "Item 2", "Item 3"</code></pre>
+
+          <div class="explain">
+            <h3>Must-Have Extensions</h3>
+            <table>
+              <tr><th>Extension</th><th>What it does</th></tr>
+              <tr><td>Prettier</td><td>Auto-formats your code on save — keeps it clean</td></tr>
+              <tr><td>Live Server</td><td>Opens your HTML in the browser and auto-refreshes on save</td></tr>
+              <tr><td>Auto Rename Tag</td><td>Renames closing tag when you rename opening tag</td></tr>
+              <tr><td>CSS Peek</td><td>Ctrl+click a class name to jump to its CSS</td></tr>
+              <tr><td>Color Highlight</td><td>Shows the actual color next to hex codes in CSS</td></tr>
+              <tr><td>GitLens</td><td>Shows who changed each line and when</td></tr>
+            </table>
+          </div>
+
+          <div class="explain">
+            <h3>Settings You Should Enable</h3>
+          </div>
+
+          <pre><code>// In VS Code settings (Ctrl+Shift+P → "Open Settings JSON")
+{
+  "editor.formatOnSave": true,         // auto-format on every save
+  "editor.tabSize": 2,                 // 2 spaces per indent
+  "editor.wordWrap": "on",             // wrap long lines
+  "editor.fontSize": 14,               // comfortable font size
+  "editor.minimap.enabled": false,     // remove the mini code map
+  "emmet.includeLanguages": {
+    "html": "html"
+  }
+}</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Not installing Live Server — manually refreshing the browser after every change wastes hours</li>
+              <li>Not using Emmet — typing full HTML tags by hand is slow and error-prone</li>
+              <li>Not using <code>Ctrl + /</code> to comment out code — deleting and retyping to test things</li>
+              <li>Never using <code>Alt + Click</code> for multiple cursors — editing the same thing in 10 places one by one</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Install Live Server — never manually refresh your browser again</li>
+              <li>Install Prettier — auto-formats your code on every save</li>
+              <li>Learn Emmet — type <code>!</code> + Tab for a full HTML boilerplate</li>
+              <li><code>Ctrl + /</code> = instant comment/uncomment</li>
+              <li><code>Alt + Click</code> = multiple cursors — edit many places at once</li>
+              <li><code>Ctrl + Shift + P</code> = command palette — your most powerful shortcut</li>
+              <li>Enable <code>formatOnSave</code> in settings — always clean code</li>
+              <li>Knowing your tools deeply = building 3x faster</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Emmet Speed Build</h3>
+            <p>Using only Emmet shortcuts, build a full page structure in under 2 minutes:</p>
+            <ul>
+              <li>Type <code>!</code> + Tab for the HTML boilerplate</li>
+              <li>Type <code>header&gt;nav&gt;a*4</code> + Tab for the navbar</li>
+              <li>Type <code>main&gt;section.hero&gt;h1+p+button</code> + Tab for the hero</li>
+              <li>Type <code>section.cards&gt;div.card*6&gt;h3+p+a</code> + Tab for 6 cards</li>
+              <li>Type <code>footer&gt;p</code> + Tab for the footer</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Build a full page HTML structure in under 2 minutes using only Emmet — no manual typing of tags.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- SHIP 2: Browser DevTools         -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="ship2">
+        <div class="topic-header ship2">
+          <span class="step-num">24</span>
+          <div>
+            <h2>Browser DevTools</h2>
+            <p>Inspect, Debug & Test Live</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>DevTools is a set of tools <strong>built into every browser</strong> (press <code>F12</code> to open). It lets you inspect HTML, edit CSS live, debug JavaScript, check performance, and test on different screen sizes — all without touching your code files.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of a <strong>doctor's X-ray machine</strong> — you can see exactly what's happening inside the body without cutting it open. DevTools is your X-ray for websites — you can see exactly what CSS is applying, why something is broken, and fix it live before touching your files.</p>
+          </div>
+
+          <div class="explain">
+            <h3>The Most Important Panels</h3>
+            <table>
+              <tr><th>Panel</th><th>What you use it for</th></tr>
+              <tr><td>Elements</td><td>See the full HTML structure, inspect any element, edit HTML live</td></tr>
+              <tr><td>Styles (in Elements)</td><td>See every CSS rule applying to selected element, edit live, toggle rules on/off</td></tr>
+              <tr><td>Console</td><td>See JavaScript errors, run JS commands, debug your code</td></tr>
+              <tr><td>Network</td><td>See every file loaded — images, CSS, JS, API calls and their load time</td></tr>
+              <tr><td>Lighthouse</td><td>Audit your site for Performance, SEO, Accessibility scores</td></tr>
+              <tr><td>Device Toolbar</td><td>Test how your site looks on any phone or tablet size</td></tr>
+            </table>
+          </div>
+
+          <div class="explain">
+            <h3>How to Use the Elements Panel</h3>
+          </div>
+
+          <pre><code>/* How to inspect any element: */
+Right-click any element on page → "Inspect"
+→ HTML structure shows on the left
+→ CSS rules show on the right under "Styles"
+
+/* Things you can do live in DevTools: */
+- Click any CSS value and change it — updates instantly
+- Check/uncheck a CSS rule to toggle it on/off
+- Add new CSS properties and test them
+- Drag elements to different positions in the HTML
+- Double-click any text to edit it live
+
+/* Finding why CSS isn't working: */
+- Crossed out CSS rule = it's being overridden by something else
+- Greyed out property = invalid value or not supported
+- "Inherited from" section = styles coming from a parent element
+
+/* Device toolbar — test responsive design: */
+Ctrl + Shift + M → opens device simulator
+→ select iPhone, iPad, or any custom size
+→ test your media queries instantly</code></pre>
+
+          <div class="explain">
+            <h3>Console — Your JavaScript Debugger</h3>
+          </div>
+
+          <pre><code>// Use console.log() to check values while debugging
+const username = "Myat";
+console.log(username);        // prints: Myat
+console.log("Value:", price); // prints: Value: 25
+
+// Check if your JavaScript is running
+function handleClick() {
+  console.log("Button was clicked!");
+}
+
+// See all properties of an object
+console.log(JSON.stringify(user, null, 2));
+
+// Time how long something takes
+console.time("fetch");
+fetch(url).then(() => console.timeEnd("fetch"));</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Not using DevTools at all — guessing why CSS isn't working instead of inspecting</li>
+              <li>Making changes in DevTools but forgetting to copy them back to the actual file</li>
+              <li>Ignoring red errors in the Console — they tell you exactly what's broken</li>
+              <li>Not using the Device Toolbar — only testing on their own screen size</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Press <code>F12</code> or <code>Right-click → Inspect</code> to open DevTools</li>
+              <li>Elements panel = see and edit HTML + CSS live</li>
+              <li>Crossed out CSS = being overridden by another rule</li>
+              <li>Console = your JavaScript error log — check it always</li>
+              <li><code>console.log()</code> is your best debugging friend</li>
+              <li>Device Toolbar = test responsive design on any screen size</li>
+              <li>Lighthouse = scores your site on Performance, SEO, Accessibility</li>
+              <li>DevTools changes are temporary — copy them back to your files</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Debug a Broken Layout</h3>
+            <p>Open your existing grid-website.html in the browser and:</p>
+            <ul>
+              <li>Open DevTools and inspect the header element — find every CSS rule applied to it</li>
+              <li>In the Styles panel, change the background color live to something new</li>
+              <li>Toggle a CSS rule on and off using the checkbox</li>
+              <li>Open Device Toolbar and check the layout on iPhone SE (375px width)</li>
+              <li>Open Console and type <code>document.title</code> — see it return the page title</li>
+              <li>Run a Lighthouse audit and note the scores</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Get comfortable navigating DevTools — it will save you hours of debugging time.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- SHIP 3: Git & Version Control    -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="ship3">
+        <div class="topic-header ship3">
+          <span class="step-num">25</span>
+          <div>
+            <h2>Git & Version Control</h2>
+            <p>Never Lose Your Work Again</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Git is a tool that <strong>tracks every change you make</strong> to your code. Think of it as a save system with infinite undo — you can go back to any point in history. GitHub is a website where you store your Git projects online so they're backed up and shareable.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of <strong>Google Docs version history</strong> — every time you make changes, a snapshot is saved. You can see who changed what and go back to any previous version. Git does exactly this for your code, but you control when snapshots are saved (called commits).</p>
+          </div>
+
+          <div class="explain">
+            <h3>The 5 Commands You Use Every Day</h3>
+          </div>
+
+          <pre><code># 1. Start tracking a project
+git init
+
+# 2. Check what files have changed
+git status
+
+# 3. Stage files — tell Git "include these in the next save"
+git add .                    # stage all changed files
+git add index.html           # stage one specific file
+
+# 4. Commit — save a snapshot with a message
+git commit -m "Add hero section to homepage"
+
+# 5. Push — upload your commits to GitHub
+git push origin main</code></pre>
+
+          <div class="explain">
+            <h3>The Full Beginner Workflow</h3>
+          </div>
+
+          <pre><code># First time — connect local project to GitHub
+git init
+git add .
+git commit -m "First commit"
+git branch -M main
+git remote add origin https://github.com/yourname/project.git
+git push -u origin main
+
+# Every day after that — just these 3 commands
+git add .
+git commit -m "Describe what you changed"
+git push
+
+# Undo last commit (keeps your files)
+git reset --soft HEAD~1
+
+# See full history of commits
+git log --oneline
+
+# Go back to a previous version
+git checkout abc1234    # use the commit ID from git log</code></pre>
+
+          <div class="explain">
+            <h3>Branches — Work Without Breaking Things</h3>
+          </div>
+
+          <pre><code># Create a new branch for a new feature
+git checkout -b new-navbar
+
+# Work on your feature, commit changes...
+git add .
+git commit -m "Redesign navbar with mobile menu"
+
+# Switch back to main branch
+git checkout main
+
+# Merge your feature into main when it's ready
+git merge new-navbar
+
+# Delete the feature branch — no longer needed
+git branch -d new-navbar</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>Not committing often enough — losing hours of work if something goes wrong</li>
+              <li>Vague commit messages like "fix stuff" — useless when looking back at history</li>
+              <li>Working directly on the main branch — always create a branch for new features</li>
+              <li>Not having a <code>.gitignore</code> file — accidentally uploading <code>node_modules</code> or sensitive files</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Git tracks every change — infinite undo for your code</li>
+              <li>The 3 daily commands: <code>git add .</code> → <code>git commit -m</code> → <code>git push</code></li>
+              <li>Commit often — after every small working change</li>
+              <li>Write clear commit messages — "Add mobile navbar" not "fix"</li>
+              <li>GitHub = online backup + portfolio for your projects</li>
+              <li>Branches let you work on features without breaking the main code</li>
+              <li><code>git status</code> — always run this to see what's changed</li>
+              <li><code>git log --oneline</code> — see your full project history at a glance</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Push Your First Project to GitHub</h3>
+            <p>Take your grid-website project and put it on GitHub:</p>
+            <ul>
+              <li>Go to github.com and create a new repository called "grid-website"</li>
+              <li>In your project folder, run <code>git init</code></li>
+              <li>Run <code>git add .</code> to stage all files</li>
+              <li>Run <code>git commit -m "Initial commit — grid website layout"</code></li>
+              <li>Connect to GitHub and push: <code>git push -u origin main</code></li>
+              <li>Make one small change — update a color — then commit and push again</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Get your code on GitHub and make your first 2 commits. This is the workflow you'll use every day as a developer.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════ -->
+      <!-- SHIP 4: Hosting & Deployment     -->
+      <!-- ════════════════════════════════ -->
+      <section class="topic" id="ship4">
+        <div class="topic-header ship4">
+          <span class="step-num">26</span>
+          <div>
+            <h2>Hosting & Deployment</h2>
+            <p>Putting Your Site on the Internet</p>
+          </div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is it?</h3>
+            <p>Right now your website only lives on your computer. <strong>Hosting</strong> means uploading it to a server so anyone in the world can visit it with a URL. <strong>Deployment</strong> is the process of doing that upload — and the best platforms make it automatic.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example</h3>
+            <p>Think of your website as a <strong>shop you built in your garage</strong>. It's complete and beautiful — but no one can visit because it's in your garage. Hosting is renting a space on a real street (a server) so customers can find you. Deployment is moving everything from your garage to that street location.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Best Free Hosting Options for Beginners</h3>
+            <table>
+              <tr><th>Platform</th><th>Best for</th><th>How it works</th></tr>
+              <tr><td>GitHub Pages</td><td>Static HTML/CSS/JS sites</td><td>Push to GitHub → site goes live automatically</td></tr>
+              <tr><td>Netlify</td><td>Any frontend project</td><td>Drag and drop your folder — site is live in 30 seconds</td></tr>
+              <tr><td>Vercel</td><td>Frontend + JavaScript frameworks</td><td>Connect GitHub repo → auto-deploys on every push</td></tr>
+            </table>
+          </div>
+
+          <div class="explain">
+            <h3>Method 1 — GitHub Pages (Easiest)</h3>
+          </div>
+
+          <pre><code># Step 1: Push your project to GitHub (see Topic 25)
+
+# Step 2: In your GitHub repo:
+# Settings → Pages → Source → "Deploy from branch"
+# Branch: main → Folder: / (root) → Save
+
+# Step 3: Your site is live at:
+# https://yourusername.github.io/your-repo-name/
+
+# Every time you push new code → site updates automatically</code></pre>
+
+          <div class="explain">
+            <h3>Method 2 — Netlify Drop (30 Seconds)</h3>
+          </div>
+
+          <pre><code># Step 1: Go to netlify.com/drop
+# Step 2: Drag your project folder into the browser window
+# Step 3: Done — your site is live at a random URL like:
+#         https://random-name-123.netlify.app
+
+# To get a custom URL:
+# Create a Netlify account → rename your site
+# https://myproject.netlify.app
+
+# Auto-deploy from GitHub:
+# Netlify → New Site → Import from Git → pick your repo
+# Every git push → Netlify auto-deploys in 30 seconds</code></pre>
+
+          <div class="explain">
+            <h3>Custom Domain — Using Your Own URL</h3>
+          </div>
+
+          <pre><code># Free subdomain (no cost):
+# yourname.netlify.app
+# yourname.github.io
+
+# Custom domain (buy for ~$10/year from Namecheap or GoDaddy):
+# yourname.com
+
+# Connect to Netlify:
+# Netlify → Domain Settings → Add custom domain
+# Add DNS records at your domain registrar
+# Wait 24 hours for it to go live</code></pre>
+
+          <div class="mistakes">
+            <h3>⚠️ Common Beginner Mistakes</h3>
+            <ul>
+              <li>File paths using backslashes <code>\</code> on Windows — servers use forward slashes <code>/</code></li>
+              <li>Linking CSS with absolute paths like <code>C:/Users/...</code> — only works on your computer</li>
+              <li>Uploading with wrong file — make sure your HTML file is named <code>index.html</code> for the home page</li>
+              <li>Forgetting to push latest changes before sharing the URL — visitors see an old version</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>⚡ Quick Summary</h3>
+            <ul>
+              <li>Hosting = your site lives on a server anyone can reach</li>
+              <li>GitHub Pages = free, automatic, perfect for beginners</li>
+              <li>Netlify = drag and drop your folder — live in 30 seconds</li>
+              <li>Always name your main file <code>index.html</code> — servers look for this by default</li>
+              <li>Use relative paths in HTML — never absolute paths like <code>C:/Users/...</code></li>
+              <li>Auto-deploy = connect GitHub to Netlify — every push updates your live site</li>
+              <li>Free subdomain: <code>yourname.netlify.app</code> — looks professional enough to share</li>
+              <li>Custom domain costs ~$10/year — worth it for a portfolio</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🎯 Mini Project — Deploy Your Site Live</h3>
+            <p>Put your grid-website on the internet for the world to see:</p>
+            <ul>
+              <li><strong>Method 1:</strong> Go to netlify.com/drop and drag your grid-website folder in — get a live URL in 30 seconds</li>
+              <li><strong>Method 2:</strong> On your GitHub repo → Settings → Pages → Enable GitHub Pages</li>
+              <li>Open the live URL on your phone — confirm it looks correct</li>
+              <li>Make one change locally, push to GitHub, and confirm the live site updates</li>
+              <li>Share the URL with someone</li>
+            </ul>
+            <div class="project-goal">
+              <strong>Goal:</strong> Get a real, shareable URL for your project. This is the moment your work goes from "on my computer" to "on the internet".
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FINAL SUMMARY -->
+      <section class="final-summary">
+        <h2>The Complete Professional Toolkit</h2>
+        <div class="toolkit-grid">
+          <div class="toolkit-group">
+            <h3>Layout</h3>
+            <ul>
+              <li>grid-template-areas → page skeleton</li>
+              <li>grid-template-columns/rows → sizing</li>
+              <li>grid-auto-rows → dynamic rows</li>
+              <li>flexbox → component alignment</li>
+              <li>gap → spacing</li>
+            </ul>
+          </div>
+          <div class="toolkit-group">
+            <h3>Placement</h3>
+            <ul>
+              <li>position → break out of flow</li>
+              <li>z-index → layering</li>
+              <li>overflow → clipping / scrolling</li>
+            </ul>
+          </div>
+          <div class="toolkit-group">
+            <h3>Feel</h3>
+            <ul>
+              <li>transitions → smooth state changes</li>
+              <li>animations → multi-step movement</li>
+            </ul>
+          </div>
+          <div class="toolkit-group">
+            <h3>System</h3>
+            <ul>
+              <li>CSS variables → design tokens</li>
+              <li>clamp / min / max → fluid sizing</li>
+            </ul>
+          </div>
+          <div class="toolkit-group">
+            <h3>Interactivity</h3>
+            <ul>
+              <li>JavaScript DOM → user interactions</li>
+            </ul>
+          </div>
+          <div class="toolkit-group">
+            <h3>Responsive</h3>
+            <ul>
+              <li>media queries → layout at breakpoints</li>
+            </ul>
+          </div>
+        </div>
+        <p class="final-note">Master all 14 topics and you can build literally any layout on the internet.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <p>Made for Myat Kaung Kyaw &nbsp;|&nbsp; Web Layout Complete Guide &nbsp;|&nbsp; 2026</p>
+  </footer>
+
+</body>
+</html>

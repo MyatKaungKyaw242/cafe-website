@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Setup Guide | Web Dev 0 to Hero</title>
+  <link rel="stylesheet" href="setup.css" />
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="back-btn">← Home</a>
+    <div class="logo">Dev <span>Setup Guide</span></div>
+    <p class="subtitle">Get your environment ready before writing a single line of code</p>
+    <div class="tip-note">🛠 Do this once — then you're set up for every project</div>
+  </header>
+
+  <main>
+
+    <!-- PHASE 1: VS CODE -->
+    <div>
+      <div class="phase-header ph-green">
+        <div class="phase-icon">💻</div>
+        <div>
+          <h2>Phase 1 — Install VS Code</h2>
+          <p>Your code editor — where you'll write everything</p>
+        </div>
+        <div class="phase-badge">Step 1 of 5</div>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div><h3>Download VS Code</h3><p>Free. The most popular code editor in the world.</p></div>
+          </div>
+          <div class="step-body">
+            <p>Go to <strong>code.visualstudio.com</strong> and click the big download button. It will detect your OS (Windows/Mac/Linux) automatically.</p>
+            <ul>
+              <li>Run the installer — click Next through all steps, keep all defaults</li>
+              <li>On the "Select Additional Tasks" screen: <strong>tick "Add to PATH"</strong> and <strong>"Open with Code" context menu</strong> — these are useful later</li>
+              <li>Click Install → Finish</li>
+              <li>Open VS Code — you should see the Welcome tab</li>
+            </ul>
+            <div class="done-box">✓ Done when: VS Code opens and you see the welcome screen.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div><h3>Change the theme (optional but recommended)</h3><p>A good theme reduces eye strain during long sessions</p></div>
+          </div>
+          <div class="step-body">
+            <p>The default theme is fine, but many developers prefer a dark theme. Here's how to change it:</p>
+            <ul>
+              <li>Press <code>Ctrl+K</code> then <code>Ctrl+T</code> — the theme picker opens</li>
+              <li>Popular choices: <strong>One Dark Pro</strong>, <strong>Dracula</strong>, <strong>Night Owl</strong></li>
+              <li>To install a new theme: click the Extensions icon (4 squares) → search the theme name → Install → Set as theme</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 2: EXTENSIONS -->
+    <div>
+      <div class="phase-header ph-blue">
+        <div class="phase-icon">🧩</div>
+        <div>
+          <h2>Phase 2 — Install Essential Extensions</h2>
+          <p>Extensions add features to VS Code — install these before anything else</p>
+        </div>
+        <div class="phase-badge">Step 2 of 5</div>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div><h3>How to install extensions</h3><p>Takes 30 seconds each</p></div>
+          </div>
+          <div class="step-body">
+            <ul>
+              <li>Click the <strong>Extensions icon</strong> in the left sidebar (4 squares) — or press <code>Ctrl+Shift+X</code></li>
+              <li>Type the extension name in the search box</li>
+              <li>Click the blue <strong>Install</strong> button</li>
+              <li>The extension activates immediately — no restart needed</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div><h3>The 6 extensions you must install</h3><p>These make coding dramatically faster and less painful</p></div>
+          </div>
+          <div class="step-body">
+            <p>Search and install each of these one by one:</p>
+            <div class="ext-grid">
+              <div class="ext-card">
+                <strong>Live Server</strong>
+                <span>by Ritwick Dey — auto-reloads your browser when you save. Essential for HTML/CSS/JS.</span>
+              </div>
+              <div class="ext-card">
+                <strong>Prettier</strong>
+                <span>by Prettier — auto-formats your code on save. Keeps everything neat without thinking.</span>
+              </div>
+              <div class="ext-card">
+                <strong>ESLint</strong>
+                <span>by Microsoft — highlights JavaScript errors and bad practices as you type.</span>
+              </div>
+              <div class="ext-card">
+                <strong>Auto Rename Tag</strong>
+                <span>by Jun Han — rename an opening HTML tag and the closing tag renames too automatically.</span>
+              </div>
+              <div class="ext-card">
+                <strong>ES7+ React Snippets</strong>
+                <span>by dsznajder — type "rafce" and it generates a full React component. Huge time saver.</span>
+              </div>
+              <div class="ext-card">
+                <strong>Path Intellisense</strong>
+                <span>by Christian Kohler — autocompletes file paths when you type href or src. No more typos.</span>
+              </div>
+            </div>
+            <div class="done-box">✓ Done when: all 6 show as "Installed" in the Extensions panel.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">3</div>
+            <div><h3>Configure Prettier — format on save</h3><p>One setting that keeps your code clean automatically</p></div>
+          </div>
+          <div class="step-body">
+            <p>Open VS Code settings and enable "Format on Save" so Prettier runs every time you hit Ctrl+S:</p>
+            <ul>
+              <li>Press <code>Ctrl+,</code> to open Settings</li>
+              <li>Search for <strong>"format on save"</strong></li>
+              <li>Tick the checkbox: <strong>Editor: Format On Save</strong></li>
+              <li>Search for <strong>"default formatter"</strong></li>
+              <li>Set it to <strong>Prettier - Code formatter</strong></li>
+            </ul>
+            <div class="done-box">✓ Done when: saving a messy file auto-indents and formats it.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">4</div>
+            <div><h3>Learn the 5 most important shortcuts</h3><p>These will save you hours every week</p></div>
+          </div>
+          <div class="step-body">
+            <pre><code>Ctrl + S          → Save file (do this constantly)
+Ctrl + Z          → Undo
+Ctrl + Shift + K  → Delete current line
+Alt + Up/Down     → Move current line up or down
+Ctrl + /          → Comment / uncomment a line
+Ctrl + D          → Select next occurrence of selected word
+Ctrl + `          → Open the integrated terminal
+Ctrl + P          → Quick open any file by name
+Ctrl + Shift + P  → Command palette (search any VS Code action)</code></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 3: NODE.JS -->
+    <div>
+      <div class="phase-header ph-yellow">
+        <div class="phase-icon">⚙️</div>
+        <div>
+          <h2>Phase 3 — Install Node.js</h2>
+          <p>Required for React (Vite), npm packages, and running JS outside the browser</p>
+        </div>
+        <div class="phase-badge">Step 3 of 5</div>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div><h3>Download and install Node.js</h3><p>You need this before you can use React or npm</p></div>
+          </div>
+          <div class="step-body">
+            <p>Go to <strong>nodejs.org</strong> and download the <strong>LTS version</strong> (Long Term Support — the stable one). Do not download "Current" — it may have bugs.</p>
+            <ul>
+              <li>Run the installer — click Next through all steps, keep all defaults</li>
+              <li>When it asks about "Tools for Native Modules" — you can skip this (uncheck it)</li>
+              <li>Click Install → Finish</li>
+              <li><strong>Restart VS Code</strong> after installation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div><h3>Verify Node.js installed correctly</h3><p>Run these two commands in the terminal</p></div>
+          </div>
+          <div class="step-body">
+            <p>Open the VS Code terminal with <code>Ctrl+`</code> and run these commands:</p>
+            <pre><code># Check Node.js version — should print something like v20.x.x
+node --version
+
+# Check npm version — should print something like 10.x.x
+npm --version</code></pre>
+            <ul>
+              <li>If you see version numbers → Node.js is installed correctly ✓</li>
+              <li>If you see "not recognized" → restart VS Code and try again</li>
+              <li>If still not working → restart your computer, then try again</li>
+            </ul>
+            <div class="done-box">✓ Done when: both commands print version numbers without errors.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 4: LIVE SERVER -->
+    <div>
+      <div class="phase-header ph-purple">
+        <div class="phase-icon">🌐</div>
+        <div>
+          <h2>Phase 4 — HTML/CSS/JS Workflow (Live Server)</h2>
+          <p>How to run your HTML projects and see changes instantly</p>
+        </div>
+        <div class="phase-badge">Step 4 of 5</div>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div><h3>Create your first project folder</h3><p>One folder = one project. Always.</p></div>
+          </div>
+          <div class="step-body">
+            <ul>
+              <li>Create a new folder somewhere on your computer — e.g. <code>Documents/my-projects/practice-1</code></li>
+              <li>Open VS Code → File → Open Folder → select that folder</li>
+              <li>You should see the folder name in the Explorer panel on the left</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div><h3>Create your HTML file and launch Live Server</h3><p>Your browser will auto-refresh every time you save</p></div>
+          </div>
+          <div class="step-body">
+            <ul>
+              <li>In VS Code Explorer panel → right-click → New File → name it <code>index.html</code></li>
+              <li>Type <code>!</code> and press <strong>Tab</strong> — VS Code generates a full HTML boilerplate</li>
+              <li>Add some content inside <code>&lt;body&gt;</code></li>
+              <li>Right-click anywhere in the HTML file → <strong>"Open with Live Server"</strong></li>
+              <li>Your browser opens at <code>http://127.0.0.1:5500</code></li>
+              <li>Now every time you press <strong>Ctrl+S</strong>, the browser refreshes automatically</li>
+            </ul>
+            <pre><code>&lt;!-- Your first index.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;
+  &lt;title&gt;My First Page&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello World!&lt;/h1&gt;
+  &lt;script src="main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <div class="done-box">✓ Done when: editing and saving the file updates the browser instantly without refreshing manually.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">3</div>
+            <div><h3>Recommended folder structure for HTML/CSS/JS projects</h3><p>Keep files organized from day one</p></div>
+          </div>
+          <div class="step-body">
+            <pre><code>my-project/
+├── index.html       ← main HTML file
+├── css/
+│   └── style.css    ← all your styles
+├── js/
+│   └── main.js      ← all your JavaScript
+└── images/
+    └── photo.jpg    ← images, icons
+
+&lt;!-- Link them with relative paths --&gt;
+&lt;link rel="stylesheet" href="css/style.css" /&gt;
+&lt;script src="js/main.js"&gt;&lt;/script&gt;</code></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 5: VITE REACT -->
+    <div>
+      <div class="phase-header ph-react">
+        <div class="phase-icon">⚛</div>
+        <div>
+          <h2>Phase 5 — React Workflow (Vite)</h2>
+          <p>How to create and run a React project — the modern way</p>
+        </div>
+        <div class="phase-badge">Step 5 of 5</div>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div><h3>Create a new React project with Vite</h3><p>One command — Vite sets everything up for you</p></div>
+          </div>
+          <div class="step-body">
+            <p>Open the VS Code terminal (<code>Ctrl+`</code>), navigate to where you want the project, then run:</p>
+            <pre><code># Create the project
+npm create vite@latest my-app -- --template react
+
+# Move into the project folder
+cd my-app
+
+# Install all dependencies
+npm install
+
+# Start the dev server
+npm run dev</code></pre>
+            <ul>
+              <li>When it asks "Select a framework" → choose <strong>React</strong></li>
+              <li>When it asks "Select a variant" → choose <strong>JavaScript</strong> (not TypeScript for now)</li>
+              <li>After <code>npm run dev</code>, open your browser at <strong>http://localhost:5173</strong></li>
+              <li>You should see the Vite + React welcome page spinning</li>
+            </ul>
+            <div class="done-box">✓ Done when: you see the Vite + React logo at localhost:5173.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div><h3>Understand the project structure</h3><p>Know what each file does before you touch anything</p></div>
+          </div>
+          <div class="step-body">
+            <pre><code>my-app/
+├── public/              ← static files (favicon, images) — copied as-is
+├── src/                 ← YOUR code lives here
+│   ├── App.jsx          ← root component — start editing here
+│   ├── App.css          ← styles for App
+│   ├── main.jsx         ← entry point (mounts App to the DOM — don't touch)
+│   └── index.css        ← global styles
+├── index.html           ← HTML shell (don't touch)
+├── package.json         ← project info + dependencies list
+└── vite.config.js       ← Vite configuration (don't touch for now)</code></pre>
+            <ul>
+              <li><strong>Start in <code>src/App.jsx</code></strong> — delete the template code and write your own</li>
+              <li>Create new components as <code>src/components/MyComponent.jsx</code></li>
+              <li>Never edit <code>main.jsx</code> or <code>index.html</code> unless you know what you're doing</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">3</div>
+            <div><h3>The 4 npm commands you'll use every day</h3><p>Memorize these — you'll run them constantly</p></div>
+          </div>
+          <div class="step-body">
+            <pre><code># Start the dev server (run this every time you open the project)
+npm run dev
+
+# Install a new package (e.g. react-router-dom)
+npm install react-router-dom
+
+# Build for production (creates optimized files in /dist folder)
+npm run build
+
+# Install all packages from package.json (after cloning someone else's project)
+npm install</code></pre>
+            <div class="warn-box"><strong>Important:</strong> Always run <code>npm run dev</code> from inside the project folder. If you see "npm: command not found", Node.js isn't installed or VS Code needs a restart.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">4</div>
+            <div><h3>Your first custom React component</h3><p>Delete the template code and write this to confirm everything works</p></div>
+          </div>
+          <div class="step-body">
+            <p>Open <code>src/App.jsx</code>, delete all the template code, and replace with this:</p>
+            <pre><code>import { useState } from 'react'
+import './App.css'
+
+const App = () => {
+  const [count, setCount] = useState(0)
+
+  return (
+    &lt;div style={{ textAlign: 'center', padding: '40px' }}&gt;
+      &lt;h1&gt;My React App ⚛&lt;/h1&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(c =&gt; c + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default App</code></pre>
+            <ul>
+              <li>Save the file — the browser updates instantly (hot module replacement)</li>
+              <li>Click the button — the count should increment</li>
+              <li>If it works, your React setup is complete ✓</li>
+            </ul>
+            <div class="done-box">✓ Done when: clicking the button increments the count. Your environment is fully set up and ready.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- QUICK REFERENCE -->
+    <div>
+      <div class="phase-header ph-green">
+        <div class="phase-icon">📋</div>
+        <div>
+          <h2>Quick Reference — Daily Workflow</h2>
+          <p>What you do every time you open VS Code to work on a project</p>
+        </div>
+        <div class="phase-badge">Reference</div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">✓</div>
+            <div><h3>HTML/CSS/JS project — daily workflow</h3></div>
+          </div>
+          <div class="step-body">
+            <pre><code>1. Open VS Code
+2. File → Open Folder → select your project folder
+3. Open index.html
+4. Right-click → "Open with Live Server"
+5. Browser opens at localhost:5500
+6. Code → Ctrl+S to save → browser auto-refreshes
+7. Keep DevTools (F12) open in the browser</code></pre>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-header">
+            <div class="step-num">✓</div>
+            <div><h3>React project — daily workflow</h3></div>
+          </div>
+          <div class="step-body">
+            <pre><code>1. Open VS Code
+2. File → Open Folder → select your React project folder
+3. Press Ctrl+` to open the terminal
+4. Run: npm run dev
+5. Browser opens at localhost:5173
+6. Code in src/ → save → browser auto-updates (HMR)
+7. Keep DevTools (F12) + Console open
+8. When done: Ctrl+C in terminal to stop the dev server</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    Setup Guide &nbsp;|&nbsp; <a href="../study-plan/study-plan.html">30-Day Study Plan →</a> &nbsp;|&nbsp; <a href="../index.html">← Home</a>
+  </footer>
+
+</body>
+</html>

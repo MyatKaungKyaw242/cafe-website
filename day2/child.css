@@ -1,0 +1,22 @@
+.main > h2{
+color: green;
+}
+.main > p{
+    color: aqua;
+}
+.sub h2,p{
+    color: blue;
+}
+input{
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+input[type=text]{
+color: aqua;
+}
+input[type=email]{
+color: blueviolet;
+}
+

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>React Cheatsheet | Web Dev 0 to Hero</title>
+  <link rel="stylesheet" href="react-cheatsheet.css" />
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="back-btn">← Home</a>
+    <div class="logo">React <span>Cheatsheet</span></div>
+    <p class="subtitle">Every hook, JSX rule, and pattern you need — one page quick reference</p>
+    <div class="tip-note">⚛ Bookmark this — open it while you code</div>
+  </header>
+
+  <main>
+
+    <!-- JSX RULES -->
+    <div class="cs-section">
+      <div class="cs-section-title">JSX Rules</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>One Root Element</h3>
+          <p>Every component must return one root element. Wrap with a div or Fragment.</p>
+          <pre><code>// BAD
+return (
+  &lt;h1&gt;Title&lt;/h1&gt;
+  &lt;p&gt;Text&lt;/p&gt;
+);
+
+// GOOD — Fragment
+return (
+  &lt;&gt;
+    &lt;h1&gt;Title&lt;/h1&gt;
+    &lt;p&gt;Text&lt;/p&gt;
+  &lt;/&gt;
+);</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>className not class</h3>
+          <p>JSX uses <code>className</code> for CSS classes. <code>for</code> → <code>htmlFor</code>.</p>
+          <pre><code>// HTML
+&lt;div class="card"&gt;&lt;/div&gt;
+&lt;label for="email"&gt;&lt;/label&gt;
+
+// JSX
+&lt;div className="card"&gt;&lt;/div&gt;
+&lt;label htmlFor="email"&gt;&lt;/label&gt;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Self-closing Tags</h3>
+          <p>All tags must be closed. Self-close tags with no children.</p>
+          <pre><code>// BAD
+&lt;img src="photo.jpg"&gt;
+&lt;input type="text"&gt;
+&lt;br&gt;
+
+// GOOD
+&lt;img src="photo.jpg" /&gt;
+&lt;input type="text" /&gt;
+&lt;br /&gt;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>JS Expressions in JSX</h3>
+          <p>Use <code>{}</code> to embed any JS expression — variables, functions, ternaries.</p>
+          <pre><code>const name = "Myat";
+const age = 20;
+
+return (
+  &lt;div&gt;
+    &lt;h1&gt;{name}&lt;/h1&gt;
+    &lt;p&gt;Age: {age}&lt;/p&gt;
+    &lt;p&gt;{age &gt;= 18 ? "Adult" : "Minor"}&lt;/p&gt;
+    &lt;p&gt;{name.toUpperCase()}&lt;/p&gt;
+  &lt;/div&gt;
+);</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Inline Styles</h3>
+          <p>Pass a JS object. Properties use camelCase, values are strings or numbers.</p>
+          <pre><code>// Double {{ }} — outer is JSX, inner is object
+&lt;div style={{ color: "red", fontSize: 16 }}&gt;
+  Hello
+&lt;/div&gt;
+
+// Or use a variable
+const style = {
+  background: "#1a1a2e",
+  padding: "16px",
+};
+&lt;div style={style}&gt;Card&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Comments in JSX</h3>
+          <p>JSX comments go inside <code>{}</code>. Regular <code>//</code> comments work outside JSX.</p>
+          <pre><code>return (
+  &lt;div&gt;
+    {/* This is a JSX comment */}
+    &lt;h1&gt;Title&lt;/h1&gt;
+    {/* TODO: add button here */}
+  &lt;/div&gt;
+);</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COMPONENTS & PROPS -->
+    <div class="cs-section">
+      <div class="cs-section-title">Components &amp; Props</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>Function Component</h3>
+          <p>A component is a function that returns JSX. Name must be capitalized.</p>
+          <pre><code>// Arrow function (common)
+const Button = () => {
+  return &lt;button&gt;Click Me&lt;/button&gt;;
+};
+
+// Regular function (also fine)
+function Button() {
+  return &lt;button&gt;Click Me&lt;/button&gt;;
+}
+
+export default Button;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Passing Props</h3>
+          <p>Props are like HTML attributes — pass any value including functions.</p>
+          <pre><code>// Parent passes props
+&lt;Card
+  title="Hello"
+  count={42}
+  isActive={true}
+  onClick={handleClick}
+/&gt;
+
+// Child receives props
+const Card = ({ title, count, isActive, onClick }) => (
+  &lt;div onClick={onClick}&gt;
+    &lt;h2&gt;{title}&lt;/h2&gt;
+    &lt;p&gt;{count}&lt;/p&gt;
+  &lt;/div&gt;
+);</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Default Props</h3>
+          <p>Set fallback values directly in the destructuring parameter.</p>
+          <pre><code>const Button = ({
+  label = "Click Me",
+  color = "blue",
+  disabled = false
+}) => (
+  &lt;button
+    style={{ background: color }}
+    disabled={disabled}
+  &gt;
+    {label}
+  &lt;/button&gt;
+);
+
+// Works without any props
+&lt;Button /&gt;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>children Prop</h3>
+          <p><code>children</code> is whatever you put between opening and closing tags.</p>
+          <pre><code>const Card = ({ children, title }) => (
+  &lt;div className="card"&gt;
+    &lt;h2&gt;{title}&lt;/h2&gt;
+    &lt;div className="body"&gt;
+      {children}
+    &lt;/div&gt;
+  &lt;/div&gt;
+);
+
+// Use it like an HTML tag
+&lt;Card title="My Card"&gt;
+  &lt;p&gt;Any content here&lt;/p&gt;
+  &lt;button&gt;Action&lt;/button&gt;
+&lt;/Card&gt;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Spread Props</h3>
+          <p>Pass all properties of an object as props at once using spread.</p>
+          <pre><code>const user = {
+  name: "Myat",
+  age: 20,
+  role: "admin"
+};
+
+// Spread passes all 3 props at once
+&lt;UserCard {...user} /&gt;
+
+// Same as:
+&lt;UserCard
+  name={user.name}
+  age={user.age}
+  role={user.role}
+/&gt;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Props are Read-Only</h3>
+          <p>Never modify props. If you need to change a value, use state instead.</p>
+          <pre><code>// BAD — never mutate props
+const Counter = ({ count }) => {
+  count = count + 1; // ❌ wrong!
+  return &lt;p&gt;{count}&lt;/p&gt;;
+};
+
+// GOOD — copy to state if you need to change it
+const Counter = ({ initialCount }) => {
+  const [count, setCount] = useState(initialCount);
+  return &lt;p&gt;{count}&lt;/p&gt;;
+};</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- HOOKS REFERENCE -->
+    <div class="cs-section">
+      <div class="cs-section-title">Hooks Quick Reference</div>
+      <div class="cs-grid">
+
+        <div class="cs-card wide">
+          <h3>useState</h3>
+          <p>Declare reactive state. Re-renders the component when state changes.</p>
+          <pre><code>const [value, setValue] = useState(initialValue);
+
+// Examples
+const [count,   setCount]   = useState(0);
+const [name,    setName]    = useState("");
+const [isOpen,  setIsOpen]  = useState(false);
+const [items,   setItems]   = useState([]);
+const [user,    setUser]    = useState(null);
+
+// Update
+setCount(5);                         // set directly
+setCount(prev => prev + 1);          // use previous value (safer)
+setItems(prev => [...prev, newItem]);// add to array — never mutate!
+setUser(prev => ({ ...prev, name: "New" })); // update object field</code></pre>
+        </div>
+
+        <div class="cs-card wide">
+          <h3>useEffect</h3>
+          <p>Run side effects after render — fetch data, set up subscriptions, update the document title.</p>
+          <pre><code>// Runs after EVERY render
+useEffect(() => { console.log("rendered"); });
+
+// Runs ONCE on mount (empty deps array)
+useEffect(() => {
+  fetchData();
+}, []);
+
+// Runs when 'userId' changes
+useEffect(() => {
+  fetchUser(userId);
+}, [userId]);
+
+// Cleanup — runs before next effect + on unmount
+useEffect(() => {
+  const timer = setInterval(tick, 1000);
+  return () => clearInterval(timer);  // cleanup
+}, []);</code></pre>
+        </div>
+
+        <div class="cs-card wide">
+          <h3>useRef</h3>
+          <p>Access DOM elements directly, or store values that don't trigger re-renders.</p>
+          <pre><code>const myRef = useRef(initialValue);
+
+// DOM access — attach with ref prop
+const inputRef = useRef(null);
+&lt;input ref={inputRef} /&gt;
+inputRef.current.focus(); // access the real DOM element
+
+// Store a value (no re-render when changed)
+const timerRef = useRef(null);
+timerRef.current = setInterval(tick, 1000);
+clearInterval(timerRef.current);
+
+// Track previous value
+const prevValueRef = useRef(value);
+useEffect(() => { prevValueRef.current = value; }); // update after render</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>useContext</h3>
+          <p>Read a value from a Context without prop drilling. Pair with <code>createContext</code>.</p>
+          <pre><code>// 1. Create context
+const ThemeCtx = createContext("light");
+
+// 2. Provide it high up
+&lt;ThemeCtx.Provider value="dark"&gt;
+  &lt;App /&gt;
+&lt;/ThemeCtx.Provider&gt;
+
+// 3. Consume anywhere below
+const theme = useContext(ThemeCtx);
+// theme === "dark"</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>useReducer</h3>
+          <p>Like <code>useState</code> but for complex state with multiple update types.</p>
+          <pre><code>const reducer = (state, action) => {
+  switch (action.type) {
+    case "inc": return { count: state.count + 1 };
+    case "dec": return { count: state.count - 1 };
+    case "reset": return { count: 0 };
+    default: return state;
+  }
+};
+
+const [state, dispatch] = useReducer(reducer, { count: 0 });
+dispatch({ type: "inc" });</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>useMemo &amp; useCallback</h3>
+          <p>Memoize expensive values or functions to avoid unnecessary recalculations.</p>
+          <pre><code>// useMemo — cache a computed value
+const total = useMemo(
+  () => items.reduce((s, i) => s + i.price, 0),
+  [items]  // recalculate only when items changes
+);
+
+// useCallback — cache a function
+const handleClick = useCallback(() => {
+  doSomething(id);
+}, [id]);  // new function only when id changes</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EVENTS -->
+    <div class="cs-section">
+      <div class="cs-section-title">Events</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>Common Events</h3>
+          <p>React events use camelCase. Pass a function reference, not a call.</p>
+          <pre><code>// Click
+&lt;button onClick={handleClick}&gt;
+
+// Input change
+&lt;input onChange={handleChange}&gt;
+
+// Form submit
+&lt;form onSubmit={handleSubmit}&gt;
+
+// Keyboard
+&lt;input onKeyDown={handleKey}&gt;
+
+// Mouse
+&lt;div onMouseEnter={handleHover}&gt;
+
+// Focus
+&lt;input onFocus={handleFocus}
+       onBlur={handleBlur}&gt;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Event Object</h3>
+          <p>React passes a synthetic event object. Access value, key, type, target.</p>
+          <pre><code>const handleChange = (e) => {
+  console.log(e.target.value);  // input value
+  console.log(e.target.name);   // input name attr
+  console.log(e.target.checked); // checkbox
+};
+
+const handleKey = (e) => {
+  if (e.key === "Enter") submit();
+  if (e.key === "Escape") close();
+};
+
+const handleSubmit = (e) => {
+  e.preventDefault(); // stop page reload!
+};</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Passing Arguments</h3>
+          <p>Wrap in an arrow function to pass extra arguments to your handler.</p>
+          <pre><code>// Pass an ID to the handler
+&lt;button onClick={() =&gt; handleDelete(item.id)}&gt;
+  Delete
+&lt;/button&gt;
+
+// Pass both event and data
+&lt;input
+  onChange={(e) =&gt; handleChange(e, field)}
+/&gt;
+
+// Inside the handler
+const handleDelete = (id) => {
+  setItems(prev =&gt; prev.filter(i =&gt; i.id !== id));
+};</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Preventing Defaults</h3>
+          <p>Stop default browser behavior and stop events from bubbling up.</p>
+          <pre><code>// Stop form page reload
+const onSubmit = (e) => {
+  e.preventDefault();
+};
+
+// Stop event bubbling to parent
+const onCardClick = (e) => {
+  e.stopPropagation();
+};
+
+// Stop link navigation
+const onLink = (e) => {
+  e.preventDefault();
+  // do something custom
+};</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LISTS & CONDITIONAL -->
+    <div class="cs-section">
+      <div class="cs-section-title">Lists &amp; Conditional Rendering</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>Render a List</h3>
+          <p>Use <code>.map()</code> to turn an array into JSX. Always add a unique <code>key</code>.</p>
+          <pre><code>const fruits = ["Apple", "Mango", "Banana"];
+
+return (
+  &lt;ul&gt;
+    {fruits.map((fruit, i) =&gt; (
+      &lt;li key={i}&gt;{fruit}&lt;/li&gt;
+    ))}
+  &lt;/ul&gt;
+);
+
+// With objects — use the id as key
+{users.map(user =&gt; (
+  &lt;UserCard key={user.id} user={user} /&gt;
+))}</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Filter + Map</h3>
+          <p>Chain <code>.filter()</code> before <code>.map()</code> to show only matching items.</p>
+          <pre><code>const [search, setSearch] = useState("");
+
+const visible = items
+  .filter(item =&gt;
+    item.name.toLowerCase()
+      .includes(search.toLowerCase())
+  )
+  .map(item =&gt; (
+    &lt;Item key={item.id} {...item} /&gt;
+  ));
+
+return &lt;ul&gt;{visible}&lt;/ul&gt;;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Ternary — Show A or B</h3>
+          <p>Use <code>condition ? A : B</code> to switch between two outputs.</p>
+          <pre><code>{isLoggedIn
+  ? &lt;Dashboard /&gt;
+  : &lt;LoginPage /&gt;
+}
+
+{isLoading
+  ? &lt;Spinner /&gt;
+  : &lt;Content data={data} /&gt;
+}
+
+// Inline text
+&lt;button&gt;
+  {isOpen ? "Close" : "Open"}
+&lt;/button&gt;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>&amp;&amp; — Show or Nothing</h3>
+          <p>Use <code>condition &amp;&amp; element</code> to show something or nothing.</p>
+          <pre><code>{isAdmin &amp;&amp; &lt;AdminPanel /&gt;}
+
+{error &amp;&amp; &lt;p className="err"&gt;{error}&lt;/p&gt;}
+
+{/* ⚠️ Watch out for 0 */}
+{count &amp;&amp; &lt;Badge /&gt;}    // renders "0" when empty!
+{count &gt; 0 &amp;&amp; &lt;Badge /&gt;} // renders nothing ✅
+
+{/* Conditional class */}
+&lt;div className={`btn ${isActive ? "active" : ""}`}&gt;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Early Return</h3>
+          <p>Return early from the component for loading, error, or empty states.</p>
+          <pre><code>const UserCard = ({ user }) => {
+  if (!user)           return null;
+  if (user.loading)    return &lt;Spinner /&gt;;
+  if (user.error)      return &lt;p&gt;Error!&lt;/p&gt;;
+  if (!user.name)      return &lt;p&gt;No name&lt;/p&gt;;
+
+  // Happy path at the bottom
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;{user.name}&lt;/h2&gt;
+    &lt;/div&gt;
+  );
+};</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FORMS -->
+    <div class="cs-section">
+      <div class="cs-section-title">Forms &amp; Controlled Inputs</div>
+      <div class="cs-grid">
+
+        <div class="cs-card wide">
+          <h3>Controlled Input Pattern</h3>
+          <p>Wire <code>value</code> to state and <code>onChange</code> to a setter. React is the single source of truth.</p>
+          <pre><code>const [name, setName] = useState("");
+
+&lt;input
+  value={name}
+  onChange={(e) =&gt; setName(e.target.value)}
+  placeholder="Your name"
+/&gt;
+
+// Text area — same pattern
+&lt;textarea value={bio} onChange={(e) =&gt; setBio(e.target.value)} /&gt;
+
+// Select dropdown
+&lt;select value={role} onChange={(e) =&gt; setRole(e.target.value)}&gt;
+  &lt;option value="user"&gt;User&lt;/option&gt;
+  &lt;option value="admin"&gt;Admin&lt;/option&gt;
+&lt;/select&gt;
+
+// Checkbox — use checked, not value
+&lt;input type="checkbox" checked={agreed} onChange={(e) =&gt; setAgreed(e.target.checked)} /&gt;</code></pre>
+        </div>
+
+        <div class="cs-card wide">
+          <h3>Multi-field Form (Generic Handler)</h3>
+          <p>One handler for all fields using the <code>name</code> attribute as the key.</p>
+          <pre><code>const [form, setForm] = useState({ name: "", email: "", password: "" });
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setForm(prev =&gt; ({ ...prev, [name]: value }));
+};
+
+const handleSubmit = (e) => {
+  e.preventDefault();      // always prevent page reload
+  console.log(form);       // access all values here
+};
+
+return (
+  &lt;form onSubmit={handleSubmit}&gt;
+    &lt;input name="name"     value={form.name}     onChange={handleChange} /&gt;
+    &lt;input name="email"    value={form.email}    onChange={handleChange} /&gt;
+    &lt;input name="password" value={form.password} onChange={handleChange} type="password" /&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+  &lt;/form&gt;
+);</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- STATE PATTERNS -->
+    <div class="cs-section">
+      <div class="cs-section-title">State Patterns</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>Update Array State</h3>
+          <p>Never mutate. Always return a new array.</p>
+          <pre><code>// Add item
+setItems(prev =&gt; [...prev, newItem]);
+
+// Remove item
+setItems(prev =&gt; prev.filter(i =&gt; i.id !== id));
+
+// Update one item
+setItems(prev =&gt; prev.map(i =&gt;
+  i.id === id ? { ...i, done: true } : i
+));
+
+// Sort
+setItems(prev =&gt;
+  [...prev].sort((a, b) =&gt; a.name.localeCompare(b.name))
+);</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Update Object State</h3>
+          <p>Spread the old object, then overwrite only the changed field.</p>
+          <pre><code>const [user, setUser] = useState({
+  name: "Myat", age: 20, role: "user"
+});
+
+// Update one field
+setUser(prev =&gt; ({ ...prev, age: 21 }));
+
+// Update nested object
+setUser(prev =&gt; ({
+  ...prev,
+  address: { ...prev.address, city: "Yangon" }
+}));
+
+// Reset to initial
+setUser({ name: "", age: 0, role: "user" });</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Toggle Boolean State</h3>
+          <p>Use the functional update form so you always toggle the current value.</p>
+          <pre><code>const [isOpen, setIsOpen] = useState(false);
+const [isDark, setIsDark] = useState(false);
+
+// Toggle
+setIsOpen(prev =&gt; !prev);
+setIsDark(prev =&gt; !prev);
+
+// Button
+&lt;button onClick={() =&gt; setIsOpen(o =&gt; !o)}&gt;
+  {isOpen ? "Close" : "Open"}
+&lt;/button&gt;
+
+// Don't use setIsOpen(!isOpen) — stale closure risk
+// Always use the functional form for toggles</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Lifting State Up</h3>
+          <p>Move shared state to the closest common parent. Pass down data + callbacks.</p>
+          <pre><code>// Parent owns the state
+const App = () => {
+  const [query, setQuery] = useState("");
+  return (
+    &lt;&gt;
+      &lt;SearchBar onSearch={setQuery} /&gt;
+      &lt;ResultList filter={query} /&gt;
+    &lt;/&gt;
+  );
+};
+
+// Child reads or changes it via props
+const SearchBar = ({ onSearch }) =&gt; (
+  &lt;input onChange={e =&gt; onSearch(e.target.value)} /&gt;
+);</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FETCHING DATA -->
+    <div class="cs-section">
+      <div class="cs-section-title">Fetching Data</div>
+      <div class="cs-grid">
+
+        <div class="cs-card wide">
+          <h3>Complete Fetch Pattern</h3>
+          <p>Always track 3 states: loading, data, error. Fetch inside useEffect with empty deps array.</p>
+          <pre><code>const [data,    setData]    = useState(null);
+const [loading, setLoading] = useState(true);
+const [error,   setError]   = useState(null);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const res = await fetch("https://api.example.com/data");
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const json = await res.json();
+      setData(json);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchData();
+}, []);  // ← empty array = fetch once on mount
+
+if (loading) return &lt;Spinner /&gt;;
+if (error)   return &lt;p&gt;Error: {error}&lt;/p&gt;;
+return &lt;div&gt;{/* render data */}&lt;/div&gt;;</code></pre>
+        </div>
+
+        <div class="cs-card wide">
+          <h3>useFetch Custom Hook</h3>
+          <p>Extract the fetch pattern into a reusable hook. Use it in any component.</p>
+          <pre><code>// hooks/useFetch.js
+const useFetch = (url) => {
+  const [data,    setData]    = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error,   setError]   = useState(null);
+
+  useEffect(() =&gt; {
+    const run = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        setData(await res.json());
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    run();
+  }, [url]);
+
+  return { data, loading, error };
+};
+
+// In any component:
+const { data, loading, error } = useFetch("/api/users");
+const { data: posts }          = useFetch("/api/posts");</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COMMON PATTERNS -->
+    <div class="cs-section">
+      <div class="cs-section-title">Common Patterns</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>Component File Structure</h3>
+          <p>Standard layout for a component file — imports, component, export.</p>
+          <pre><code>// 1. Imports
+import { useState, useEffect } from 'react';
+import './Button.css';
+
+// 2. Component (arrow function)
+const Button = ({ label, onClick, disabled = false }) =&gt; {
+  const [clicked, setClicked] = useState(false);
+
+  const handleClick = () => {
+    setClicked(true);
+    onClick?.();
+  };
+
+  return (
+    &lt;button onClick={handleClick} disabled={disabled}&gt;
+      {label}
+    &lt;/button&gt;
+  );
+};
+
+// 3. Export
+export default Button;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Folder Structure</h3>
+          <p>Standard React project layout for small-to-medium apps.</p>
+          <pre><code>src/
+├── components/     # reusable UI pieces
+│   ├── Button.jsx
+│   ├── Card.jsx
+│   └── Navbar.jsx
+├── pages/          # full page components
+│   ├── Home.jsx
+│   └── About.jsx
+├── hooks/          # custom hooks
+│   └── useFetch.js
+├── utils/          # helper functions
+│   └── formatDate.js
+├── App.jsx         # root component
+└── main.jsx        # entry point (Vite)</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Create React App (Vite)</h3>
+          <p>Start a new React project with Vite — the modern, fast way.</p>
+          <pre><code># Create a new project
+npm create vite@latest my-app -- --template react
+cd my-app
+npm install
+npm run dev
+
+# Vite runs at http://localhost:5173
+
+# Build for production
+npm run build
+
+# Key files:
+# src/App.jsx       — your main component
+# src/main.jsx      — mounts React to the DOM
+# index.html        — HTML shell</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Key Rules to Remember</h3>
+          <p>The most important React rules — violating these causes bugs.</p>
+          <pre><code>// 1. Never mutate state
+arr.push(x);         // ❌
+setArr([...arr, x]); // ✅
+
+// 2. Hooks only at top level
+if (x) { useState() } // ❌ never in conditions
+
+// 3. Keys must be unique and stable
+key={Math.random()} // ❌ creates new key every render
+key={item.id}       // ✅
+
+// 4. Functional updates for derived state
+setCount(count + 1);       // ❌ stale closure risk
+setCount(prev =&gt; prev + 1);// ✅
+
+// 5. Always e.preventDefault() on submit
+&lt;form onSubmit={handleSubmit}&gt; // and call e.preventDefault() inside</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    React Cheatsheet &nbsp;|&nbsp; <a href="react-guide.html">React Guide →</a> &nbsp;|&nbsp; <a href="../index.html">← Home</a>
+  </footer>
+
+</body>
+</html>

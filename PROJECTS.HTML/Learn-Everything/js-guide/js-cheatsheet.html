@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JS Cheatsheet | Web Dev 0 to Hero</title>
+  <link rel="stylesheet" href="js-cheatsheet.css" />
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="back-btn">← Home</a>
+    <div class="logo">JS <span>Cheatsheet</span></div>
+    <p class="subtitle">Quick reference — every syntax, method, and pattern in one place</p>
+    <div class="header-nav">
+      <a href="js-guide.html" class="nav-btn">JS Guide</a>
+      <a href="js-tips.html" class="nav-btn">JS Tips</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- VARIABLES -->
+    <section class="sheet-section" id="variables">
+      <h2 class="section-title s-yellow">Variables &amp; Types</h2>
+      <div class="sheet-grid">
+
+        <div class="sheet-card">
+          <h3>Declaring Variables</h3>
+          <pre><code>const name  = "Myat";     // never changes
+let   score = 0;          // will change
+// var — avoid completely</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Data Types</h3>
+          <pre><code>const str  = "hello";       // String
+const num  = 42;            // Number
+const bool = true;          // Boolean
+const arr  = [1, 2, 3];     // Array
+const obj  = { a: 1 };      // Object
+const nil  = null;          // Null
+let   x;                    // Undefined</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Type Checking</h3>
+          <pre><code>typeof "hello"    // "string"
+typeof 42         // "number"
+typeof true       // "boolean"
+typeof undefined  // "undefined"
+typeof null       // "object" (JS bug!)
+typeof []         // "object"
+Array.isArray([]) // true</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Type Conversion</h3>
+          <pre><code>Number("42")        // 42
+Number("abc")       // NaN
+String(42)          // "42"
+Boolean(0)          // false
+Boolean("hello")    // true
+parseInt("42px")    // 42
+parseFloat("3.14x") // 3.14</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OPERATORS -->
+    <section class="sheet-section" id="operators">
+      <h2 class="section-title s-orange">Operators</h2>
+      <div class="sheet-grid">
+
+        <div class="sheet-card">
+          <h3>Comparison</h3>
+          <pre><code>5 === 5      // true  (use this)
+5 !== 3      // true
+5 == "5"     // true  (avoid!)
+5 > 3        // true
+5 >= 5       // true
+5 < 10       // true</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Logical</h3>
+          <pre><code>true && true    // true  (AND)
+true || false   // true  (OR)
+!true           // false (NOT)
+null ?? "default"  // "default" (nullish)
+0    ?? "default"  // 0 (0 is valid!)</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Arithmetic</h3>
+          <pre><code>10 + 3  // 13
+10 - 3  // 7
+10 * 3  // 30
+10 / 3  // 3.33
+10 % 3  // 1  (remainder)
+10 ** 2 // 100 (power)
+x++     // increment
+x--     // decrement</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Shorthand Assignment</h3>
+          <pre><code>x += 5   // x = x + 5
+x -= 5   // x = x - 5
+x *= 2   // x = x * 2
+x /= 2   // x = x / 2
+x **= 2  // x = x * x
+x ??= 10 // x = x ?? 10</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FUNCTIONS -->
+    <section class="sheet-section" id="functions">
+      <h2 class="section-title s-blue">Functions</h2>
+      <div class="sheet-grid">
+
+        <div class="sheet-card">
+          <h3>Function Types</h3>
+          <pre><code>// Declaration
+function greet(name) {
+  return `Hello, ${name}`;
+}
+
+// Expression
+const greet = function(name) {
+  return `Hello, ${name}`;
+};
+
+// Arrow (use this most)
+const greet = (name) => `Hello, ${name}`;</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Default &amp; Rest Params</h3>
+          <pre><code>// Default parameter
+const greet = (name = "Guest") => name;
+greet();       // "Guest"
+greet("Myat"); // "Myat"
+
+// Rest — collect into array
+const sum = (...nums) =>
+  nums.reduce((a, b) => a + b, 0);
+sum(1, 2, 3, 4); // 10</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Ternary &amp; Short-circuit</h3>
+          <pre><code>// Ternary
+const status = age >= 18 ? "Adult" : "Minor";
+
+// &&  — run if truthy
+user && greet(user);
+
+// ||  — fallback if falsy
+const name = user.name || "Guest";
+
+// ??  — fallback if null/undefined
+const count = data.count ?? 0;</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Destructured Parameters</h3>
+          <pre><code>// Destructure object param
+const display = ({ name, age, city = "Unknown" }) => {
+  console.log(`${name}, ${age}, ${city}`);
+};
+
+display({ name: "Myat", age: 19 });
+
+// Destructure array param
+const first = ([a, b]) => a;
+first([10, 20]); // 10</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ARRAYS -->
+    <section class="sheet-section" id="arrays">
+      <h2 class="section-title s-green">Array Methods</h2>
+      <div class="sheet-grid">
+
+        <div class="sheet-card">
+          <h3>Transform</h3>
+          <pre><code>// map — transform each item
+[1,2,3].map(n => n * 2)
+// [2, 4, 6]
+
+// filter — keep matching items
+[1,2,3,4].filter(n => n > 2)
+// [3, 4]
+
+// reduce — collapse to one value
+[1,2,3,4].reduce((sum, n) => sum + n, 0)
+// 10</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Find &amp; Check</h3>
+          <pre><code>// find — first match (or undefined)
+[3,7,2].find(n => n > 5)     // 7
+
+// findIndex — index of first match
+[3,7,2].findIndex(n => n > 5) // 1
+
+// some — any match?
+[1,2,3].some(n => n > 2)     // true
+
+// every — all match?
+[1,2,3].every(n => n > 0)    // true
+
+// includes — value in array?
+[1,2,3].includes(2)          // true</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Add / Remove</h3>
+          <pre><code>arr.push(item)    // add to end
+arr.pop()         // remove from end
+arr.unshift(item) // add to start
+arr.shift()       // remove from start
+
+// splice(start, deleteCount, ...items)
+arr.splice(2, 1)        // remove 1 at index 2
+arr.splice(1, 0, "new") // insert at index 1
+
+// slice — copy portion (non-destructive)
+arr.slice(1, 3)  // items at index 1 and 2</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Useful Patterns</h3>
+          <pre><code>// Sort numbers
+arr.sort((a, b) => a - b); // ascending
+arr.sort((a, b) => b - a); // descending
+
+// Copy array
+const copy = [...arr];
+
+// Remove duplicates
+const unique = [...new Set(arr)];
+
+// Flatten nested arrays
+[[1,2],[3,4]].flat(); // [1,2,3,4]
+
+// Join to string
+["a","b","c"].join(", "); // "a, b, c"</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OBJECTS -->
+    <section class="sheet-section" id="objects">
+      <h2 class="section-title s-purple">Objects &amp; Destructuring</h2>
+      <div class="sheet-grid">
+
+        <div class="sheet-card">
+          <h3>Object Basics</h3>
+          <pre><code>const user = { name: "Myat", age: 19 };
+
+user.name          // dot notation
+user["name"]       // bracket notation
+user.email = "x"   // add property
+delete user.age    // remove property
+
+// Shorthand (same name)
+const name = "Myat";
+const obj = { name }; // { name: "Myat" }</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Destructuring</h3>
+          <pre><code>const { name, age } = user;
+// Rename: const { name: fullName } = user;
+// Default: const { role = "user" } = user;
+
+// Array destructuring
+const [first, , third] = [1, 2, 3];
+
+// Nested
+const { address: { city } } = user;
+
+// In function params
+const fn = ({ name, age }) => name;</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Spread &amp; Merge</h3>
+          <pre><code>// Copy
+const copy = { ...obj };
+
+// Merge (later wins)
+const merged = { ...defaults, ...overrides };
+
+// Update one field
+const updated = { ...user, age: 20 };
+
+// Rest — collect remaining
+const { name, ...rest } = user;
+// rest = everything except name</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Object Methods</h3>
+          <pre><code>Object.keys(obj)    // ["name", "age"]
+Object.values(obj)  // ["Myat", 19]
+Object.entries(obj) // [["name","Myat"],["age",19]]
+
+// Loop over entries
+Object.entries(obj).forEach(([key, val]) => {
+  console.log(key, val);
+});
+
+// Check if key exists
+"name" in obj       // true
+obj.hasOwnProperty("name") // true</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DOM -->
+    <section class="sheet-section" id="dom">
+      <h2 class="section-title s-teal">DOM Manipulation</h2>
+      <div class="sheet-grid">
+
+        <div class="sheet-card">
+          <h3>Selecting Elements</h3>
+          <pre><code>document.getElementById("id")
+document.querySelector(".class")    // first match
+document.querySelector("#id")
+document.querySelector("tag")
+document.querySelectorAll(".class") // all matches (NodeList)
+
+// Convert NodeList to Array
+Array.from(document.querySelectorAll(".item"))
+[...document.querySelectorAll(".item")]</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Reading &amp; Writing</h3>
+          <pre><code>el.textContent         // read/write text (safe)
+el.innerHTML           // read/write HTML
+el.value               // input field value
+el.getAttribute("src") // read attribute
+el.setAttribute("src", "img.png")
+el.removeAttribute("disabled")
+el.dataset.id          // read data-id attr</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Classes &amp; Styles</h3>
+          <pre><code>el.classList.add("active")
+el.classList.remove("hidden")
+el.classList.toggle("dark")
+el.classList.contains("active") // true/false
+el.classList.replace("old", "new")
+
+// Inline style (use classList instead when possible)
+el.style.color = "red";
+el.style.display = "none";</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Creating &amp; Inserting</h3>
+          <pre><code>const el = document.createElement("div");
+el.classList.add("card");
+el.textContent = "Hello";
+
+parent.appendChild(el)   // add to end
+parent.prepend(el)        // add to start
+el.remove()              // remove element
+
+// Insert HTML string
+parent.insertAdjacentHTML("beforeend", `
+  &lt;div class="card"&gt;${data}&lt;/div&gt;
+`);</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="sheet-section" id="events">
+      <h2 class="section-title s-red">Events</h2>
+      <div class="sheet-grid">
+
+        <div class="sheet-card">
+          <h3>Adding Listeners</h3>
+          <pre><code>el.addEventListener("click", handler);
+el.addEventListener("input", handler);
+el.addEventListener("submit", handler);
+el.addEventListener("keydown", handler);
+el.addEventListener("mouseover", handler);
+el.removeEventListener("click", handler);
+
+// Once — auto-removes after first fire
+el.addEventListener("click", fn, { once: true });</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Event Object</h3>
+          <pre><code>el.addEventListener("click", (e) => {
+  e.target           // element clicked
+  e.currentTarget    // element with listener
+  e.preventDefault() // stop default behavior
+  e.stopPropagation()// stop bubbling up
+
+  e.target.value     // input value
+  e.key              // "Enter", "Escape", etc.
+  e.clientX          // mouse X position
+});</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Event Delegation</h3>
+          <pre><code>// One listener on parent — handles all children
+list.addEventListener("click", (e) => {
+  if (e.target.matches(".delete-btn")) {
+    e.target.closest("li").remove();
+  }
+  if (e.target.matches(".edit-btn")) {
+    const id = e.target.dataset.id;
+    editItem(id);
+  }
+});</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Form Events</h3>
+          <pre><code>form.addEventListener("submit", (e) => {
+  e.preventDefault(); // stop page reload!
+
+  const data = {
+    name:  form.querySelector("#name").value.trim(),
+    email: form.querySelector("#email").value.trim()
+  };
+
+  if (!data.name) return; // validate
+  processData(data);
+  form.reset();
+});</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ASYNC -->
+    <section class="sheet-section" id="async">
+      <h2 class="section-title s-js">Async / Fetch</h2>
+      <div class="sheet-grid">
+
+        <div class="sheet-card">
+          <h3>Basic Fetch</h3>
+          <pre><code>const getData = async () => {
+  try {
+    const res  = await fetch(url);
+    if (!res.ok) throw new Error(res.status);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>POST Request</h3>
+          <pre><code>const postData = async (url, body) => {
+  const res = await fetch(url, {
+    method:  "POST",
+    headers: { "Content-Type": "application/json" },
+    body:    JSON.stringify(body)
+  });
+  return res.json();
+};</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Promise Patterns</h3>
+          <pre><code>// Parallel — fastest
+const [a, b] = await Promise.all([
+  fetch(url1).then(r => r.json()),
+  fetch(url2).then(r => r.json())
+]);
+
+// First to resolve
+const first = await Promise.race([fn1(), fn2()]);
+
+// All, even if some fail
+const results = await Promise.allSettled([fn1(), fn2()]);
+results.forEach(r => r.status === "fulfilled" ? use(r.value) : log(r.reason));</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Async Patterns</h3>
+          <pre><code">// Sequential (each waits for prev)
+for (const id of ids) {
+  const data = await fetch(id);
+}
+
+// Parallel (all at once)
+await Promise.all(ids.map(id => fetch(id)));
+
+// Debounce async
+const search = debounce(async (q) => {
+  const results = await fetchSearch(q);
+  render(results);
+}, 400);</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ES6+ -->
+    <section class="sheet-section" id="es6">
+      <h2 class="section-title s-pink">ES6+ Quick Reference</h2>
+      <div class="sheet-grid">
+
+        <div class="sheet-card">
+          <h3>Template Literals</h3>
+          <pre><code>const name = "Myat";
+`Hello, ${name}!`
+`Result: ${2 + 2}`
+`Multi
+ line
+ string`</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Spread / Rest</h3>
+          <pre><code">// Spread — expand
+[...arr1, ...arr2]
+{ ...obj1, ...obj2 }
+Math.max(...nums)
+
+// Rest — collect
+const [first, ...rest] = arr;
+const { a, ...others } = obj;
+const fn = (...args) => args;</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Optional Chaining &amp; Nullish</h3>
+          <pre><code">obj?.prop           // undefined if obj is null
+obj?.method?.()     // only calls if exists
+arr?.[0]            // optional array access
+
+value ?? "default"  // fallback for null/undefined
+value ||  "default" // fallback for any falsy
+value &&  doSomething() // run if truthy</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Modules</h3>
+          <pre><code>// Export
+export const fn = () => {};
+export default class MyClass {}
+
+// Import
+import { fn } from "./utils.js";
+import MyClass from "./MyClass.js";
+import * as utils from "./utils.js";
+
+// Dynamic
+const mod = await import("./heavy.js");</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Local Storage</h3>
+          <pre><code">// Save
+localStorage.setItem("key", JSON.stringify(data));
+
+// Read
+const data = JSON.parse(
+  localStorage.getItem("key")
+) ?? fallback;
+
+// Remove
+localStorage.removeItem("key");
+localStorage.clear();</code></pre>
+        </div>
+
+        <div class="sheet-card">
+          <h3>Useful One-Liners</h3>
+          <pre><code">// Unique array values
+[...new Set(arr)]
+
+// Swap variables
+[a, b] = [b, a];
+
+// Shallow clone object
+const copy = { ...obj };
+
+// Check if array
+Array.isArray(val)
+
+// Convert NodeList to Array
+[...document.querySelectorAll(".item")]
+
+// Random int 0-9
+Math.floor(Math.random() * 10)</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    JS Cheatsheet &nbsp;|&nbsp; Quick Reference &nbsp;|&nbsp; <a href="../index.html">← Back to Home</a> &nbsp;|&nbsp; <a href="js-guide.html">JS Guide</a>
+  </footer>
+
+</body>
+</html>

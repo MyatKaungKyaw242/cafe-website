@@ -1,0 +1,112 @@
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Arial,sans-serif; }
+:root { --bg:#0f0f1a; --card:#1a1a2e; --border:#2a2a45; --muted:#888aaa; --code-bg:#0d0d1a; }
+body { background:var(--bg); color:#e0e0f0; min-height:100vh; }
+
+header { background:var(--card); border-bottom:1px solid var(--border); padding:36px 48px; text-align:center; }
+.back-btn { display:inline-block; margin-bottom:10px; padding:7px 18px; background:rgba(255,255,255,0.07); color:var(--muted); text-decoration:none; border-radius:30px; font-size:0.8rem; border:1px solid rgba(255,255,255,0.1); transition:all 0.2s; }
+.back-btn:hover { background:rgba(255,255,255,0.13); color:white; }
+.logo { font-size:2rem; font-weight:900; color:white; letter-spacing:-1px; margin-bottom:6px; }
+.logo span { color:#a29bfe; }
+.subtitle { color:var(--muted); font-size:0.9rem; margin-bottom:12px; }
+.tip-note { display:inline-block; background:rgba(162,155,254,0.1); color:#a29bfe; border:1px solid rgba(162,155,254,0.25); padding:6px 18px; border-radius:30px; font-size:0.8rem; }
+
+/* ── SEARCH ── */
+.search-wrap { max-width:480px; margin:20px auto 0; }
+.search-input {
+  width:100%; padding:12px 18px; border-radius:30px;
+  background:rgba(255,255,255,0.07); border:1px solid var(--border);
+  color:white; font-size:0.9rem; outline:none; transition:border-color 0.2s;
+}
+.search-input:focus { border-color:rgba(162,155,254,0.5); }
+.search-input::placeholder { color:var(--muted); }
+
+main { max-width:900px; margin:0 auto; padding:40px 32px; display:flex; flex-direction:column; gap:40px; }
+
+/* ── CATEGORY ── */
+.cat-title {
+  font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid var(--border);
+}
+.cat-html  .cat-title { color:#f4a261; }
+.cat-css   .cat-title { color:#e94560; }
+.cat-js    .cat-title { color:#f7df1e; }
+.cat-react .cat-title { color:#61dafb; }
+.cat-gen   .cat-title { color:#a29bfe; }
+
+/* ── TERMS GRID ── */
+.terms-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+/* ── TERM CARD ── */
+.term-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px 18px;
+  transition:border-color 0.2s;
+}
+.term-card:hover { border-color:rgba(162,155,254,0.3); }
+
+.term-card dt {
+  font-size:0.88rem;
+  font-weight:800;
+  color:white;
+  margin-bottom:6px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.term-badge {
+  font-size:0.6rem;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  padding:2px 7px;
+  border-radius:10px;
+}
+.b-html  { background:rgba(244,162,97,0.12); color:#f4a261; border:1px solid rgba(244,162,97,0.3); }
+.b-css   { background:rgba(233,69,96,0.12);  color:#e94560; border:1px solid rgba(233,69,96,0.3); }
+.b-js    { background:rgba(247,223,30,0.1);  color:#f7df1e; border:1px solid rgba(247,223,30,0.25); }
+.b-react { background:rgba(97,218,251,0.1);  color:#61dafb; border:1px solid rgba(97,218,251,0.25); }
+.b-gen   { background:rgba(162,155,254,0.1); color:#a29bfe; border:1px solid rgba(162,155,254,0.25); }
+
+.term-card dd {
+  font-size:0.82rem;
+  color:#c5c8e0;
+  line-height:1.6;
+}
+
+.term-card dd code {
+  background:var(--code-bg);
+  border:1px solid var(--border);
+  padding:1px 5px;
+  border-radius:4px;
+  font-size:0.76rem;
+  color:#a8daff;
+  font-family:'Consolas',monospace;
+}
+
+.term-card dd .example {
+  display:block;
+  margin-top:6px;
+  font-size:0.77rem;
+  color:var(--muted);
+  font-style:italic;
+}
+
+/* hidden by search filter */
+.term-card.hidden { display:none; }
+
+/* no results message */
+.no-results { display:none; color:var(--muted); font-size:0.9rem; text-align:center; padding:24px; }
+.no-results.visible { display:block; }
+
+footer { text-align:center; padding:20px; color:var(--muted); font-size:0.8rem; border-top:1px solid var(--border); background:var(--card); }
+footer a { color:#a29bfe; text-decoration:none; }
+footer a:hover { text-decoration:underline; }
+
+@media (max-width:600px) { .terms-grid { grid-template-columns:1fr; } main { padding:24px 16px; } header { padding:24px 20px; } }

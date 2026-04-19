@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>React Tips & Tricks | Web Dev 0 to Hero</title>
+  <link rel="stylesheet" href="react-tips.css" />
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="back-btn">← Home</a>
+    <div class="logo">React <span>Tips &amp; Tricks</span></div>
+    <p class="subtitle">One pro tip for every React topic — read after you finish each one</p>
+    <div class="tip-note">⚛ These are the things tutorials forget to tell you</div>
+  </header>
+
+  <main>
+
+    <!-- TIP 1: JSX -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">1</div>
+        <div class="tip-header-text">
+          <h3>JSX — Fragment shorthand saves wrapper divs</h3>
+          <p>Topic 1: JSX</p>
+        </div>
+        <span class="tip-label label-tip">Tip</span>
+      </div>
+      <div class="tip-body">
+        <p>Beginners add wrapper <code>&lt;div&gt;</code> everywhere just to satisfy the "one root element" rule. These extra divs break your CSS layout (especially flex/grid) and pollute the DOM. Use the <strong>Fragment shorthand <code>&lt;&gt;&lt;/&gt;</code></strong> instead — it satisfies the rule without adding any element to the DOM.</p>
+        <pre><code>// ❌ Extra div breaks your grid layout
+return (
+  &lt;div&gt;  {/* unwanted wrapper */}
+    &lt;Sidebar /&gt;
+    &lt;Main /&gt;
+  &lt;/div&gt;
+);
+
+// ✅ Fragment — no DOM element, no layout breakage
+return (
+  &lt;&gt;
+    &lt;Sidebar /&gt;
+    &lt;Main /&gt;
+  &lt;/&gt;
+);
+
+// Use &lt;React.Fragment key={id}&gt; when you need a key prop (e.g. in .map())
+{items.map(item =&gt; (
+  &lt;React.Fragment key={item.id}&gt;
+    &lt;dt&gt;{item.term}&lt;/dt&gt;
+    &lt;dd&gt;{item.def}&lt;/dd&gt;
+  &lt;/React.Fragment&gt;
+))}</code></pre>
+        <div class="takeaway">Rule: Reach for &lt;&gt;&lt;/&gt; before reaching for &lt;div&gt;. Add a div only when you actually need it for styling.</div>
+      </div>
+    </div>
+
+    <!-- TIP 2: COMPONENTS -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">2</div>
+        <div class="tip-header-text">
+          <h3>Components — extract when you copy-paste JSX twice</h3>
+          <p>Topic 2: Components</p>
+        </div>
+        <span class="tip-label label-trick">Trick</span>
+      </div>
+      <div class="tip-body">
+        <p>The hardest skill in React is knowing <em>when</em> to extract a component. The simplest rule: <strong>if you write the same JSX block twice, extract it</strong>. Don't over-engineer early — start in one file, extract when you feel the pain of repetition.</p>
+        <pre><code>// You write this twice:
+&lt;div className="user-card"&gt;
+  &lt;img src={user.avatar} /&gt;
+  &lt;h3&gt;{user.name}&lt;/h3&gt;
+  &lt;p&gt;{user.bio}&lt;/p&gt;
+&lt;/div&gt;
+
+// That's the signal — extract it
+const UserCard = ({ user }) =&gt; (
+  &lt;div className="user-card"&gt;
+    &lt;img src={user.avatar} /&gt;
+    &lt;h3&gt;{user.name}&lt;/h3&gt;
+    &lt;p&gt;{user.bio}&lt;/p&gt;
+  &lt;/div&gt;
+);
+
+// Now use it
+&lt;UserCard user={author} /&gt;
+&lt;UserCard user={commenter} /&gt;</code></pre>
+        <div class="takeaway">Rule: One copy = fine. Two copies = extract. Three copies = you're late.</div>
+      </div>
+    </div>
+
+    <!-- TIP 3: PROPS -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">3</div>
+        <div class="tip-header-text">
+          <h3>Props — optional chaining prevents crashes on missing data</h3>
+          <p>Topic 3: Props</p>
+        </div>
+        <span class="tip-label label-tip">Tip</span>
+      </div>
+      <div class="tip-body">
+        <p>When a prop might be null or undefined — for example, data from an API that hasn't loaded yet — accessing a property on it crashes the app. <strong>Optional chaining <code>?.</code></strong> safely returns <code>undefined</code> instead of throwing an error. Combine with <code>??</code> to provide a fallback.</p>
+        <pre><code>// ❌ Crashes if user is null
+const Profile = ({ user }) =&gt; (
+  &lt;div&gt;
+    &lt;h2&gt;{user.name}&lt;/h2&gt;        // TypeError: Cannot read property of null
+    &lt;p&gt;{user.address.city}&lt;/p&gt;  // crashes if address is missing
+  &lt;/div&gt;
+);
+
+// ✅ Optional chaining — safe
+const Profile = ({ user }) =&gt; (
+  &lt;div&gt;
+    &lt;h2&gt;{user?.name ?? "Anonymous"}&lt;/h2&gt;
+    &lt;p&gt;{user?.address?.city ?? "Unknown city"}&lt;/p&gt;
+    &lt;a href={user?.website}&gt;{user?.website ?? "No website"}&lt;/a&gt;
+  &lt;/div&gt;
+);
+
+// Also works for callback props — call only if provided
+&lt;button onClick={() =&gt; onDelete?.()}&gt;Delete&lt;/button&gt;</code></pre>
+        <div class="takeaway">Rule: Use <code>?.</code> whenever a prop could be undefined. Use <code>??</code> to show a fallback value.</div>
+      </div>
+    </div>
+
+    <!-- TIP 4: USESTATE -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">4</div>
+        <div class="tip-header-text">
+          <h3>useState — always use functional updates for derived state</h3>
+          <p>Topic 4: useState</p>
+        </div>
+        <span class="tip-label label-warn">Watch Out</span>
+      </div>
+      <div class="tip-body">
+        <p>When your new state depends on the old state (like incrementing a counter or adding to an array), always use the <strong>functional update form</strong> <code>setState(prev =&gt; ...)</code>. Using the value directly can cause a stale closure bug — especially inside event handlers or effects where the state value was captured at an earlier render.</p>
+        <pre><code>// ❌ Stale closure bug — both clicks read the same old value
+const handleDoubleClick = () => {
+  setCount(count + 1); // count is stale
+  setCount(count + 1); // still the same count!
+  // Result: only increments by 1, not 2
+};
+
+// ✅ Functional update — always gets the latest value
+const handleDoubleClick = () => {
+  setCount(prev =&gt; prev + 1); // gets current count
+  setCount(prev =&gt; prev + 1); // gets UPDATED count from previous call
+  // Result: increments by 2 ✓
+};
+
+// Same for arrays
+setItems(prev =&gt; [...prev, newItem]);   // ✅
+setItems([...items, newItem]);          // ❌ stale if called twice fast</code></pre>
+        <div class="takeaway">Rule: If the new state is based on the old state, always use <code>setState(prev =&gt; newValue)</code>.</div>
+      </div>
+    </div>
+
+    <!-- TIP 5: USEEFFECT -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">5</div>
+        <div class="tip-header-text">
+          <h3>useEffect — the dependency array is not optional</h3>
+          <p>Topic 5: useEffect</p>
+        </div>
+        <span class="tip-label label-warn">Watch Out</span>
+      </div>
+      <div class="tip-body">
+        <p>The three forms of <code>useEffect</code> do very different things. Forgetting the deps array causes infinite loops. An empty array <code>[]</code> means "run once". A filled array means "run when these values change". <strong>Missing a dependency causes stale data bugs.</strong></p>
+        <pre><code>// No array — runs after EVERY render (usually not what you want)
+useEffect(() =&gt; { console.log("rendered"); });
+
+// Empty array [] — runs ONCE on mount
+useEffect(() =&gt; { fetchInitialData(); }, []);
+
+// With dependency — runs when userId changes
+useEffect(() =&gt; { fetchUser(userId); }, [userId]);
+
+// ⚠️ Missing dependency — stale data bug
+const [id, setId] = useState(1);
+useEffect(() =&gt; {
+  fetchUser(id); // id used but not listed in deps
+}, []);          // ❌ will always use the initial id=1
+
+useEffect(() =&gt; {
+  fetchUser(id);
+}, [id]);  // ✅ re-runs whenever id changes</code></pre>
+        <div class="takeaway">Rule: Every variable from the component that's used inside a useEffect must be in the dependency array.</div>
+      </div>
+    </div>
+
+    <!-- TIP 6: LIFECYCLE -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">6</div>
+        <div class="tip-header-text">
+          <h3>Component Lifecycle — always clean up subscriptions and timers</h3>
+          <p>Topic 6: Component Lifecycle</p>
+        </div>
+        <span class="tip-label label-warn">Watch Out</span>
+      </div>
+      <div class="tip-body">
+        <p>When a component unmounts (is removed from the screen), any timers or event listeners you set up keep running — they don't auto-stop. This causes memory leaks and "can't update state on unmounted component" errors. Always <strong>return a cleanup function</strong> from useEffect.</p>
+        <pre><code>// ❌ Timer keeps running after component is removed
+useEffect(() =&gt; {
+  const timer = setInterval(fetchNewData, 5000);
+  // no cleanup — timer runs forever!
+}, []);
+
+// ✅ Return cleanup function — runs on unmount
+useEffect(() =&gt; {
+  const timer = setInterval(fetchNewData, 5000);
+  return () =&gt; clearInterval(timer); // stops the timer
+}, []);
+
+// ✅ Event listener cleanup
+useEffect(() =&gt; {
+  window.addEventListener("resize", handleResize);
+  return () =&gt; window.removeEventListener("resize", handleResize);
+}, []);
+
+// ✅ AbortController for fetch cleanup
+useEffect(() =&gt; {
+  const controller = new AbortController();
+  fetch(url, { signal: controller.signal }).then(/* ... */);
+  return () =&gt; controller.abort();
+}, [url]);</code></pre>
+        <div class="takeaway">Rule: If your useEffect sets something up, the cleanup function must tear it down.</div>
+      </div>
+    </div>
+
+    <!-- TIP 7: STYLING -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">7</div>
+        <div class="tip-header-text">
+          <h3>Styling — CSS Modules prevent class name collisions</h3>
+          <p>Topic 7: Styling in React</p>
+        </div>
+        <span class="tip-label label-trick">Trick</span>
+      </div>
+      <div class="tip-body">
+        <p>Global CSS class names clash when your app grows — two components both using <code>.card</code> will fight over the styles. <strong>CSS Modules</strong> (built into Vite) automatically generate unique class names per file so there are never any collisions. Zero extra setup needed.</p>
+        <pre><code>// Button.module.css
+.btn {
+  padding: 10px 20px;
+  background: #61dafb;
+  border-radius: 8px;
+}
+
+.btn:hover {
+  background: #48b8d8;
+}
+
+// Button.jsx — import as an object
+import styles from './Button.module.css';
+
+const Button = ({ label }) =&gt; (
+  &lt;button className={styles.btn}&gt;
+    {label}
+  &lt;/button&gt;
+);
+// Vite compiles .btn to "Button_btn__xKj3a" — unique!
+// No global class collision, ever.</code></pre>
+        <div class="takeaway">Rule: For small projects, regular CSS is fine. For anything growing, use CSS Modules — it's free and already included in Vite.</div>
+      </div>
+    </div>
+
+    <!-- TIP 8: EVENTS -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">8</div>
+        <div class="tip-header-text">
+          <h3>Events — don't call the function, pass it</h3>
+          <p>Topic 8: Events</p>
+        </div>
+        <span class="tip-label label-warn">Watch Out</span>
+      </div>
+      <div class="tip-body">
+        <p>The most common beginner mistake with events: adding <code>()</code> after the function name. This <em>calls</em> the function immediately when the component renders — not when the user clicks. You want to <strong>pass a reference</strong> to be called later.</p>
+        <pre><code>// ❌ WRONG — handleClick() runs immediately on render!
+&lt;button onClick={handleClick()}&gt;Click&lt;/button&gt;
+
+// ✅ CORRECT — pass the function, React calls it on click
+&lt;button onClick={handleClick}&gt;Click&lt;/button&gt;
+
+// When you need to pass arguments, wrap in an arrow function
+&lt;button onClick={() =&gt; handleDelete(item.id)}&gt;Delete&lt;/button&gt;
+
+// ❌ WRONG — this calls handleDelete(item.id) immediately
+&lt;button onClick={handleDelete(item.id)}&gt;Delete&lt;/button&gt;</code></pre>
+        <div class="takeaway">Rule: <code>onClick={fn}</code> — no parentheses. <code>onClick={() =&gt; fn(arg)}</code> — arrow wrapper for arguments.</div>
+      </div>
+    </div>
+
+    <!-- TIP 9: LISTS & KEYS -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">9</div>
+        <div class="tip-header-text">
+          <h3>Lists &amp; Keys — index as key causes subtle bugs</h3>
+          <p>Topic 9: Lists &amp; Keys</p>
+        </div>
+        <span class="tip-label label-warn">Watch Out</span>
+      </div>
+      <div class="tip-body">
+        <p>Using the array index as a key works until you sort, filter, or delete items. React uses keys to track which items changed — if you delete item 0, every remaining item shifts index. React thinks item 1 is now item 0 and gets confused, causing wrong component state, broken animations, or duplicate data.</p>
+        <pre><code>// ❌ Index as key — breaks on delete/reorder
+{items.map((item, index) =&gt; (
+  &lt;Item key={index} {...item} /&gt;
+))}
+
+// ✅ Stable unique ID as key
+{items.map(item =&gt; (
+  &lt;Item key={item.id} {...item} /&gt;
+))}
+
+// If your data has no ID, create one when you add it:
+const addItem = (text) =&gt; {
+  setItems(prev =&gt; [
+    ...prev,
+    { id: crypto.randomUUID(), text }  // stable unique id
+  ]);
+};
+
+// When index is OK: static lists that never reorder, filter, or delete</code></pre>
+        <div class="takeaway">Rule: Use the item's database ID as the key. If there's no ID, generate one with <code>crypto.randomUUID()</code> when the item is created.</div>
+      </div>
+    </div>
+
+    <!-- TIP 10: CONDITIONAL RENDERING -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">10</div>
+        <div class="tip-header-text">
+          <h3>Conditional Rendering — the 0 &amp;&amp; gotcha will bite you</h3>
+          <p>Topic 10: Conditional Rendering</p>
+        </div>
+        <span class="tip-label label-warn">Watch Out</span>
+      </div>
+      <div class="tip-body">
+        <p>This is one of the most common React bugs. When you write <code>{count &amp;&amp; &lt;Badge /&gt;}</code>, if <code>count</code> is <code>0</code>, React renders the number <code>0</code> on the screen — not nothing. That's because <code>0</code> is falsy but it's still a valid JSX value. Always coerce to a boolean.</p>
+        <pre><code>// ❌ Renders "0" on screen when count is 0
+{count &amp;&amp; &lt;Badge count={count} /&gt;}
+
+// ✅ Convert to boolean first
+{count &gt; 0 &amp;&amp; &lt;Badge count={count} /&gt;}
+{!!count &amp;&amp; &lt;Badge count={count} /&gt;}
+{Boolean(count) &amp;&amp; &lt;Badge count={count} /&gt;}
+
+// Same trap with array length
+{items.length &amp;&amp; &lt;List /&gt;}     // ❌ renders "0" when empty!
+{items.length &gt; 0 &amp;&amp; &lt;List /&gt;} // ✅
+
+// Also be careful with undefined — always fine (renders nothing)
+// null — fine (renders nothing)
+// 0, "", false — fine in ternary, dangerous in &&</code></pre>
+        <div class="takeaway">Rule: Never use <code>{number &amp;&amp; ...}</code>. Always use <code>{number &gt; 0 &amp;&amp; ...}</code>.</div>
+      </div>
+    </div>
+
+    <!-- TIP 11: FORMS -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">11</div>
+        <div class="tip-header-text">
+          <h3>Forms — validate on blur, not just on submit</h3>
+          <p>Topic 11: Forms &amp; Controlled Inputs</p>
+        </div>
+        <span class="tip-label label-tip">Tip</span>
+      </div>
+      <div class="tip-body">
+        <p>Validating only on submit makes for a bad UX — the user fills in everything and hits submit, then gets 5 errors at once. Professional forms validate <strong>when a field loses focus (onBlur)</strong> — after the user is done with that field. Show the error inline, immediately, right under the relevant input.</p>
+        <pre><code>const [touched, setTouched] = useState({});
+const [errors, setErrors]   = useState({});
+
+const validate = (name, value) =&gt; {
+  if (name === "email" &amp;&amp; !value.includes("@"))
+    return "Invalid email address";
+  if (name === "password" &amp;&amp; value.length &lt; 6)
+    return "Minimum 6 characters";
+  return "";
+};
+
+// Mark field as touched on blur, validate immediately
+const handleBlur = (e) =&gt; {
+  const { name, value } = e.target;
+  setTouched(prev =&gt; ({ ...prev, [name]: true }));
+  setErrors(prev =&gt; ({ ...prev, [name]: validate(name, value) }));
+};
+
+// Show error only after user has touched the field
+{touched.email &amp;&amp; errors.email &amp;&amp; (
+  &lt;p className="error"&gt;{errors.email}&lt;/p&gt;
+)}</code></pre>
+        <div class="takeaway">Rule: Validate onBlur for real-time feedback. Validate again onSubmit as the final check before sending data.</div>
+      </div>
+    </div>
+
+    <!-- TIP 12: LIFTING STATE -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">12</div>
+        <div class="tip-header-text">
+          <h3>Lifting State — lift only as high as needed</h3>
+          <p>Topic 12: Lifting State Up</p>
+        </div>
+        <span class="tip-label label-trick">Trick</span>
+      </div>
+      <div class="tip-body">
+        <p>A very common mistake is lifting state all the way to the root <code>App</code> component when only two sibling components need it. The further up state lives, the more components re-render when it changes, and the more prop drilling you have to do. <strong>Lift to the closest common ancestor — no higher.</strong></p>
+        <pre><code>// ❌ Lifted too high — App re-renders for a modal 3 levels deep
+const App = () =&gt; {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  return &lt;Page modal={isModalOpen} setModal={setIsModalOpen} /&gt;;
+};
+
+// ✅ Keep it at the level that actually needs it
+const ProductCard = () =&gt; {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  return (
+    &lt;&gt;
+      &lt;button onClick={() =&gt; setIsModalOpen(true)}&gt;Details&lt;/button&gt;
+      {isModalOpen &amp;&amp; &lt;Modal onClose={() =&gt; setIsModalOpen(false)} /&gt;}
+    &lt;/&gt;
+  );
+};
+
+// When multiple siblings need it → lift to their parent
+// When many levels need it → use Context</code></pre>
+        <div class="takeaway">Rule: Find the lowest component where the state makes sense. That's where it should live.</div>
+      </div>
+    </div>
+
+    <!-- TIP 13: USEREF -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">13</div>
+        <div class="tip-header-text">
+          <h3>useRef — if it doesn't show on screen, it probably belongs in a ref</h3>
+          <p>Topic 13: useRef</p>
+        </div>
+        <span class="tip-label label-tip">Tip</span>
+      </div>
+      <div class="tip-body">
+        <p>A quick mental model to decide between <code>useState</code> and <code>useRef</code>: <strong>if the value needs to show in the UI, use state. If it's behind-the-scenes infrastructure, use a ref.</strong> Timer IDs, socket connections, interval IDs, previous values — these never appear on screen, so they belong in refs, not state.</p>
+        <pre><code>// ✅ State — because the count shows on screen
+const [seconds, setSeconds] = useState(0);
+
+// ✅ Ref — because the timer ID never shows on screen
+const timerRef = useRef(null);
+
+// ✅ State — because isPlaying affects the button label
+const [isPlaying, setIsPlaying] = useState(false);
+
+// ✅ Ref — because videoRef is just a pointer to the DOM element
+const videoRef = useRef(null);
+
+// Common ref use cases:
+// - setInterval / setTimeout IDs
+// - WebSocket connections
+// - DOM elements (input focus, video play, scroll position)
+// - Previous state values for comparison
+// - Any value that's "technical" not "visual"</code></pre>
+        <div class="takeaway">Rule: Ask "does the user see this value on screen?" — Yes → useState. No → useRef.</div>
+      </div>
+    </div>
+
+    <!-- TIP 14: CUSTOM HOOKS -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">14</div>
+        <div class="tip-header-text">
+          <h3>Custom Hooks — name them after what they do, not how they work</h3>
+          <p>Topic 14: Custom Hooks</p>
+        </div>
+        <span class="tip-label label-trick">Trick</span>
+      </div>
+      <div class="tip-body">
+        <p>A well-named custom hook reads like English and tells you exactly what the component is doing — without you needing to see the implementation. Name it after the feature or domain (<code>useAuth</code>, <code>useCart</code>, <code>useSearchResults</code>), not the technical details (<code>useStateWithFetch</code>, <code>useEffectAndSet</code>).</p>
+        <pre><code>// ❌ Named after implementation details
+const useStateAndEffect = (url) =&gt; { /* ... */ };
+const useSetAndGet = (key) =&gt; { /* ... */ };
+
+// ✅ Named after what it gives you
+const useFetch       = (url) =&gt; { /* ... */ };  // gives you fetched data
+const useLocalStorage = (key) =&gt; { /* ... */ }; // gives you persistent state
+const useDebounce    = (val) =&gt; { /* ... */ };  // gives you a debounced value
+const useAuth        = ()    =&gt; { /* ... */ };  // gives you auth state
+const useCart        = ()    =&gt; { /* ... */ };  // gives you cart + actions
+const useMediaQuery  = (q)   =&gt; { /* ... */ };  // gives you a boolean match
+
+// Reading component code becomes natural:
+const { user, isLoggedIn } = useAuth();
+const [theme, setTheme]    = useLocalStorage("theme", "dark");
+const { data, loading }    = useFetch("/api/products");</code></pre>
+        <div class="takeaway">Rule: Your custom hook name should describe the answer it gives, not the React hooks it uses inside.</div>
+      </div>
+    </div>
+
+    <!-- TIP 15: FETCHING DATA -->
+    <div class="tip-card">
+      <div class="tip-header">
+        <div class="tip-num">15</div>
+        <div class="tip-header-text">
+          <h3>Fetching Data — always check response.ok before parsing</h3>
+          <p>Topic 15: Fetching Data</p>
+        </div>
+        <span class="tip-label label-warn">Watch Out</span>
+      </div>
+      <div class="tip-body">
+        <p><code>fetch()</code> only rejects its Promise for <strong>network errors</strong> (no internet, DNS failure). A 404 or 500 HTTP response is considered a "successful" fetch — the Promise resolves. If you skip the <code>res.ok</code> check, your app will try to parse an error response as data and silently show nothing or crash.</p>
+        <pre><code>// ❌ Doesn't catch 404, 500, etc. — silently fails
+const res = await fetch("/api/user/999");
+const data = await res.json(); // parses the 404 error body as if it's data!
+
+// ✅ Always check res.ok
+const res = await fetch("/api/user/999");
+if (!res.ok) {
+  throw new Error(`Server error: ${res.status} ${res.statusText}`);
+}
+const data = await res.json(); // only runs if 200-299
+
+// Full pattern with specific error messages
+if (res.status === 404) throw new Error("User not found");
+if (res.status === 401) throw new Error("Please log in");
+if (res.status === 403) throw new Error("Access denied");
+if (!res.ok)            throw new Error(`Error ${res.status}`);</code></pre>
+        <div class="takeaway">Rule: Always write <code>if (!res.ok) throw new Error(...)</code> right after every <code>await fetch()</code> call.</div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    React Tips &amp; Tricks &nbsp;|&nbsp; <a href="react-guide.html">React Guide →</a> &nbsp;|&nbsp; <a href="react-cheatsheet.html">React Cheatsheet →</a> &nbsp;|&nbsp; <a href="../index.html">← Home</a>
+  </footer>
+
+</body>
+</html>

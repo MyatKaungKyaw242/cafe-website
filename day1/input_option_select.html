@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        input:valid {
+            border: 1px solid green;
+        }
+
+        input:invalid {
+            border: 1px solid rgb(234, 14, 14);
+        }
+
+        textarea {
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="thead_tbody_tr_th_td.html">
+        <div>
+            <input type="text" placeholder="Enter your name" name="name" required minlength="2" maxlength="20">
+        </div><br>
+
+        <div>
+            <input type="email" placeholder="Enter your Email" name="email" required>
+
+        </div><br>
+
+        <div>
+            <textarea name="address" placeholder="Enter your address" rows="4" cols="20" required></textarea>
+        </div><br>
+
+        <div>
+            <input type="date" placeholder="Enter your birth" name="birth" required>
+        </div>
+
+        <div>
+            <input type="file" required placeholder="Enter your photo" name="photo" accept="image/*,.pdf">
+        </div>
+
+        <div>
+            <input type="password" required placeholder="Enter your password" name="password">
+        </div>
+
+        <div>
+            <input type="file" required accept=".pdf,.doc,.docx" name="CV">
+        </div>
+
+        <div>
+            <input type="color" required name="color">
+        </div>
+
+        <div>
+            <input type="range" required name="range" min="0" max="100" step="10" value="50">
+        </div>
+
+        <div>
+            <input type="number" required name="number" min="0" max="100" step="10" placeholder="numbers">
+        </div><br>
+
+        <div>
+            <label for="">Gender</label><br>
+            <input type="radio" name="gender" required id="male" value="male">
+            <label for="male">Male</label>
+            <input type="radio" name="gender" required id="female" value="female">
+            <label for="female">Female</label>
+        </div><br>
+
+        <div>
+            <label for="">Hobbies</label><br>
+            <input type="checkbox" id="reading" value="reading" name="hobbies[]" checked>
+            <label for="reading">Reading</label>
+            <input type="checkbox" id="swimming" value="swimming" name="hobbies[]">
+            <label for="swimming">Swimming</label>
+            <input type="checkbox" id="running" value="running" name="hobbies[]">
+            <label for="running">Running</label>
+            <input type="checkbox" id="cycling" value="cycling" name="hobbies[]">
+            <label for="cycling">Cycling</label>
+        </div>
+
+        <div>
+            <label for="">Country:</label>
+            <select name="country" id="country">
+                <option value="">Select Country</option>
+                <option value="myanmar">Myanmar</option>
+                <option value="thailand">Thailand</option>
+                <option value="cambodia">Cambodia</option>
+                <option value="lao">lao</option>
+                <option value="vietnam">vietnam</option>
+                <option value="singapore">singapore</option>
+
+
+            </select>
+        </div>
+
+
+
+        <div>
+
+            <input type="submit" value="register">
+        </div>
+
+
+
+
+
+
+
+
+
+    </form>
+
+</body>
+
+</html>

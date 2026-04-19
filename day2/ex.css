@@ -1,0 +1,36 @@
+.art-1{
+    background: green;
+   padding: 20px;
+}
+.art-2{
+    background: yellow;
+    padding: 20px;
+   
+}
+.art-4{
+    background: #000;
+    padding: 20px;
+}
+.art-3{
+   background: rgb(201, 5, 182);
+   padding: 20px;
+}
+.art-1 h2,.art-2 p{
+    color: white;
+}
+.art-2 h2, .art-2 p{
+    color: aqua;
+}
+.art-4 *{
+    color: rgb(235, 6, 6);
+}
+.art-5{
+    background: #06dbdb;
+    padding: 20px;
+}
+.art-5,.p1{
+    color: plum;
+}
+art-5,.p2{
+    color: rgb(21, 233, 6);
+}

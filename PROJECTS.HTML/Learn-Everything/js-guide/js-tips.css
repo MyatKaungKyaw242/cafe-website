@@ -1,0 +1,99 @@
+/* ── TIP CARD ── */
+.tip-card {
+  margin-bottom: 48px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.tip-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 28px;
+}
+
+.tip-header h2 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: white;
+  font-family: 'Consolas', monospace;
+}
+
+.tip-num {
+  font-size: 1.8rem;
+  font-weight: 900;
+  opacity: 0.2;
+  font-family: 'Consolas', monospace;
+  min-width: 44px;
+}
+
+/* ── TIPS LIST ── */
+.tips-list {
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── SINGLE TIP ITEM ── */
+.tip-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+
+.tip-label {
+  display: inline-block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 30px;
+  margin-bottom: 10px;
+}
+
+.tip-item:nth-child(odd) .tip-label {
+  background: rgba(232,93,4,0.15);
+  color: #f4a261;
+  border: 1px solid rgba(232,93,4,0.3);
+}
+
+.tip-item:nth-child(even) .tip-label {
+  background: rgba(162,155,254,0.15);
+  color: #a29bfe;
+  border: 1px solid rgba(162,155,254,0.3);
+}
+
+.tip-item p {
+  font-size: 0.88rem;
+  color: #c5c8e0;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.tip-item p:last-child { margin-bottom: 0; }
+
+.tip-item strong { color: white; }
+
+.tip-item code {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  color: #a8daff;
+  font-family: 'Consolas', 'Courier New', monospace;
+}
+
+.tip-item pre { margin-top: 10px; margin-bottom: 0; }
+
+footer a { color: #f7df1e; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .tip-header { padding: 16px 20px; }
+  .tips-list  { padding: 16px 20px; }
+}

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Progress Tracker | Web Dev 0 to Hero</title>
+  <link rel="stylesheet" href="progress.css" />
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="back-btn">← Home</a>
+    <div class="logo">Progress <span>Tracker</span></div>
+    <p class="subtitle">Check off every topic as you complete it — auto-saved in your browser</p>
+    <div class="overall-bar-wrap">
+      <div class="overall-label">
+        <span id="done-count">0</span> / 74 topics completed
+        <span id="overall-pct" class="pct-badge">0%</span>
+      </div>
+      <div class="overall-bar"><div class="overall-fill" id="overall-fill"></div></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- SECTION: FOUNDATIONS -->
+    <div class="section-block">
+      <div class="section-header s-yellow">
+        <div>
+          <h2>⭐ Foundations</h2>
+          <p>Prerequisites — read before anything else</p>
+        </div>
+        <div class="section-pct" id="pct-foundations">0%</div>
+      </div>
+      <div class="checklist" id="list-foundations">
+        <label class="check-item"><input type="checkbox" data-group="foundations"> <span>1. How The Web Works</span></label>
+        <label class="check-item"><input type="checkbox" data-group="foundations"> <span>2. The Box Model</span></label>
+        <label class="check-item"><input type="checkbox" data-group="foundations"> <span>3. CSS Units (px, rem, %, vw)</span></label>
+        <label class="check-item"><input type="checkbox" data-group="foundations"> <span>4. CSS Specificity &amp; The Cascade</span></label>
+        <label class="check-item"><input type="checkbox" data-group="foundations"> <span>5. Color Theory</span></label>
+        <label class="check-item"><input type="checkbox" data-group="foundations"> <span>6. Typography</span></label>
+        <label class="check-item"><input type="checkbox" data-group="foundations"> <span>7. Planning a Layout</span></label>
+        <label class="check-item"><input type="checkbox" data-group="foundations"> <span>8. Reading Documentation</span></label>
+        <label class="check-item"><input type="checkbox" data-group="foundations"> <span>9. Project Structure</span></label>
+        <label class="check-item"><input type="checkbox" data-group="foundations"> <span>10. Debugging Mindset</span></label>
+      </div>
+    </div>
+
+    <!-- SECTION: CSS LAYOUT -->
+    <div class="section-block">
+      <div class="section-header s-red">
+        <div>
+          <h2>🎨 CSS Layout Guide</h2>
+          <p>All 26 topics — from Grid to Ship It</p>
+        </div>
+        <div class="section-pct" id="pct-css">0%</div>
+      </div>
+      <div class="checklist" id="list-css">
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>1. grid-template-areas</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>2. grid-template-columns &amp; rows</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>3. grid-auto-rows &amp; minmax</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>4. Flexbox</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>5. gap</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>6. Media Queries</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>7. clamp(), min(), max()</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>8. position (relative, absolute, fixed)</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>9. z-index</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>10. overflow</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>11. Transitions</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>12. Animations (@keyframes)</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>13. CSS Variables (custom properties)</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>14. Pseudo-classes &amp; Pseudo-elements</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>15. HTML Semantics</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>16. Forms</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>17. Accessibility (a11y)</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>18. SEO Basics</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>19. Performance</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>20. Fonts &amp; Icons</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>21. JavaScript DOM</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>22. JS Beyond the DOM</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>23. VS Code Workflow</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>24. Browser DevTools</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>25. Git &amp; GitHub</span></label>
+        <label class="check-item"><input type="checkbox" data-group="css"> <span>26. Hosting &amp; Deployment</span></label>
+      </div>
+    </div>
+
+    <!-- SECTION: JS GUIDE -->
+    <div class="section-block">
+      <div class="section-header s-js">
+        <div>
+          <h2>⚡ JavaScript 0 to Hero</h2>
+          <p>15 topics — from variables to async APIs</p>
+        </div>
+        <div class="section-pct" id="pct-js">0%</div>
+      </div>
+      <div class="checklist" id="list-js">
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>1. Variables &amp; Data Types</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>2. Operators &amp; Type Coercion</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>3. Functions</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>4. Control Flow</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>5. Loops</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>6. Arrays &amp; Array Methods</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>7. Objects &amp; Destructuring</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>8. DOM Manipulation</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>9. Events</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>10. ES6+ Modern Syntax</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>11. Fetch API &amp; Async/Await</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>12. Error Handling</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>13. Scope &amp; Closures</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>14. Local Storage</span></label>
+        <label class="check-item"><input type="checkbox" data-group="js"> <span>15. Modules (import/export)</span></label>
+      </div>
+    </div>
+
+    <!-- SECTION: REACT -->
+    <div class="section-block">
+      <div class="section-header s-react">
+        <div>
+          <h2>⚛ React 0 to Hero</h2>
+          <p>15 topics — from JSX to custom hooks</p>
+        </div>
+        <div class="section-pct" id="pct-react">0%</div>
+      </div>
+      <div class="checklist" id="list-react">
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>1. JSX</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>2. Components</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>3. Props</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>4. useState</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>5. useEffect</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>6. Component Lifecycle</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>7. Styling in React</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>8. Events</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>9. Lists &amp; Keys</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>10. Conditional Rendering</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>11. Forms &amp; Controlled Inputs</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>12. Lifting State Up</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>13. useRef</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>14. Custom Hooks</span></label>
+        <label class="check-item"><input type="checkbox" data-group="react"> <span>15. Fetching Data</span></label>
+      </div>
+    </div>
+
+    <!-- SECTION: REACT ROUTER -->
+    <div class="section-block">
+      <div class="section-header s-router">
+        <div>
+          <h2>🔀 React Router</h2>
+          <p>8 topics — multi-page React apps</p>
+        </div>
+        <div class="section-pct" id="pct-router">0%</div>
+      </div>
+      <div class="checklist" id="list-router">
+        <label class="check-item"><input type="checkbox" data-group="router"> <span>1. What is Routing?</span></label>
+        <label class="check-item"><input type="checkbox" data-group="router"> <span>2. Installation &amp; BrowserRouter</span></label>
+        <label class="check-item"><input type="checkbox" data-group="router"> <span>3. Routes &amp; Route</span></label>
+        <label class="check-item"><input type="checkbox" data-group="router"> <span>4. Link &amp; NavLink</span></label>
+        <label class="check-item"><input type="checkbox" data-group="router"> <span>5. Dynamic Routes &amp; useParams</span></label>
+        <label class="check-item"><input type="checkbox" data-group="router"> <span>6. useNavigate</span></label>
+        <label class="check-item"><input type="checkbox" data-group="router"> <span>7. Nested Routes &amp; Outlet</span></label>
+        <label class="check-item"><input type="checkbox" data-group="router"> <span>8. 404 Page &amp; Full Setup</span></label>
+      </div>
+    </div>
+
+    <!-- RESET BUTTON -->
+    <div class="reset-row">
+      <button id="reset-btn" class="reset-btn">Reset All Progress</button>
+    </div>
+
+  </main>
+
+  <footer>
+    Progress Tracker &nbsp;|&nbsp; Auto-saved to your browser &nbsp;|&nbsp; <a href="../index.html">← Back to Home</a>
+  </footer>
+
+  <script>
+    const TOTAL = 74;
+    const groups = {
+      foundations: 10,
+      css: 26,
+      js: 15,
+      react: 15,
+      router: 8
+    };
+
+    // Load saved state
+    const loadState = () => {
+      const saved = JSON.parse(localStorage.getItem('progress-v1')) || {};
+      document.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => {
+        const key = cb.dataset.group + '-' + i;
+        if (saved[key]) cb.checked = true;
+      });
+      updateAll();
+    };
+
+    // Save state
+    const saveState = () => {
+      const state = {};
+      document.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => {
+        state[cb.dataset.group + '-' + i] = cb.checked;
+      });
+      localStorage.setItem('progress-v1', JSON.stringify(state));
+    };
+
+    // Update a section's percentage
+    const updateSection = (group) => {
+      const checkboxes = document.querySelectorAll(`input[data-group="${group}"]`);
+      const done = [...checkboxes].filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((done / total) * 100);
+      document.getElementById(`pct-${group}`).textContent = `${done}/${total} — ${pct}%`;
+    };
+
+    // Update overall bar
+    const updateOverall = () => {
+      const all = document.querySelectorAll('input[type="checkbox"]');
+      const done = [...all].filter(cb => cb.checked).length;
+      const pct = Math.round((done / TOTAL) * 100);
+      document.getElementById('done-count').textContent = done;
+      document.getElementById('overall-pct').textContent = pct + '%';
+      document.getElementById('overall-fill').style.width = pct + '%';
+
+      // Color the bar based on progress
+      const fill = document.getElementById('overall-fill');
+      if (pct < 30) fill.style.background = '#e94560';
+      else if (pct < 60) fill.style.background = '#f4a261';
+      else if (pct < 90) fill.style.background = '#48cae4';
+      else fill.style.background = '#55efc4';
+    };
+
+    const updateAll = () => {
+      Object.keys(groups).forEach(updateSection);
+      updateOverall();
+    };
+
+    // Style checked items
+    const styleChecked = (cb) => {
+      const label = cb.closest('.check-item');
+      if (cb.checked) {
+        label.classList.add('checked');
+      } else {
+        label.classList.remove('checked');
+      }
+    };
+
+    // Event listeners
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        styleChecked(cb);
+        saveState();
+        updateAll();
+      });
+    });
+
+    // Reset
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      if (confirm('Reset all progress? This cannot be undone.')) {
+        localStorage.removeItem('progress-v1');
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.checked = false;
+          cb.closest('.check-item').classList.remove('checked');
+        });
+        updateAll();
+      }
+    });
+
+    // Init
+    loadState();
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => styleChecked(cb));
+  </script>
+
+</body>
+</html>

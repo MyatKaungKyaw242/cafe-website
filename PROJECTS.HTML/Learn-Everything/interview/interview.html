@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interview Prep | Web Dev 0 to Hero</title>
+  <link rel="stylesheet" href="interview.css" />
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="back-btn">← Home</a>
+    <div class="logo">Interview <span>Prep</span></div>
+    <p class="subtitle">The most common frontend interview questions — with clean, confident answers</p>
+    <div class="tip-note">💡 Click any question to reveal the answer</div>
+  </header>
+
+  <main>
+
+    <!-- HTML -->
+    <section class="category" id="html">
+      <div class="cat-header c-orange">
+        <span class="cat-icon">🌐</span>
+        <div><h2>HTML Questions</h2><p>Semantics, accessibility, structure</p></div>
+        <span class="cat-count">6 Questions</span>
+      </div>
+
+      <div class="qa-list">
+
+        <details class="qa">
+          <summary>What is the difference between <code>&lt;div&gt;</code> and semantic tags like <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;nav&gt;</code>?</summary>
+          <div class="answer">
+            <p><code>&lt;div&gt;</code> is a generic container with no meaning. Semantic tags tell the browser — and developers — what the content IS, not just how it's grouped.</p>
+            <ul>
+              <li><code>&lt;header&gt;</code> — introductory content for a page or section</li>
+              <li><code>&lt;nav&gt;</code> — navigation links</li>
+              <li><code>&lt;main&gt;</code> — the main content (only one per page)</li>
+              <li><code>&lt;article&gt;</code> — self-contained content (blog post, news article)</li>
+              <li><code>&lt;section&gt;</code> — thematic grouping of content with a heading</li>
+              <li><code>&lt;aside&gt;</code> — tangentially related content (sidebar)</li>
+              <li><code>&lt;footer&gt;</code> — footer for a page or section</li>
+            </ul>
+            <p><strong>Why it matters:</strong> Screen readers, search engines, and developers all benefit. Google gives more weight to content inside semantic tags.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the difference between <code>id</code> and <code>class</code>?</summary>
+          <div class="answer">
+            <p><strong>id</strong> must be unique on the page — only one element can have a given id. Used for JavaScript targeting and anchor links (<code>#section-id</code>). Higher CSS specificity (1,0,0).</p>
+            <p><strong>class</strong> can be reused on multiple elements. Used for CSS styling and grouping. Lower specificity (0,1,0). Use class for styles, id for JS hooks.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is accessibility (a11y) and how do you implement it?</summary>
+          <div class="answer">
+            <p>Accessibility means making your website usable by people with disabilities — visual, motor, auditory, cognitive.</p>
+            <ul>
+              <li>Use semantic HTML — screen readers understand headings, lists, nav</li>
+              <li>Add <code>alt</code> text to all images</li>
+              <li>Ensure keyboard navigation works (tab order, focus states)</li>
+              <li>Use sufficient color contrast (4.5:1 ratio for normal text)</li>
+              <li>Use <code>aria-label</code> for icons with no text</li>
+              <li>Use <code>&lt;label&gt;</code> on form inputs (connect with <code>for</code> and <code>id</code>)</li>
+              <li>Don't rely on color alone to convey meaning</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What does <code>defer</code> and <code>async</code> do on a script tag?</summary>
+          <div class="answer">
+            <p>Without either, the browser stops parsing HTML to download and execute the script — blocking the page.</p>
+            <ul>
+              <li><code>defer</code> — download in parallel, execute AFTER HTML is fully parsed. Order is maintained. Best for most scripts.</li>
+              <li><code>async</code> — download in parallel, execute as soon as downloaded (could interrupt HTML parsing). Order not guaranteed. Best for independent scripts like analytics.</li>
+            </ul>
+            <pre><code>&lt;script src="app.js" defer&gt;&lt;/script&gt;</code></pre>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the difference between <code>localStorage</code>, <code>sessionStorage</code>, and cookies?</summary>
+          <div class="answer">
+            <table>
+              <tr><th>Feature</th><th>localStorage</th><th>sessionStorage</th><th>Cookies</th></tr>
+              <tr><td>Expires</td><td>Never (manual clear)</td><td>Tab closed</td><td>Set expiry date</td></tr>
+              <tr><td>Size</td><td>~5MB</td><td>~5MB</td><td>~4KB</td></tr>
+              <tr><td>Sent to server</td><td>No</td><td>No</td><td>Yes (every request)</td></tr>
+              <tr><td>Accessible from JS</td><td>Yes</td><td>Yes</td><td>Yes (unless httpOnly)</td></tr>
+            </table>
+            <p><strong>Rule:</strong> localStorage for UI preferences, cookies for auth tokens (httpOnly for security), sessionStorage for temporary data.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the DOM?</summary>
+          <div class="answer">
+            <p>The DOM (Document Object Model) is the browser's in-memory tree representation of your HTML. When the browser parses HTML, it builds a tree of node objects — every tag becomes a node. JavaScript interacts with the DOM to read, add, modify, or remove elements — this is what makes pages dynamic without reloading.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- CSS -->
+    <section class="category" id="css">
+      <div class="cat-header c-red">
+        <span class="cat-icon">🎨</span>
+        <div><h2>CSS Questions</h2><p>Layout, specificity, the tricky stuff</p></div>
+        <span class="cat-count">8 Questions</span>
+      </div>
+
+      <div class="qa-list">
+
+        <details class="qa">
+          <summary>What is the CSS Box Model and how does <code>box-sizing: border-box</code> change it?</summary>
+          <div class="answer">
+            <p>Every HTML element is a rectangular box with 4 layers: <strong>content → padding → border → margin</strong>.</p>
+            <p>By default (<code>content-box</code>): width/height only includes the content area. Adding padding and border makes the element LARGER than specified.</p>
+            <p>With <code>border-box</code>: width/height includes content + padding + border. The element stays the exact size you set — padding and border carve into it instead of expanding it. This is why every project starts with <code>* { box-sizing: border-box; }</code>.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Explain CSS Specificity. How do you calculate it?</summary>
+          <div class="answer">
+            <p>Specificity determines which CSS rule wins when multiple rules target the same element. Calculated as a 3-part score <strong>(a, b, c)</strong>:</p>
+            <ul>
+              <li><strong>a</strong> = ID selectors (<code>#id</code>) = 1,0,0</li>
+              <li><strong>b</strong> = Class, pseudo-class, attribute selectors = 0,1,0</li>
+              <li><strong>c</strong> = Type selectors (<code>div</code>, <code>p</code>) = 0,0,1</li>
+            </ul>
+            <p>Example: <code>#nav .item:hover</code> = 1+1+1 = 1,2,1. The highest specificity wins. Inline styles beat all. <code>!important</code> beats inline styles (use only as last resort).</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the difference between Flexbox and CSS Grid? When do you use each?</summary>
+          <div class="answer">
+            <p><strong>Flexbox</strong> is one-dimensional — it works in one direction (row OR column). Use it for: navbars, centering things, distributing items in a single line, card layouts where items should wrap naturally.</p>
+            <p><strong>Grid</strong> is two-dimensional — rows AND columns simultaneously. Use it for: page layouts (header/sidebar/main/footer), image galleries, any design where you need precise control over both axes.</p>
+            <p><strong>Rule of thumb:</strong> Component-level layout → Flexbox. Page-level layout → Grid. They also work great together — a Grid layout with Flexbox inside each grid item.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the difference between <code>position: relative</code>, <code>absolute</code>, <code>fixed</code>, and <code>sticky</code>?</summary>
+          <div class="answer">
+            <ul>
+              <li><code>relative</code> — stays in the normal document flow. You can offset it with top/left but it still takes up its original space. Used to create a positioning context for absolute children.</li>
+              <li><code>absolute</code> — removed from normal flow. Positioned relative to the nearest ancestor with <code>position: relative</code> (or the viewport if none).</li>
+              <li><code>fixed</code> — removed from flow. Always positioned relative to the viewport. Doesn't move when you scroll. Good for: headers, modals, chat buttons.</li>
+              <li><code>sticky</code> — acts like <code>relative</code> until it hits a scroll threshold, then acts like <code>fixed</code>. Good for sticky headers that only stick after you scroll past them.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>How do you center an element horizontally and vertically in CSS?</summary>
+          <div class="answer">
+            <pre><code">/* Method 1: Flexbox (most common) */
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Method 2: Grid */
+.parent {
+  display: grid;
+  place-items: center;
+}
+
+/* Method 3: Absolute + transform */
+.child {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* For text only */
+.text { text-align: center; line-height: 100px; }</code></pre>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is a CSS variable (custom property) and why use them?</summary>
+          <div class="answer">
+            <p>CSS variables store values you reuse across your stylesheet. They cascade and can be changed with JavaScript.</p>
+            <pre><code">:root {
+  --color-primary: #e94560;
+  --spacing-md: 16px;
+}
+
+.btn { background: var(--color-primary); padding: var(--spacing-md); }
+
+/* Dark mode — just override the variables */
+@media (prefers-color-scheme: dark) {
+  :root { --color-bg: #0f0f1a; }
+}</code></pre>
+            <p><strong>Benefits:</strong> Change one value, updates everywhere. Enables themes. Can be updated with JavaScript at runtime.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the difference between <code>em</code>, <code>rem</code>, <code>%</code>, and <code>px</code>?</summary>
+          <div class="answer">
+            <ul>
+              <li><code>px</code> — absolute pixels. Fixed. Doesn't scale with user font preferences.</li>
+              <li><code>rem</code> — relative to the root (html) font-size (default 16px). <code>1rem = 16px</code>. Scales with user browser settings. Best for font sizes and spacing.</li>
+              <li><code>em</code> — relative to the parent's font-size. Compounds in nested elements — can be confusing. Best for padding/margin that should scale with the element's own font size.</li>
+              <li><code>%</code> — relative to the parent's dimension. Best for widths that should scale with the container.</li>
+            </ul>
+            <p><strong>Best practice:</strong> Use <code>rem</code> for typography and spacing. Use <code>%</code> for widths. Avoid <code>em</code> for font sizes to prevent compounding issues.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is a media query and how do you write mobile-first CSS?</summary>
+          <div class="answer">
+            <p>A media query applies CSS rules only when certain conditions are met (screen size, orientation, color scheme).</p>
+            <p><strong>Mobile-first</strong> means writing base styles for mobile, then using <code>min-width</code> queries to add/override for larger screens. This is better than desktop-first because mobile is now the majority of traffic and it produces simpler, cleaner CSS.</p>
+            <pre><code">/* Base = mobile styles */
+.grid { grid-template-columns: 1fr; }
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}</code></pre>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    <section class="category" id="javascript">
+      <div class="cat-header c-js">
+        <span class="cat-icon">⚡</span>
+        <div><h2>JavaScript Questions</h2><p>The core language — asked in every interview</p></div>
+        <span class="cat-count">10 Questions</span>
+      </div>
+
+      <div class="qa-list">
+
+        <details class="qa">
+          <summary>What is the difference between <code>var</code>, <code>let</code>, and <code>const</code>?</summary>
+          <div class="answer">
+            <ul>
+              <li><code>var</code> — function-scoped, hoisted, can be re-declared. Avoid it — causes confusing bugs.</li>
+              <li><code>let</code> — block-scoped, not re-declarable, value can be reassigned. Use when value changes.</li>
+              <li><code>const</code> — block-scoped, not re-declarable, not re-assignable. Use by default for everything.</li>
+            </ul>
+            <p><strong>Note:</strong> <code>const</code> on an object/array doesn't make the contents immutable — you can still push to arrays or modify object properties. It only prevents reassigning the variable itself.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the difference between <code>==</code> and <code>===</code>?</summary>
+          <div class="answer">
+            <p><code>===</code> (strict equality) checks both value AND type. Always use this.</p>
+            <p><code>==</code> (loose equality) only checks value after performing type coercion — converts types automatically. This causes unintuitive behavior:</p>
+            <pre><code>0 == false    // true  (dangerous!)
+"" == false   // true  (dangerous!)
+null == undefined // true
+5 == "5"      // true
+
+5 === "5"     // false (correct!)</code></pre>
+            <p><strong>Only acceptable use of ==:</strong> <code>value == null</code> to check for both null and undefined at once.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is a closure?</summary>
+          <div class="answer">
+            <p>A closure is when a function <strong>remembers and has access to variables from its outer scope</strong> even after the outer function has finished running.</p>
+            <pre><code">const makeCounter = () => {
+  let count = 0;  // this variable is "closed over"
+  return {
+    increment: () => ++count,
+    getCount:  () => count
+  };
+};
+
+const counter = makeCounter();
+counter.increment(); // 1
+counter.increment(); // 2
+counter.getCount();  // 2
+// count is still accessible via closure!</code></pre>
+            <p><strong>Real uses:</strong> Private variables, factory functions, event handlers that remember state, the module pattern.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the difference between <code>null</code> and <code>undefined</code>?</summary>
+          <div class="answer">
+            <ul>
+              <li><code>undefined</code> — a variable has been declared but not assigned a value yet. Also returned by functions that have no return statement, and by accessing a non-existent property.</li>
+              <li><code>null</code> — intentionally set to "no value". A developer explicitly assigned null to signal emptiness.</li>
+            </ul>
+            <pre><code">let x;          // undefined (declared, not assigned)
+let y = null;   // null (intentionally empty)
+
+typeof undefined // "undefined"
+typeof null      // "object" (famous JS bug)</code></pre>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is event bubbling and event delegation?</summary>
+          <div class="answer">
+            <p><strong>Event bubbling:</strong> When an event fires on an element, it also fires on all its ancestors up to the document. Clicking a button also triggers click on its div, section, body, and document.</p>
+            <p><strong>Event delegation:</strong> Instead of adding event listeners to every child element, add one listener to the parent and check <code>event.target</code> to identify which child was clicked. This is better for performance and works for dynamically added elements.</p>
+            <pre><code">// Event delegation — one listener handles all buttons
+list.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
+    e.target.closest("li").remove();
+  }
+});</code></pre>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is a Promise? What is async/await?</summary>
+          <div class="answer">
+            <p>A <strong>Promise</strong> is an object representing a future value — either resolved (success) or rejected (failure). It avoids "callback hell" for async operations.</p>
+            <p><strong>async/await</strong> is syntactic sugar over Promises that makes async code look synchronous — easier to read and reason about.</p>
+            <pre><code">// Promise (older style)
+fetch(url)
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+
+// async/await (modern — use this)
+const getData = async () => {
+  try {
+    const res  = await fetch(url);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};</code></pre>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the difference between <code>map()</code>, <code>filter()</code>, and <code>reduce()</code>?</summary>
+          <div class="answer">
+            <ul>
+              <li><code>map()</code> — transforms every item, returns a new array of the SAME length.</li>
+              <li><code>filter()</code> — keeps only items that pass the test, returns a new array that is SAME or SHORTER.</li>
+              <li><code>reduce()</code> — collapses an array into a SINGLE value (number, object, string, array).</li>
+            </ul>
+            <pre><code">const nums = [1, 2, 3, 4, 5];
+
+nums.map(n => n * 2);          // [2,4,6,8,10]
+nums.filter(n => n > 3);       // [4,5]
+nums.reduce((sum,n) => sum+n, 0); // 15</code></pre>
+            <p><strong>None of them mutate the original array</strong> — they all return new arrays/values.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the difference between <code>forEach()</code> and <code>map()</code>?</summary>
+          <div class="answer">
+            <ul>
+              <li><code>forEach()</code> — iterates over an array. Returns <code>undefined</code>. Used when you want to DO something with each item (logging, DOM updates) but don't need the results as an array.</li>
+              <li><code>map()</code> — transforms each item and returns a NEW array of results. Use when you need the transformed data.</li>
+            </ul>
+            <pre><code">// forEach — side effects, no return value
+users.forEach(u => console.log(u.name));
+
+// map — transforms and returns new array
+const names = users.map(u => u.name); // ["Alice", "Bob"]</code></pre>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is hoisting in JavaScript?</summary>
+          <div class="answer">
+            <p>Hoisting is JavaScript's behavior of moving declarations to the top of their scope before execution. Function declarations are fully hoisted (you can call them before they're defined). <code>var</code> declarations are hoisted but not their values (value is <code>undefined</code> until assignment). <code>let</code> and <code>const</code> are NOT hoisted in the same way — they're in the "temporal dead zone" until their line.</p>
+            <pre><code">// Function declaration — works
+greet(); // "Hello!" — hoisted
+function greet() { console.log("Hello!"); }
+
+// var — hoisted but undefined
+console.log(x); // undefined (not error)
+var x = 5;
+
+// let/const — temporal dead zone
+console.log(y); // ReferenceError
+let y = 5;</code></pre>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is <code>this</code> in JavaScript?</summary>
+          <div class="answer">
+            <p><code>this</code> refers to the object that is executing the current function. Its value depends on HOW the function is called.</p>
+            <ul>
+              <li>In a regular function: <code>this</code> = the calling object (or <code>window</code> globally)</li>
+              <li>In an arrow function: <code>this</code> = inherited from the surrounding scope (lexical this)</li>
+              <li>In an event handler: <code>this</code> = the element that received the event</li>
+              <li>In a class method: <code>this</code> = the class instance</li>
+            </ul>
+            <p><strong>Arrow functions don't have their own <code>this</code></strong> — they inherit it from where they're defined. This is why arrow functions are used as React event handlers and class methods.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- REACT -->
+    <section class="category" id="react">
+      <div class="cat-header c-react">
+        <span class="cat-icon">⚛</span>
+        <div><h2>React Questions</h2><p>Components, state, hooks — asked at every frontend role</p></div>
+        <span class="cat-count">7 Questions</span>
+      </div>
+
+      <div class="qa-list">
+
+        <details class="qa">
+          <summary>What is the difference between state and props in React?</summary>
+          <div class="answer">
+            <ul>
+              <li><strong>Props</strong> — data passed FROM a parent TO a child. Read-only inside the child. Used to configure and customize components. Like function arguments.</li>
+              <li><strong>State</strong> — data that lives inside a component and can change over time. When state changes, the component re-renders. Managed with <code>useState</code>.</li>
+            </ul>
+            <p>Rule: If a component only needs to receive and display data → props. If a component needs to track something that changes over time → state. If multiple components need the same data → lift state up to their common parent.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the Virtual DOM and why does React use it?</summary>
+          <div class="answer">
+            <p>The Virtual DOM is a lightweight JavaScript copy of the real DOM that React keeps in memory. When state changes, React first updates the Virtual DOM, then uses a "diffing" algorithm to find what actually changed, and then only updates those specific parts of the real DOM (this is called reconciliation).</p>
+            <p><strong>Why?</strong> Real DOM updates are expensive. By batching and minimizing DOM operations, React makes complex UIs much faster than manually manipulating the DOM.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What are React hooks? Name the most important ones.</summary>
+          <div class="answer">
+            <p>Hooks are functions that let you "hook into" React features from function components. You can't use them inside classes or regular functions — only React components and custom hooks.</p>
+            <ul>
+              <li><code>useState</code> — add state to a component</li>
+              <li><code>useEffect</code> — run side effects (fetch, timers, subscriptions)</li>
+              <li><code>useRef</code> — store a mutable value that doesn't cause re-render, or access DOM directly</li>
+              <li><code>useContext</code> — read from a React Context (shared global state)</li>
+              <li><code>useMemo</code> — memoize expensive calculations</li>
+              <li><code>useCallback</code> — memoize functions</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the purpose of the <code>key</code> prop in React lists?</summary>
+          <div class="answer">
+            <p>The <code>key</code> prop helps React identify which items in a list have changed, been added, or been removed. React uses keys to perform efficient DOM updates during reconciliation — without keys, it would re-render the entire list on every change.</p>
+            <p><strong>Rules:</strong></p>
+            <ul>
+              <li>Keys must be unique among siblings (not globally)</li>
+              <li>Use stable IDs from your data, not array indexes</li>
+              <li>Using array index as key causes bugs when items are reordered or deleted</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the useEffect dependency array and what happens with each option?</summary>
+          <div class="answer">
+            <pre><code">// No array — runs after EVERY render
+useEffect(() => { ... });
+
+// Empty array — runs ONCE on mount only
+useEffect(() => { ... }, []);
+
+// With values — runs when any value changes
+useEffect(() => { ... }, [userId, search]);
+
+// With cleanup — runs on unmount / before next effect
+useEffect(() => {
+  const timer = setInterval(tick, 1000);
+  return () => clearInterval(timer); // cleanup
+}, []);</code></pre>
+            <p><strong>Rule:</strong> Every value you use inside useEffect that comes from outside it (props, state, variables) must be in the dependency array. ESLint's exhaustive-deps rule enforces this.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is prop drilling and how do you solve it?</summary>
+          <div class="answer">
+            <p>Prop drilling is when you have to pass props through many layers of components just to get data to a deeply nested component that needs it — even if intermediate components don't use it.</p>
+            <p><strong>Solutions:</strong></p>
+            <ul>
+              <li><strong>React Context</strong> — built-in solution for global/shared state (theme, auth user, language)</li>
+              <li><strong>State management library</strong> — Zustand (simple) or Redux (complex apps)</li>
+              <li><strong>Component composition</strong> — restructure components so children is passed as props instead of drilling</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is the difference between controlled and uncontrolled components in React?</summary>
+          <div class="answer">
+            <p><strong>Controlled</strong> — the form input's value is controlled by React state. Every change updates state via <code>onChange</code>. React is the single source of truth. You can validate and transform input in real time.</p>
+            <p><strong>Uncontrolled</strong> — the DOM manages the input's value. You read it with a <code>ref</code> when you need it. Simpler for basic forms but less powerful.</p>
+            <pre><code">// Controlled (recommended)
+const [name, setName] = useState("");
+&lt;input value={name} onChange={e => setName(e.target.value)} /&gt;
+
+// Uncontrolled
+const inputRef = useRef();
+&lt;input ref={inputRef} /&gt;
+// Read with: inputRef.current.value</code></pre>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- GENERAL -->
+    <section class="category" id="general">
+      <div class="cat-header c-teal">
+        <span class="cat-icon">💼</span>
+        <div><h2>General / Behavioral</h2><p>How you think, work, and communicate</p></div>
+        <span class="cat-count">5 Questions</span>
+      </div>
+
+      <div class="qa-list">
+
+        <details class="qa">
+          <summary>How do you debug a CSS layout issue?</summary>
+          <div class="answer">
+            <ol>
+              <li>Open browser DevTools (F12) → Elements tab</li>
+              <li>Click the element that's wrong</li>
+              <li>Check the Computed tab for actual width/height/margin values</li>
+              <li>Add <code>outline: 2px solid red</code> to see the box boundaries</li>
+              <li>Check if a parent has <code>overflow: hidden</code> clipping the child</li>
+              <li>Check if z-index issue — inspect stacking context</li>
+              <li>Try <code>* { outline: 1px solid red }</code> to visualize all boxes</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>How do you make a website perform better?</summary>
+          <div class="answer">
+            <ul>
+              <li>Optimize images — compress, use WebP format, add <code>loading="lazy"</code></li>
+              <li>Minify CSS and JavaScript (build tools do this automatically)</li>
+              <li>Use a CDN for static assets</li>
+              <li>Reduce HTTP requests — combine files where possible</li>
+              <li>Use <code>defer</code> on script tags</li>
+              <li>Avoid layout-triggering CSS in animations (use <code>transform</code> and <code>opacity</code> instead)</li>
+              <li>Preload critical fonts with <code>&lt;link rel="preload"&gt;</code></li>
+              <li>In React — lazy load routes, memoize expensive components</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Explain the difference between GET and POST HTTP methods.</summary>
+          <div class="answer">
+            <ul>
+              <li><strong>GET</strong> — retrieve data. Parameters go in the URL. Can be cached, bookmarked, shared. No body. Used for reading.</li>
+              <li><strong>POST</strong> — send data to the server. Data goes in the request body. Not cached. Used for creating, logging in, submitting forms.</li>
+            </ul>
+            <p>Other methods: <strong>PUT</strong> (replace resource), <strong>PATCH</strong> (partial update), <strong>DELETE</strong> (remove resource). These form the foundation of REST APIs.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What is version control and how do you use Git in your workflow?</summary>
+          <div class="answer">
+            <p>Git tracks changes to your code over time, lets you revert mistakes, and enables collaboration. My basic workflow:</p>
+            <ul>
+              <li><code>git init</code> — start tracking a project</li>
+              <li><code>git add .</code> — stage changes</li>
+              <li><code>git commit -m "message"</code> — save a snapshot</li>
+              <li><code>git branch feature-name</code> — new branch for each feature</li>
+              <li><code>git push origin main</code> — push to GitHub</li>
+              <li>Open a Pull Request → review → merge to main</li>
+            </ul>
+            <p>Never commit directly to main. Each feature gets its own branch.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Tell me about a project you built and what you learned from it.</summary>
+          <div class="answer">
+            <p><strong>Structure your answer with STAR: Situation → Task → Action → Result.</strong></p>
+            <p>Example: "I built a weather app that fetches real-time data from the OpenWeatherMap API. I ran into a challenge with async data loading — the component would render before the data arrived, causing a crash. I solved this by adding loading and error states and only rendering the data when it was available. I learned that every async operation needs three states: loading, success, and error — and that's now a pattern I use in every project."</p>
+            <p><strong>Key points to hit:</strong> What problem it solved, a challenge you faced, how you solved it, what you learned. Be specific — say exact technologies.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Interview Prep &nbsp;|&nbsp; 36 Questions &nbsp;|&nbsp; <a href="../index.html">← Back to Home</a> &nbsp;|&nbsp; <a href="../react-guide/react-guide.html">React Guide →</a>
+  </footer>
+
+  <script>
+    // Smooth open/close with animation tracking
+    document.querySelectorAll("details").forEach(d => {
+      d.addEventListener("toggle", () => {
+        if (d.open) {
+          d.querySelector(".answer").style.animation = "slideDown 0.25s ease forwards";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tips & Tricks — Web Layout Guide</title>
+  <link rel="stylesheet" href="learn-guide.css" />
+  <link rel="stylesheet" href="tips.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">Tips <span>&amp; Tricks</span></div>
+      <p class="subtitle">Pro tips for all 26 topics — things beginners never know but professionals always use</p>
+      <a href="learn-guide.html" class="back-btn">← Back to Guide</a>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <p class="nav-label">Layout</p>
+      <a href="#t1">1. grid-template-areas</a>
+      <a href="#t2">2. grid-template-columns</a>
+      <a href="#t3">3. grid-template-rows</a>
+      <a href="#t4">4. grid-auto-rows</a>
+      <a href="#t5">5. Flexbox</a>
+      <a href="#t6">6. Gap</a>
+      <a href="#t7">7. Media Queries</a>
+      <div class="nav-divider"></div>
+      <p class="nav-label">Additions</p>
+      <a href="#t8">8. Position</a>
+      <a href="#t9">9. Z-index</a>
+      <a href="#t10">10. Transitions</a>
+      <a href="#t11">11. CSS Variables</a>
+      <a href="#t12">12. Overflow</a>
+      <a href="#t13">13. JavaScript DOM</a>
+      <a href="#t14">14. clamp / min / max</a>
+      <div class="nav-divider"></div>
+      <p class="nav-label">Complete Dev</p>
+      <a href="#t15">15. HTML Semantics</a>
+      <a href="#t16">16. Forms & Inputs</a>
+      <a href="#t17">17. Pseudo-classes</a>
+      <a href="#t18">18. Accessibility</a>
+      <a href="#t19">19. SEO Basics</a>
+      <a href="#t20">20. Performance</a>
+      <a href="#t21">21. Fonts & Icons</a>
+      <a href="#t22">22. JS Beyond DOM</a>
+      <div class="nav-divider"></div>
+      <p class="nav-label">Ship It</p>
+      <a href="#t23">23. VS Code</a>
+      <a href="#t24">24. DevTools</a>
+      <a href="#t25">25. Git</a>
+      <a href="#t26">26. Hosting</a>
+    </aside>
+
+    <main>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 1: grid-template-areas    -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t1">
+        <div class="tip-header step1">
+          <span class="tip-num">01</span>
+          <h2>grid-template-areas</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use a <code>.</code> (dot) to create empty cells. Perfect for layouts where you want to skip a column without adding a dummy element.</p>
+            <pre><code>grid-template-areas:
+  "header header header"
+  ".      main   sidebar"
+  "footer footer footer";</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Name your areas by <strong>purpose</strong>, not by tag. Use <code>hero</code> not <code>div1</code>. Future you will thank you.</p>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>You can change the entire page layout at a breakpoint by just rewriting the <code>grid-template-areas</code> string — no need to touch the HTML at all.</p>
+            <pre><code>@media (max-width: 768px) {
+  body {
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar"
+      "footer";
+  }
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Open Chrome DevTools → Elements → click the grid badge next to your container — it shows a visual overlay of your named areas directly on the page.</p>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Align your area names vertically in the CSS string — it makes the blueprint readable at a glance:</p>
+            <pre><code>/* Hard to read */
+grid-template-areas: "header header" "nav nav" "sidebar main" "footer footer";
+
+/* Easy to read */
+grid-template-areas:
+  "header  header"
+  "nav     nav"
+  "sidebar main"
+  "footer  footer";</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 2: grid-template-columns  -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t2">
+        <div class="tip-header step2">
+          <span class="tip-num">02</span>
+          <h2>grid-template-columns</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>auto-fill</code> with <code>minmax()</code> to create a responsive grid with <strong>no media queries</strong> — it automatically adds or removes columns based on available space.</p>
+            <pre><code>.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* Cards are at least 250px wide — as many as fit per row */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p><code>auto-fill</code> vs <code>auto-fit</code> — <code>auto-fill</code> keeps empty columns, <code>auto-fit</code> collapses them and stretches existing items to fill the space. For card grids, use <code>auto-fill</code>.</p>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>The holy grail container pattern — full width on mobile, capped on desktop, always centered:</p>
+            <pre><code>.container {
+  width: min(90%, 1200px);
+  margin-inline: auto; /* centers horizontally */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Make one column take up all remaining space using <code>1fr</code> while others are fixed — perfect for a sidebar + main content layout:</p>
+            <pre><code>grid-template-columns: 260px 1fr 300px;
+/* sidebar | grows to fill space | widgets */</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Span an item across multiple columns using <code>grid-column: span N</code> — no need to define the exact start and end:</p>
+            <pre><code>.featured-card {
+  grid-column: span 2; /* takes up 2 columns */
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 3: grid-template-rows     -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t3">
+        <div class="tip-header step3">
+          <span class="tip-num">03</span>
+          <h2>grid-template-rows</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>1fr</code> on the main content row to make it fill all remaining vertical space — perfect for a sticky footer layout:</p>
+            <pre><code>body {
+  display: grid;
+  grid-template-rows: 70px 1fr 60px;
+  min-height: 100vh;
+  /* header | content fills space | footer sticks to bottom */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Never use <code>height: 100vh</code> on mobile — the browser's address bar shrinks and expands, causing layout jumps. Use <code>min-height: 100svh</code> instead (svh = small viewport height).</p>
+            <pre><code>.hero {
+  min-height: 100svh; /* safe on mobile browsers */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Span an item across multiple rows using <code>grid-row: span N</code>:</p>
+            <pre><code>.tall-card {
+  grid-row: span 2; /* takes up 2 rows height */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use <code>subgrid</code> to align nested grid children with the outer grid — useful for complex card layouts where inner content needs to align across cards.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 4: grid-auto-rows         -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t4">
+        <div class="tip-header step4">
+          <span class="tip-num">04</span>
+          <h2>grid-auto-rows</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>The safest and most used value is <code>minmax(0, auto)</code> — rows never collapse to zero but grow freely with content:</p>
+            <pre><code>grid-auto-rows: minmax(0, auto);</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>For masonry-style galleries, combine <code>grid-auto-rows</code> with small row values and <code>grid-row: span N</code> on items to create Pinterest-like layouts.</p>
+            <pre><code>.masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 10px; /* tiny row unit */
+}
+
+.tall-item   { grid-row: span 30; }
+.medium-item { grid-row: span 20; }
+.short-item  { grid-row: span 15; }</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Combine <code>grid-auto-flow: dense</code> with auto rows to automatically fill empty gaps in your grid — items rearrange to fill holes:</p>
+            <pre><code>.grid {
+  grid-auto-flow: dense; /* fills gaps automatically */
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 5: Flexbox                -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t5">
+        <div class="tip-header step5">
+          <span class="tip-num">05</span>
+          <h2>Flexbox</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>The fastest way to perfectly center anything — horizontally and vertically — in 3 lines:</p>
+            <pre><code>.center-me {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>margin-left: auto</code> on a flex child to push it all the way to the right — perfect for a navbar with a button that needs to be on the far right:</p>
+            <pre><code>nav {
+  display: flex;
+  align-items: center;
+}
+
+.cta-button {
+  margin-left: auto; /* pushes to the far right */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>flex: 1</code> on a child to make it fill all remaining space. Two children with <code>flex: 1</code> = equal width. One with <code>flex: 2</code> and one with <code>flex: 1</code> = 2/3 and 1/3 split.</p>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Sticky footer with flexbox — push footer to the bottom even when content is short:</p>
+            <pre><code>body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; /* grows to push footer down */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use <code>flex-wrap: wrap</code> + <code>flex: 1 1 250px</code> for a simple responsive grid without media queries — items wrap to the next line when they can't fit:</p>
+            <pre><code>.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.card {
+  flex: 1 1 250px; /* grow, shrink, base 250px */
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 6: Gap                    -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t6">
+        <div class="tip-header step6">
+          <span class="tip-num">06</span>
+          <h2>Gap</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Define your gap as a CSS variable so you can change spacing across the whole layout from one place:</p>
+            <pre><code>:root { --gap: 24px; }
+
+.grid { gap: var(--gap); }
+.flex { gap: var(--gap); }</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use different <code>row-gap</code> and <code>column-gap</code> for breathing room — more vertical space between rows often looks better than equal gaps:</p>
+            <pre><code>.cards {
+  row-gap: 32px;    /* more space between rows */
+  column-gap: 16px; /* tighter between columns */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p><code>gap</code> works on flex containers too — much cleaner than adding margin to every child item.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 7: Media Queries          -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t7">
+        <div class="tip-header step7">
+          <span class="tip-num">07</span>
+          <h2>Media Queries</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Store breakpoints in CSS variables at the top of your file so they're consistent and easy to update:</p>
+            <pre><code>/* At the top of your CSS */
+/* --mobile: 768px  */
+/* --tablet: 1024px */
+
+@media (max-width: 768px)  { /* mobile */ }
+@media (max-width: 1024px) { /* tablet */ }</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>prefers-color-scheme</code> to automatically apply dark mode based on the user's OS setting — no JavaScript toggle needed:</p>
+            <pre><code>@media (prefers-color-scheme: dark) {
+  body {
+    background: #1a1a2e;
+    color: #e0e0f0;
+  }
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>prefers-reduced-motion</code> to disable animations for users who have motion sensitivity enabled in their OS:</p>
+            <pre><code>@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Test all your breakpoints at once using Chrome DevTools — open Device Toolbar, drag the edge of the viewport slowly, and watch your layout respond in real time.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 8: Position               -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t8">
+        <div class="tip-header add1">
+          <span class="tip-num">08</span>
+          <h2>Position</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>inset: 0</code> instead of writing <code>top: 0; right: 0; bottom: 0; left: 0</code> — it's a shorthand that covers all 4 sides at once. Perfect for overlays:</p>
+            <pre><code>.overlay {
+  position: fixed;
+  inset: 0; /* covers the entire screen */
+  background: rgba(0,0,0,0.5);
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Center an absolute element inside its parent using <code>translate</code> — works regardless of the element's size:</p>
+            <pre><code>.parent { position: relative; }
+
+.child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* perfectly centered every time */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use <code>position: sticky</code> on table headers to keep them visible while scrolling through long data tables — works without any JavaScript:</p>
+            <pre><code>th {
+  position: sticky;
+  top: 0;
+  background: white; /* needed to cover rows behind it */
+  z-index: 1;
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use <code>position: sticky</code> with <code>align-self: start</code> on a sidebar inside a grid to make it stick while the main content scrolls past:</p>
+            <pre><code>.sidebar {
+  position: sticky;
+  top: 80px; /* offset for fixed navbar */
+  align-self: start;
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 9: Z-index                -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t9">
+        <div class="tip-header add2">
+          <span class="tip-num">09</span>
+          <h2>Z-index</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Define all your z-index values as CSS variables at the top of your file — this prevents the "z-index wars" where everyone keeps adding higher and higher numbers:</p>
+            <pre><code>:root {
+  --z-below:    -1;
+  --z-base:      1;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-modal:    300;
+  --z-toast:    400;
+  --z-tooltip:  500;
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>isolation: isolate</code> on a container to create a new stacking context without setting a specific z-index — useful when a component's children are interfering with outside elements:</p>
+            <pre><code>.card {
+  isolation: isolate; /* children stack only within this card */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use <code>z-index: -1</code> to place decorative elements behind their parent — perfect for background effects and pseudo-elements:</p>
+            <pre><code>.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('pattern.png');
+  z-index: -1; /* behind hero content */
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 10: Transitions           -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t10">
+        <div class="tip-header add3">
+          <span class="tip-num">10</span>
+          <h2>Transitions & Animations</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Only animate <strong>transform</strong> and <strong>opacity</strong> — they are GPU-accelerated and never cause layout reflow. Everything else is slow:</p>
+            <pre><code>/* FAST — GPU accelerated */
+.box { transition: transform 0.3s ease, opacity 0.3s ease; }
+
+/* SLOW — causes layout reflow */
+.box { transition: width 0.3s, height 0.3s, top 0.3s; }</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>animation-delay</code> with <code>calc()</code> to stagger animations across multiple items — no JavaScript needed:</p>
+            <pre><code>.card:nth-child(1) { animation-delay: 0ms; }
+.card:nth-child(2) { animation-delay: 100ms; }
+.card:nth-child(3) { animation-delay: 200ms; }
+
+/* Or with CSS variables */
+.card { animation-delay: calc(var(--i) * 100ms); }</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>will-change: transform</code> to hint the browser to prepare GPU acceleration before an animation starts — reduces jank on complex animations:</p>
+            <pre><code>.animated-card {
+  will-change: transform;
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Create a smooth loading skeleton effect with just CSS animation:</p>
+            <pre><code>@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg,
+    #2a2a45 25%, #3a3a55 50%, #2a2a45 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 11: CSS Variables         -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t11">
+        <div class="tip-header add4">
+          <span class="tip-num">11</span>
+          <h2>CSS Variables</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Provide a fallback value in <code>var()</code> in case the variable isn't defined — prevents invisible broken styles:</p>
+            <pre><code>color: var(--primary, #e94560);
+/* uses --primary, falls back to #e94560 if not set */</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>CSS variables can be updated with JavaScript — making them perfect for dynamic theming, user-controlled settings, or animation values:</p>
+            <pre><code>// Change a CSS variable with JavaScript
+document.documentElement.style
+  .setProperty('--primary', '#00b894');
+
+// Read a CSS variable with JavaScript
+const color = getComputedStyle(document.documentElement)
+  .getPropertyValue('--primary');</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use CSS variables for responsive spacing — define one set and change only the values at breakpoints, not every property:</p>
+            <pre><code>:root {
+  --space-lg: 80px;
+  --space-md: 40px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-lg: 40px;
+    --space-md: 20px;
+  }
+}
+
+/* Everything using these variables updates automatically */
+section { padding: var(--space-lg) var(--space-md); }</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 12: Overflow              -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t12">
+        <div class="tip-header add5">
+          <span class="tip-num">12</span>
+          <h2>Overflow</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>overflow: clip</code> instead of <code>hidden</code> when you don't want to create a new scroll context — <code>hidden</code> makes the element scrollable via JavaScript, <code>clip</code> truly clips with no side effects:</p>
+            <pre><code>.card {
+  overflow: clip; /* true clip, no scroll context */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Create a horizontal scrollable row of cards (like Netflix categories) using overflow:</p>
+            <pre><code>.row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; /* snaps to each card */
+  padding-bottom: 8px; /* space for scrollbar */
+}
+
+.card {
+  flex-shrink: 0; /* cards never shrink */
+  scroll-snap-align: start;
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Hide the scrollbar visually while keeping scroll functionality — common in modern UIs:</p>
+            <pre><code>.scroll-container {
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 13: JavaScript DOM        -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t13">
+        <div class="tip-header add6">
+          <span class="tip-num">13</span>
+          <h2>JavaScript DOM</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <strong>event delegation</strong> — attach one listener to the parent instead of one on every child. Faster and works for dynamically added elements:</p>
+            <pre><code>/* Bad — one listener per card */
+cards.forEach(card => card.addEventListener('click', fn));
+
+/* Good — one listener on parent */
+document.querySelector('.cards')
+  .addEventListener('click', (e) => {
+    if (e.target.closest('.card')) {
+      // handle card click
+    }
+  });</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>dataset</code> to store extra data on HTML elements — access it cleanly in JavaScript without needing extra variables:</p>
+            <pre><code>&lt;button data-id="42" data-action="delete"&gt;Delete&lt;/button&gt;
+
+btn.addEventListener('click', (e) => {
+  console.log(e.target.dataset.id);     // "42"
+  console.log(e.target.dataset.action); // "delete"
+});</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Debounce scroll and resize events — they fire hundreds of times per second. Debouncing waits until the user stops before running your function:</p>
+            <pre><code>function debounce(fn, delay) {
+  let timer;
+  return function(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
+
+window.addEventListener('resize', debounce(() => {
+  // runs only after user stops resizing
+}, 200));</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 14: clamp / min / max     -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t14">
+        <div class="tip-header add7">
+          <span class="tip-num">14</span>
+          <h2>clamp / min / max</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Build a complete fluid typography scale using only <code>clamp()</code> — no media queries for fonts ever again:</p>
+            <pre><code>:root {
+  --text-sm:   clamp(0.8rem,  1.5vw, 1rem);
+  --text-base: clamp(1rem,    2vw,   1.2rem);
+  --text-lg:   clamp(1.2rem,  2.5vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,  3.5vw, 2.5rem);
+  --text-2xl:  clamp(2rem,    5vw,   4rem);
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>clamp()</code> for responsive padding that breathes on large screens but stays tight on mobile:</p>
+            <pre><code>.section {
+  padding-block:  clamp(40px, 10vh, 140px);
+  padding-inline: clamp(16px, 8vw, 120px);
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>The perfect container — full width on mobile, never too wide on desktop, always centered:</p>
+            <pre><code>.container {
+  width: min(90%, 1200px);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 5vw, 40px);
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 15: HTML Semantics        -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t15">
+        <div class="tip-header extra1">
+          <span class="tip-num">15</span>
+          <h2>HTML Semantics</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>&lt;button&gt;</code> for actions and <code>&lt;a&gt;</code> for navigation — never the other way around. Buttons submit, toggle, and trigger actions. Links go somewhere.</p>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>&lt;picture&gt;</code> instead of <code>&lt;img&gt;</code> when you need different images for different screen sizes — loads the right size, saves bandwidth:</p>
+            <pre><code>&lt;picture&gt;
+  &lt;source media="(max-width: 768px)" srcset="hero-mobile.webp"&gt;
+  &lt;source media="(min-width: 769px)" srcset="hero-desktop.webp"&gt;
+  &lt;img src="hero-desktop.webp" alt="Hero" /&gt;
+&lt;/picture&gt;</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> for a native accordion/FAQ — no JavaScript needed:</p>
+            <pre><code>&lt;details&gt;
+  &lt;summary&gt;What is your return policy?&lt;/summary&gt;
+  &lt;p&gt;You can return any item within 30 days...&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 16: Forms & Inputs        -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t16">
+        <div class="tip-header extra2">
+          <span class="tip-num">16</span>
+          <h2>Forms & Inputs</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>autocomplete</code> attributes — browsers auto-fill common fields, making forms faster for users:</p>
+            <pre><code>&lt;input type="email" autocomplete="email" /&gt;
+&lt;input type="text"  autocomplete="name" /&gt;
+&lt;input type="tel"   autocomplete="tel" /&gt;</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>inputmode</code> on mobile to show the right keyboard for the input type:</p>
+            <pre><code>&lt;input inputmode="numeric"   /&gt; &lt;!-- number pad --&gt;
+&lt;input inputmode="email"     /&gt; &lt;!-- @ key visible --&gt;
+&lt;input inputmode="tel"       /&gt; &lt;!-- phone pad --&gt;
+&lt;input inputmode="url"       /&gt; &lt;!-- .com key visible --&gt;</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Style a custom checkbox without any JavaScript — using only CSS:</p>
+            <pre><code>&lt;input type="checkbox" id="agree" /&gt;
+&lt;label for="agree"&gt;I agree&lt;/label&gt;
+
+input[type="checkbox"] { display: none; }
+
+input:checked + label::before {
+  background: #e94560;
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 17: Pseudo-classes        -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t17">
+        <div class="tip-header extra3">
+          <span class="tip-num">17</span>
+          <h2>CSS Pseudo-classes</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>::before</code> and <code>::after</code> pseudo-elements to add decorative content without touching HTML — great for badges, quotation marks, decorative lines:</p>
+            <pre><code>.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #e94560;
+  margin-top: 8px;
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>:is()</code> to group selectors cleanly — reduces repetition:</p>
+            <pre><code>/* Old way */
+h1, h2, h3, h4 { font-weight: 700; }
+
+/* New way */
+:is(h1, h2, h3, h4) { font-weight: 700; }</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use <code>:has()</code> — the parent selector — to style a parent based on what's inside it. Very powerful for conditional styling:</p>
+            <pre><code>/* Style a card differently when it contains an image */
+.card:has(img) {
+  padding: 0;
+}
+
+/* Style a form when it has an invalid input */
+form:has(input:invalid) .submit-btn {
+  opacity: 0.5;
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 18: Accessibility         -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t18">
+        <div class="tip-header extra4">
+          <span class="tip-num">18</span>
+          <h2>Accessibility</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Add a "Skip to main content" link as the very first element — keyboard and screen reader users can jump past the navbar straight to the content:</p>
+            <pre><code>&lt;a href="#main" class="skip-link"&gt;Skip to main content&lt;/a&gt;
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+}
+
+.skip-link:focus {
+  top: 0; /* appears only when focused via keyboard */
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>aria-live="polite"</code> on areas that update dynamically — screen readers announce the change automatically:</p>
+            <pre><code>&lt;div aria-live="polite" id="status"&gt;&lt;/div&gt;
+
+// When something changes:
+document.getElementById('status').textContent =
+  'Form submitted successfully!';</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use the free <strong>axe DevTools</strong> browser extension to instantly audit any page for accessibility issues — it highlights every problem with an explanation of how to fix it.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 19: SEO                   -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t19">
+        <div class="tip-header extra5">
+          <span class="tip-num">19</span>
+          <h2>SEO Basics</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Add Open Graph meta tags so your page looks great when shared on social media — Facebook, Twitter, WhatsApp all read these:</p>
+            <pre><code>&lt;meta property="og:title"       content="BrewBolt Coffee" /&gt;
+&lt;meta property="og:description" content="Fresh coffee delivered." /&gt;
+&lt;meta property="og:image"       content="https://..." /&gt;
+&lt;meta property="og:url"         content="https://brewbolt.com" /&gt;</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Add a <code>favicon</code> — it shows in the browser tab and makes your site look professional and finished:</p>
+            <pre><code>&lt;link rel="icon" type="image/png" href="favicon.png" /&gt;</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use Google's free <strong>Rich Results Test</strong> tool to check if your page qualifies for rich snippets in search results — stars, prices, FAQs showing directly in Google.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 20: Performance           -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t20">
+        <div class="tip-header extra6">
+          <span class="tip-num">20</span>
+          <h2>Performance</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Preload your most important above-the-fold resources — hero image, main font — so the browser fetches them immediately:</p>
+            <pre><code>&lt;link rel="preload" as="image" href="hero.webp" /&gt;
+&lt;link rel="preload" as="font"
+      href="Inter.woff2" crossorigin /&gt;</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Add <code>width</code> and <code>height</code> attributes to every image — prevents Cumulative Layout Shift (CLS) where the page jumps as images load:</p>
+            <pre><code>&lt;img src="product.jpg" alt="Product"
+     width="400" height="300"
+     loading="lazy" /&gt;</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use <code>content-visibility: auto</code> on off-screen sections — the browser skips rendering them until the user scrolls near. Can make very long pages 5x faster:</p>
+            <pre><code>.below-fold-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px; /* estimated height */
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 21: Fonts & Icons         -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t21">
+        <div class="tip-header extra7">
+          <span class="tip-num">21</span>
+          <h2>Fonts & Icons</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>font-display: swap</code> to show text immediately in a fallback font while the custom font loads — prevents invisible text during load:</p>
+            <pre><code>/* Google Fonts adds this automatically when you use ?display=swap */
+https://fonts.googleapis.com/css2?family=Inter&display=swap</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use CSS <code>font-size</code> and <code>color</code> to style Font Awesome icons — they are just text characters that look like icons:</p>
+            <pre><code>.icon {
+  font-size: 2rem;
+  color: var(--primary);
+  transition: color 0.2s;
+}
+
+.icon:hover { color: var(--dark); }</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use SVG icons instead of Font Awesome for better performance and control — inline SVG can be styled with CSS directly and loads with zero extra requests.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 22: JS Beyond DOM         -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t22">
+        <div class="tip-header extra8">
+          <span class="tip-num">22</span>
+          <h2>JavaScript Beyond DOM</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>async/await</code> instead of <code>.then()</code> chains — much easier to read and debug:</p>
+            <pre><code>/* Old way */
+fetch(url).then(r => r.json()).then(data => console.log(data));
+
+/* Better way */
+async function getData() {
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Always wrap fetch calls in <code>try/catch</code> — network requests fail silently without it:</p>
+            <pre><code>async function getData() {
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Fetch failed:', error);
+  }
+}</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use <code>sessionStorage</code> for data that should clear when the tab closes, and <code>localStorage</code> for data that persists between visits — like a user's dark mode preference.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 23: VS Code               -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t23">
+        <div class="tip-header ship1">
+          <span class="tip-num">23</span>
+          <h2>VS Code Workflow</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>Ctrl + P</code> to instantly open any file by name — much faster than clicking through the file explorer:</p>
+            <pre><code>Ctrl + P           → open file by name
+Ctrl + Shift + F   → search text across ALL files
+Ctrl + G           → go to specific line number</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use multi-cursor editing to change the same thing in multiple places at once:</p>
+            <pre><code>Ctrl + D           → select next match of current word
+Ctrl + Shift + L   → select ALL matches at once
+Alt + Click        → manually place extra cursors anywhere</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Split your editor into two panels — HTML on the left, CSS on the right — so you never need to switch tabs:</p>
+            <pre><code>Ctrl + \           → split editor
+Ctrl + 1 / 2       → focus left or right panel</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Fold and unfold code blocks to hide sections you're not working on — keeps your editor clean:</p>
+            <pre><code>Ctrl + Shift + [   → fold current block
+Ctrl + Shift + ]   → unfold current block
+Ctrl + K, Ctrl + 0 → fold all
+Ctrl + K, Ctrl + J → unfold all</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 24: DevTools              -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t24">
+        <div class="tip-header ship2">
+          <span class="tip-num">24</span>
+          <h2>Browser DevTools</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use the <strong>computed tab</strong> in DevTools to see the final calculated value of any CSS property — useful when you don't know which rule is winning:</p>
+            <pre><code>Elements → Computed tab → search for any property
+→ see the exact value the browser is using
+→ click the arrow to jump to the source CSS rule</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>$0</code> in the Console to reference the currently selected element in the Elements panel — run any JavaScript on it instantly:</p>
+            <pre><code>// Select an element in Elements panel, then in Console:
+$0.style.background = 'red';
+$0.classList.add('highlight');
+console.log($0.offsetWidth); // get its width</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use the <strong>Coverage tool</strong> to find unused CSS and JavaScript — open DevTools → More tools → Coverage → reload. Red = unused code you can delete.</p>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Throttle network speed to test how your site loads on a slow connection — Network tab → No throttling → Slow 3G. Shows how real users on mobile networks experience your site.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 25: Git                   -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t25">
+        <div class="tip-header ship3">
+          <span class="tip-num">25</span>
+          <h2>Git & Version Control</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Always create a <code>.gitignore</code> file at the start of every project — prevents accidentally uploading large or sensitive files:</p>
+            <pre><code># .gitignore file
+node_modules/
+.env
+.DS_Store
+*.log
+dist/</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Write commit messages in the present tense, describing what the commit does — not what you did:</p>
+            <pre><code># Bad
+git commit -m "fixed the navbar"
+git commit -m "I changed the colors"
+
+# Good
+git commit -m "Fix navbar collapse on mobile"
+git commit -m "Update brand colors to new palette"</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use <code>git stash</code> to temporarily save uncommitted changes when you need to switch branches quickly:</p>
+            <pre><code>git stash          # saves current changes
+git checkout main  # switch branch safely
+git stash pop      # restore your saved changes</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Use <code>git log --oneline --graph</code> to see a visual tree of all your branches and commits — great for understanding your project history:</p>
+            <pre><code>git log --oneline --graph --all</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────────── -->
+      <!-- TIP 26: Hosting               -->
+      <!-- ───────────────────────────── -->
+      <section class="tip-card" id="t26">
+        <div class="tip-header ship4">
+          <span class="tip-num">26</span>
+          <h2>Hosting & Deployment</h2>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Always name your main page <code>index.html</code> — web servers automatically serve this file when someone visits your URL with no filename:</p>
+            <pre><code>yoursite.com/       → serves index.html
+yoursite.com/about → serves about/index.html</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Add a <code>_redirects</code> file to Netlify to handle 404 pages and URL redirects:</p>
+            <pre><code># _redirects file in your project root
+/old-page    /new-page    301
+/*           /index.html  200</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Pro Tip</span>
+            <p>Use Netlify's free <strong>form handling</strong> — add <code>netlify</code> attribute to your HTML form and it handles submissions without any backend code:</p>
+            <pre><code>&lt;form name="contact" method="POST" data-netlify="true"&gt;
+  &lt;input type="text" name="name" /&gt;
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          </div>
+          <div class="tip-item">
+            <span class="tip-label">Trick</span>
+            <p>Set up a custom 404 page — create a file named <code>404.html</code> in your root. Netlify and GitHub Pages automatically serve it when a page isn't found — much better than a blank browser error.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <p>Made for Myat Kaung Kyaw &nbsp;|&nbsp; Tips &amp; Tricks — All 26 Topics &nbsp;|&nbsp; 2026</p>
+  </footer>
+
+</body>
+</html>

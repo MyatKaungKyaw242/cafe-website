@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>React Router | Web Dev 0 to Hero</title>
+  <link rel="stylesheet" href="react-router.css" />
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="s-title">React <span>Router</span></div>
+      <div class="s-sub">Multi-page React apps</div>
+      <a href="../index.html" class="back-home">← Back to Home</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Getting Started</div>
+      <a href="#rr1" class="nav-link"><span class="n-num" style="background:rgba(97,218,251,0.12);color:#61dafb;border:1px solid rgba(97,218,251,0.3);">1</span>What is Routing?</a>
+      <a href="#rr2" class="nav-link"><span class="n-num" style="background:rgba(97,218,251,0.12);color:#61dafb;border:1px solid rgba(97,218,251,0.3);">2</span>Installation &amp; Setup</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Core Concepts</div>
+      <a href="#rr3" class="nav-link"><span class="n-num" style="background:rgba(97,218,251,0.12);color:#61dafb;border:1px solid rgba(97,218,251,0.3);">3</span>Routes &amp; Route</a>
+      <a href="#rr4" class="nav-link"><span class="n-num" style="background:rgba(97,218,251,0.12);color:#61dafb;border:1px solid rgba(97,218,251,0.3);">4</span>Link &amp; NavLink</a>
+      <a href="#rr5" class="nav-link"><span class="n-num" style="background:rgba(97,218,251,0.12);color:#61dafb;border:1px solid rgba(97,218,251,0.3);">5</span>Dynamic Routes &amp; useParams</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Navigation & Pages</div>
+      <a href="#rr6" class="nav-link"><span class="n-num" style="background:rgba(97,218,251,0.12);color:#61dafb;border:1px solid rgba(97,218,251,0.3);">6</span>useNavigate</a>
+      <a href="#rr7" class="nav-link"><span class="n-num" style="background:rgba(97,218,251,0.12);color:#61dafb;border:1px solid rgba(97,218,251,0.3);">7</span>Nested Routes &amp; Outlet</a>
+      <a href="#rr8" class="nav-link"><span class="n-num" style="background:rgba(97,218,251,0.12);color:#61dafb;border:1px solid rgba(97,218,251,0.3);">8</span>404 Page &amp; Full Setup</a>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <header>
+      <a href="react-guide.html" class="back-btn">← React Guide</a>
+      <div class="header-title">React <span>Router</span></div>
+      <div class="header-sub">Add multiple pages to your React app — the professional way</div>
+    </header>
+
+    <main>
+
+      <!-- RR1: WHAT IS ROUTING -->
+      <section class="topic" id="rr1">
+        <div class="topic-header">
+          <span class="step-num">1</span>
+          <div><h2>What is Routing?</h2><p>Why React apps need a router</p></div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>The Problem — React is a Single Page App</h3>
+            <p>By default, a React app is a <strong>Single Page Application (SPA)</strong> — there is only one HTML file (<code>index.html</code>). There are no separate pages. If you navigate to <code>/about</code>, the browser would try to load a file that doesn't exist and show a 404 error.</p>
+            <p>React Router solves this by <strong>intercepting the URL</strong> and rendering different components based on what the URL says — without ever actually loading a new page from the server. The URL changes, but it's all still the same React app running in the background.</p>
+            <p>This gives you the feel of a multi-page website while keeping all the performance benefits of a single page app.</p>
+          </div>
+
+          <div class="explain">
+            <h3>Real World Example — A Portfolio Website</h3>
+            <p>A portfolio has 4 "pages": Home, Projects, About, Contact. Without React Router, you'd have to show/hide sections manually with state. With React Router, each URL maps to a real component — clean, professional, and shareable links.</p>
+            <ul>
+              <li><code>/</code> → renders the <code>&lt;Home /&gt;</code> component</li>
+              <li><code>/projects</code> → renders the <code>&lt;Projects /&gt;</code> component</li>
+              <li><code>/about</code> → renders the <code>&lt;About /&gt;</code> component</li>
+              <li><code>/projects/3</code> → renders <code>&lt;ProjectDetail /&gt;</code> for project with id 3</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>Quick Summary</h3>
+            <ul>
+              <li>React apps are Single Page Apps — one HTML file, no separate pages by default</li>
+              <li>React Router intercepts URL changes and renders the matching component</li>
+              <li>The page never actually reloads — it just swaps components</li>
+              <li>You get real URLs that are shareable and work with the browser back button</li>
+              <li>Library name: <code>react-router-dom</code> (for web apps)</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RR2: INSTALLATION -->
+      <section class="topic" id="rr2">
+        <div class="topic-header">
+          <span class="step-num">2</span>
+          <div><h2>Installation &amp; Setup</h2><p>Install React Router and wrap your app</p></div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>Install the Package</h3>
+            <p>React Router is not built into React — you install it as a separate package. Open your terminal inside your Vite React project and run:</p>
+          </div>
+
+          <pre><code># Install React Router (v6 — the current version)
+npm install react-router-dom</code></pre>
+
+          <div class="explain">
+            <h3>Wrap Your App with BrowserRouter</h3>
+            <p>The <strong>BrowserRouter</strong> component must wrap your entire application. It watches the browser's URL and tells all the routing components below it what URL is currently active. The best place to add it is in <code>main.jsx</code> — the entry point of your app.</p>
+          </div>
+
+          <pre><code>// src/main.jsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'  // ← import
+import App from './App.jsx'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  &lt;BrowserRouter&gt;     {/* ← wrap App with BrowserRouter */}
+    &lt;App /&gt;
+  &lt;/BrowserRouter&gt;
+)</code></pre>
+
+          <div class="explain">
+            <h3>Project Structure with React Router</h3>
+            <p>The standard way to organise a routed React app — one file per page in a <code>pages/</code> folder, reusable UI in <code>components/</code>.</p>
+          </div>
+
+          <pre><code>src/
+├── pages/
+│   ├── Home.jsx        ← "/" route
+│   ├── About.jsx       ← "/about" route
+│   ├── Projects.jsx    ← "/projects" route
+│   ├── ProjectDetail.jsx ← "/projects/:id" route
+│   └── NotFound.jsx    ← 404 catch-all route
+├── components/
+│   └── Navbar.jsx      ← shared across all pages
+├── App.jsx             ← where Routes live
+└── main.jsx            ← BrowserRouter lives here</code></pre>
+
+          <div class="summary">
+            <h3>Quick Summary</h3>
+            <ul>
+              <li>Install with: <code>npm install react-router-dom</code></li>
+              <li>Wrap your app in <code>&lt;BrowserRouter&gt;</code> in <code>main.jsx</code></li>
+              <li>Create a <code>pages/</code> folder — one component per page</li>
+              <li>Routes are defined in <code>App.jsx</code></li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RR3: ROUTES & ROUTE -->
+      <section class="topic" id="rr3">
+        <div class="topic-header">
+          <span class="step-num">3</span>
+          <div><h2>Routes &amp; Route</h2><p>Map URLs to components</p></div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>Defining Your Routes</h3>
+            <p><code>&lt;Routes&gt;</code> is the container for all your routes. Inside it, each <code>&lt;Route&gt;</code> maps a URL path to a component. When the URL matches, React Router renders that component in place of the <code>&lt;Routes&gt;</code> block.</p>
+            <p>Think of it like a switch statement for URLs — only the matching route renders.</p>
+          </div>
+
+          <pre><code>// src/App.jsx
+import { Routes, Route } from 'react-router-dom'
+import Navbar    from './components/Navbar'
+import Home      from './pages/Home'
+import About     from './pages/About'
+import Projects  from './pages/Projects'
+import ProjectDetail from './pages/ProjectDetail'
+import NotFound  from './pages/NotFound'
+
+const App = () =&gt; {
+  return (
+    &lt;div&gt;
+      &lt;Navbar /&gt;  {/* always visible — outside Routes */}
+
+      &lt;Routes&gt;
+        {/* exact URL "/" → Home component */}
+        &lt;Route path="/"          element={&lt;Home /&gt;} /&gt;
+
+        {/* "/about" → About component */}
+        &lt;Route path="/about"     element={&lt;About /&gt;} /&gt;
+
+        {/* "/projects" → Projects component */}
+        &lt;Route path="/projects"  element={&lt;Projects /&gt;} /&gt;
+
+        {/* "/projects/1", "/projects/42" → ProjectDetail */}
+        &lt;Route path="/projects/:id" element={&lt;ProjectDetail /&gt;} /&gt;
+
+        {/* Catch-all — anything else → 404 page */}
+        &lt;Route path="*"          element={&lt;NotFound /&gt;} /&gt;
+      &lt;/Routes&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default App</code></pre>
+
+          <div class="explain">
+            <h3>A Simple Page Component</h3>
+            <p>Each page is just a normal React component. It doesn't need any special router code — React Router renders it when the URL matches.</p>
+          </div>
+
+          <pre><code>// src/pages/Home.jsx
+const Home = () =&gt; {
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;Welcome Home 👋&lt;/h1&gt;
+      &lt;p&gt;This is the home page.&lt;/p&gt;
+    &lt;/main&gt;
+  )
+}
+
+export default Home
+
+// src/pages/About.jsx
+const About = () =&gt; {
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;About Me&lt;/h1&gt;
+      &lt;p&gt;I'm learning React Router!&lt;/p&gt;
+    &lt;/main&gt;
+  )
+}
+
+export default About</code></pre>
+
+          <div class="mistakes">
+            <h3>❌ Common Mistakes</h3>
+            <ul>
+              <li>Putting <code>&lt;Navbar&gt;</code> inside <code>&lt;Routes&gt;</code> — it will only render when a route matches. Put it outside</li>
+              <li>Forgetting <code>&lt;Routes&gt;</code> wrapper — <code>&lt;Route&gt;</code> must always be inside <code>&lt;Routes&gt;</code></li>
+              <li>Forgetting the catch-all <code>path="*"</code> — without it, bad URLs show nothing instead of a 404 page</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RR4: LINK & NAVLINK -->
+      <section class="topic" id="rr4">
+        <div class="topic-header">
+          <span class="step-num">4</span>
+          <div><h2>Link &amp; NavLink</h2><p>Navigate between pages without page reloads</p></div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>Never use &lt;a href&gt; for internal navigation</h3>
+            <p>A regular HTML <code>&lt;a href="/about"&gt;</code> tag causes a full page reload — it throws away all your React state and re-fetches everything. React Router's <code>&lt;Link&gt;</code> and <code>&lt;NavLink&gt;</code> update the URL and swap components <em>without</em> reloading the page.</p>
+            <ul>
+              <li><strong><code>&lt;Link&gt;</code></strong> — basic navigation, like an anchor tag but no reload</li>
+              <li><strong><code>&lt;NavLink&gt;</code></strong> — same as Link but automatically adds an <code>active</code> class when the current URL matches. Perfect for navbars.</li>
+            </ul>
+          </div>
+
+          <pre><code>// src/components/Navbar.jsx
+import { Link, NavLink } from 'react-router-dom'
+import './Navbar.css'
+
+const Navbar = () =&gt; {
+  return (
+    &lt;nav className="navbar"&gt;
+      &lt;Link to="/" className="logo"&gt;MyPortfolio&lt;/Link&gt;
+
+      &lt;div className="nav-links"&gt;
+        {/* NavLink automatically adds class="active" on the current page */}
+        &lt;NavLink to="/"        className={({ isActive }) =&gt; isActive ? "active" : ""}&gt;Home&lt;/NavLink&gt;
+        &lt;NavLink to="/about"   className={({ isActive }) =&gt; isActive ? "active" : ""}&gt;About&lt;/NavLink&gt;
+        &lt;NavLink to="/projects"className={({ isActive }) =&gt; isActive ? "active" : ""}&gt;Projects&lt;/NavLink&gt;
+      &lt;/div&gt;
+    &lt;/nav&gt;
+  )
+}
+
+export default Navbar</code></pre>
+
+          <pre><code>/* Navbar.css */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background: #1a1a2e;
+  border-bottom: 1px solid #2a2a45;
+}
+
+.nav-links { display: flex; gap: 24px; }
+
+.nav-links a {
+  color: #888aaa;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+/* NavLink adds this class automatically on the active page */
+.nav-links a.active,
+.nav-links a:hover { color: white; }</code></pre>
+
+          <div class="mistakes">
+            <h3>❌ Common Mistakes</h3>
+            <ul>
+              <li>Using <code>&lt;a href="/about"&gt;</code> instead of <code>&lt;Link to="/about"&gt;</code> — causes full page reload and loses all React state</li>
+              <li>Using <code>href</code> prop on Link — it uses <code>to</code>, not <code>href</code></li>
+              <li>Using <code>&lt;Link&gt;</code> for external URLs — use a regular <code>&lt;a href&gt;</code> with <code>target="_blank"</code> for external links</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RR5: DYNAMIC ROUTES -->
+      <section class="topic" id="rr5">
+        <div class="topic-header">
+          <span class="step-num">5</span>
+          <div><h2>Dynamic Routes &amp; useParams</h2><p>URL parameters — /users/42, /products/shoes</p></div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What is a Dynamic Route?</h3>
+            <p>A dynamic route has a <strong>variable segment</strong> in the URL — written with a colon prefix like <code>:id</code>. The same route component handles many different URLs — <code>/products/1</code>, <code>/products/42</code>, <code>/products/shoes</code> — and the variable part is available inside the component via the <code>useParams</code> hook.</p>
+            <p>This is how every product page, user profile page, and blog post page on the internet works.</p>
+          </div>
+
+          <pre><code>// In App.jsx — define the dynamic route
+&lt;Route path="/projects/:id" element={&lt;ProjectDetail /&gt;} /&gt;
+//                    ^^^
+//     ":id" is the parameter — matches any value</code></pre>
+
+          <pre><code>// src/pages/ProjectDetail.jsx
+import { useParams, Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+
+const projects = [
+  { id: "1", title: "Todo App",       tech: "React, localStorage",    desc: "A full CRUD todo app." },
+  { id: "2", title: "Weather App",    tech: "React, Fetch API",       desc: "Live weather by city." },
+  { id: "3", title: "Portfolio Site", tech: "React, React Router",    desc: "This portfolio site!" },
+]
+
+const ProjectDetail = () =&gt; {
+  const { id } = useParams()  // ← gets "1", "2", "3" etc. from the URL
+
+  const project = projects.find(p =&gt; p.id === id)
+
+  if (!project) {
+    return (
+      &lt;div&gt;
+        &lt;h2&gt;Project not found!&lt;/h2&gt;
+        &lt;Link to="/projects"&gt;← Back to projects&lt;/Link&gt;
+      &lt;/div&gt;
+    )
+  }
+
+  return (
+    &lt;main&gt;
+      &lt;Link to="/projects"&gt;← All Projects&lt;/Link&gt;
+      &lt;h1&gt;{project.title}&lt;/h1&gt;
+      &lt;p&gt;&lt;strong&gt;Tech:&lt;/strong&gt; {project.tech}&lt;/p&gt;
+      &lt;p&gt;{project.desc}&lt;/p&gt;
+    &lt;/main&gt;
+  )
+}
+
+export default ProjectDetail</code></pre>
+
+          <pre><code>// src/pages/Projects.jsx — link to each project's detail page
+import { Link } from 'react-router-dom'
+
+const projects = [
+  { id: "1", title: "Todo App" },
+  { id: "2", title: "Weather App" },
+  { id: "3", title: "Portfolio Site" },
+]
+
+const Projects = () =&gt; (
+  &lt;main&gt;
+    &lt;h1&gt;My Projects&lt;/h1&gt;
+    &lt;ul&gt;
+      {projects.map(p =&gt; (
+        &lt;li key={p.id}&gt;
+          {/* Link to the dynamic route — /projects/1, /projects/2... */}
+          &lt;Link to={`/projects/${p.id}`}&gt;{p.title}&lt;/Link&gt;
+        &lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  &lt;/main&gt;
+)
+
+export default Projects</code></pre>
+
+          <div class="mistakes">
+            <h3>❌ Common Mistakes</h3>
+            <ul>
+              <li><code>useParams()</code> always returns strings — if your ID is a number in the data, compare with <code>p.id === id</code> (string) not <code>p.id === Number(id)</code> unless you convert</li>
+              <li>Not handling the case where the param doesn't match anything — always check if the item was found and show a fallback</li>
+              <li>Using the wrong param name — <code>:id</code> in the route means <code>const { id } = useParams()</code>. They must match exactly</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RR6: USENAVIGATE -->
+      <section class="topic" id="rr6">
+        <div class="topic-header">
+          <span class="step-num">6</span>
+          <div><h2>useNavigate</h2><p>Navigate programmatically — after form submit, login, etc.</p></div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>When to use useNavigate</h3>
+            <p><code>&lt;Link&gt;</code> is for navigation triggered by a click on a visible link. <code>useNavigate</code> is for navigation triggered by <strong>code logic</strong> — redirect after a form submission, send a user to the home page after login, go back after deleting an item.</p>
+          </div>
+
+          <pre><code>import { useNavigate } from 'react-router-dom'
+
+const ContactForm = () =&gt; {
+  const navigate = useNavigate()
+  const [name, setName]       = useState("")
+  const [message, setMessage] = useState("")
+
+  const handleSubmit = (e) =&gt; {
+    e.preventDefault()
+    // ... send the form data to an API
+
+    // After submit → redirect to thank you page
+    navigate("/thank-you")
+  }
+
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;input value={name}    onChange={e =&gt; setName(e.target.value)}    placeholder="Name" /&gt;
+      &lt;textarea value={message} onChange={e =&gt; setMessage(e.target.value)} placeholder="Message" /&gt;
+      &lt;button type="submit"&gt;Send Message&lt;/button&gt;
+    &lt;/form&gt;
+  )
+}
+
+// Other common navigate patterns:
+navigate("/")             // go to home
+navigate(-1)              // go back (like browser back button)
+navigate("/login")        // redirect to login
+navigate(`/users/${id}`)  // go to a dynamic route
+navigate("/home", { replace: true }) // redirect without adding to history</code></pre>
+
+          <div class="summary">
+            <h3>Quick Summary</h3>
+            <ul>
+              <li><code>const navigate = useNavigate()</code> — call the hook to get the navigate function</li>
+              <li><code>navigate("/path")</code> — go to a route</li>
+              <li><code>navigate(-1)</code> — go back (like the browser back button)</li>
+              <li><code>navigate("/path", {"{ replace: true }"})</code> — redirect without adding to history</li>
+              <li>Use for: after form submit, after login/logout, after delete</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RR7: NESTED ROUTES -->
+      <section class="topic" id="rr7">
+        <div class="topic-header">
+          <span class="step-num">7</span>
+          <div><h2>Nested Routes &amp; Outlet</h2><p>Shared layouts with different page content</p></div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>What are Nested Routes?</h3>
+            <p>Nested routes let you share a layout (like a sidebar or tabs) across multiple pages, while only swapping the inner content. The parent route renders the shared layout. The <code>&lt;Outlet /&gt;</code> component marks where the child route's content should appear.</p>
+            <p>Real world example: a dashboard with a sidebar. The sidebar is always there, but the main area changes based on the URL.</p>
+          </div>
+
+          <pre><code>// App.jsx — Dashboard has nested routes
+&lt;Routes&gt;
+  &lt;Route path="/"         element={&lt;Home /&gt;} /&gt;
+
+  {/* Dashboard layout wraps these child routes */}
+  &lt;Route path="/dashboard" element={&lt;DashboardLayout /&gt;}&gt;
+    &lt;Route index           element={&lt;DashboardHome /&gt;} /&gt;  {/* /dashboard */}
+    &lt;Route path="profile"  element={&lt;Profile /&gt;} /&gt;        {/* /dashboard/profile */}
+    &lt;Route path="settings" element={&lt;Settings /&gt;} /&gt;       {/* /dashboard/settings */}
+  &lt;/Route&gt;
+
+  &lt;Route path="*" element={&lt;NotFound /&gt;} /&gt;
+&lt;/Routes&gt;</code></pre>
+
+          <pre><code>// src/pages/DashboardLayout.jsx
+import { NavLink, Outlet } from 'react-router-dom'
+
+const DashboardLayout = () =&gt; (
+  &lt;div style={{ display: "grid", gridTemplateColumns: "200px 1fr" }}&gt;
+
+    {/* This sidebar shows on ALL dashboard pages */}
+    &lt;aside&gt;
+      &lt;NavLink to="/dashboard"          end&gt;Overview&lt;/NavLink&gt;
+      &lt;NavLink to="/dashboard/profile"     &gt;Profile&lt;/NavLink&gt;
+      &lt;NavLink to="/dashboard/settings"    &gt;Settings&lt;/NavLink&gt;
+    &lt;/aside&gt;
+
+    {/* Outlet = where the child route renders */}
+    &lt;main&gt;
+      &lt;Outlet /&gt;
+    &lt;/main&gt;
+
+  &lt;/div&gt;
+)
+
+export default DashboardLayout
+
+// Note: use "end" on the index NavLink so it only
+// shows as active on the exact /dashboard URL</code></pre>
+
+          <div class="summary">
+            <h3>Quick Summary</h3>
+            <ul>
+              <li>Nest <code>&lt;Route&gt;</code> components inside a parent <code>&lt;Route&gt;</code> to share a layout</li>
+              <li>The parent component renders <code>&lt;Outlet /&gt;</code> where the child page content goes</li>
+              <li><code>index</code> route = the default child when no sub-path is specified</li>
+              <li>Use for: dashboards with sidebars, tabs, settings pages with sub-sections</li>
+              <li>Add <code>end</code> prop to NavLink for the index route so it only highlights exactly</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RR8: 404 + FULL SETUP -->
+      <section class="topic" id="rr8">
+        <div class="topic-header">
+          <span class="step-num">8</span>
+          <div><h2>404 Page &amp; Full Setup Summary</h2><p>Handle unknown routes + everything in one place</p></div>
+        </div>
+        <div class="topic-body">
+
+          <div class="explain">
+            <h3>The 404 Catch-All Route</h3>
+            <p>Any URL that doesn't match any of your routes should show a friendly 404 page instead of a blank screen. Use <code>path="*"</code> as the last route — it catches everything that didn't match above it.</p>
+          </div>
+
+          <pre><code>// src/pages/NotFound.jsx
+import { Link } from 'react-router-dom'
+
+const NotFound = () =&gt; (
+  &lt;div style={{ textAlign: "center", padding: "80px 20px" }}&gt;
+    &lt;h1 style={{ fontSize: "4rem" }}&gt;404&lt;/h1&gt;
+    &lt;p style={{ color: "#888" }}&gt;Oops — this page doesn't exist.&lt;/p&gt;
+    &lt;Link to="/"&gt;← Go Home&lt;/Link&gt;
+  &lt;/div&gt;
+)
+
+export default NotFound
+
+// In App.jsx — must be the LAST route
+&lt;Route path="*" element={&lt;NotFound /&gt;} /&gt;</code></pre>
+
+          <div class="explain">
+            <h3>Complete App.jsx — Everything Together</h3>
+            <p>Here's a full, production-ready routing setup you can use as a template for any project:</p>
+          </div>
+
+          <pre><code>// src/App.jsx — complete routing template
+import { Routes, Route } from 'react-router-dom'
+
+// Layout components (always visible)
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+
+// Page components
+import Home           from './pages/Home'
+import About          from './pages/About'
+import Projects       from './pages/Projects'
+import ProjectDetail  from './pages/ProjectDetail'
+import Contact        from './pages/Contact'
+import NotFound       from './pages/NotFound'
+
+const App = () =&gt; (
+  &lt;&gt;
+    {/* Navbar always renders — it's outside Routes */}
+    &lt;Navbar /&gt;
+
+    {/* Only the matching route renders here */}
+    &lt;Routes&gt;
+      &lt;Route path="/"            element={&lt;Home /&gt;}          /&gt;
+      &lt;Route path="/about"       element={&lt;About /&gt;}         /&gt;
+      &lt;Route path="/projects"    element={&lt;Projects /&gt;}      /&gt;
+      &lt;Route path="/projects/:id"element={&lt;ProjectDetail /&gt;} /&gt;
+      &lt;Route path="/contact"     element={&lt;Contact /&gt;}       /&gt;
+      &lt;Route path="*"            element={&lt;NotFound /&gt;}      /&gt;
+    &lt;/Routes&gt;
+
+    {/* Footer always renders */}
+    &lt;Footer /&gt;
+  &lt;/&gt;
+)
+
+export default App</code></pre>
+
+          <div class="mistakes">
+            <h3>❌ Common Mistakes</h3>
+            <ul>
+              <li>Forgetting to wrap the app with <code>&lt;BrowserRouter&gt;</code> in <code>main.jsx</code> — you'll get "useRoutes() may be used only in the context of a Router" error</li>
+              <li>Using <code>&lt;a href&gt;</code> instead of <code>&lt;Link to&gt;</code> — causes full page reload</li>
+              <li>Putting the <code>path="*"</code> catch-all before other routes — it will match everything. It must be last</li>
+              <li>Using <code>navigate()</code> instead of <code>&lt;Link&gt;</code> for regular nav items — Link is for visible links, navigate is for code-triggered redirects</li>
+              <li>Forgetting <code>&lt;Outlet /&gt;</code> in the parent layout for nested routes — the child pages render nowhere</li>
+            </ul>
+          </div>
+
+          <div class="summary">
+            <h3>Full React Router Cheatsheet</h3>
+            <ul>
+              <li><code>npm install react-router-dom</code> — install the package</li>
+              <li><code>&lt;BrowserRouter&gt;</code> in <code>main.jsx</code> — wraps the whole app</li>
+              <li><code>&lt;Routes&gt; &lt;Route path="/" element={&lt;Home /&gt;} /&gt; &lt;/Routes&gt;</code> — define routes in App.jsx</li>
+              <li><code>&lt;Link to="/about"&gt;</code> — navigate without page reload</li>
+              <li><code>&lt;NavLink&gt;</code> — Link that adds active class on current page</li>
+              <li><code>const {"{ id }"} = useParams()</code> — read URL parameters (<code>:id</code>)</li>
+              <li><code>const navigate = useNavigate()</code> then <code>navigate("/path")</code> — programmatic navigation</li>
+              <li><code>&lt;Route path="*"&gt;</code> — 404 catch-all, always last</li>
+              <li><code>&lt;Outlet /&gt;</code> — where child routes render in nested routing</li>
+            </ul>
+          </div>
+
+          <div class="mini-project">
+            <h3>🛠 Mini Project — Multi-Page Portfolio</h3>
+            <p>Build a 5-page portfolio using everything you've learned about React Router.</p>
+            <ul>
+              <li><strong>Home</strong> — hero section with your name and a CTA button linking to /projects</li>
+              <li><strong>Projects</strong> — a grid of 3 project cards, each linking to <code>/projects/:id</code></li>
+              <li><strong>Project Detail</strong> — reads the <code>:id</code> param, shows that project's details</li>
+              <li><strong>About</strong> — bio, skills list, link to /contact</li>
+              <li><strong>Contact</strong> — a form that navigates to a /thank-you page on submit</li>
+              <li>A Navbar with NavLink — active page highlighted</li>
+              <li>A 404 page for any unknown URL</li>
+            </ul>
+            <div class="project-goal">Goal: This is a real portfolio you can show to employers. Deploy it to Netlify when done — you'll have a live URL to share.</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- NEXT STEPS -->
+      <section class="next-steps">
+        <h2>🎉 You Can Now Build Real Multi-Page React Apps</h2>
+        <p>React Router completes your React skillset. Here's what to do next:</p>
+        <div class="cta-row">
+          <a href="../projects/projects.html" class="cta-primary">Build Projects Now →</a>
+          <a href="react-guide.html" class="cta-secondary">← React Guide</a>
+          <a href="../interview/interview.html" class="cta-secondary">Interview Prep</a>
+          <a href="../index.html" class="cta-secondary">Home</a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      React Router Guide &nbsp;|&nbsp; <a href="react-guide.html">React Guide →</a> &nbsp;|&nbsp; <a href="../index.html">← Home</a>
+    </footer>
+
+  </div><!-- end .content -->
+</div><!-- end .layout -->
+</body>
+</html>

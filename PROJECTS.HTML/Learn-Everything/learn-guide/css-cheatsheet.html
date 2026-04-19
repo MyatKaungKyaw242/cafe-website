@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSS Cheatsheet | Web Dev 0 to Hero</title>
+  <link rel="stylesheet" href="css-cheatsheet.css" />
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="back-btn">← Home</a>
+    <div class="logo">CSS <span>Cheatsheet</span></div>
+    <p class="subtitle">Every selector, layout rule, animation trick and variable — one quick reference</p>
+    <div class="header-nav">
+      <a href="learn-guide.html" class="nav-btn">CSS Guide</a>
+      <a href="tips.html" class="nav-btn">CSS Tips</a>
+      <a href="../js-guide/js-cheatsheet.html" class="nav-btn">JS Cheatsheet</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- SELECTORS -->
+    <section class="sheet-section">
+      <h2 class="section-title s-red">Selectors</h2>
+      <div class="sheet-grid">
+        <div class="sheet-card">
+          <h3>Basic Selectors</h3>
+          <pre><code>*            /* all elements */
+div          /* by tag */
+.class       /* by class */
+#id          /* by id */
+div.class    /* tag + class */
+div, p       /* multiple */</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Combinators</h3>
+          <pre><code>div p        /* descendant */
+div > p      /* direct child */
+div + p      /* adjacent sibling */
+div ~ p      /* all siblings */</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Pseudo-classes</h3>
+          <pre><code>:hover       :focus
+:active      :visited
+:first-child :last-child
+:nth-child(2)
+:nth-child(odd)
+:nth-child(even)
+:not(.class)
+:is(h1, h2, h3)</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Pseudo-elements</h3>
+          <pre><code>::before     /* insert before */
+::after      /* insert after */
+::placeholder
+::selection  /* selected text */
+::first-line
+::first-letter
+
+/* Always need content: */
+.el::before { content: ""; }</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Attribute Selectors</h3>
+          <pre><code>[type="text"]   /* exact match */
+[class*="btn"]  /* contains */
+[href^="https"] /* starts with */
+[src$=".png"]   /* ends with */
+[data-id]       /* has attribute */</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Specificity Order</h3>
+          <pre><code>/* Lowest to Highest */
+* { }              /* 0,0,0 */
+p { }              /* 0,0,1 */
+.class { }         /* 0,1,0 */
+#id { }            /* 1,0,0 */
+style=""           /* inline */
+!important         /* nuclear */
+
+/* !important — avoid, use specificity */</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOX MODEL -->
+    <section class="sheet-section">
+      <h2 class="section-title s-orange">Box Model &amp; Spacing</h2>
+      <div class="sheet-grid">
+        <div class="sheet-card">
+          <h3>Box Model</h3>
+          <pre><code>/* Always use border-box */
+* { box-sizing: border-box; }
+
+/* Layers (outside → inside) */
+margin → border → padding → content
+
+margin: 10px 20px;      /* top/bot left/right */
+margin: 10px 20px 5px;  /* top lr bottom */
+margin: 10px 20px 5px 0;/* top r bot left */
+margin: auto;           /* center horizontally */</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Width &amp; Height</h3>
+          <pre><code">width: 100%;
+width: 300px;
+width: 50vw;
+min-width: 200px;
+max-width: 1200px;
+
+height: 100vh;
+height: auto;    /* shrink to content */
+min-height: 100vh;
+
+/* Responsive width */
+width: clamp(300px, 50%, 800px);</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Display</h3>
+          <pre><code>display: block;
+display: inline;
+display: inline-block;
+display: flex;
+display: grid;
+display: none;     /* hide + remove space */
+
+/* Hide but keep space */
+visibility: hidden;
+opacity: 0;</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Overflow</h3>
+          <pre><code>overflow: visible;  /* default */
+overflow: hidden;   /* clip content */
+overflow: scroll;   /* always scroll */
+overflow: auto;     /* scroll if needed */
+
+overflow-x: hidden;  /* horizontal */
+overflow-y: auto;    /* vertical */
+
+/* Truncate text */
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLEXBOX -->
+    <section class="sheet-section">
+      <h2 class="section-title s-blue">Flexbox</h2>
+      <div class="sheet-grid">
+        <div class="sheet-card">
+          <h3>Container Properties</h3>
+          <pre><code>display: flex;
+flex-direction: row;       /* default */
+flex-direction: column;
+flex-direction: row-reverse;
+
+flex-wrap: nowrap;         /* default */
+flex-wrap: wrap;
+flex-wrap: wrap-reverse;
+
+/* Shorthand */
+flex-flow: row wrap;</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Alignment</h3>
+          <pre><code">/* Main axis (flex-direction) */
+justify-content: flex-start;  /* default */
+justify-content: flex-end;
+justify-content: center;
+justify-content: space-between;
+justify-content: space-around;
+justify-content: space-evenly;
+
+/* Cross axis */
+align-items: stretch;  /* default */
+align-items: flex-start;
+align-items: flex-end;
+align-items: center;
+align-items: baseline;</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Gap &amp; Multi-line</h3>
+          <pre><code">gap: 16px;           /* row + column */
+gap: 10px 20px;      /* row column */
+row-gap: 10px;
+column-gap: 20px;
+
+/* Multi-line (when wrapping) */
+align-content: flex-start;
+align-content: center;
+align-content: space-between;</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Item Properties</h3>
+          <pre><code>/* Grow — take available space */
+flex-grow: 0;    /* default — don't grow */
+flex-grow: 1;    /* grow and fill space */
+
+/* Shrink — below basis */
+flex-shrink: 1;  /* default — can shrink */
+flex-shrink: 0;  /* don't shrink */
+
+/* Base size */
+flex-basis: auto;
+flex-basis: 200px;
+
+/* Shorthand */
+flex: 1;         /* grow:1 shrink:1 basis:0 */
+flex: 0 0 200px; /* fixed 200px */
+
+/* Override alignment for one item */
+align-self: center;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="sheet-section">
+      <h2 class="section-title s-green">CSS Grid</h2>
+      <div class="sheet-grid">
+        <div class="sheet-card">
+          <h3>Defining Columns &amp; Rows</h3>
+          <pre><code>display: grid;
+
+grid-template-columns: 200px 1fr 1fr;
+grid-template-columns: repeat(3, 1fr);
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+grid-template-rows: auto 1fr auto;
+grid-auto-rows: minmax(100px, auto);
+
+gap: 20px;
+column-gap: 20px;
+row-gap: 10px;</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Template Areas</h3>
+          <pre><code">grid-template-areas:
+  "header header"
+  "sidebar main"
+  "footer footer";
+
+grid-template-columns: 240px 1fr;
+grid-template-rows: 60px 1fr 50px;
+
+/* Assign areas */
+header  { grid-area: header; }
+.sidebar{ grid-area: sidebar; }
+main    { grid-area: main; }
+footer  { grid-area: footer; }</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Placing Items</h3>
+          <pre><code>/* Column span */
+grid-column: 1 / 3;      /* col 1 to 3 */
+grid-column: 1 / -1;     /* full width */
+grid-column: span 2;     /* span 2 cols */
+
+/* Row span */
+grid-row: 1 / 3;
+grid-row: span 2;
+
+/* Place shorthand */
+grid-area: 1 / 1 / 3 / 3;
+/* row-start / col-start / row-end / col-end */</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Alignment in Grid</h3>
+          <pre><code">/* Align all items */
+justify-items: start | center | end | stretch;
+align-items:   start | center | end | stretch;
+
+/* Align one item */
+justify-self: center;
+align-self: end;
+
+/* Align the whole grid */
+justify-content: center;
+align-content: center;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- POSITION -->
+    <section class="sheet-section">
+      <h2 class="section-title s-purple">Position</h2>
+      <div class="sheet-grid">
+        <div class="sheet-card">
+          <h3>Position Values</h3>
+          <pre><code>position: static;    /* default — in flow */
+position: relative;  /* offset from self */
+position: absolute;  /* relative to nearest
+                        positioned ancestor */
+position: fixed;     /* relative to viewport */
+position: sticky;    /* relative until threshold */
+
+/* Offset (top/right/bottom/left) */
+top: 0; right: 0; bottom: 0; left: 0;</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Common Patterns</h3>
+          <pre><code">/* Center with absolute */
+.parent { position: relative; }
+.child  {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Sticky header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Fixed overlay */
+.modal {
+  position: fixed;
+  inset: 0;          /* top:0 right:0 bottom:0 left:0 */
+  z-index: 1000;
+}</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>z-index</h3>
+          <pre><code">/* Only works on positioned elements */
+z-index: auto;     /* default */
+z-index: 1;        /* above 0 */
+z-index: -1;       /* below */
+z-index: 9999;     /* top layer */
+
+/* Recommended scale */
+--z-base:    1;
+--z-overlay: 10;
+--z-modal:   100;
+--z-toast:   1000;
+--z-tooltip: 9999;</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Stacking Context</h3>
+          <pre><code">/* Creates a new stacking context */
+position: relative + z-index (not auto)
+position: fixed or sticky
+opacity: less than 1
+transform: any value
+filter: any value
+isolation: isolate  /* explicit */
+
+/* Fix z-index not working */
+.parent { isolation: isolate; }
+/* Each parent has its own z-index stack */</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="sheet-section">
+      <h2 class="section-title s-yellow">Typography</h2>
+      <div class="sheet-grid">
+        <div class="sheet-card">
+          <h3>Font Properties</h3>
+          <pre><code>font-family: 'Inter', sans-serif;
+font-size: 1rem;
+font-weight: 400;    /* 100–900 */
+font-style: italic;
+font-variant: small-caps;
+line-height: 1.5;    /* unitless = best */
+letter-spacing: 0.05em;
+text-transform: uppercase | lowercase | capitalize;</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Text Decoration</h3>
+          <pre><code">text-decoration: none;
+text-decoration: underline;
+text-decoration: line-through;
+text-decoration-color: red;
+
+text-align: left | center | right | justify;
+text-indent: 2em;
+
+word-break: break-word;
+overflow-wrap: anywhere;
+white-space: nowrap | pre | pre-wrap;</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Google Fonts</h3>
+          <pre><code">&lt;!-- In &lt;head&gt; --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"&gt;
+
+/* In CSS */
+body { font-family: 'Inter', sans-serif; }</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Responsive Text</h3>
+          <pre><code">/* clamp(min, preferred, max) */
+font-size: clamp(1rem, 2.5vw, 2rem);
+font-size: clamp(14px, 1.5vw, 18px);
+
+/* Scale heading with viewport */
+h1 { font-size: clamp(1.8rem, 5vw, 4rem); }
+
+/* Fluid line height */
+line-height: clamp(1.4, 1.5 + 0.3vw, 1.8);</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLORS -->
+    <section class="sheet-section">
+      <h2 class="section-title s-pink">Colors &amp; Backgrounds</h2>
+      <div class="sheet-grid">
+        <div class="sheet-card">
+          <h3>Color Formats</h3>
+          <pre><code">color: red;
+color: #e94560;         /* hex */
+color: #e94560aa;       /* hex + alpha */
+color: rgb(233,69,96);
+color: rgba(233,69,96, 0.5);
+color: hsl(350, 80%, 59%);
+color: hsla(350, 80%, 59%, 0.5);
+
+/* Modern — best for alpha */
+color: rgb(233 69 96 / 50%);</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Backgrounds</h3>
+          <pre><code">background-color: #1a1a2e;
+background-image: url("img.jpg");
+background-size: cover | contain | 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed; /* parallax */
+
+/* Shorthand */
+background: #1a1a2e url() center/cover no-repeat;</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Gradients</h3>
+          <pre><code">background: linear-gradient(to right, #e94560, #6c5ce7);
+background: linear-gradient(135deg, #e94560, #6c5ce7);
+
+background: radial-gradient(circle, #e94560, #0f0f1a);
+
+/* Text gradient */
+.text {
+  background: linear-gradient(to right, #e94560, #6c5ce7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Shadows</h3>
+          <pre><code">/* box-shadow: x y blur spread color */
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+box-shadow: 0 0 0 3px #e94560;   /* outline ring */
+box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+
+/* Multiple shadows */
+box-shadow: 0 2px 4px rgba(0,0,0,0.1),
+            0 8px 16px rgba(0,0,0,0.2);
+
+text-shadow: 0 2px 4px rgba(0,0,0,0.5);</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSITIONS & ANIMATIONS -->
+    <section class="sheet-section">
+      <h2 class="section-title s-teal">Transitions &amp; Animations</h2>
+      <div class="sheet-grid">
+        <div class="sheet-card">
+          <h3>Transitions</h3>
+          <pre><code">/* property duration timing delay */
+transition: all 0.3s ease;
+transition: opacity 0.2s ease, transform 0.3s ease;
+
+/* Timing functions */
+ease          /* slow → fast → slow */
+ease-in       /* slow start */
+ease-out      /* slow end */
+ease-in-out
+linear
+cubic-bezier(0.4, 0, 0.2, 1)  /* material */</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Transforms</h3>
+          <pre><code">transform: translateX(20px);
+transform: translateY(-50%);
+transform: translate(-50%, -50%); /* center trick */
+
+transform: scale(1.05);
+transform: scaleX(0.5);
+
+transform: rotate(45deg);
+transform: rotateY(180deg);
+
+transform: skew(10deg);
+
+/* Chain multiple */
+transform: translateY(-4px) scale(1.02);</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>@keyframes</h3>
+          <pre><code">@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Apply: name duration timing iteration */
+animation: fadeIn 0.4s ease forwards;
+animation: spin 1s linear infinite;</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Animation Properties</h3>
+          <pre><code">animation-name: fadeIn;
+animation-duration: 0.4s;
+animation-timing-function: ease;
+animation-delay: 0.2s;
+animation-iteration-count: 1 | infinite;
+animation-direction: normal | reverse | alternate;
+animation-fill-mode: forwards | backwards | both;
+animation-play-state: running | paused;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- CSS VARIABLES -->
+    <section class="sheet-section">
+      <h2 class="section-title s-js">CSS Variables &amp; Responsive</h2>
+      <div class="sheet-grid">
+        <div class="sheet-card">
+          <h3>CSS Variables</h3>
+          <pre><code">:root {
+  --color-primary: #e94560;
+  --color-bg:      #0f0f1a;
+  --font-size-base: 1rem;
+  --spacing-md:    16px;
+  --radius:        8px;
+}
+
+/* Usage */
+.btn {
+  background: var(--color-primary);
+  padding: var(--spacing-md);
+  border-radius: var(--radius);
+}
+
+/* Fallback */
+color: var(--color-text, #fff);</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Media Queries</h3>
+          <pre><code">/* Mobile first (recommended) */
+/* Base styles = mobile */
+
+@media (min-width: 640px)  { /* sm  */ }
+@media (min-width: 768px)  { /* md  */ }
+@media (min-width: 1024px) { /* lg  */ }
+@media (min-width: 1280px) { /* xl  */ }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) { }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; }
+}</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>CSS Units</h3>
+          <pre><code">px   /* absolute pixels */
+rem  /* relative to root font-size (16px) */
+em   /* relative to parent font-size */
+%    /* relative to parent */
+vw   /* viewport width (100vw = full) */
+vh   /* viewport height */
+vmin /* smaller of vw/vh */
+vmax /* larger of vw/vh */
+ch   /* width of "0" character */
+fr   /* grid fraction unit */</code></pre>
+        </div>
+        <div class="sheet-card">
+          <h3>Useful Functions</h3>
+          <pre><code">/* Clamp — responsive sizing */
+font-size: clamp(1rem, 2.5vw, 2rem);
+width: clamp(300px, 50%, 800px);
+
+/* min/max */
+width: min(100%, 600px);
+padding: max(20px, 5%);
+
+/* calc */
+width: calc(100% - 240px);
+height: calc(100vh - 60px);
+padding: calc(var(--spacing) * 2);</code></pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    CSS Cheatsheet &nbsp;|&nbsp; Quick Reference &nbsp;|&nbsp; <a href="../index.html">← Back to Home</a> &nbsp;|&nbsp; <a href="learn-guide.html">CSS Guide</a>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glossary | Web Dev 0 to Hero</title>
+  <link rel="stylesheet" href="glossary.css" />
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="back-btn">← Home</a>
+    <div class="logo">Web Dev <span>Glossary</span></div>
+    <p class="subtitle">Every confusing word — explained in plain English with a real example</p>
+    <div class="tip-note">📖 Search any word you don't understand</div>
+    <div class="search-wrap">
+      <input type="text" class="search-input" id="search" placeholder="Search a term... e.g. state, props, DOM, API" />
+    </div>
+  </header>
+
+  <main>
+    <p class="no-results" id="no-results">No terms found. Try a different word.</p>
+
+    <!-- HTML / GENERAL WEB -->
+    <div class="cat-html">
+      <div class="cat-title">HTML &amp; General Web</div>
+      <dl class="terms-grid">
+
+        <div class="term-card">
+          <dt>HTML <span class="term-badge b-html">HTML</span></dt>
+          <dd>HyperText Markup Language. The structure of a web page — it defines what content exists (headings, paragraphs, images, buttons) but not how it looks.
+            <span class="example">Like a skeleton — no skin or muscles, just the bones.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Element <span class="term-badge b-html">HTML</span></dt>
+          <dd>A single piece of HTML — the opening tag, content, and closing tag together. <code>&lt;p&gt;Hello&lt;/p&gt;</code> is one element.
+            <span class="example">Everything you see on a page is made of elements.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Attribute <span class="term-badge b-html">HTML</span></dt>
+          <dd>Extra information added to an HTML tag. <code>src</code>, <code>href</code>, <code>class</code>, <code>id</code> are all attributes. Written inside the opening tag.
+            <span class="example"><code>&lt;img src="photo.jpg" alt="A cat"&gt;</code> — src and alt are attributes.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>DOM <span class="term-badge b-gen">General</span></dt>
+          <dd>Document Object Model. When a browser loads your HTML, it converts it into a tree of objects that JavaScript can read and change. The DOM is that live tree.
+            <span class="example"><code>document.getElementById("btn")</code> finds a node in the DOM tree.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Semantic HTML <span class="term-badge b-html">HTML</span></dt>
+          <dd>Using HTML tags that describe their <em>meaning</em>, not just their appearance. <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code> are semantic. <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> have no meaning.
+            <span class="example">Screen readers and search engines use semantic tags to understand your page.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>URL / Endpoint <span class="term-badge b-gen">General</span></dt>
+          <dd>A URL is a web address. An endpoint is a specific URL on a server that accepts requests and returns data.
+            <span class="example"><code>https://api.github.com/users/octocat</code> is an endpoint that returns a user's data.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>HTTP / HTTPS <span class="term-badge b-gen">General</span></dt>
+          <dd>HTTP is the protocol (set of rules) for sending data between your browser and a server. HTTPS is the secure, encrypted version. Always use HTTPS for real sites.
+            <span class="example">When you visit a site, your browser sends an HTTP request; the server sends back a response.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Request &amp; Response <span class="term-badge b-gen">General</span></dt>
+          <dd>A <strong>request</strong> is your browser asking a server for something. A <strong>response</strong> is what the server sends back. Every page load and every API call is a request-response cycle.
+            <span class="example">You click a link → browser sends a request → server sends back HTML → browser renders it.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>API <span class="term-badge b-gen">General</span></dt>
+          <dd>Application Programming Interface. A way for two programs to talk to each other. A web API is a URL you can call to get or send data — usually JSON.
+            <span class="example">Weather app fetches from a weather API to get today's temperature.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>JSON <span class="term-badge b-gen">General</span></dt>
+          <dd>JavaScript Object Notation. A text format for storing and sending data. It looks like a JS object. APIs almost always return JSON.
+            <span class="example"><code>{ "name": "Myat", "age": 20 }</code> — that's JSON.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>localhost <span class="term-badge b-gen">General</span></dt>
+          <dd>Your own computer acting as a server. When you run <code>npm run dev</code>, your site is available at <code>localhost:5173</code> — only on your machine.
+            <span class="example">It's like a test environment before you publish to the real internet.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Deployment / Hosting <span class="term-badge b-gen">General</span></dt>
+          <dd>Putting your website on the internet so anyone can access it. Services like Netlify, Vercel, and GitHub Pages host your files for free.
+            <span class="example">You build the site locally → deploy to Netlify → now anyone in the world can visit it.</span>
+          </dd>
+        </div>
+
+      </dl>
+    </div>
+
+    <!-- CSS -->
+    <div class="cat-css">
+      <div class="cat-title">CSS</div>
+      <dl class="terms-grid">
+
+        <div class="term-card">
+          <dt>CSS <span class="term-badge b-css">CSS</span></dt>
+          <dd>Cascading Style Sheets. Controls how HTML elements look — color, size, font, layout, spacing, animations.
+            <span class="example">If HTML is the skeleton, CSS is the skin and clothes.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Selector <span class="term-badge b-css">CSS</span></dt>
+          <dd>The part of a CSS rule that targets which HTML elements to style. <code>.card</code> targets elements with class "card". <code>#header</code> targets an element with id "header".
+            <span class="example"><code>.card { background: blue; }</code> — <code>.card</code> is the selector.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Box Model <span class="term-badge b-css">CSS</span></dt>
+          <dd>Every HTML element is a box with 4 layers: <strong>content → padding → border → margin</strong>. Understanding this explains why things don't line up the way you expect.
+            <span class="example">Padding is space inside the element. Margin is space outside it.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Specificity <span class="term-badge b-css">CSS</span></dt>
+          <dd>When two CSS rules target the same element, specificity decides which one wins. ID &gt; class &gt; tag. More specific = wins.
+            <span class="example"><code>#btn</code> beats <code>.btn</code> beats <code>button</code>.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Cascade <span class="term-badge b-css">CSS</span></dt>
+          <dd>The order CSS rules are applied. If two rules have equal specificity, the one that comes <em>last</em> in the file wins.
+            <span class="example">The "C" in CSS — styles flow down and the last one wins ties.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Flexbox <span class="term-badge b-css">CSS</span></dt>
+          <dd>A CSS layout mode for arranging items in a row or column. The parent controls how children are aligned and spaced using <code>display: flex</code>.
+            <span class="example"><code>justify-content: center</code> centers all children horizontally.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>CSS Grid <span class="term-badge b-css">CSS</span></dt>
+          <dd>A 2D layout system — you define rows AND columns, then place items anywhere in the grid. Better than Flexbox for full page layouts.
+            <span class="example"><code>grid-template-columns: repeat(3, 1fr)</code> creates 3 equal columns.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Responsive Design <span class="term-badge b-css">CSS</span></dt>
+          <dd>Building layouts that adapt to different screen sizes — mobile, tablet, desktop. Done with media queries and flexible units like <code>%</code>, <code>vw</code>, <code>rem</code>.
+            <span class="example">The same site looks good on a phone and on a TV.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Media Query <span class="term-badge b-css">CSS</span></dt>
+          <dd>A CSS rule that applies styles only when a condition is true — like the screen being smaller than 600px.
+            <span class="example"><code>@media (max-width: 600px) { /* mobile styles */ }</code></span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>CSS Variables <span class="term-badge b-css">CSS</span></dt>
+          <dd>Custom properties that store reusable values. Defined with <code>--name</code> and used with <code>var(--name)</code>. Change once, updates everywhere.
+            <span class="example"><code>:root { --accent: #61dafb; }</code> then use <code>color: var(--accent)</code>.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>rem / em / px <span class="term-badge b-css">CSS</span></dt>
+          <dd><code>px</code> = fixed pixels. <code>rem</code> = relative to the root font size (usually 16px). <code>em</code> = relative to the parent's font size. Use <code>rem</code> for font sizes and spacing.
+            <span class="example"><code>1rem = 16px</code>. <code>1.5rem = 24px</code>.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Pseudo-class <span class="term-badge b-css">CSS</span></dt>
+          <dd>A keyword added to a selector that styles the element in a specific <em>state</em>. <code>:hover</code>, <code>:focus</code>, <code>:first-child</code> are pseudo-classes.
+            <span class="example"><code>button:hover { background: blue; }</code> — styles on hover.</span>
+          </dd>
+        </div>
+
+      </dl>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <div class="cat-js">
+      <div class="cat-title">JavaScript</div>
+      <dl class="terms-grid">
+
+        <div class="term-card">
+          <dt>Variable <span class="term-badge b-js">JS</span></dt>
+          <dd>A named container that stores a value. <code>const</code> can't be reassigned. <code>let</code> can. Avoid <code>var</code>.
+            <span class="example"><code>const name = "Myat";</code> — name holds "Myat".</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Function <span class="term-badge b-js">JS</span></dt>
+          <dd>A reusable block of code that does a specific task. You define it once and call it as many times as you need.
+            <span class="example"><code>const greet = (name) =&gt; `Hello, ${name}!`;</code></span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Arrow Function <span class="term-badge b-js">JS</span></dt>
+          <dd>A shorter way to write a function using <code>=&gt;</code>. Behaves the same as a regular function in most cases but has different <code>this</code> binding.
+            <span class="example"><code>const add = (a, b) =&gt; a + b;</code></span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Array <span class="term-badge b-js">JS</span></dt>
+          <dd>An ordered list of values. Can hold any type — numbers, strings, objects, other arrays.
+            <span class="example"><code>const fruits = ["apple", "mango", "banana"];</code></span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Object <span class="term-badge b-js">JS</span></dt>
+          <dd>A collection of key-value pairs. Used to group related data and behaviour together.
+            <span class="example"><code>const user = { name: "Myat", age: 20, role: "admin" };</code></span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Callback <span class="term-badge b-js">JS</span></dt>
+          <dd>A function passed to another function as an argument, to be called later. Most common in event listeners and array methods.
+            <span class="example"><code>btn.addEventListener("click", handleClick)</code> — handleClick is a callback.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Promise <span class="term-badge b-js">JS</span></dt>
+          <dd>An object that represents a future value — something that will be available later (like API data). Has three states: pending, fulfilled, rejected.
+            <span class="example"><code>fetch(url)</code> returns a Promise.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>async / await <span class="term-badge b-js">JS</span></dt>
+          <dd><code>async</code> marks a function as asynchronous. <code>await</code> pauses execution until a Promise resolves. Makes async code read like synchronous code.
+            <span class="example"><code>const data = await fetch(url);</code> waits for the response.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Destructuring <span class="term-badge b-js">JS</span></dt>
+          <dd>A shorthand to extract values from objects or arrays into named variables.
+            <span class="example"><code>const { name, age } = user;</code> — pulls name and age out of user.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Spread Operator <span class="term-badge b-js">JS</span></dt>
+          <dd><code>...</code> spreads the items of an array or object into a new one. Used to copy and add without mutating the original.
+            <span class="example"><code>const newArr = [...oldArr, newItem];</code></span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Scope <span class="term-badge b-js">JS</span></dt>
+          <dd>Where a variable can be accessed. <code>const</code> and <code>let</code> are block-scoped — they only exist inside the <code>{}</code> where they were declared.
+            <span class="example">A variable declared inside an <code>if</code> block can't be used outside it.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Closure <span class="term-badge b-js">JS</span></dt>
+          <dd>A function that remembers variables from the scope where it was created, even after that scope has finished running.
+            <span class="example">A counter function that "remembers" its count between calls uses a closure.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Type Coercion <span class="term-badge b-js">JS</span></dt>
+          <dd>JavaScript automatically converting one type to another. <code>"5" + 1</code> gives <code>"51"</code> (string) not <code>6</code>. Use <code>===</code> instead of <code>==</code> to avoid it.
+            <span class="example"><code>0 == false</code> is true (coercion). <code>0 === false</code> is false (strict).</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>null vs undefined <span class="term-badge b-js">JS</span></dt>
+          <dd><code>undefined</code> = a variable exists but has no value yet. <code>null</code> = intentionally empty. Both are "nothing" but come from different sources.
+            <span class="example"><code>let x;</code> → x is undefined. <code>let y = null;</code> → y is deliberately empty.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Event Listener <span class="term-badge b-js">JS</span></dt>
+          <dd>Code that waits for something to happen (a click, keypress, scroll) and runs a function when it does.
+            <span class="example"><code>btn.addEventListener("click", fn)</code> runs <code>fn</code> every time the button is clicked.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>localStorage <span class="term-badge b-js">JS</span></dt>
+          <dd>Browser storage that saves data as strings and persists even after you close the browser tab. Use JSON to store objects.
+            <span class="example"><code>localStorage.setItem("theme", "dark")</code> saves theme setting.</span>
+          </dd>
+        </div>
+
+      </dl>
+    </div>
+
+    <!-- REACT -->
+    <div class="cat-react">
+      <div class="cat-title">React</div>
+      <dl class="terms-grid">
+
+        <div class="term-card">
+          <dt>Component <span class="term-badge b-react">React</span></dt>
+          <dd>A reusable piece of UI — a JavaScript function that returns JSX. React apps are built by combining components like LEGO bricks.
+            <span class="example"><code>Navbar</code>, <code>Button</code>, <code>UserCard</code> are all components.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>JSX <span class="term-badge b-react">React</span></dt>
+          <dd>JavaScript XML. Looks like HTML written inside JavaScript. React compiles it to regular JS function calls. It's not real HTML — it's syntactic sugar.
+            <span class="example"><code>return &lt;h1&gt;Hello&lt;/h1&gt;;</code> — that's JSX inside a JS function.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Props <span class="term-badge b-react">React</span></dt>
+          <dd>Short for properties. Values passed from a parent component to a child component — like HTML attributes but for your own components. Props are read-only.
+            <span class="example"><code>&lt;Button label="Submit" onClick={handleSubmit} /&gt;</code></span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>State <span class="term-badge b-react">React</span></dt>
+          <dd>Data that belongs to a component and can change over time. When state changes, React re-renders the component to show the new data.
+            <span class="example">A counter's current number is state. The user's input in a text field is state.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Hook <span class="term-badge b-react">React</span></dt>
+          <dd>A function that starts with "use" and lets you add React features (like state or effects) to function components.
+            <span class="example"><code>useState</code>, <code>useEffect</code>, <code>useRef</code> are all built-in hooks.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>useState <span class="term-badge b-react">React</span></dt>
+          <dd>The hook for declaring reactive state in a component. Returns a value and a setter function. Calling the setter re-renders the component.
+            <span class="example"><code>const [count, setCount] = useState(0);</code></span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>useEffect <span class="term-badge b-react">React</span></dt>
+          <dd>The hook for running side effects after a render — fetching data, setting up timers, subscribing to events. Takes a function and a dependency array.
+            <span class="example"><code>useEffect(() =&gt; { fetchData(); }, []);</code> — runs once on mount.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Re-render <span class="term-badge b-react">React</span></dt>
+          <dd>When React calls your component function again to produce updated JSX. Triggered by state changes or prop changes. React updates only what changed in the DOM.
+            <span class="example">Clicking a button that calls <code>setCount</code> triggers a re-render.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Virtual DOM <span class="term-badge b-react">React</span></dt>
+          <dd>A lightweight copy of the real DOM that React keeps in memory. When state changes, React compares the new virtual DOM to the old one and only updates the real DOM where things changed.
+            <span class="example">This is why React is fast — it avoids rebuilding the whole page on every change.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Lifting State Up <span class="term-badge b-react">React</span></dt>
+          <dd>Moving state from a child component up to the parent so sibling components can share it. The parent owns the state and passes it down as props.
+            <span class="example">Two siblings that need the same data → put the state in their parent.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Controlled Component <span class="term-badge b-react">React</span></dt>
+          <dd>A form input whose value is controlled by React state — not the DOM. The input's value always reflects the state, and every change updates the state.
+            <span class="example"><code>&lt;input value={name} onChange={e =&gt; setName(e.target.value)} /&gt;</code></span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Custom Hook <span class="term-badge b-react">React</span></dt>
+          <dd>A function starting with "use" that you write yourself to extract and reuse stateful logic across components.
+            <span class="example"><code>useFetch</code>, <code>useLocalStorage</code>, <code>useDebounce</code> are common custom hooks.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Prop Drilling <span class="term-badge b-react">React</span></dt>
+          <dd>Passing a prop through many layers of components just to get it to a deeply nested child. Sign that you should use React Context instead.
+            <span class="example">App → Page → Section → Card → Button — all just to pass a username.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Context <span class="term-badge b-react">React</span></dt>
+          <dd>A way to share data globally across components without prop drilling. Create a context, provide it at the top, consume it anywhere below.
+            <span class="example">Theme, language, and auth state are typically stored in Context.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Key Prop <span class="term-badge b-react">React</span></dt>
+          <dd>A special prop you add to elements in a list so React can identify which item changed. Must be unique and stable — use the item's ID, not the index.
+            <span class="example"><code>&lt;Card key={item.id} /&gt;</code> inside a <code>.map()</code>.</span>
+          </dd>
+        </div>
+
+        <div class="term-card">
+          <dt>Side Effect <span class="term-badge b-react">React</span></dt>
+          <dd>Anything that affects something outside the component — fetching data, updating the document title, setting a timer, writing to localStorage.
+            <span class="example">Side effects go in <code>useEffect</code>, not directly in the component body.</span>
+          </dd>
+        </div>
+
+      </dl>
+    </div>
+
+  </main>
+
+  <footer>
+    Web Dev Glossary &nbsp;|&nbsp; <a href="../index.html">← Home</a>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const noResults   = document.getElementById('no-results');
+    const cards       = document.querySelectorAll('.term-card');
+
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (!q || text.includes(q)) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      noResults.classList.toggle('visible', visible === 0 && q !== '');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Foundations Cheatsheet | Web Dev 0 to Hero</title>
+  <link rel="stylesheet" href="foundations-cheatsheet.css" />
+</head>
+<body>
+
+  <header>
+    <a href="../index.html" class="back-btn">← Home</a>
+    <div class="logo">Foundations <span>Cheatsheet</span></div>
+    <p class="subtitle">Box model, units, specificity, colors, typography — all the essentials in one place</p>
+    <div class="tip-note">⭐ Bookmark this — refer back whenever something feels off</div>
+  </header>
+
+  <main>
+
+    <!-- BOX MODEL -->
+    <div class="cs-section">
+      <div class="cs-section-title">The Box Model</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>The 4 Layers</h3>
+          <p>Every element is a box. From inside out: content → padding → border → margin.</p>
+          <pre><code>.box {
+  /* Content: set by width/height */
+  width: 200px;
+  height: 100px;
+
+  /* Padding: space INSIDE the border */
+  padding: 16px;
+  padding: 10px 20px;     /* top/bottom  left/right */
+  padding: 10px 20px 10px 20px; /* top right bottom left */
+
+  /* Border: the visible edge */
+  border: 2px solid #fdcb6e;
+
+  /* Margin: space OUTSIDE the border */
+  margin: 24px;
+  margin: 0 auto; /* center horizontally */
+}</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>box-sizing: border-box</h3>
+          <p>Makes width include padding and border. Put this on every project — always.</p>
+          <pre><code>/* ✅ First rule in every CSS file */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Without it — width EXPANDS with padding */
+.card { width:300px; padding:20px; }
+/* real width = 300 + 40 = 340px ❌ */
+
+/* With border-box — width STAYS fixed */
+.card { width:300px; padding:20px; }
+/* real width = 300px ✓ */</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Margin Shorthand</h3>
+          <p>1 value = all sides. 2 values = top/bottom, left/right. 4 values = clockwise.</p>
+          <pre><code>margin: 20px;              /* all 4 sides */
+margin: 20px 40px;         /* top&bottom  left&right */
+margin: 10px 20px 30px 40px; /* top right bottom left */
+
+/* Center a block element */
+margin: 0 auto;
+
+/* Individual sides */
+margin-top:    10px;
+margin-right:  20px;
+margin-bottom: 10px;
+margin-left:   20px;
+
+/* Same shorthand works for padding */
+padding: 16px 24px;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Margin Collapse</h3>
+          <p>Vertical margins between siblings collapse — only the larger one applies.</p>
+          <pre><code>/* Two siblings — margins collapse */
+.first  { margin-bottom: 20px; }
+.second { margin-top: 30px; }
+/* Space between them = 30px, NOT 50px */
+
+/* Fix: use padding instead of margin
+   on the parent, or use gap in flex/grid */
+.parent { padding-bottom: 20px; }
+
+/* Horizontal margins NEVER collapse */
+.left  { margin-right: 20px; }
+.right { margin-left: 10px; }
+/* Space between them = 30px ✓ */</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CSS UNITS -->
+    <div class="cs-section">
+      <div class="cs-section-title">CSS Units</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>Absolute Units</h3>
+          <p>Fixed size — doesn't scale with anything. Use px for small fixed values.</p>
+          <pre><code>/* px — pixels, most common absolute unit */
+border: 1px solid #333;
+border-radius: 4px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+/* When to use px: */
+/* ✓ Borders (1px, 2px) */
+/* ✓ Border-radius */
+/* ✓ Box shadows */
+/* ✓ Tiny precise values */
+
+/* ✗ Font sizes — use rem instead */
+/* ✗ Large spacing — use rem instead */</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Relative Units</h3>
+          <p>Scale with something else — the root, the parent, or the viewport.</p>
+          <pre><code>/* rem — relative to root (html) font size */
+/* 1rem = 16px by default */
+font-size: 1rem;    /* 16px */
+font-size: 1.5rem;  /* 24px */
+font-size: 0.875rem;/* 14px */
+
+/* em — relative to PARENT font size */
+/* Compounds! Avoid for font sizes */
+font-size: 1.2em; /* 1.2 × parent size */
+
+/* % — relative to parent's value */
+width: 100%;       /* full parent width */
+width: 50%;        /* half parent width */
+
+/* vh / vw — % of viewport */
+height: 100vh;     /* full screen height */
+width: 100vw;      /* full screen width */</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>clamp() — Responsive Sizing</h3>
+          <p>Set a min, preferred, and max value in one line. Perfect for fluid typography.</p>
+          <pre><code>/* clamp(min, preferred, max) */
+font-size: clamp(1rem, 2.5vw, 2rem);
+/* min: never smaller than 1rem (16px) */
+/* preferred: 2.5% of viewport width */
+/* max: never larger than 2rem (32px) */
+
+/* Common fluid typography scale */
+h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.4rem, 3.5vw, 2.5rem); }
+h3 { font-size: clamp(1.1rem, 2.5vw, 1.8rem); }
+p  { font-size: clamp(1rem,   1.5vw, 1.125rem); }
+
+/* Also works for spacing */
+padding: clamp(1rem, 5%, 3rem);</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>When to Use Which</h3>
+          <p>Quick reference for choosing the right unit every time.</p>
+          <ul>
+            <li><strong>Font sizes</strong> → <code>rem</code> (scales with user settings)</li>
+            <li><strong>Fluid font sizes</strong> → <code>clamp()</code></li>
+            <li><strong>Spacing (padding/margin)</strong> → <code>rem</code></li>
+            <li><strong>Full-width containers</strong> → <code>%</code> or <code>100vw</code></li>
+            <li><strong>Full-height sections</strong> → <code>100vh</code></li>
+            <li><strong>Borders</strong> → <code>px</code></li>
+            <li><strong>Border-radius</strong> → <code>px</code> or <code>%</code> (50% = circle)</li>
+            <li><strong>Max-width on content</strong> → <code>px</code> e.g. <code>max-width: 1100px</code></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SPECIFICITY -->
+    <div class="cs-section">
+      <div class="cs-section-title">Specificity &amp; The Cascade</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>Specificity Score</h3>
+          <p>Each selector type has a weight. Higher score wins the conflict.</p>
+          <pre><code>/* Score: (inline, ID, class, tag) */
+
+p               { }  /* 0,0,0,1 — tag */
+.card           { }  /* 0,0,1,0 — class */
+.card p         { }  /* 0,0,1,1 — class + tag */
+.card .title    { }  /* 0,0,2,0 — two classes */
+#header         { }  /* 0,1,0,0 — ID */
+style="..."        /* 1,0,0,0 — inline */
+color: red !important; /* wins everything (avoid!) */
+
+/* Higher score always wins, regardless of order */
+#btn            { color: red; }   /* score 0,1,0,0 */
+.btn.primary    { color: blue; }  /* score 0,0,2,0 */
+/* Result: red — ID beats two classes */</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Cascade — Last Rule Wins</h3>
+          <p>When specificity is equal, the rule that appears last in the file wins.</p>
+          <pre><code>/* Both have the same specificity (0,0,1,0) */
+.btn { background: blue; }   /* written first */
+.btn { background: green; }  /* written after */
+/* Result: green — last wins ✓ */
+
+/* This is why order matters in your CSS */
+/* Put base/default styles first */
+/* Put specific overrides after */
+
+/* Example: */
+.card { padding: 16px; }         /* base */
+.card.featured { padding: 24px; } /* override — comes after */</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Selector Types</h3>
+          <p>Quick reference for common selectors and what they target.</p>
+          <pre><code>/* Tag — targets all elements of that type */
+p { }  h1 { }  button { }
+
+/* Class — targets elements with that class */
+.card { }  .btn-primary { }
+
+/* ID — targets one specific element (avoid for CSS) */
+#header { }
+
+/* Descendant — targets .title inside .card */
+.card .title { }
+
+/* Child — direct children only */
+.nav > li { }
+
+/* Pseudo-class — specific state */
+a:hover { }
+input:focus { }
+li:first-child { }
+li:nth-child(2) { }
+
+/* Pseudo-element — part of an element */
+p::first-line { }
+li::before { content: '›'; }</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>The Golden Rules</h3>
+          <p>Follow these and specificity problems disappear.</p>
+          <ul>
+            <li><strong>Style with classes</strong> — not IDs, not tags alone</li>
+            <li><strong>Never use <code>!important</code></strong> — fix the specificity instead</li>
+            <li><strong>Keep selectors short</strong> — <code>.card-title</code> beats <code>.card div h2 span</code></li>
+            <li><strong>Order matters</strong> — base styles first, overrides last</li>
+            <li><strong>Use DevTools</strong> — crossed-out styles in the Styles panel = being overridden</li>
+            <li><strong>BEM naming</strong> helps: <code>.card</code>, <code>.card__title</code>, <code>.card--featured</code></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COLOR -->
+    <div class="cs-section">
+      <div class="cs-section-title">Color Formats</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>Color Formats</h3>
+          <p>CSS supports multiple formats. Use hex for solid colors, rgba for transparency.</p>
+          <pre><code>/* Named colors — avoid, limited options */
+color: red;
+color: cornflowerblue;
+
+/* Hex — most common for solid colors */
+color: #e94560;      /* 6 digits */
+color: #fff;         /* short = #ffffff */
+color: #e9456080;    /* 8 digits = includes opacity */
+
+/* RGB — useful when you need to vary opacity */
+color: rgb(233, 69, 96);
+color: rgba(233, 69, 96, 0.5); /* 50% transparent */
+
+/* HSL — most intuitive for adjusting colors */
+color: hsl(350, 80%, 59%);
+color: hsla(350, 80%, 59%, 0.5);
+
+/* Modern — space-separated, no commas */
+color: rgb(233 69 96 / 50%);</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>CSS Variables for Colors</h3>
+          <p>Define your palette once in :root. Change one line to update the whole site.</p>
+          <pre><code>:root {
+  /* Brand palette */
+  --primary:   #e94560;
+  --secondary: #48cae4;
+  --accent:    #fdcb6e;
+
+  /* Backgrounds */
+  --bg:        #0f0f1a;
+  --surface:   #1a1a2e;
+
+  /* Borders */
+  --border:    #2a2a45;
+
+  /* Text */
+  --text:      #e0e0f0;
+  --muted:     #888aaa;
+}
+
+/* Use everywhere */
+.card     { background: var(--surface); }
+.btn      { background: var(--primary); }
+.subtitle { color: var(--muted); }</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Opacity &amp; Transparency</h3>
+          <p>Multiple ways to make elements or colors transparent.</p>
+          <pre><code>/* rgba — transparent COLOR only */
+background: rgba(233, 69, 96, 0.1);
+/* element content stays fully visible */
+
+/* opacity — transparent ENTIRE ELEMENT */
+.faded { opacity: 0.5; }
+/* everything including children fades */
+
+/* Hex with alpha */
+background: #e9456020; /* last 2 digits = opacity */
+/* 00=0%  40=25%  80=50%  bf=75%  ff=100% */
+
+/* CSS variable trick — define color as RGB channels */
+:root { --primary-rgb: 233, 69, 96; }
+background: rgba(var(--primary-rgb), 0.1);
+background: rgba(var(--primary-rgb), 0.5);</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Common Color Pairs</h3>
+          <p>Tried-and-tested combinations that always look good together.</p>
+          <ul>
+            <li><strong>Dark theme:</strong> bg <code>#0f0f1a</code>, text <code>#e0e0f0</code></li>
+            <li><strong>Light theme:</strong> bg <code>#f8f9fa</code>, text <code>#1a1a2e</code></li>
+            <li><strong>Danger/Error:</strong> <code>#e94560</code> on dark, <code>#d63031</code> on light</li>
+            <li><strong>Success:</strong> <code>#55efc4</code> on dark, <code>#00b894</code> on light</li>
+            <li><strong>Warning:</strong> <code>#fdcb6e</code> on dark, <code>#e17055</code> on light</li>
+            <li><strong>Info:</strong> <code>#48cae4</code> on dark, <code>#0984e3</code> on light</li>
+            <li><strong>Subtle borders:</strong> white at 8–15% opacity on dark themes</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TYPOGRAPHY -->
+    <div class="cs-section">
+      <div class="cs-section-title">Typography</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>Font Stack</h3>
+          <p>Always provide fallback fonts. The browser uses the first available one.</p>
+          <pre><code>/* System font stack — fast, no download needed */
+font-family: 'Segoe UI', Arial, sans-serif;
+
+/* Common stacks */
+font-family: Georgia, 'Times New Roman', serif;  /* classic serif */
+font-family: 'Courier New', Courier, monospace;  /* code */
+
+/* Google Fonts — link in &lt;head&gt; first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+font-family: 'Inter', sans-serif;
+
+/* Variable font — one file, many weights */
+font-weight: 100 900; /* any weight in range */</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Type Scale</h3>
+          <p>A consistent scale makes headings feel intentional, not random.</p>
+          <pre><code>/* Base: 1rem = 16px */
+/* Scale ratio: ~1.25 (Major Third) */
+
+.text-xs   { font-size: 0.75rem;  } /* 12px */
+.text-sm   { font-size: 0.875rem; } /* 14px */
+.text-base { font-size: 1rem;     } /* 16px */
+.text-lg   { font-size: 1.125rem; } /* 18px */
+.text-xl   { font-size: 1.25rem;  } /* 20px */
+.text-2xl  { font-size: 1.5rem;   } /* 24px */
+.text-3xl  { font-size: 1.875rem; } /* 30px */
+.text-4xl  { font-size: 2.25rem;  } /* 36px */
+
+/* Or use clamp() for fluid scaling */
+h1 { font-size: clamp(1.8rem, 5vw, 3rem); }</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Readability Properties</h3>
+          <p>The small tweaks that separate professional type from beginner type.</p>
+          <pre><code>/* ✅ Set these globally on body */
+body {
+  line-height: 1.6;        /* comfortable for body text */
+  font-size: 1rem;
+  color: var(--text);
+}
+
+/* Headings — tighter, heavier */
+h1, h2, h3 {
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.5px; /* slightly tighter at large sizes */
+}
+
+/* Long-form text — optimal reading width */
+.prose {
+  max-width: 65ch; /* ~65 characters per line */
+}
+
+/* Labels, badges — spaced out */
+.label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>Text Utilities</h3>
+          <p>Common text styling properties you'll use constantly.</p>
+          <pre><code>/* Alignment */
+text-align: left | center | right | justify;
+
+/* Decoration */
+text-decoration: none;          /* remove underline */
+text-decoration: underline;
+
+/* Transform */
+text-transform: uppercase;
+text-transform: capitalize;
+
+/* Overflow — truncate long text */
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* adds "..." */
+}
+
+/* Weight */
+font-weight: 400;  /* normal */
+font-weight: 600;  /* semi-bold */
+font-weight: 700;  /* bold */
+font-weight: 900;  /* black */</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PLANNING & DEBUGGING -->
+    <div class="cs-section">
+      <div class="cs-section-title">Planning &amp; Debugging Quick Reference</div>
+      <div class="cs-grid">
+
+        <div class="cs-card">
+          <h3>Layout Planning Questions</h3>
+          <p>Answer these 3 questions before writing any CSS.</p>
+          <ul>
+            <li><strong>What are the sections?</strong> Header, sidebar, main, footer</li>
+            <li><strong>How many columns?</strong> 1, 2, 3? Fixed sidebar or flexible?</li>
+            <li><strong>What happens on mobile?</strong> Stack vertically? Hide sidebar?</li>
+            <li>Draw boxes on paper or in a notes app first</li>
+            <li>Start with the outermost container, work inward</li>
+            <li>Use Grid for the page layout, Flexbox for components</li>
+            <li>Add <code>outline: 1px solid red</code> on elements to see their real size</li>
+          </ul>
+        </div>
+
+        <div class="cs-card">
+          <h3>Project File Structure</h3>
+          <p>Standard structure for a clean, self-contained project.</p>
+          <pre><code>project-name/
+├── index.html         ← entry point
+├── css/
+│   └── style.css      ← all styles
+├── js/
+│   └── main.js        ← all scripts
+└── images/
+    └── logo.png
+
+&lt;!-- In HTML — relative paths always --&gt;
+&lt;link rel="stylesheet" href="css/style.css" /&gt;
+&lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;img src="images/logo.png" alt="Logo" /&gt;
+
+&lt;!-- Script: bottom of body OR defer in head --&gt;
+&lt;script src="js/main.js" defer&gt;&lt;/script&gt;</code></pre>
+        </div>
+
+        <div class="cs-card">
+          <h3>CSS Not Working? Checklist</h3>
+          <p>Work through this in order — one of these is almost always the cause.</p>
+          <ul>
+            <li>Is the CSS file linked? Check the <code>&lt;link&gt;</code> href path</li>
+            <li>Typo in class name? Compare HTML and CSS exactly</li>
+            <li>Being overridden? Open DevTools → Styles panel → look for crossed-out rules</li>
+            <li>Wrong element selected? Add a temp color to confirm the selector works</li>
+            <li>Specificity battle? Simplify the selector or use a more specific class</li>
+            <li>Missing <code>box-sizing: border-box</code>? Add the * reset</li>
+            <li>Flexbox on wrong element? Parent needs <code>display: flex</code>, not the child</li>
+          </ul>
+        </div>
+
+        <div class="cs-card">
+          <h3>DevTools — Must-Know Shortcuts</h3>
+          <p>The most useful DevTools actions for a beginner.</p>
+          <ul>
+            <li><strong>F12</strong> — open/close DevTools</li>
+            <li><strong>Right-click → Inspect</strong> — jump to that element</li>
+            <li><strong>Ctrl+Shift+C</strong> — click to inspect any element</li>
+            <li><strong>Styles panel</strong> — see all CSS on selected element</li>
+            <li><strong>Crossed-out style</strong> — being overridden, click to see by what</li>
+            <li><strong>Click any value</strong> — edit it live (resets on refresh)</li>
+            <li><strong>Console tab</strong> — errors + console.log output</li>
+            <li><strong>Network tab</strong> — check if files loaded (red = 404)</li>
+          </ul>
+        </div>
+
+        <div class="cs-card wide">
+          <h3>Reading MDN Documentation</h3>
+          <p>The most reliable resource in web development. How to use it effectively.</p>
+          <pre><code>/* How to search — always add "mdn" */
+Google: "css grid mdn"         → https://developer.mozilla.org/...
+Google: "array filter mdn"     → https://developer.mozilla.org/...
+
+/* MDN page layout */
+/* 1. Description — what it does (can be dense, skim first) */
+/* 2. Syntax       — the exact format of the property/method */
+/* 3. Parameters   — what values it accepts */
+/* 4. Examples     — start here! clear, runnable code */
+/* 5. Browser compat — scroll down: is it safe to use? Green = yes */
+
+/* Quick links */
+/* CSS properties: developer.mozilla.org/en-US/docs/Web/CSS */
+/* JS methods:     developer.mozilla.org/en-US/docs/Web/JavaScript */
+/* HTML elements:  developer.mozilla.org/en-US/docs/Web/HTML */</code></pre>
+        </div>
+
+        <div class="cs-card wide">
+          <h3>The Debugging Process</h3>
+          <p>A repeatable system for fixing any bug, any language.</p>
+          <pre><code>/* Step 1 — Read the error message */
+/* Error messages tell you: what went wrong + file + line number */
+/* Don't skip this. Read every word carefully. */
+
+/* Step 2 — Reproduce it reliably */
+/* Can you make it happen on demand? If yes, you can fix it. */
+
+/* Step 3 — Isolate it */
+/* Comment out half the code. Still broken? The bug is in the remaining half. */
+/* Repeat until you've narrowed it to one function or one rule. */
+
+/* Step 4 — Check your assumptions */
+console.log("value is:", myVariable); // is it what you think it is?
+
+/* Step 5 — Google the exact error message in quotes */
+// "Cannot read properties of null (reading 'innerHTML')"
+// Someone has had this exact error before.
+
+/* Step 6 — Take a break if stuck for 30+ minutes */
+/* Fresh eyes catch what tired eyes miss. Genuinely. */</code></pre>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    Foundations Cheatsheet &nbsp;|&nbsp; <a href="foundations.html">Foundations Guide →</a> &nbsp;|&nbsp; <a href="foundations-tips.html">Foundations Tips →</a> &nbsp;|&nbsp; <a href="../index.html">← Home</a>
+  </footer>
+
+</body>
+</html>
