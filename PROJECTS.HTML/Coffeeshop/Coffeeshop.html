@@ -12,7 +12,7 @@
 <body>
     <header>
         <nav>
-            <a href="" class="logo">
+            <a href="#" class="logo">
                 <img src="./coffee_images/coffee-svgrepo-com.svg" alt="coffee logo" width="80">
                 <span>All Cafe</span>
             </a>
@@ -46,7 +46,7 @@
         <div class="banner">
             <h1>Welcome to Cafe</h1>
             <p>Your Cozy corner for the best coffee in town</p>
-            <a href="#menu" class="btn">Explore Our Menu</a>
+            <a href="#menu-list" class="btn">Explore Our Menu</a>
 
         </div>
     </header>
@@ -69,7 +69,7 @@
                 <h2>about us</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, vel.</p>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, perferendis?</p>
-                <a href="" class="btn">Learn More</a>
+                <a href="#contact" class="btn">Learn More</a>
             </div>
 
         </section>
@@ -251,7 +251,7 @@
                     <div class="product-info">
                         <h3>Coffee <br>(Espresso)</h3>
                         <p>40%</p>
-                        <a href="" class="btn bttn-sm">Add to Cart</a>
+                        <a href="#" class="btn bttn-sm">Add to Cart</a>
                     </div>
 
                     <div class="product-img">
@@ -267,7 +267,7 @@
                     <div class="product-info">
                         <h3>cake <br>(Espresso)</h3>
                         <p>40%</p>
-                        <a href="" class="btn bttn-sm">Add to Cart</a>
+                        <a href="#" class="btn bttn-sm">Add to Cart</a>
                     </div>
 
                     <div class="product-img">
@@ -279,7 +279,7 @@
                     <div class="product-info">
                         <h3>egg <br> (egg)</h3>
                         <p>40%</p>
-                        <a href="" class="btn bttn-sm">Add to Cart</a>
+                        <a href="#" class="btn bttn-sm">Add to Cart</a>
                     </div>
 
                     <div class="product-img">
@@ -872,73 +872,96 @@
 
         <section class="last-one">
             <div class="last-1">
-
-                <h2>Businesses</h2>
-
-
+                <h2>Our Businesses</h2>
+                <p class="last-subtitle">Explore what we offer across all areas</p>
             </div>
 
+            <div class="biz-wrapper">
 
-
-
-            <div class="last-2">
-
-
-
-                <div class="three-inside-box">
-
-
-                    <div class="first-box all-box">
-                        <img src="./coffee_images/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg" alt="tech" width="100%">
+                <!-- LEFT NAV -->
+                <div class="biz-nav">
+                    <div class="biz-tab active" data-tab="0">
+                        <span>Cloud Computing</span>
+                        <div class="biz-arrow">↗</div>
                     </div>
-
-                    <div class="second-box all-box">
-                        <p>Lorem ipsum dolor sit <br> amet consectetur adipisicing elit. </p>
-
-                        <p>Lorem ipsum dolor sit amet <br>consectetur adipisicing elit. Deleniti <br>nam fuga et. Enim
-                            officiis
-                            <br>corporis mollitia quidem dolore, saepe <br>architecto!
-
-                        </p>
-                        <div class="three-lists">
-                            <ul>
-                                <li>Technology Consultancy</li>
-                                <li>We Provide best services</li>
-                                <li>Requirements Gathering</li>
-                            </ul>
-                        </div>
+                    <div class="biz-tab" data-tab="1">
+                        <span>Data Protection</span>
+                        <div class="biz-arrow">↗</div>
                     </div>
-
-                    <div class="third-box all-box">
-                        <div class="example-test">
-
-                            <ul>
-                                <li>Cloud Computing</li>
-                                <li>Date Protection</li>
-                                <li>Data Analytics</li>
-                                <li>IT Consulting</li>
-                                <li>Managed IT Services</li>
-                            </ul>
-                        </div>
-
+                    <div class="biz-tab" data-tab="2">
+                        <span>Data Analytics</span>
+                        <div class="biz-arrow">↗</div>
                     </div>
-
-
+                    <div class="biz-tab" data-tab="3">
+                        <span>IT Consulting</span>
+                        <div class="biz-arrow">↗</div>
+                    </div>
+                    <div class="biz-tab" data-tab="4">
+                        <span>Managed IT Services</span>
+                        <div class="biz-arrow">↗</div>
+                    </div>
                 </div>
 
+                <!-- MIDDLE CONTENT -->
+                <div class="biz-content">
+                    <div class="biz-panel active" data-panel="0">
+                        <h3>Scale effortlessly with secure cloud platforms and hybrid solutions</h3>
+                        <p>Our job doesn't stop. We provide continuous monitoring, maintenance, and optimization to ensure seamless operation and peak performance at all times.</p>
+                        <ul class="biz-list">
+                            <li>Technology Consultancy</li>
+                            <li>We Provide best services</li>
+                            <li>Requirements Gathering</li>
+                        </ul>
+                    </div>
+                    <div class="biz-panel" data-panel="1">
+                        <h3>Protect your business data with enterprise-grade security solutions</h3>
+                        <p>We implement robust security frameworks to keep your sensitive data safe from threats, breaches, and unauthorized access 24/7.</p>
+                        <ul class="biz-list">
+                            <li>End-to-End Encryption</li>
+                            <li>Compliance Management</li>
+                            <li>Threat Detection & Response</li>
+                        </ul>
+                    </div>
+                    <div class="biz-panel" data-panel="2">
+                        <h3>Transform raw data into powerful business insights and decisions</h3>
+                        <p>Our analytics team helps you understand your data, identify trends, and make smarter decisions that drive real growth and efficiency.</p>
+                        <ul class="biz-list">
+                            <li>Real-Time Dashboards</li>
+                            <li>Predictive Analytics</li>
+                            <li>Custom Reports</li>
+                        </ul>
+                    </div>
+                    <div class="biz-panel" data-panel="3">
+                        <h3>Expert IT guidance to align technology with your business goals</h3>
+                        <p>Our consultants work closely with your team to design strategies that maximize ROI, reduce costs, and future-proof your technology stack.</p>
+                        <ul class="biz-list">
+                            <li>IT Strategy Planning</li>
+                            <li>System Architecture</li>
+                            <li>Digital Transformation</li>
+                        </ul>
+                    </div>
+                    <div class="biz-panel" data-panel="4">
+                        <h3>24/7 monitoring and full management of your IT infrastructure</h3>
+                        <p>We handle everything — from network management to software updates — so your team can focus on what matters most: growing your business.</p>
+                        <ul class="biz-list">
+                            <li>Network Monitoring</li>
+                            <li>Help Desk Support</li>
+                            <li>Proactive Maintenance</li>
+                        </ul>
+                    </div>
+                </div>
 
+                <!-- RIGHT IMAGE -->
+                <div class="biz-img">
+                    <img src="./coffee_images/alex-knight-2EJCSULRwC8-unsplash.jpg" alt="technology" />
+                </div>
 
             </div>
 
-
-
             <div class="last-3">
-
                 <div class="fouth-box">
                     <h3>Trusted by millions of customers</h3>
-
                     <hr>
-
                     <div class="space-letters">
                         <span>Technology</span>
                         <span>TECHNOLOGY</span>
@@ -946,14 +969,8 @@
                         <span>TECHNOLOGY</span>
                         <span>TECHNOLOGY</span>
                         <span>TECHNOLOGY</span>
-
                     </div>
-
-
                 </div>
-
-
-
             </div>
         </section>
 
@@ -975,6 +992,19 @@
         <p>&copy; 2025 Coffee Shop. All rights reserved.</p>
     </footer>
     <script src="js/main.js"></script>
+    <script>
+        // Business tabs
+        const tabs = document.querySelectorAll('.biz-tab');
+        const panels = document.querySelectorAll('.biz-panel');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelector(`.biz-panel[data-panel="${tab.dataset.tab}"]`).classList.add('active');
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -1,98 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Myat Kaung Kyaw – Software Engineering Student</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Myat Kaung Kyaw — Software Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
 
-    <div class="side-lines">
-        <div class="line left"></div>
-        <div class="line right"></div>
+  <!-- BACKGROUND BLOBS -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">MKK<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="hero-content">
+      <div class="photo-wrap">
+        <img src="./images/7878.jpg" alt="Myat Kaung Kyaw" />
+        <div class="photo-ring"></div>
+      </div>
+      <div class="hero-badge">👋 Available for collaborations</div>
+      <h1>Myat Kaung <span class="accent">Kyaw</span></h1>
+      <div class="typing-wrap">
+        <span class="typing-static">I'm a </span>
+        <span class="typing-text" id="typing"></span><span class="cursor">|</span>
+      </div>
+      <p class="hero-desc">
+        Software Engineering student at <strong>Chiang Mai University</strong>, Thailand.
+        Passionate about building clean, efficient, and scalable web experiences.
+      </p>
+      <div class="hero-info">
+        <span><i class="fas fa-graduation-cap"></i> North Chiang Mai University</span>
+        <span><i class="fas fa-map-marker-alt"></i> Chiang Mai, Thailand</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-secondary">Contact Me</a>
+      </div>
     </div>
+  </section>
 
-    <div class="container">
+  <!-- ABOUT -->
+  <section class="section" id="about-section">
+    <div class="section-inner">
+      <div class="section-label">ABOUT ME</div>
+      <h2 class="section-title">Who I Am</h2>
+      <div class="about-grid">
+        <div class="about-card glass">
+          <div class="about-icon">🎯</div>
+          <h3>My Goal</h3>
+          <p>To build clean, efficient, and scalable projects that solve real problems. I love turning ideas into working products.</p>
+        </div>
+        <div class="about-card glass">
+          <div class="about-icon">📚</div>
+          <h3>Currently Learning</h3>
+          <p>Frontend development, data structures & algorithms, database systems, and software design architecture.</p>
+        </div>
+        <div class="about-card glass">
+          <div class="about-icon">🤝</div>
+          <h3>Open To</h3>
+          <p>Collaborations, open-source projects, and learning opportunities. Always happy to work with others and grow together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <header>
-            <div class="photo-container">
-                <img src="./images/7878.jpg" alt="Myat Kaung Kyaw">
-            </div>
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-inner">
+      <div class="section-label">TECH STACK</div>
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <div class="skills-grid">
 
-            <h1>Myat Kaung Kyaw</h1>
-            <div class="tagline">Software Engineering Student</div>
-
-            <div class="info">
-                <div class="info-item">
-                    <i class="fas fa-graduation-cap"></i>
-                    North-Chiang-Mai-University
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Chiang Mai, Thailand
-                </div>
-            </div>
-        </header>
-
-        <main>
-            <div class="card">
-                <h2>About Me</h2>
-                <p>
-                    I'm Myat Kaung Kyaw, currently studying <strong>Software Engineering</strong> at <strong>Chiang
-                        Mai University</strong>.<br><br>
-                    I am passionate about developing clean, efficient, and scalable projects. I enjoy solving
-                    complex problems, learning
-                    new technologies, and continuously improving my technical and analytical skills. I am eager to apply
-                    my knowledge in
-                    real-world projects and contribute to a dynamic and growth-oriented team.
-                </p>
-            </div>
-
-            <div class="card">
-                <h2>What I'm Learning</h2>
-                <p>
-                    • Programming Fundamentals<br>
-                    • Data Structures & Algorithms<br>
-                    • Database Systems<br>
-                    • Software Design & Architecture<br>
-                    • And many more exciting topics!
-                </p>
-                <p style="margin-top: 20px;">
-                    Always open to new projects, and learning from others.
-                </p>
-            </div>
-
-            <div class="card">
-                <h2>Let's Connect</h2>
-                <p>
-                    Feel free to reach out if you'd like to chat about coding, university life in Chiang Mai, or
-                    potential collaborations.<br><br>
-                    Email: <strong>myatkaungmyat508@gmail.com</strong><br>
-
-                </p>
-            </div>
-        </main>
-
-        <div class="social-links">
-            <a href="https://github.com/MyatKaungKyaw242"><i class="fab fa-github"></i></a>
-
-            <a href="https://www.facebook.com/profile.php?id=61578604209252" target="_blank"><i
-                    class="fab fa-facebook"></i></a>
-
+        <div class="skill-group glass">
+          <h3 class="skill-group-title"><span class="dot dot-yellow"></span> Frontend</h3>
+          <div class="skill-tags">
+            <span class="tag tag-yellow">HTML5</span>
+            <span class="tag tag-red">CSS3</span>
+            <span class="tag tag-js">JavaScript</span>
+            <span class="tag tag-react">React</span>
+          </div>
         </div>
 
-        <footer>
-            © 2026 Myat Kaung Kyaw – Chiang Mai University<br>
+        <div class="skill-group glass">
+          <h3 class="skill-group-title"><span class="dot dot-blue"></span> Languages</h3>
+          <div class="skill-tags">
+            <span class="tag tag-orange">Java</span>
+            <span class="tag tag-js">JavaScript</span>
+            <span class="tag tag-blue">SQL</span>
+          </div>
+        </div>
 
-        </footer>
+        <div class="skill-group glass">
+          <h3 class="skill-group-title"><span class="dot dot-green"></span> Tools</h3>
+          <div class="skill-tags">
+            <span class="tag tag-green">Git</span>
+            <span class="tag tag-green">GitHub</span>
+            <span class="tag tag-purple">VS Code</span>
+            <span class="tag tag-teal">Vite</span>
+          </div>
+        </div>
 
+        <div class="skill-group glass">
+          <h3 class="skill-group-title"><span class="dot dot-purple"></span> Currently Exploring</h3>
+          <div class="skill-tags">
+            <span class="tag tag-react">React Router</span>
+            <span class="tag tag-purple">Data Structures</span>
+            <span class="tag tag-teal">Algorithms</span>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-inner">
+      <div class="section-label">WHAT I'VE BUILT</div>
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+
+        <a href="https://myatkaungkyaw242.github.io/Learn-Everything" target="_blank" class="project-card glass">
+          <div class="project-top">
+            <span class="project-icon">📚</span>
+            <div class="project-links">
+              <span class="project-live">Live ↗</span>
+            </div>
+          </div>
+          <h3>Learn-Everything</h3>
+          <p>A complete Web Dev 0 to Hero learning system — HTML, CSS, JS, React guides, cheatsheets, progress tracker, and more. 21 files, 74 topics.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/MyatKaungKyaw242/VS-code-Web-HTML-CSS-JavaScript" target="_blank" class="project-card glass">
+          <div class="project-top">
+            <span class="project-icon">💻</span>
+            <div class="project-links">
+              <span class="project-live">GitHub ↗</span>
+            </div>
+          </div>
+          <h3>VS Code Projects</h3>
+          <p>A collection of small web projects built while learning HTML, CSS, and JavaScript in VS Code.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/MyatKaungKyaw242/java-projects" target="_blank" class="project-card glass">
+          <div class="project-top">
+            <span class="project-icon">☕</span>
+            <div class="project-links">
+              <span class="project-live">GitHub ↗</span>
+            </div>
+          </div>
+          <h3>Java Projects</h3>
+          <p>Java practice projects covering OOP, searching and sorting algorithms, and data structures fundamentals.</p>
+          <div class="project-tags">
+            <span>Java</span><span>OOP</span><span>Algorithms</span>
+          </div>
+        </a>
+
+        <a href="https://myatkaungkyaw242.github.io/cat-temp-area/" target="_blank" class="project-card glass">
+          <div class="project-top">
+            <span class="project-icon">🐱</span>
+            <div class="project-links">
+              <span class="project-live">Live ↗</span>
+            </div>
+          </div>
+          <h3>cat-temp-area</h3>
+          <p>A stylish bento-grid UI for a fictional coffee brand — animated cards, bold typography, and a dark yellow aesthetic.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>Grid</span>
+          </div>
+        </a>
+
+        <a href="https://myatkaungkyaw242.github.io/coffeeshop-website/" target="_blank" class="project-card glass">
+          <div class="project-top">
+            <span class="project-icon">🍵</span>
+            <div class="project-links">
+              <span class="project-live">Live ↗</span>
+            </div>
+          </div>
+          <h3>Coffeeshop Website</h3>
+          <p>A fully responsive coffee shop landing page with animated sections, product listings, tabbed business overview, and a warm café aesthetic.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-inner contact-inner">
+      <div class="section-label">GET IN TOUCH</div>
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="contact-desc">Feel free to reach out for collaborations, questions, or just to say hi!</p>
+
+      <a href="mailto:myatkaungmyat508@gmail.com" class="email-btn">
+        <i class="fas fa-envelope"></i> myatkaungmyat508@gmail.com
+      </a>
+
+      <div class="social-row">
+        <a href="https://github.com/MyatKaungKyaw242" target="_blank" class="social-btn">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61578604209252" target="_blank" class="social-btn">
+          <i class="fab fa-facebook"></i> Facebook
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Myat Kaung Kyaw &nbsp;·&nbsp; Built with ❤️ &nbsp;·&nbsp; Chiang Mai University</p>
+  </footer>
+
+  <script>
+    // Typing animation
+    const words = ['Software Engineer.', 'Frontend Developer.', 'Java Programmer.', 'Problem Solver.', 'Lifelong Learner.'];
+    let wordIndex = 0, charIndex = 0, deleting = false;
+    const el = document.getElementById('typing');
+
+    function type() {
+      const word = words[wordIndex];
+      if (!deleting) {
+        el.textContent = word.slice(0, ++charIndex);
+        if (charIndex === word.length) { deleting = true; setTimeout(type, 1800); return; }
+      } else {
+        el.textContent = word.slice(0, --charIndex);
+        if (charIndex === 0) { deleting = false; wordIndex = (wordIndex + 1) % words.length; }
+      }
+      setTimeout(type, deleting ? 60 : 100);
+    }
+    type();
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.glass, .hero-content, .section-title, .section-label').forEach(el => observer.observe(el));
+  </script>
 
 </body>
-
 </html>

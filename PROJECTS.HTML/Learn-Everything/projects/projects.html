@@ -20,6 +20,901 @@
       <strong>How to use this list:</strong> After finishing each section of your guides, pick a project from that difficulty tier. Don't skip to advanced too fast — building beginner projects perfectly teaches more than rushing advanced ones.
     </div>
 
+    <!-- ══════════════════ HTML ONLY LINK CARD ══════════════════ -->
+    <a class="guide-card" href="html-guide.html">
+      <div class="guide-card-top">
+        <span class="guide-card-badge">Tier 0 — Start Here</span>
+        <h2>HTML Only Guide</h2>
+      </div>
+      <p class="guide-card-desc">
+        Pure HTML. Zero CSS. Zero JavaScript. Everything a complete beginner needs to know about HTML — all in one place. Cheat sheet, deep dives on every element, tips, common mistakes with fixes, a full summary, 5 projects, and a clear path to what's next.
+      </p>
+      <div class="guide-card-features">
+        <span class="guide-feature">What is HTML?</span>
+        <span class="guide-feature">Cheat Sheet</span>
+        <span class="guide-feature">ul / ol / li / a / nav / section / id</span>
+        <span class="guide-feature">12 Tips &amp; Tricks</span>
+        <span class="guide-feature">10 Common Mistakes + Fixes</span>
+        <span class="guide-feature">12-Point Summary</span>
+        <span class="guide-feature">5 HTML-Only Projects</span>
+        <span class="guide-feature">What's Next After HTML</span>
+      </div>
+      <span class="guide-cta">Open HTML Guide →</span>
+    </a>
+
+    <!-- ══════════════════ BEGINNER ══════════════════ -->
+    <section class="tier" id="html-only" style="display:none">
+      <div class="tier-header t-orange">
+        <span class="tier-badge">HTML Only</span>
+        <h2>Tier 0 — Pure HTML. Zero CSS. Zero JavaScript.</h2>
+        <p>Master the skeleton of every webpage before touching a single style or script.</p>
+      </div>
+
+      <!-- JUMP LINKS -->
+      <nav class="jump-nav" aria-label="Jump to section">
+        <a class="jump-link" href="#sec-what-is-html">What is HTML?</a>
+        <a class="jump-link" href="#sec-cheatsheet">Cheat Sheet</a>
+        <a class="jump-link" href="#sec-deep-dive">How to Use Elements</a>
+        <a class="jump-link" href="#sec-tips">Tips &amp; Tricks</a>
+        <a class="jump-link" href="#sec-mistakes">Common Mistakes</a>
+        <a class="jump-link" href="#sec-summary">Summary</a>
+        <a class="jump-link" href="#sec-projects">Projects</a>
+        <a class="jump-link" href="#sec-next">What's Next</a>
+      </nav>
+
+      <!-- WHAT IS HTML -->
+      <div class="html-intro" id="sec-what-is-html">
+        <div class="html-intro-title">Wait — What Even IS HTML?</div>
+        <p class="html-intro-subtitle">
+          HTML stands for <strong style="color:#fdcb6e">HyperText Markup Language</strong>. That sounds complicated, but it just means: a language that uses special labels (called <strong style="color:#fff">tags</strong>) to tell the browser what each piece of content IS.<br><br>
+          You write HTML in a plain text file saved as <strong style="color:#fff">.html</strong>. You open that file in a browser (Chrome, Edge, Firefox). The browser reads your tags and displays the content correctly. That's it. That's a webpage.<br><br>
+          HTML is NOT a programming language — it has no logic, no calculations, no decisions. It's purely a way to <strong style="color:#fff">describe and organise content</strong>. Think of it like writing a letter where you also label every part: "this is the title", "this is a paragraph", "this is a list".
+        </p>
+        <div class="html-intro-analogy">
+          <div class="analogy-box">
+            <div class="analogy-icon">🏗️</div>
+            <h5>HTML</h5>
+            <p>The walls, floors, and rooms of a building. The structure and layout — what exists and where.</p>
+          </div>
+          <div class="analogy-box">
+            <div class="analogy-icon">🎨</div>
+            <h5>CSS</h5>
+            <p>The paint, furniture, and decoration. Makes the structure look beautiful. You'll learn this next.</p>
+          </div>
+          <div class="analogy-box">
+            <div class="analogy-icon">⚡</div>
+            <h5>JavaScript</h5>
+            <p>The electricity, doors, and elevators. Makes things interactive and dynamic. Comes after CSS.</p>
+          </div>
+        </div>
+        <p class="html-intro-subtitle" style="margin-top:4px; font-size:0.8rem; color: rgba(253,203,110,0.8);">
+          <strong>Two words you'll see everywhere:</strong>
+          &nbsp; <span class="glossary-pill" title="A meaningful tag — one that describes what the content IS, not just how it looks. Examples: header, nav, article, footer">Semantic</span> = meaningful / descriptive (a tag that says WHAT the content is).
+          &nbsp; <span class="glossary-pill" title="Software used by blind or visually impaired people. It reads the webpage aloud. Good HTML makes pages usable by screen readers.">Screen reader</span> = software that reads webpages aloud for blind users.
+          &nbsp; <span class="glossary-pill" title="Search Engine Optimisation — how Google and other search engines find, understand, and rank your page. Good HTML structure helps SEO.">SEO</span> = how well Google can find and understand your page.
+        </p>
+      </div>
+
+      <!-- SUMMARY / CHEAT SHEET -->
+      <div class="html-block" id="sec-cheatsheet">
+        <div class="html-block-title">Everything You Need to Know — HTML Cheat Sheet</div>
+        <div class="cheat-grid">
+
+          <div class="cheat-item">
+            <h4>Page Structure</h4>
+            <p class="cheat-desc">Think of this as the skeleton every HTML file must have. Without it, your page may look broken or behave differently across browsers. Every single .html file you ever create starts with exactly this.</p>
+            <code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport"
+      content="width=device-width"&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    ...content here...
+  &lt;/body&gt;
+&lt;/html&gt;</code>
+          </div>
+
+          <div class="cheat-item">
+            <h4>Headings &amp; Text</h4>
+            <p class="cheat-desc">Headings are like chapter titles in a book — h1 is the main title (only one per page!), h2 is a section title, and they get smaller down to h6. p is for normal paragraph text. strong makes text bold, em makes it italic.</p>
+            <code>&lt;h1&gt;Main Title (ONE per page)&lt;/h1&gt;
+&lt;h2&gt;Section Heading&lt;/h2&gt;
+&lt;h3&gt; ... &lt;h6&gt;Smallest&lt;/h6&gt;
+&lt;p&gt;Normal paragraph text here.&lt;/p&gt;
+&lt;strong&gt;Bold — important text&lt;/strong&gt;
+&lt;em&gt;Italic — emphasis&lt;/em&gt;
+&lt;br&gt;  ← forces a new line
+&lt;hr&gt;  ← draws a horizontal line
+&lt;!-- Browser ignores this comment --&gt;</code>
+          </div>
+
+          <div class="cheat-item">
+            <h4>Links &amp; Images</h4>
+            <p class="cheat-desc">a (anchor) creates a clickable link. href is where it goes — it's required. img puts a picture on the page. src is the path to the image file. alt is what shows if the image fails to load, and screen readers read it aloud — never skip it.</p>
+            <code>&lt;a href="about.html"&gt;Go to About&lt;/a&gt;
+&lt;a href="https://google.com"
+   target="_blank"
+   rel="noopener noreferrer"&gt;
+  Opens safely in a new tab
+&lt;/a&gt;
+
+&lt;img src="photo.jpg"
+     alt="A dog playing in the park"
+     width="300"&gt;
+&lt;!-- alt="" only if image is decorative --&gt;</code>
+          </div>
+
+          <div class="cheat-item">
+            <h4>Lists</h4>
+            <p class="cheat-desc">ul is like a shopping list — bullets, order doesn't matter. ol is like a recipe — numbered steps, order matters. Every single item in both types is wrapped in an li tag. You can put a whole new list inside an li to make sub-items.</p>
+            <code>&lt;!-- ul = unordered, bullets --&gt;
+&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- ol = ordered, numbered steps --&gt;
+&lt;ol&gt;
+  &lt;li&gt;Open VS Code&lt;/li&gt;
+  &lt;li&gt;Create index.html&lt;/li&gt;
+  &lt;li&gt;Write your HTML&lt;/li&gt;
+&lt;/ol&gt;</code>
+          </div>
+
+          <div class="cheat-item">
+            <h4>Tables</h4>
+            <p class="cheat-desc">Think of a table like a spreadsheet. thead holds the top header row (column names). tbody holds all the actual data rows. tr means "table row." th means "table header cell" (bold by default). td means "table data cell" (normal text).</p>
+            <code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Name&lt;/th&gt;   &lt;!-- column title --&gt;
+      &lt;th&gt;Age&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Alice&lt;/td&gt;  &lt;!-- data cell --&gt;
+      &lt;td&gt;24&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code>
+          </div>
+
+          <div class="cheat-item">
+            <h4>Forms</h4>
+            <p class="cheat-desc">Forms collect information from users. input is the box they type into — its type attribute changes what kind of data it accepts. label tells users what the field is for and must be connected to its input using for and id. button submits the form.</p>
+            <code>&lt;form action="#" method="post"&gt;
+  &lt;label for="nm"&gt;Your Name&lt;/label&gt;
+  &lt;input type="text" id="nm"
+         name="nm" required
+         placeholder="Type here..."&gt;
+
+  &lt;input type="email"&gt;   &lt;!-- validates @ --&gt;
+  &lt;input type="password"&gt; &lt;!-- hides text --&gt;
+  &lt;input type="checkbox"&gt; &lt;!-- tick box --&gt;
+  &lt;input type="radio"&gt;    &lt;!-- pick one --&gt;
+  &lt;input type="date"&gt;     &lt;!-- date picker --&gt;
+
+  &lt;select&gt;
+    &lt;option&gt;Choice A&lt;/option&gt;
+    &lt;option&gt;Choice B&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;textarea rows="4"&gt;&lt;/textarea&gt;
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code>
+          </div>
+
+          <div class="cheat-item">
+            <h4>Semantic Tags</h4>
+            <p class="cheat-desc">These tags have <strong style="color:#fdcb6e">meaning built in</strong>. When Google reads your page, it understands that a &lt;nav&gt; is navigation and a &lt;footer&gt; is the bottom section. When a blind user's software reads your page, it knows to announce "navigation landmark" when it hits &lt;nav&gt;. A &lt;div&gt; tells them nothing at all. Use these tags instead.</p>
+            <code>&lt;header&gt;
+  &lt;!-- Logo + main navigation --&gt;
+&lt;/header&gt;
+&lt;nav&gt;    &lt;!-- navigation links --&gt;&lt;/nav&gt;
+&lt;main&gt;   &lt;!-- ONE per page --&gt;
+  &lt;section&gt; &lt;!-- grouped topic --&gt;&lt;/section&gt;
+  &lt;article&gt; &lt;!-- standalone piece --&gt;&lt;/article&gt;
+  &lt;aside&gt;   &lt;!-- sidebar/extra info --&gt;&lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt; &lt;!-- bottom of page --&gt;&lt;/footer&gt;</code>
+          </div>
+
+          <div class="cheat-item">
+            <h4>Inline vs Block</h4>
+            <p class="cheat-desc">Block elements always start on a new line and stretch the full width — like paragraphs. Inline elements sit inside text without breaking the flow — like bold words inside a sentence. You cannot put a block element inside an inline element.</p>
+            <code>&lt;!-- BLOCK: starts on its own line --&gt;
+&lt;div&gt; &lt;p&gt; &lt;h1&gt;–&lt;h6&gt;
+&lt;ul&gt; &lt;ol&gt; &lt;li&gt; &lt;table&gt;
+&lt;header&gt; &lt;section&gt; &lt;main&gt; etc.
+
+&lt;!-- INLINE: stays in the text flow --&gt;
+&lt;span&gt; &lt;a&gt; &lt;strong&gt; &lt;em&gt;
+&lt;img&gt; &lt;input&gt; &lt;label&gt; &lt;button&gt;
+
+&lt;!-- WRONG — block inside inline: --&gt;
+&lt;span&gt;&lt;p&gt;This breaks HTML!&lt;/p&gt;&lt;/span&gt;</code>
+          </div>
+
+          <div class="cheat-item">
+            <h4>Special Characters</h4>
+            <p class="cheat-desc">Some characters have special meaning in HTML — like &lt; and &gt; which the browser thinks are tags. If you want to display them as actual text on screen, you must use these escape codes instead. They always start with & and end with ;.</p>
+            <code>&amp;amp;    →  &amp;   (ampersand)
+&amp;lt;     →  &lt;   (less than)
+&amp;gt;     →  &gt;   (greater than)
+&amp;nbsp;   →  ·   (non-breaking space)
+&amp;copy;   →  ©   (copyright)
+&amp;trade;  →  ™   (trademark)
+&amp;mdash;  →  —   (long dash)
+&amp;hearts; →  ♥   (heart)</code>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ELEMENT DEEP DIVE -->
+      <div class="html-block" id="sec-deep-dive">
+        <div class="html-block-title">How to Use — Elements &amp; Attributes Deep Dive</div>
+        <div class="deep-grid">
+
+          <!-- ul / ol / li -->
+          <div class="deep-item">
+            <h4>ul / ol / li — Lists</h4>
+            <p class="deep-desc">
+              <code>&lt;ul&gt;</code> = unordered (bullets) &nbsp;|&nbsp; <code>&lt;ol&gt;</code> = ordered (numbers)<br>
+              Every item goes inside <code>&lt;li&gt;</code>. You can nest lists inside any <code>&lt;li&gt;</code>.
+            </p>
+            <pre>&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS
+    &lt;ul&gt;
+      &lt;li&gt;Flexbox&lt;/li&gt;
+      &lt;li&gt;Grid&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Ordered with custom start --&gt;
+&lt;ol type="A" start="3"&gt;
+  &lt;li&gt;Starts at C&lt;/li&gt;
+  &lt;li&gt;Then D&lt;/li&gt;
+&lt;/ol&gt;</pre>
+            <p class="deep-note">type="1 / A / a / I / i" — ol only. Navigation menus are almost always ul &gt; li &gt; a.</p>
+          </div>
+
+          <!-- a -->
+          <div class="deep-item">
+            <h4>a — The Anchor Tag (Links)</h4>
+            <p class="deep-desc">
+              <code>href</code> is the destination. It can point to a page, a section, an email, a phone number, or a file to download.
+            </p>
+            <pre>&lt;!-- Same site (relative) --&gt;
+&lt;a href="about.html"&gt;About&lt;/a&gt;
+
+&lt;!-- External (new tab safely) --&gt;
+&lt;a href="https://google.com"
+   target="_blank"
+   rel="noopener noreferrer"&gt;
+  Google
+&lt;/a&gt;
+
+&lt;!-- Jump to section on same page --&gt;
+&lt;a href="#contact"&gt;Contact&lt;/a&gt;
+&lt;section id="contact"&gt;...&lt;/section&gt;
+
+&lt;!-- Email / Phone --&gt;
+&lt;a href="mailto:hi@example.com"&gt;Email&lt;/a&gt;
+&lt;a href="tel:+1234567890"&gt;Call&lt;/a&gt;
+
+&lt;!-- Download a file --&gt;
+&lt;a href="resume.pdf" download&gt;
+  Download CV
+&lt;/a&gt;</pre>
+            <p class="deep-note">Always add rel="noopener noreferrer" with target="_blank" — without it the new tab can access your page via window.opener.</p>
+          </div>
+
+          <!-- nav -->
+          <div class="deep-item">
+            <h4>nav — Navigation</h4>
+            <p class="deep-desc">
+              <code>&lt;nav&gt;</code> is a semantic wrapper for navigation links. Screen readers announce it as a landmark so users can jump straight to it. A page can have more than one <code>&lt;nav&gt;</code>.
+            </p>
+            <pre>&lt;!-- Main site nav --&gt;
+&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="about.html"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="contact.html"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;!-- Footer nav (second nav is fine) --&gt;
+&lt;footer&gt;
+  &lt;nav aria-label="Footer links"&gt;
+    &lt;a href="privacy.html"&gt;Privacy&lt;/a&gt;
+    &lt;a href="terms.html"&gt;Terms&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/footer&gt;</pre>
+            <p class="deep-note">Use aria-label="Footer links" when you have multiple navs so screen readers can tell them apart.</p>
+          </div>
+
+          <!-- section -->
+          <div class="deep-item">
+            <h4>section — Grouped Content</h4>
+            <p class="deep-desc">
+              <code>&lt;section&gt;</code> groups related content that belongs together. It should always have a heading inside. Not to be confused with <code>&lt;article&gt;</code> or <code>&lt;div&gt;</code>.
+            </p>
+            <pre>&lt;main&gt;
+  &lt;section id="about"&gt;
+    &lt;h2&gt;About Me&lt;/h2&gt;
+    &lt;p&gt;I build websites...&lt;/p&gt;
+  &lt;/section&gt;
+
+  &lt;section id="skills"&gt;
+    &lt;h2&gt;Skills&lt;/h2&gt;
+    &lt;ul&gt;...&lt;/ul&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</pre>
+            <p class="deep-note">
+              section = part of a larger page. &nbsp;|&nbsp;
+              article = fully standalone (blog post, comment, product card). &nbsp;|&nbsp;
+              div = no meaning at all — last resort only.
+            </p>
+          </div>
+
+          <!-- id -->
+          <div class="deep-item">
+            <h4>id — Unique Identifier</h4>
+            <p class="deep-desc">
+              Every <code>id</code> must be <strong style="color:#fff">unique on the page</strong> — only one element can have a given id. Used for anchor links, CSS targeting, and JavaScript.
+            </p>
+            <pre>&lt;!-- Anchor link jumps here --&gt;
+&lt;section id="contact"&gt;
+  &lt;h2&gt;Contact&lt;/h2&gt;
+&lt;/section&gt;
+
+&lt;!-- Link to it from anywhere --&gt;
+&lt;a href="#contact"&gt;Go to Contact&lt;/a&gt;
+
+&lt;!-- Works across pages too --&gt;
+&lt;a href="about.html#team"&gt;Meet the Team&lt;/a&gt;
+
+&lt;!-- CSS (use sparingly) --&gt;
+&lt;style&gt;
+  #contact { background: #111; }
+&lt;/style&gt;</pre>
+            <p class="deep-note">Never duplicate an id. If you need to style multiple elements the same way, use class instead.</p>
+          </div>
+
+          <!-- class -->
+          <div class="deep-item">
+            <h4>class — Reusable Label</h4>
+            <p class="deep-desc">
+              <code>class</code> can be reused on as many elements as you want. One element can also have multiple classes separated by spaces.
+            </p>
+            <pre>&lt;!-- Same class on many elements --&gt;
+&lt;div class="card"&gt;...&lt;/div&gt;
+&lt;div class="card"&gt;...&lt;/div&gt;
+&lt;div class="card"&gt;...&lt;/div&gt;
+
+&lt;!-- Multiple classes on one element --&gt;
+&lt;div class="card featured large"&gt;
+  ...
+&lt;/div&gt;
+
+&lt;!-- CSS targets all .card elements --&gt;
+&lt;style&gt;
+  .card { border: 1px solid #ccc; }
+  .featured { background: gold; }
+&lt;/style&gt;</pre>
+            <p class="deep-note">Use id when you mean "this one specific element." Use class when you mean "all elements of this type."</p>
+          </div>
+
+          <!-- div vs span -->
+          <div class="deep-item">
+            <h4>div &amp; span — Last Resort Containers</h4>
+            <p class="deep-desc">
+              <code>&lt;div&gt;</code> is a <strong style="color:#fff">block</strong> container with zero semantic meaning. <code>&lt;span&gt;</code> is an <strong style="color:#fff">inline</strong> container with zero semantic meaning. Use them only when no semantic tag fits.
+            </p>
+            <pre>&lt;!-- div: wraps a block of content --&gt;
+&lt;div class="card"&gt;
+  &lt;h3&gt;Title&lt;/h3&gt;
+  &lt;p&gt;Description&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- span: targets part of inline text --&gt;
+&lt;p&gt;
+  Price: &lt;span class="price"&gt;$29&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;!-- WRONG: block inside inline --&gt;
+&lt;span&gt;&lt;p&gt;Invalid HTML!&lt;/p&gt;&lt;/span&gt;</pre>
+            <p class="deep-note">Ask first: is there a semantic tag for this? header? nav? section? article? aside? footer? Only use div/span if the answer is no.</p>
+          </div>
+
+          <!-- header / main / footer / aside / article -->
+          <div class="deep-item">
+            <h4>header / main / footer / aside / article</h4>
+            <p class="deep-desc">
+              The full semantic layout toolkit — every page should use these instead of a sea of divs.
+            </p>
+            <pre>&lt;header&gt;
+  &lt;!-- Logo, site title, main nav --&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;!-- ONE per page. Primary content. --&gt;
+
+  &lt;article&gt;
+    &lt;!-- Standalone: blog post, card --&gt;
+  &lt;/article&gt;
+
+  &lt;aside&gt;
+    &lt;!-- Sidebar, related links --&gt;
+  &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;!-- Copyright, bottom nav --&gt;
+&lt;/footer&gt;</pre>
+            <p class="deep-note">Only one &lt;main&gt; per page. header and footer can appear inside article/section too, not just at the top/bottom of the page.</p>
+          </div>
+
+          <!-- figure / figcaption / blockquote -->
+          <div class="deep-item">
+            <h4>figure / figcaption / blockquote</h4>
+            <p class="deep-desc">
+              For images with captions and quoted content — more descriptive than wrapping everything in a div or p.
+            </p>
+            <pre>&lt;!-- Image with caption --&gt;
+&lt;figure&gt;
+  &lt;img src="chart.png" alt="Sales chart"&gt;
+  &lt;figcaption&gt;
+    Fig 1: Sales grew 40% in Q3.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;!-- Quoted content --&gt;
+&lt;blockquote cite="https://source.com"&gt;
+  &lt;p&gt;"The best way to learn is to build."&lt;/p&gt;
+  &lt;footer&gt;
+    — &lt;cite&gt;Someone Smart&lt;/cite&gt;
+  &lt;/footer&gt;
+&lt;/blockquote&gt;</pre>
+            <p class="deep-note">figure isn't just for images — it works for code blocks, charts, poems, or any content where a caption makes sense.</p>
+          </div>
+
+          <!-- title / future attributes -->
+          <div class="deep-item">
+            <h4>title — Tooltips (Beginner-Friendly Extra)</h4>
+            <p class="deep-desc">
+              The <code>title</code> attribute adds a tooltip that appears when the user hovers over an element. It works on almost any HTML tag and requires zero JavaScript. This is the one "extra" attribute worth learning now.
+            </p>
+            <pre>&lt;!-- Hover tooltip on any element --&gt;
+&lt;p title="This shows on hover"&gt;
+  Hover over me!
+&lt;/p&gt;
+
+&lt;!-- Great for abbreviations --&gt;
+&lt;abbr title="HyperText Markup Language"&gt;
+  HTML
+&lt;/abbr&gt;
+
+&lt;!-- Works on links too --&gt;
+&lt;a href="about.html"
+   title="Learn more about our team"&gt;
+  About Us
+&lt;/a&gt;</pre>
+            <p class="deep-note" style="background:rgba(253,203,110,0.06); border-color:rgba(253,203,110,0.2); color:#fdcb6e;">
+              Coming later (don't worry about these now): <strong>data-*</strong> attributes store custom info for JavaScript to read. <strong>aria-label</strong> helps screen readers describe elements. You'll learn both naturally when you get to JavaScript and accessibility.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TIPS & TRICKS -->
+      <div class="html-block" id="sec-tips">
+        <div class="html-block-title">Tips &amp; Tricks — Things Beginners Wish They Knew Earlier</div>
+        <div class="trick-grid">
+
+          <div class="trick-box">
+            <h4>Always connect label to input</h4>
+            <p>Give the input an <code>id</code>, then put the same value in the label's <code>for</code> attribute. Example: <code>&lt;label for="email"&gt;</code> + <code>&lt;input id="email"&gt;</code>. Now clicking the label text automatically focuses the input field. Without this, the label is just decoration — it does nothing useful.</p>
+          </div>
+
+          <div class="trick-box">
+            <h4>Use semantic tags instead of divs</h4>
+            <p>A <code>&lt;nav&gt;</code> tells the browser, screen readers, and search engines "this is a navigation menu." A <code>&lt;div&gt;</code> tells them absolutely nothing. Every time you write a div, ask yourself: is there a more specific tag for this? Usually the answer is yes — <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>, etc. Semantic HTML is free SEO and free accessibility.</p>
+          </div>
+
+          <div class="trick-box">
+            <h4>alt text on every image — no exceptions</h4>
+            <p>When an image fails to load, the browser shows the alt text. Screen readers (used by blind users) read it aloud. Search engines index it for image search. If you skip it, your page is broken for millions of users and invisible to Google. If an image is purely decorative (like a background swirl), use <code>alt=""</code> — an empty alt, not a missing one.</p>
+          </div>
+
+          <div class="trick-box">
+            <h4>Only one h1 per page — then go in order</h4>
+            <p>Your <code>&lt;h1&gt;</code> is the main title of the page — use it once. After that, use <code>&lt;h2&gt;</code> for section titles, <code>&lt;h3&gt;</code> for sub-sections inside those, and so on. Never jump from <code>&lt;h1&gt;</code> straight to <code>&lt;h3&gt;</code> — that's like skipping chapters in a book. Search engines read heading order to understand your page structure.</p>
+          </div>
+
+          <div class="trick-box">
+            <h4>target="_blank" is a security risk without rel</h4>
+            <p>When you open a link in a new tab with <code>target="_blank"</code>, the new page can actually reach back and change your original page using <code>window.opener</code>. This is a real attack vector. The fix is always adding <code>rel="noopener noreferrer"</code> right next to it. This blocks the new tab from having any reference back to your page. Make it a muscle memory habit.</p>
+          </div>
+
+          <div class="trick-box">
+            <h4>id = one unique thing. class = a group of things</h4>
+            <p>Think of <code>id</code> like a passport number — it belongs to one single person (element) on the page. Think of <code>class</code> like a job title — many people can share it. Use <code>id</code> when you need to jump to something with an anchor link (<code>&lt;a href="#contact"&gt;</code>) or target one specific element in CSS/JS. Use <code>class</code> when you want to style or select multiple elements the same way.</p>
+          </div>
+
+          <div class="trick-box">
+            <h4>Use type, required, and placeholder on every input</h4>
+            <p><code>type="email"</code> makes the browser validate that the user typed something with an @ sign — for free, no JavaScript needed. <code>required</code> prevents the form from submitting if the field is empty. <code>placeholder="e.g. john@email.com"</code> shows a hint inside the box that disappears when the user starts typing. These three attributes together give you a much better form with zero extra code.</p>
+          </div>
+
+          <div class="trick-box">
+            <h4>Indent your code — it's not optional</h4>
+            <p>Every child element should be indented one level (2 or 4 spaces) inside its parent. This makes nesting errors obvious at a glance — a missing <code>&lt;/div&gt;</code> or <code>&lt;/ul&gt;</code> stands out immediately when your code is properly indented. Messy code hides bugs. In VS Code, press <code>Shift+Alt+F</code> to auto-format the whole file in one keystroke.</p>
+          </div>
+
+          <div class="trick-box">
+            <h4>Validate your HTML before moving on</h4>
+            <p>Go to <strong>validator.w3.org</strong> and paste your HTML. It will show every error — unclosed tags, wrong nesting, missing attributes. Beginners often have 10+ silent errors they don't know about. The browser tries to fix bad HTML automatically, which means your page might look fine locally but break in a different browser. Always validate before calling a project done.</p>
+          </div>
+
+          <div class="trick-box">
+            <h4>File names: lowercase, no spaces, use hyphens</h4>
+            <p>Name your files <code>about-me.html</code>, not <code>About Me.html</code>. Spaces in file names break links on servers (Linux is case-sensitive, Windows is not — so <code>Index.html</code> works locally but fails when deployed). Always use lowercase letters, hyphens instead of spaces, and no special characters. This applies to image files, CSS files, and folders too.</p>
+          </div>
+
+          <div class="trick-box">
+            <h4>Comments explain WHY, not WHAT</h4>
+            <p>HTML comments (<code>&lt;!-- like this --&gt;</code>) are invisible to users but visible to anyone who reads your source code. Use them to mark the start of major sections so you can navigate your file easily: <code>&lt;!-- ===== HERO SECTION ===== --&gt;</code>. Don't use them to explain obvious code — <code>&lt;!-- this is a paragraph --&gt;</code> adds no value. Explain why something is structured the way it is.</p>
+          </div>
+
+          <div class="trick-box">
+            <h4>Use the browser DevTools constantly</h4>
+            <p>Right-click any element on any webpage → Inspect. You can see the exact HTML structure, hover over elements to see what they are, and even edit HTML live in the browser to experiment. Press <code>F12</code> to open DevTools. The Elements tab is your best friend for debugging layout problems. Get comfortable in DevTools early — professional developers use it every single day.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- COMMON MISTAKES -->
+      <div class="html-block" id="sec-mistakes">
+        <div class="html-block-title">Common Mistakes — What Goes Wrong and How to Fix It</div>
+        <div class="mistake-list">
+
+          <div class="mistake-item">
+            <div class="mistake-x">✗</div>
+            <div>
+              <p><strong>Forgetting to close tags.</strong> You open <code>&lt;p&gt;</code> but never write <code>&lt;/p&gt;</code>. The browser tries to guess where the tag ends, and it often guesses wrong. Everything below the unclosed tag may be swallowed inside it and break your layout completely. This is the #1 beginner bug.</p>
+              <div class="mistake-fix">✓ Fix: Every time you open a tag, immediately type the closing tag before writing any content inside. Most code editors like VS Code auto-close tags for you. Self-closing tags like <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code>, <code>&lt;input&gt;</code>, and <code>&lt;meta&gt;</code> are the only ones that don't need a closing tag.</div>
+            </div>
+          </div>
+
+          <div class="mistake-item">
+            <div class="mistake-x">✗</div>
+            <div>
+              <p><strong>Using &lt;div&gt; for absolutely everything.</strong> Beginners often write pages with 30+ nested divs and no other tags. This works visually but makes your page invisible to search engines and unusable by screen readers. A div has zero meaning — it's just a box. Developers who see a page full of divs immediately know the author is a beginner.</p>
+              <div class="mistake-fix">✓ Fix: Before writing a div, ask: does HTML have a tag that describes this content? Top of page → <code>&lt;header&gt;</code>. Navigation links → <code>&lt;nav&gt;</code>. Main content → <code>&lt;main&gt;</code>. A blog post → <code>&lt;article&gt;</code>. A group of related content → <code>&lt;section&gt;</code>. Bottom of page → <code>&lt;footer&gt;</code>. Only use div when nothing else fits.</div>
+            </div>
+          </div>
+
+          <div class="mistake-item">
+            <div class="mistake-x">✗</div>
+            <div>
+              <p><strong>Putting block elements inside inline elements.</strong> Writing <code>&lt;span&gt;&lt;p&gt;text&lt;/p&gt;&lt;/span&gt;</code> or <code>&lt;a&gt;&lt;div&gt;...&lt;/div&gt;&lt;/a&gt;</code> is invalid HTML. Inline elements are designed to sit inside text flow. Block elements always start on a new line. Putting a "house" inside a "word" doesn't make sense — the browser will silently fix it in unexpected ways.</p>
+              <div class="mistake-fix">✓ Fix: Remember the rule — block elements can contain inline elements, but not the other way around. <code>&lt;p&gt;&lt;strong&gt;Bold&lt;/strong&gt;&lt;/p&gt;</code> is fine. <code>&lt;strong&gt;&lt;p&gt;...&lt;/p&gt;&lt;/strong&gt;</code> is broken. If you're unsure, run it through the W3C HTML Validator.</div>
+            </div>
+          </div>
+
+          <div class="mistake-item">
+            <div class="mistake-x">✗</div>
+            <div>
+              <p><strong>Missing the DOCTYPE declaration.</strong> Without <code>&lt;!DOCTYPE html&gt;</code> as the very first line, browsers switch into "quirks mode" — a legacy compatibility mode where they render pages the way browsers did in the 1990s. Layouts break, spacing behaves weirdly, and things look different across browsers. You won't see an error message. It just silently breaks.</p>
+              <div class="mistake-fix">✓ Fix: Line 1 of every HTML file must always be exactly <code>&lt;!DOCTYPE html&gt;</code>. Nothing before it — not even a blank line or a comment. It tells the browser: "This is modern HTML5, render it correctly."</div>
+            </div>
+          </div>
+
+          <div class="mistake-item">
+            <div class="mistake-x">✗</div>
+            <div>
+              <p><strong>Using &lt;br&gt; tags to add spacing between sections.</strong> Typing <code>&lt;br&gt;&lt;br&gt;&lt;br&gt;</code> to push content down the page is using the wrong tool. br creates a line break inside text content — like pressing Enter in a paragraph. It's not a spacing tool. Using it for layout is like using tape instead of nails to hang a shelf.</p>
+              <div class="mistake-fix">✓ Fix: In HTML, <code>&lt;br&gt;</code> is only correct for actual line breaks inside content — like a postal address ("123 Main St&lt;br&gt;New York") or a poem. When you later learn CSS, you'll discover that spacing between elements is controlled with <code>margin</code> and <code>padding</code> — but that's the next step. For now, just know: br is NOT a spacer.</div>
+            </div>
+          </div>
+
+          <div class="mistake-item">
+            <div class="mistake-x">✗</div>
+            <div>
+              <p><strong>Wrong or broken file paths for images and links.</strong> A file path tells the browser where to find a file — like giving someone directions. If the directions are wrong, the browser can't find the file and shows a broken image or a 404 error. Getting paths wrong is the #1 cause of "my image isn't showing" problems.</p>
+              <div class="path-diagram">
+<span class="path-folder">📁 my-website/</span>
+├── <span class="path-file">index.html</span>         <span class="path-note">← you are here</span>
+├── <span class="path-file">about.html</span>
+├── <span class="path-folder">📁 images/</span>
+│   ├── <span class="path-file">dog.jpg</span>
+│   └── <span class="path-file">logo.png</span>
+└── <span class="path-folder">📁 pages/</span>
+    └── <span class="path-file">contact.html</span>
+              </div>
+              <div class="mistake-fix">
+                ✓ From <code>index.html</code>, paths work like this:<br>
+                Same folder → <code>about.html</code><br>
+                In a subfolder → <code>images/dog.jpg</code><br>
+                In a deeper subfolder → <code>pages/contact.html</code><br>
+                From <code>contact.html</code> UP to root → <code>../index.html</code> or <code>../images/dog.jpg</code><br><br>
+                <strong>Important:</strong> Paths are case-sensitive on live servers — <code>Dog.jpg</code> ≠ <code>dog.jpg</code>. Always use lowercase filenames.
+              </div>
+            </div>
+          </div>
+
+          <div class="mistake-item">
+            <div class="mistake-x">✗</div>
+            <div>
+              <p><strong>Skipping heading levels (h1 → h3, skipping h2).</strong> Headings are not just for making text big or small — they create a document outline. Search engines and screen readers read this outline to understand your page. Skipping levels is like writing a book with Chapter 1 followed immediately by Chapter 1.1 with no Section 1 in between. The structure is broken.</p>
+              <div class="mistake-fix">✓ Fix: Always go in order: h1 → h2 → h3. You can go back up (h3 → h2 for the next section) but never skip a level going down. Choose a heading level based on its role in the document — not based on how big or small you want it to look. Text size is something CSS controls, which you'll learn next.</div>
+            </div>
+          </div>
+
+          <div class="mistake-item">
+            <div class="mistake-x">✗</div>
+            <div>
+              <p><strong>Labels that aren't connected to their inputs.</strong> Writing <code>&lt;label&gt;Name&lt;/label&gt;&lt;input type="text"&gt;</code> looks correct in a browser. But the label and the input have no relationship. Clicking the label text does nothing. Screen readers can't associate them. It's visually fine but functionally broken.</p>
+              <div class="mistake-fix">✓ Fix: Add matching <code>for</code> and <code>id</code> attributes: <code>&lt;label for="username"&gt;Name&lt;/label&gt;&lt;input id="username" type="text"&gt;</code>. Now they're linked. Clicking "Name" focuses the input. Screen readers announce "Name, text field." This is required for accessible, professional forms.</div>
+            </div>
+          </div>
+
+          <div class="mistake-item">
+            <div class="mistake-x">✗</div>
+            <div>
+              <p><strong>Writing image alt text that's useless.</strong> <code>alt="image"</code> or <code>alt="photo"</code> tells a blind user or search engine absolutely nothing. It's technically correct HTML but practically useless. The entire point of alt text is to describe what the image shows so people who can't see it still understand the content.</p>
+              <div class="mistake-fix">✓ Fix: Describe what the image actually shows: <code>alt="A golden retriever running on a beach at sunset"</code>. Be specific. If the image is a chart, describe what the data shows. If it's a button icon, describe the action: <code>alt="Search"</code>. If the image is purely decorative, use <code>alt=""</code> so screen readers skip it.</div>
+            </div>
+          </div>
+
+          <div class="mistake-item">
+            <div class="mistake-x">✗</div>
+            <div>
+              <p><strong>Writing HTML in UPPERCASE tags.</strong> Some beginners write <code>&lt;P&gt;Text&lt;/P&gt;</code> or <code>&lt;DIV CLASS="card"&gt;</code>. This is technically valid in HTML5 but goes against every modern standard and makes your code look old and inconsistent. Mixing cases makes code much harder to read.</p>
+              <div class="mistake-fix">✓ Fix: Always write HTML tags and attributes in lowercase — <code>&lt;p&gt;</code>, <code>&lt;div class="card"&gt;</code>, <code>&lt;img src="..."&gt;</code>. This is the universal convention in modern HTML and is enforced in XHTML. Lowercase = professional.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="summary-block" id="sec-summary">
+        <div class="html-block-title">Summary — What You Now Know About HTML</div>
+        <div class="summary-grid">
+
+          <div class="summary-card">
+            <div class="s-num">01</div>
+            <h4>HTML is Structure, Not Design</h4>
+            <p>HTML defines what content IS — a heading, a paragraph, a link, a list. It doesn't control how it looks. That's CSS's job. Never try to use HTML tags to make things look a certain way.</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="s-num">02</div>
+            <h4>Every Page Needs the Same Skeleton</h4>
+            <p>DOCTYPE → html → head → body. The head holds invisible info (title, charset, links to CSS). The body holds everything the user sees. This structure is never optional.</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="s-num">03</div>
+            <h4>Tags Wrap Content</h4>
+            <p>An opening tag <code>&lt;p&gt;</code> and closing tag <code>&lt;/p&gt;</code> wrap the content between them. Some tags are self-closing (img, br, input) and need no closing tag. Nesting = putting tags inside tags.</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="s-num">04</div>
+            <h4>Attributes Give Tags Extra Info</h4>
+            <p>Attributes go inside the opening tag: <code>&lt;a href="..."&gt;</code>, <code>&lt;img src="..." alt="..."&gt;</code>, <code>&lt;input type="email" required&gt;</code>. They always follow the format <code>name="value"</code>.</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="s-num">05</div>
+            <h4>Semantic Tags Have Meaning</h4>
+            <p>header, nav, main, section, article, aside, footer — these tell the browser, search engines, and screen readers what role the content plays. Always prefer these over divs.</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="s-num">06</div>
+            <h4>Lists Are Everywhere</h4>
+            <p>ul for unordered (bullets), ol for ordered (numbers), li for each item. Navigation menus are just styled lists. Feature lists, step-by-step instructions, FAQs — they're all lists under the hood.</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="s-num">07</div>
+            <h4>Links Connect the Web</h4>
+            <p>The a tag with href is what makes HTML a hypertext system. Links can go to other pages, other sites, sections on the same page (#id), email addresses, phone numbers, or downloadable files.</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="s-num">08</div>
+            <h4>Forms Collect User Input</h4>
+            <p>Every input needs a type (what kind of data), a name (label for the server), and a connected label (for accessibility). form wraps it all. button submits it. required and placeholder make it user-friendly.</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="s-num">09</div>
+            <h4>id vs class — Know the Difference</h4>
+            <p>id is a unique identifier for one element — used for anchor links and JS. class is a reusable label for many elements — used for CSS styling. Never duplicate an id on the same page.</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="s-num">10</div>
+            <h4>Accessibility is Built into HTML</h4>
+            <p>alt on images, label connected to inputs, semantic tags, heading order — these aren't "extras." They make your page usable for blind users, keyboard-only users, and search engine bots. They cost nothing to do right.</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="s-num">11</div>
+            <h4>The Browser Fixes Your Mistakes (Silently)</h4>
+            <p>If you write bad HTML, the browser usually renders something anyway. This is dangerous — it makes you think your code is fine when it's not. Always validate at validator.w3.org to find hidden errors.</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="s-num">12</div>
+            <h4>HTML Alone Has No Style — and That's Okay</h4>
+            <p>A page with only HTML looks plain — black text on white background, default fonts. That's completely normal and correct. You are building the foundation. CSS comes next to make it look great.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- HTML-ONLY PROJECTS -->
+      <div class="projects-grid" id="sec-projects">
+
+        <div class="project-card">
+          <div class="p-num">00</div>
+          <div class="p-body">
+            <h3>My First Web Page</h3>
+            <p>Build a valid HTML page from a blank file. DOCTYPE, html, head (with charset, viewport, title), and a body with headings, a few paragraphs, a horizontal rule, and a comment. Open it in the browser — you just made a webpage.</p>
+            <div class="p-skills">
+              <span>DOCTYPE</span>
+              <span>html / head / body</span>
+              <span>h1–h6</span>
+              <span>p, br, hr</span>
+              <span>Comments</span>
+            </div>
+            <div class="p-challenge">
+              <strong>Challenge:</strong> Add a meta description tag in the head. Open DevTools → Elements and read your own HTML structure in the DOM.
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="p-num">00</div>
+          <div class="p-body">
+            <h3>Personal Bio Page</h3>
+            <p>A page about yourself — your name as h1, a short bio paragraph, an unordered list of hobbies, an ordered list of your top 3 goals, a photo with alt text, and links to your favourite websites. All semantic, no styling.</p>
+            <div class="p-skills">
+              <span>ul / ol / li</span>
+              <span>img + alt</span>
+              <span>a href</span>
+              <span>target="_blank"</span>
+              <span>strong / em</span>
+            </div>
+            <div class="p-challenge">
+              <strong>Challenge:</strong> Add a nested list (a list inside a list item). Add an internal anchor link that jumps to a section further down the page using <code>#id</code>.
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="p-num">00</div>
+          <div class="p-body">
+            <h3>Weekly Schedule Table</h3>
+            <p>A proper HTML table showing a weekly class or work schedule. Use thead, tbody, tfoot. Include colspan to merge the weekend into one column, and rowspan to show a class that spans two periods. Label every column with th.</p>
+            <div class="p-skills">
+              <span>table</span>
+              <span>thead / tbody / tfoot</span>
+              <span>tr / th / td</span>
+              <span>colspan</span>
+              <span>rowspan</span>
+            </div>
+            <div class="p-challenge">
+              <strong>Challenge:</strong> Add a caption element above the table describing what it shows. Add a summary row in tfoot that shows total hours per day.
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="p-num">00</div>
+          <div class="p-body">
+            <h3>Full Registration Form</h3>
+            <p>Build a registration form using every input type: text, email, password, number, date, file, checkbox, radio, range, color. Group related fields with fieldset and legend. Every input must have a label connected by for/id. Add a submit button.</p>
+            <div class="p-skills">
+              <span>form / action / method</span>
+              <span>All input types</span>
+              <span>label + for/id</span>
+              <span>select / option</span>
+              <span>textarea / button</span>
+              <span>fieldset / legend</span>
+              <span>required / placeholder</span>
+            </div>
+            <div class="p-challenge">
+              <strong>Challenge:</strong> Add a datalist to an input so it shows suggestions as the user types. Add minlength and maxlength to the password field.
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="p-num">00</div>
+          <div class="p-body">
+            <h3>Semantic News Page</h3>
+            <p>A full news article page built only with semantic tags — no divs, no classes, no CSS. header with site name and nav, main with an article (headline h1, author, date, paragraphs, a blockquote, a figure with figcaption), an aside with related links, and a footer.</p>
+            <div class="p-skills">
+              <span>header / nav / main</span>
+              <span>article / section</span>
+              <span>aside / footer</span>
+              <span>figure / figcaption</span>
+              <span>blockquote / cite</span>
+              <span>time datetime</span>
+            </div>
+            <div class="p-challenge">
+              <strong>Challenge:</strong> Run your page through the W3C HTML Validator (validator.w3.org). Fix every error and warning until you get a clean pass.
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- WHAT'S NEXT -->
+      <div class="whats-next" id="sec-next">
+        <div class="whats-next-title">What's Next After HTML?</div>
+        <p style="font-size:0.83rem; color:#c5c8e0; line-height:1.7;">
+          You now understand the skeleton of every webpage. Your HTML pages look plain right now — black text, no colour, no layout. That's completely normal and correct. HTML's job is structure, not appearance. Here's the exact path forward:
+        </p>
+        <div class="whats-next-grid">
+
+          <div class="next-card">
+            <div class="next-step">Step 1 — Done ✓</div>
+            <h4>HTML</h4>
+            <p>You know how to structure content with tags, create links, forms, tables, lists, and use the right semantic elements. This is your foundation — everything else builds on it.</p>
+          </div>
+
+          <div class="next-card">
+            <div class="next-step">Step 2 — Up Next</div>
+            <h4>CSS</h4>
+            <p>CSS controls how your HTML looks — colours, fonts, spacing, layout, animations. You'll connect a CSS file to your HTML with one line: <code style="background:rgba(255,255,255,0.08); padding:1px 5px; border-radius:4px; font-family:Consolas,monospace; font-size:0.72rem; color:#a29bfe;">&lt;link rel="stylesheet" href="style.css"&gt;</code> in your &lt;head&gt;.</p>
+          </div>
+
+          <div class="next-card">
+            <div class="next-step">Step 3 — After CSS</div>
+            <h4>JavaScript</h4>
+            <p>JavaScript makes your pages interactive — buttons that do things, menus that open, forms that validate, data that loads from the internet. It reads and changes your HTML live in the browser.</p>
+          </div>
+
+          <div class="next-card">
+            <div class="next-step">Right Now — Do This</div>
+            <h4>Build the 5 HTML Projects Below</h4>
+            <p>Don't skip to CSS yet. Build all 5 HTML-only projects first. Each one forces you to use a different set of tags. Getting comfortable writing HTML without looking things up is the goal.</p>
+          </div>
+
+          <div class="next-card">
+            <div class="next-step">Useful Tool</div>
+            <h4>W3C HTML Validator</h4>
+            <p>After finishing any project, go to <strong style="color:#fff">validator.w3.org</strong>, paste your HTML, and fix every error it finds. This catches silent bugs the browser hides from you. Run it on every project before moving on.</p>
+          </div>
+
+          <div class="next-card">
+            <div class="next-step">Useful Tool</div>
+            <h4>Browser DevTools</h4>
+            <p>Press <strong style="color:#fff">F12</strong> on any webpage to open DevTools. Click the Elements tab to see the live HTML structure. Hover over elements to highlight them. You can even edit HTML live in the browser to experiment — nothing saves, it resets on refresh.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
     <!-- ══════════════════ BEGINNER ══════════════════ -->
     <section class="tier" id="beginner">
       <div class="tier-header t-green">

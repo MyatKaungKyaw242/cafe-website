@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "Bash(gh auth *)",
+      "Bash(explorer \"C:\\\\Users\\\\Lenovo\\\\Desktop\\\\August web foundtation 1 hr\\\\practice-1\\\\PROJECTS.HTML\\\\Learn-Everything\\\\projects\\\\projects.html\")"
     ]
   }
 }

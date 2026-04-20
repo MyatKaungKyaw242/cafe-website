@@ -135,14 +135,11 @@ section{
     z-index: 1;
 }
 .img-container .img-1:hover{
-
-transform: scale(1.3);
-/* z-index: 1; */
-
+    transform: scale(1.06);
 }
 .img-container .img-2:hover{
-transform: scale(1.5);
-z-index: 2;
+    transform: scale(1.06);
+    z-index: 2;
 }
 
 
@@ -563,6 +560,7 @@ h2{
     background: #FFF8F2;
     min-height: 50vh;
     padding-bottom: 40px;
+    overflow: hidden;
 }
 .another-container{
     display: grid;
@@ -667,19 +665,23 @@ h2{
 .photo-of-another img{
     object-fit: contain;
     object-position: center;
-    width: 220px;
-    height: 220px;
+    width: 100px;
+    height: 100px;
 }
 .text-of-another{
     flex: 1;
+    min-width: 0;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
+    overflow: hidden;
 }
 .text-of-another h4{
     font-weight: 600;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 .another-stars span{
     color: gold;
@@ -731,15 +733,8 @@ h2{
     min-height: 450px;
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    gap: 80px;
-    /* justify-content: center; */
+    gap: 24px;
     padding: 0 40px;
-    /* justify-content: space-between; */
-    /* margin-right: 50px; */
-    /* margin-left: 50px; */
-    /* background: blue; */
-    
-    
  }
  .one-bar, .two-bar, .three-bar, .four-bar{
     display: flex;
@@ -748,25 +743,15 @@ h2{
     border-radius: 20px;
     overflow: visible;
     margin: 0;
-    /* background: yellow; */
-    /* width: 280px; */
-    /* width: 100%; */
-    width: clamp(200px, 22vw, 300px);
-    
+    width: 100%;
  }
  
   
 .more-detail{
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-
     border-radius: 20px;
     overflow: hidden;
-    height: 350px;
-    /* width: 280px; */
+    height: 300px;
     width: 100%;
-    
 }
 .more-detail img{
     object-fit: cover;
@@ -1129,7 +1114,7 @@ h2{
 }
 
 .second-layer {
-    background: rgb(5, 108, 226);
+    background: #FDF6EC;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -1140,7 +1125,7 @@ h2{
 }
 
 .three-layer {
-    background: lightseagreen;
+    background: white;
     /* background: white; */
     display: flex;
     flex-direction: column;
@@ -1249,13 +1234,8 @@ h2{
 }
 
 .last-one{
-    background: lightblue;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-   
-    align-items: center;
-    
-
+    background: #FDF6EC;
+    padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 80px);
 }
 /* .last-1{
      background: lightcoral;
@@ -1266,26 +1246,20 @@ h2{
 
 
 .last-2{
-    background: lightblue;
+    background: #FDF6EC;
 }
 .three-inside-box{
-    /* background: lightgreen; */
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 30px;
-    
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
     min-height: 320px;
-    max-width: 80%;
-    margin: 0 auto;
-
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-    
+    max-width: 90%;
+    margin: 40px auto;
 }
 
 .first-box{
-    border-radius: 30px;
+    border-radius: 20px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1293,41 +1267,31 @@ h2{
 .first-box img{
     object-fit: cover;
     object-position: center;
-    
-    min-height: 360px;
-    border-radius: 30px;
-    margin-left: 50px;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    border-radius: 20px;
 }
 .second-box{
     background: white;
-    border-radius: 30px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-  text-align: right;
-  padding: 30px 40px;
-  
+    justify-content: center;
+    gap: 16px;
+    text-align: left;
+    padding: 36px 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 .third-box{
-    background: black;
+    background: #1a1a2e;
     color: white;
-    border-radius: 30px;
-    text-align: right;
-    margin-right: 130px;
-    padding: 30px 40px;
-}
- .first-box{
-    margin-right: -80px;
-    z-index: 3;
-}
-.second-box {
-    z-index: 2;
-}
-.third-box{
-margin-left: -80px;
-z-index: 1;
-
-/* display: flex; */
+    border-radius: 20px;
+    text-align: left;
+    padding: 36px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .three-lists{
     line-height: 35px;
@@ -1335,8 +1299,24 @@ z-index: 1;
     
 }
 .example-test{
-   
-    line-height: 60px;
+    line-height: 48px;
+    width: 100%;
+}
+.example-test ul {
+    padding-left: 0;
+}
+.example-test li {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.85);
+    padding-left: 16px;
+    position: relative;
+}
+.example-test li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #C8963E;
+    font-weight: 700;
 }
 .second-box p{
     font-size: 1.1rem;
@@ -1377,4 +1357,181 @@ z-index: 1;
 
 .space-letters span {
     font-size: 17px;
+}
+
+/* ── BUSINESSES SECTION ── */
+.last-1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.last-1 h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0d1b3e;
+    margin-bottom: 8px;
+}
+.last-subtitle {
+    font-size: 1rem;
+    color: #888;
+}
+
+.biz-wrapper {
+    display: grid;
+    grid-template-columns: 290px 1fr 1fr;
+    gap: 14px;
+    max-width: 1150px;
+    margin: 0 auto 60px;
+    min-height: 380px;
+    background: transparent;
+}
+
+/* LEFT NAV */
+.biz-nav {
+    background: #0d1b3e;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    gap: 6px;
+    border-radius: 16px;
+    position: relative;
+}
+.biz-tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 22px;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: 50px;
+    position: relative;
+}
+.biz-tab:hover {
+    color: white;
+    background: rgba(255,255,255,0.06);
+}
+.biz-tab.active {
+    background: #FF4D1F;
+    color: white;
+    transform: translateX(20px);
+    box-shadow: 0 6px 20px rgba(255, 77, 31, 0.4);
+}
+.biz-arrow {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: white;
+    color: #FF4D1F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.25s ease;
+}
+.biz-tab.active .biz-arrow {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* MIDDLE CONTENT */
+.biz-content {
+    background: white;
+    padding: 40px 36px;
+    position: relative;
+    border-radius: 14px;
+}
+.biz-panel {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    animation: fadePanel 0.3s ease;
+}
+.biz-panel.active {
+    display: flex;
+}
+@keyframes fadePanel {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.biz-panel h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0d1b3e;
+    line-height: 1.5;
+}
+.biz-panel p {
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.7;
+}
+.biz-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+.biz-list li {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #333;
+    padding-left: 24px;
+    position: relative;
+}
+.biz-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    background: #C8963E;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 1px;
+}
+
+/* RIGHT IMAGE */
+.biz-img {
+    overflow: hidden;
+}
+.biz-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .biz-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .biz-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 8px;
+        gap: 4px;
+    }
+    .biz-tab {
+        flex: 1;
+        min-width: 140px;
+        font-size: 0.8rem;
+        padding: 10px 14px;
+        border-radius: 8px;
+        border-left: none;
+    }
+    .biz-img {
+        height: 220px;
+    }
 }
