@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>temp-area-projects</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #0f0f0f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      opacity: 0.5;
+      text-transform: uppercase;
+    }
+
+    .cards {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    a.card {
+      text-decoration: none;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 1.2rem;
+      padding: 2rem 2.5rem;
+      color: #fff;
+      width: 260px;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    a.card:hover {
+      transform: translateY(-6px);
+      border-color: #555;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+    .card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    .tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: #2a2a2a;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>temp-area-projects</h1>
+
+  <div class="cards">
+
+    <a href="./cat/index.html" class="card">
+      <div class="card-icon">🐱</div>
+      <h2>cat-temp-area</h2>
+      <p>A bento-grid UI for a fictional coffee brand — animated cards, bold typography, dark yellow aesthetic.</p>
+      <div class="tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">Grid</span>
+      </div>
+    </a>
+
+    <a href="./pf/index.html" class="card">
+      <div class="card-icon">🖼️</div>
+      <h2>temp-area-pf</h2>
+      <p>A CSS Grid bento-style photo card layout — 6 asymmetric cards with hover zoom and smooth transitions.</p>
+      <div class="tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">Grid</span>
+      </div>
+    </a>
+
+  </div>
+
+</body>
+</html>

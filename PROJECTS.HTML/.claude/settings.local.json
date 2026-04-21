@@ -3,7 +3,11 @@
     "allow": [
       "WebSearch",
       "Bash(gh auth *)",
-      "Bash(explorer \"C:\\\\Users\\\\Lenovo\\\\Desktop\\\\August web foundtation 1 hr\\\\practice-1\\\\PROJECTS.HTML\\\\Learn-Everything\\\\projects\\\\projects.html\")"
+      "Bash(explorer \"C:\\\\Users\\\\Lenovo\\\\Desktop\\\\August web foundtation 1 hr\\\\practice-1\\\\PROJECTS.HTML\\\\Learn-Everything\\\\projects\\\\projects.html\")",
+      "Bash(cp 'C:/Users/Lenovo/Desktop/August web foundtation 1 hr/practice-1/cat-temp-area/index.html' 'C:/Users/Lenovo/Desktop/August web foundtation 1 hr/practice-1/PROJECTS.HTML/general practice/temp-area-projects/cat/index.html')",
+      "Bash(cp 'C:/Users/Lenovo/Desktop/August web foundtation 1 hr/practice-1/cat-temp-area/styles.css' 'C:/Users/Lenovo/Desktop/August web foundtation 1 hr/practice-1/PROJECTS.HTML/general practice/temp-area-projects/cat/styles.css')",
+      "Bash(cp 'C:/Users/Lenovo/Desktop/August web foundtation 1 hr/practice-1/cat-temp-area/images/*' 'C:/Users/Lenovo/Desktop/August web foundtation 1 hr/practice-1/PROJECTS.HTML/general practice/temp-area-projects/cat/images/')",
+      "Bash(rm -rf 'C:/Users/Lenovo/Desktop/August web foundtation 1 hr/practice-1/PROJECTS.HTML/general practice/temp-area-projects/pf/.git')"
     ]
   }
 }
