@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Morphing Geometry</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #03030a;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      user-select: none;
+    }
+
+    canvas { display: block; }
+
+    /* ── TOP LABEL ── */
+    #top-label {
+      position: fixed;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    /* ── BOTTOM UI ── */
+    #ui {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 3rem;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    #shape-name {
+      font-size: clamp(2.2rem, 7vw, 5rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(135deg, var(--c1, #06b6d4), var(--c2, #3b82f6));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: background 0.6s;
+    }
+
+    #dots {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      transition: background 0.4s, transform 0.4s, box-shadow 0.4s;
+    }
+    .dot.active {
+      background: rgba(255,255,255,0.9);
+      transform: scale(1.6);
+      box-shadow: 0 0 8px rgba(255,255,255,0.6);
+    }
+
+    #hint {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50%       { opacity: 1; }
+    }
+
+    /* ── PROGRESS BAR ── */
+    #progress {
+      position: fixed;
+      bottom: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--c1, #06b6d4), var(--c2, #3b82f6));
+      z-index: 20;
+    }
+
+    /* ── SIDE COUNTER ── */
+    #counter {
+      position: fixed;
+      right: 2.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+
+    .tick {
+      width: 2px;
+      height: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 1px;
+      transition: background 0.4s, height 0.4s;
+    }
+    .tick.active {
+      background: rgba(255,255,255,0.7);
+      height: 32px;
+      box-shadow: 0 0 6px rgba(255,255,255,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="top-label">Morphing Geometry — Three.js</div>
+
+  <div id="ui">
+    <div id="shape-name">Sphere</div>
+    <div id="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <div id="hint">Click to morph &rarr; Auto every 4s</div>
+  </div>
+
+  <div id="counter">
+    <div class="tick active"></div>
+    <div class="tick"></div>
+    <div class="tick"></div>
+    <div class="tick"></div>
+  </div>
+
+  <div id="progress"></div>
+
+<script>
+/* ─────────────────────────────────────────
+   SHAPE DEFINITIONS
+───────────────────────────────────────── */
+const SHAPES = [
+  { name: 'Sphere',    c1: '#06b6d4', c2: '#3b82f6', matHex: 0x0891b2, emHex: 0x001830, l1: 0x06b6d4, l2: 0x3b82f6 },
+  { name: 'Cube',      c1: '#7c3aed', c2: '#ec4899', matHex: 0x6d28d9, emHex: 0x120820, l1: 0x7c3aed, l2: 0xec4899 },
+  { name: 'Torus',     c1: '#f43f5e', c2: '#fb923c', matHex: 0xe11d48, emHex: 0x1a0508, l1: 0xf43f5e, l2: 0xfb923c },
+  { name: 'Star',      c1: '#f59e0b', c2: '#10b981', matHex: 0xd97706, emHex: 0x180f00, l1: 0xf59e0b, l2: 0x10b981 },
+];
+
+function hexToRGB(hex) {
+  return { r: ((hex >> 16) & 255) / 255, g: ((hex >> 8) & 255) / 255, b: (hex & 255) / 255 };
+}
+
+let current = 0;
+let morphing = false;
+
+/* ─────────────────────────────────────────
+   THREE.JS SETUP
+───────────────────────────────────────── */
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x03030a);
+document.body.appendChild(renderer.domElement);
+
+const scene  = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.z = 6;
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+/* ─────────────────────────────────────────
+   GEOMETRY + MORPH TARGETS
+───────────────────────────────────────── */
+const SEGS = 64;
+const SR   = 1.5; // sphere radius
+
+const geo = new THREE.SphereGeometry(SR, SEGS, SEGS);
+const basePos = geo.attributes.position;
+const N = basePos.count;
+
+/* Morph 0 — Cube (half-side ≈ 1.3) */
+const cubePos = new Float32Array(N * 3);
+for (let i = 0; i < N; i++) {
+  const x = basePos.getX(i), y = basePos.getY(i), z = basePos.getZ(i);
+  const nx = x / SR, ny = y / SR, nz = z / SR;
+  const m  = Math.max(Math.abs(nx), Math.abs(ny), Math.abs(nz)) || 1e-6;
+  const s  = 1.3 / m;
+  cubePos[i * 3]     = nx * s;
+  cubePos[i * 3 + 1] = ny * s;
+  cubePos[i * 3 + 2] = nz * s;
+}
+
+/* Morph 1 — Torus (R=1.0, r=0.5 → max extent = 1.5) */
+const torusPos = new Float32Array(N * 3);
+const TR = 1.0, Tr = 0.5;
+for (let i = 0; i < N; i++) {
+  const x = basePos.getX(i), y = basePos.getY(i), z = basePos.getZ(i);
+  const phi   = Math.atan2(z, x);
+  const theta = Math.asin(Math.max(-1, Math.min(1, y / SR)));
+  torusPos[i * 3]     = (TR + Tr * Math.cos(theta)) * Math.cos(phi);
+  torusPos[i * 3 + 1] = Tr * Math.sin(theta);
+  torusPos[i * 3 + 2] = (TR + Tr * Math.cos(theta)) * Math.sin(phi);
+}
+
+/* Morph 2 — Spiky Star */
+const starPos = new Float32Array(N * 3);
+for (let i = 0; i < N; i++) {
+  const x = basePos.getX(i), y = basePos.getY(i), z = basePos.getZ(i);
+  const nx = x / SR, ny = y / SR, nz = z / SR;
+  const phi   = Math.atan2(nz, nx);
+  const theta = Math.asin(Math.max(-1, Math.min(1, ny)));
+  const spike = 1.0 + 0.48 * Math.sin(6 * phi) * Math.cos(4 * theta)
+                    + 0.15 * Math.cos(10 * phi + 3 * theta);
+  starPos[i * 3]     = nx * SR * spike;
+  starPos[i * 3 + 1] = ny * SR * spike;
+  starPos[i * 3 + 2] = nz * SR * spike;
+}
+
+geo.morphAttributes.position = [
+  new THREE.BufferAttribute(cubePos,  3),
+  new THREE.BufferAttribute(torusPos, 3),
+  new THREE.BufferAttribute(starPos,  3),
+];
+
+/* ─────────────────────────────────────────
+   MATERIALS
+───────────────────────────────────────── */
+const mat = new THREE.MeshStandardMaterial({
+  color:     SHAPES[0].matHex,
+  emissive:  SHAPES[0].emHex,
+  metalness: 0.85,
+  roughness: 0.12,
+  morphTargets: true,
+});
+
+const wireMat = new THREE.MeshBasicMaterial({
+  color:       SHAPES[0].l1,
+  wireframe:   true,
+  transparent: true,
+  opacity:     0.14,
+  morphTargets: true,
+});
+
+/* ─────────────────────────────────────────
+   MESHES
+───────────────────────────────────────── */
+const mesh     = new THREE.Mesh(geo, mat);
+const wireMesh = new THREE.Mesh(geo, wireMat);
+
+mesh.updateMorphTargets();
+wireMesh.updateMorphTargets();
+
+scene.add(mesh);
+scene.add(wireMesh);
+
+// Shared influences proxy object for GSAP
+const inf = { v0: 0, v1: 0, v2: 0 };
+
+function syncInfluences() {
+  mesh.morphTargetInfluences[0]     = inf.v0;
+  mesh.morphTargetInfluences[1]     = inf.v1;
+  mesh.morphTargetInfluences[2]     = inf.v2;
+  wireMesh.morphTargetInfluences[0] = inf.v0;
+  wireMesh.morphTargetInfluences[1] = inf.v1;
+  wireMesh.morphTargetInfluences[2] = inf.v2;
+}
+
+/* ─────────────────────────────────────────
+   AMBIENT RING OF PARTICLES
+───────────────────────────────────────── */
+const pCount = 1200;
+const pPos   = new Float32Array(pCount * 3);
+for (let i = 0; i < pCount; i++) {
+  const angle = Math.random() * Math.PI * 2;
+  const r     = 3 + Math.random() * 5;
+  const h     = (Math.random() - 0.5) * 6;
+  pPos[i * 3]     = Math.cos(angle) * r;
+  pPos[i * 3 + 1] = h;
+  pPos[i * 3 + 2] = Math.sin(angle) * r;
+}
+const pGeo = new THREE.BufferGeometry();
+pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+const pMat = new THREE.PointsMaterial({ color: 0x1e2a4a, size: 0.04, transparent: true, opacity: 0.8 });
+scene.add(new THREE.Points(pGeo, pMat));
+
+/* ─────────────────────────────────────────
+   LIGHTS
+───────────────────────────────────────── */
+scene.add(new THREE.AmbientLight(0xffffff, 0.08));
+
+const KEY_LIGHT = new THREE.DirectionalLight(0xffffff, 0.6);
+KEY_LIGHT.position.set(3, 5, 3);
+scene.add(KEY_LIGHT);
+
+const LR = 4.5;
+const orbitLights = SHAPES[0].l1 !== undefined
+  ? [SHAPES[0].l1, SHAPES[0].l2, 0x334466, 0x223355].map((col, i) => {
+      const l = new THREE.PointLight(col, 3.5, 12);
+      const a = (i / 4) * Math.PI * 2;
+      l.position.set(Math.cos(a) * LR, Math.sin(a * 0.7) * 2, Math.sin(a) * LR);
+      scene.add(l);
+      return l;
+    })
+  : [];
+
+/* ─────────────────────────────────────────
+   MOUSE
+───────────────────────────────────────── */
+let mx = 0, my = 0, rX = 0, rY = 0;
+document.addEventListener('mousemove', e => {
+  mx = (e.clientX / window.innerWidth  - 0.5) * 2;
+  my = (e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+/* ─────────────────────────────────────────
+   UI HELPERS
+───────────────────────────────────────── */
+function setColorVars(shape) {
+  document.documentElement.style.setProperty('--c1', shape.c1);
+  document.documentElement.style.setProperty('--c2', shape.c2);
+}
+
+function updateDots(idx) {
+  document.querySelectorAll('.dot').forEach((d, i)  => d.classList.toggle('active', i === idx));
+  document.querySelectorAll('.tick').forEach((t, i) => t.classList.toggle('active', i === idx));
+}
+
+function animateShapeName(name) {
+  const el = document.getElementById('shape-name');
+  gsap.to(el, {
+    opacity: 0, y: -18, duration: 0.25,
+    onComplete: () => {
+      el.textContent = name;
+      gsap.fromTo(el, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' });
+    }
+  });
+}
+
+function pulseProgress() {
+  gsap.fromTo('#progress', { width: '0%' }, { width: '100%', duration: 4, ease: 'linear' });
+}
+
+// Init
+setColorVars(SHAPES[0]);
+pulseProgress();
+
+/* ─────────────────────────────────────────
+   MORPH FUNCTION
+───────────────────────────────────────── */
+// shape 0=sphere, 1=cube(inf0), 2=torus(inf1), 3=star(inf2)
+function targetInfluences(shapeIdx) {
+  return [
+    shapeIdx === 1 ? 1 : 0,
+    shapeIdx === 2 ? 1 : 0,
+    shapeIdx === 3 ? 1 : 0,
+  ];
+}
+
+function morphTo(nextIdx) {
+  if (morphing) return;
+  morphing = true;
+
+  const shape = SHAPES[nextIdx];
+  const [t0, t1, t2] = targetInfluences(nextIdx);
+
+  // UI
+  setColorVars(shape);
+  animateShapeName(shape.name);
+  updateDots(nextIdx);
+  pulseProgress();
+
+  // Geometry morph via GSAP
+  gsap.to(inf, {
+    v0: t0, v1: t1, v2: t2,
+    duration: 1.4,
+    ease: 'power3.inOut',
+    onUpdate: syncInfluences,
+    onComplete: () => {
+      current  = nextIdx;
+      morphing = false;
+    }
+  });
+
+  // Scale pulse on transition
+  gsap.to(mesh.scale, {
+    x: 1.08, y: 1.08, z: 1.08,
+    duration: 0.35, ease: 'power2.out',
+    yoyo: true, repeat: 1
+  });
+  gsap.to(wireMesh.scale, {
+    x: 1.08, y: 1.08, z: 1.08,
+    duration: 0.35, ease: 'power2.out',
+    yoyo: true, repeat: 1
+  });
+
+  // Material color transition
+  const mc = hexToRGB(shape.matHex);
+  const ec = hexToRGB(shape.emHex);
+  const wc = hexToRGB(shape.l1);
+  gsap.to(mat.color,    { r: mc.r, g: mc.g, b: mc.b, duration: 1.4, ease: 'power2.inOut' });
+  gsap.to(mat.emissive, { r: ec.r, g: ec.g, b: ec.b, duration: 1.4, ease: 'power2.inOut' });
+  gsap.to(wireMat.color, { r: wc.r, g: wc.g, b: wc.b, duration: 1.4, ease: 'power2.inOut' });
+
+  // Orbit light color transition
+  const lc1 = hexToRGB(shape.l1);
+  const lc2 = hexToRGB(shape.l2);
+  if (orbitLights.length >= 2) {
+    gsap.to(orbitLights[0].color, { r: lc1.r, g: lc1.g, b: lc1.b, duration: 1 });
+    gsap.to(orbitLights[1].color, { r: lc2.r, g: lc2.g, b: lc2.b, duration: 1 });
+  }
+}
+
+/* ─────────────────────────────────────────
+   CLICK + AUTO MORPH
+───────────────────────────────────────── */
+document.addEventListener('click', () => {
+  if (!morphing) morphTo((current + 1) % SHAPES.length);
+});
+
+setInterval(() => {
+  if (!morphing) morphTo((current + 1) % SHAPES.length);
+}, 4000);
+
+/* ─────────────────────────────────────────
+   RENDER LOOP
+───────────────────────────────────────── */
+function animate() {
+  requestAnimationFrame(animate);
+  const t = Date.now() * 0.001;
+
+  // Orbit lights
+  orbitLights.forEach((l, i) => {
+    const a = t * 0.5 + (i / orbitLights.length) * Math.PI * 2;
+    l.position.x = Math.cos(a) * LR;
+    l.position.z = Math.sin(a) * LR;
+    l.position.y = Math.sin(a * 0.7) * 2.5;
+  });
+
+  // Mesh rotation (slow auto + mouse parallax)
+  rY += (mx * 0.25 - rY) * 0.04;
+  rX += (my * 0.12 - rX) * 0.04;
+
+  mesh.rotation.y     = t * 0.14 + rY;
+  mesh.rotation.x     = rX;
+  wireMesh.rotation.copy(mesh.rotation);
+
+  renderer.render(scene, camera);
+}
+
+animate();
+</script>
+</body>
+</html>

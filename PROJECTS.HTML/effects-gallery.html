@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visual Effects Gallery</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #03030a;
+      color: #e2e8f0;
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 2rem 2.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #06b6d4;
+      border: 1px solid rgba(6,182,212,0.4);
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff 30%, #7c3aed, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.6rem;
+    }
+
+    header p {
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem 2rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #0c0c18;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .demo-area {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      background: #030308;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-area canvas {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .card-info {
+      padding: 1.1rem 1.4rem 1.3rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .card-num {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: #334155;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-desc {
+      font-size: 0.75rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    /* ══════════════════════════════
+       DEMO 2 — Floating Island (CSS)
+    ══════════════════════════════ */
+    .island-scene {
+      width: 100%; height: 100%;
+      background: linear-gradient(180deg, #060d1f 0%, #0d1a30 50%, #060d1f 100%);
+      display: flex; align-items: flex-end; justify-content: center;
+      padding-bottom: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .star-bg { position: absolute; inset: 0; }
+    .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle 2s ease-in-out infinite; }
+    @keyframes twinkle { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+    .cloud {
+      position: absolute;
+      background: rgba(150,180,255,0.07);
+      border-radius: 50px;
+      animation: cloud-move linear infinite;
+    }
+    @keyframes cloud-move {
+      from { transform: translateX(-80px); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      to   { transform: translateX(calc(100vw + 80px)); opacity: 0; }
+    }
+
+    .island-group { animation: float 3.5s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);} }
+
+    .island-top {
+      width: 150px; height: 38px;
+      background: linear-gradient(180deg, #2d5c2d, #1a3a1a);
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 0 25px rgba(50,120,50,0.25);
+    }
+
+    .island-bot {
+      width: 150px; height: 30px;
+      background: linear-gradient(180deg, #5c3e28, #2a1a0a);
+      border-radius: 0 0 60% 60% / 0 0 80% 80%;
+      transform: translateY(-6px);
+    }
+
+    .tree {
+      position: absolute;
+      bottom: 100%;
+      width: 0; height: 0;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-bottom: 22px solid #1a5c1a;
+    }
+    .tree::after {
+      content: '';
+      position: absolute;
+      top: 7px; left: -7px;
+      width: 0; height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-bottom: 18px solid #27822a;
+    }
+    .t1 { left: 18px; }
+    .t2 { left: 50%; transform: translateX(-50%); }
+    .t3 { right: 18px; }
+
+    /* ══════════════════════════════
+       DEMO 3 — Liquid Blob (CSS)
+    ══════════════════════════════ */
+    .blob-scene {
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, #110828, #03030a);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .blob {
+      width: 115px; height: 115px;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4, #ec4899, #7c3aed);
+      background-size: 300% 300%;
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      animation: blob-shape 5s ease-in-out infinite, blob-hue 6s ease-in-out infinite;
+      box-shadow: 0 0 50px rgba(124,58,237,0.55), 0 0 90px rgba(6,182,212,0.2);
+    }
+
+    @keyframes blob-shape {
+      0%,100%{ border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      20%    { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+      40%    { border-radius: 50% 60% 30% 60% / 40% 30% 70% 50%; }
+      60%    { border-radius: 40% 70% 50% 40% / 65% 50% 40% 55%; }
+      80%    { border-radius: 70% 30% 50% 50% / 30% 60% 70% 40%; }
+    }
+    @keyframes blob-hue {
+      0%,100%{ background-position: 0% 50%; }
+      50%    { background-position: 100% 50%; }
+    }
+
+    /* ══════════════════════════════
+       DEMO 4 — 3D Card Deck (CSS)
+    ══════════════════════════════ */
+    .deck-scene {
+      width: 100%; height: 100%;
+      background: #030308;
+      perspective: 900px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .deck {
+      position: relative;
+      width: 96px; height: 136px;
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease;
+    }
+
+    .deck-scene:hover .deck { transform: rotateX(8deg) rotateY(-15deg); }
+
+    .dcard {
+      position: absolute;
+      width: 96px; height: 136px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .deck-scene:hover .d1 { transform: translateX(-100px) translateY(-25px) rotateZ(-28deg); }
+    .deck-scene:hover .d2 { transform: translateX(-50px)  translateY(-12px) rotateZ(-14deg); }
+    .deck-scene:hover .d3 { transform: translateX(0) rotateZ(0); }
+    .deck-scene:hover .d4 { transform: translateX(50px)   translateY(-12px) rotateZ(14deg); }
+    .deck-scene:hover .d5 { transform: translateX(100px)  translateY(-25px) rotateZ(28deg); }
+
+    .d1 { background: linear-gradient(135deg, #4c1d95, #7c3aed); z-index:1; }
+    .d2 { background: linear-gradient(135deg, #1e3a8a, #0891b2); z-index:2; }
+    .d3 { background: linear-gradient(135deg, #9d174d, #db2777); z-index:3; }
+    .d4 { background: linear-gradient(135deg, #92400e, #d97706); z-index:4; }
+    .d5 { background: linear-gradient(135deg, #064e3b, #059669); z-index:5; }
+
+    /* ══════════════════════════════
+       DEMO 5 — Glitch Portal (CSS)
+    ══════════════════════════════ */
+    .portal-scene {
+      width: 100%; height: 100%;
+      background: radial-gradient(ellipse at 50% 50%, #0d0524 0%, #03030a 70%);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .portal-wrap { position: relative; width: 130px; height: 130px; }
+
+    .pring {
+      position: absolute;
+      border-radius: 50%;
+      border: 3px solid transparent;
+    }
+
+    .pr1 {
+      inset: 0;
+      border-top-color: #7c3aed;
+      border-right-color: #06b6d4;
+      animation: pspin 1.4s linear infinite, pglitch 3.5s steps(1) infinite;
+      box-shadow: 0 0 15px rgba(124,58,237,0.4);
+    }
+    .pr2 {
+      inset: 15px;
+      border-bottom-color: #ec4899;
+      border-left-color: #f59e0b;
+      animation: pspinr 2.2s linear infinite;
+    }
+    .pr3 {
+      inset: 30px;
+      border: 1.5px solid rgba(124,58,237,0.3);
+      animation: pspin 5s linear infinite;
+    }
+    .pr4 {
+      inset: 43px;
+      border: 1px solid rgba(6,182,212,0.2);
+      animation: pspinr 3s linear infinite;
+    }
+
+    .pcore {
+      position: absolute;
+      inset: 52px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,0.7) 0%, rgba(6,182,212,0.3) 50%, transparent 100%);
+      animation: pcore-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pspin  { to { transform: rotate(360deg); } }
+    @keyframes pspinr { to { transform: rotate(-360deg); } }
+    @keyframes pcore-pulse {
+      0%,100% { transform: scale(1);   opacity: 0.7; }
+      50%     { transform: scale(1.3); opacity: 1; }
+    }
+    @keyframes pglitch {
+      0%,88%,100% { filter: none; transform: rotate(0deg); }
+      90% { filter: hue-rotate(90deg) saturate(5); transform: rotate(2deg) translate(3px,-2px); }
+      92% { filter: hue-rotate(200deg) saturate(5); transform: rotate(-1deg) translate(-3px,2px); }
+      94% { filter: none; transform: rotate(1deg) translate(2px,1px); }
+      96% { filter: hue-rotate(60deg); transform: rotate(0deg); }
+    }
+
+    /* ══════════════════════════════
+       DEMO 7 — Solar System (CSS)
+    ══════════════════════════════ */
+    .solar-scene {
+      width: 100%; height: 100%;
+      background: radial-gradient(ellipse at 50% 50%, #080d1e, #03030a);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+
+    .sun {
+      width: 22px; height: 22px;
+      background: radial-gradient(circle, #fffde7, #ffd600, #ff8f00);
+      border-radius: 50%;
+      box-shadow: 0 0 18px #ffd600, 0 0 38px rgba(255,180,0,0.45), 0 0 60px rgba(255,120,0,0.2);
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .orbit {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: flex-start; justify-content: center;
+      animation: o-spin linear infinite;
+    }
+
+    .planet {
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: -5px;
+    }
+
+    .o1 { width: 55px;  height: 55px;  animation-duration: 2.5s; }
+    .o2 { width: 86px;  height: 86px;  animation-duration: 5.5s; }
+    .o3 { width: 124px; height: 124px; animation-duration: 10s; }
+    .o4 { width: 172px; height: 172px; animation-duration: 17s; }
+
+    .o1 .planet { width:7px; height:7px; background:radial-gradient(circle,#bbb,#666); margin-top:-3.5px; }
+    .o2 .planet { width:9px; height:9px; background:radial-gradient(circle,#d4a860,#8b5e2a); margin-top:-4.5px; }
+    .o3 .planet { width:11px;height:11px;background:radial-gradient(circle,#6090d8,#2a4090); margin-top:-5.5px; }
+    .o4 .planet { width:13px;height:13px;background:radial-gradient(circle,#e8c888,#a87030); margin-top:-6.5px; box-shadow:0 0 0 3px rgba(232,200,136,0.15); }
+
+    @keyframes o-spin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Interactive Showcase</div>
+  <h1>9 Visual 3D Effects</h1>
+  <p>Hover and click each card to interact</p>
+</header>
+
+<div class="grid">
+
+  <!-- 01 Particle Galaxy -->
+  <div class="card">
+    <div class="demo-area"><canvas id="c1"></canvas></div>
+    <div class="card-info">
+      <div class="card-num">01 — Canvas + JS</div>
+      <div class="card-title">Particle Galaxy</div>
+      <div class="card-desc">Mouse-interactive star field — move cursor over it</div>
+    </div>
+  </div>
+
+  <!-- 02 Floating Island -->
+  <div class="card">
+    <div class="demo-area">
+      <div class="island-scene">
+        <div class="star-bg">
+          <div class="star" style="width:2px;height:2px;top:15%;left:20%;animation-delay:.3s"></div>
+          <div class="star" style="width:1px;height:1px;top:25%;left:70%;animation-delay:1s"></div>
+          <div class="star" style="width:2px;height:2px;top:10%;left:55%;animation-delay:.7s"></div>
+          <div class="star" style="width:1px;height:1px;top:40%;left:10%;animation-delay:1.5s"></div>
+          <div class="star" style="width:2px;height:2px;top:8%;left:85%;animation-delay:.2s"></div>
+          <div class="star" style="width:1px;height:1px;top:30%;left:40%;animation-delay:2s"></div>
+        </div>
+        <div class="cloud" style="top:35px;left:0;width:80px;height:22px;animation-duration:13s;animation-delay:-4s"></div>
+        <div class="cloud" style="top:60px;left:0;width:55px;height:16px;animation-duration:19s;animation-delay:-10s"></div>
+        <div class="island-group">
+          <div class="island-top">
+            <div class="tree t1"></div>
+            <div class="tree t2"></div>
+            <div class="tree t3"></div>
+          </div>
+          <div class="island-bot"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="card-num">02 — Pure CSS</div>
+      <div class="card-title">3D Floating Island</div>
+      <div class="card-desc">Layered floating terrain with parallax depth</div>
+    </div>
+  </div>
+
+  <!-- 03 Liquid Blob -->
+  <div class="card">
+    <div class="demo-area">
+      <div class="blob-scene"><div class="blob"></div></div>
+    </div>
+    <div class="card-info">
+      <div class="card-num">03 — CSS Animation</div>
+      <div class="card-title">Liquid Metal Blob</div>
+      <div class="card-desc">Organic morphing metallic shape with iridescent glow</div>
+    </div>
+  </div>
+
+  <!-- 04 3D Card Deck -->
+  <div class="card">
+    <div class="demo-area">
+      <div class="deck-scene">
+        <div class="deck">
+          <div class="dcard d1">🌌</div>
+          <div class="dcard d2">⚡</div>
+          <div class="dcard d3">🔮</div>
+          <div class="dcard d4">🌊</div>
+          <div class="dcard d5">✨</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="card-num">04 — CSS 3D</div>
+      <div class="card-title">3D Card Deck</div>
+      <div class="card-desc">Hover to fan the stacked cards out in 3D space</div>
+    </div>
+  </div>
+
+  <!-- 05 Glitch Portal -->
+  <div class="card">
+    <div class="demo-area">
+      <div class="portal-scene">
+        <div class="portal-wrap">
+          <div class="pring pr1"></div>
+          <div class="pring pr2"></div>
+          <div class="pring pr3"></div>
+          <div class="pring pr4"></div>
+          <div class="pcore"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="card-num">05 — CSS Keyframes</div>
+      <div class="card-title">Glitch Portal</div>
+      <div class="card-desc">Rotating wormhole with periodic RGB glitch bursts</div>
+    </div>
+  </div>
+
+  <!-- 06 DNA Helix -->
+  <div class="card">
+    <div class="demo-area"><canvas id="c6"></canvas></div>
+    <div class="card-info">
+      <div class="card-num">06 — Canvas + JS</div>
+      <div class="card-title">DNA Helix</div>
+      <div class="card-desc">Animated double helix with depth-based sizing</div>
+    </div>
+  </div>
+
+  <!-- 07 Solar System -->
+  <div class="card">
+    <div class="demo-area">
+      <div class="solar-scene">
+        <div class="sun"></div>
+        <div class="orbit o1"><div class="planet"></div></div>
+        <div class="orbit o2"><div class="planet"></div></div>
+        <div class="orbit o3"><div class="planet"></div></div>
+        <div class="orbit o4"><div class="planet"></div></div>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="card-num">07 — Pure CSS</div>
+      <div class="card-title">3D Solar System</div>
+      <div class="card-desc">4 planets orbiting a glowing sun in real-time</div>
+    </div>
+  </div>
+
+  <!-- 08 Magnetic Grid -->
+  <div class="card">
+    <div class="demo-area"><canvas id="c8"></canvas></div>
+    <div class="card-info">
+      <div class="card-num">08 — Canvas + Mouse</div>
+      <div class="card-title">Magnetic Cursor Grid</div>
+      <div class="card-desc">Move cursor over the grid — dots repel from it</div>
+    </div>
+  </div>
+
+  <!-- 09 Shatter -->
+  <div class="card">
+    <div class="demo-area"><canvas id="c9"></canvas></div>
+    <div class="card-info">
+      <div class="card-num">09 — Canvas + Click</div>
+      <div class="card-title">Shattered Glass</div>
+      <div class="card-desc">Click the demo to shatter it into flying glass shards</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('load', () => {
+
+  /* ─────────────────────────────────
+     CANVAS SIZING HELPER
+  ───────────────────────────────── */
+  function sizeCanvas(canvas) {
+    const r = canvas.parentElement.getBoundingClientRect();
+    canvas.width  = r.width  || 300;
+    canvas.height = r.height || 220;
+    return { W: canvas.width, H: canvas.height };
+  }
+
+  /* ─────────────────────────────────
+     01 — PARTICLE GALAXY
+  ───────────────────────────────── */
+  const c1  = document.getElementById('c1');
+  const x1  = c1.getContext('2d');
+  const { W: W1, H: H1 } = sizeCanvas(c1);
+  const cx1 = W1 / 2, cy1 = H1 / 2;
+
+  const GAL_ARMS = 3, GAL_N = 500;
+  const gpts = [];
+  for (let i = 0; i < GAL_N; i++) {
+    const arm   = i % GAL_ARMS;
+    const t     = Math.random() * 2.8;
+    const r     = 18 + t * Math.min(W1, H1) * 0.15;
+    const spread = r * 0.12;
+    gpts.push({
+      angle: arm * (Math.PI * 2 / GAL_ARMS) + t * 1.0,
+      r,
+      bright: Math.random(),
+      size:   Math.random() * 1.8 + 0.3,
+      ox:     (Math.random() - 0.5) * spread,
+      oy:     (Math.random() - 0.5) * spread,
+    });
+  }
+
+  let galRot = 0, galMX = cx1, galMY = cy1;
+  c1.parentElement.addEventListener('mousemove', e => {
+    const r = c1.getBoundingClientRect();
+    galMX = e.clientX - r.left;
+    galMY = e.clientY - r.top;
+  });
+  c1.parentElement.addEventListener('mouseleave', () => { galMX = cx1; galMY = cy1; });
+
+  function drawGalaxy() {
+    x1.fillStyle = '#03030a';
+    x1.fillRect(0, 0, W1, H1);
+    galRot += 0.0012;
+
+    // Mouse influence on rotation speed
+    const dx = (galMX - cx1) / cx1;
+    const speed = 0.0012 + Math.abs(dx) * 0.003;
+
+    gpts.forEach(p => {
+      const a  = p.angle + galRot * (1 + p.r * 0.003);
+      const px = cx1 + Math.cos(a) * p.r * 1.1 + p.ox;
+      const py = cy1 + Math.sin(a) * p.r * 0.42 + p.oy;
+      const hue = 200 + p.bright * 70;
+      x1.beginPath();
+      x1.arc(px, py, p.size, 0, Math.PI * 2);
+      x1.fillStyle = `hsla(${hue},75%,82%,${0.25 + p.bright * 0.75})`;
+      x1.fill();
+    });
+
+    // Core glow
+    const grd = x1.createRadialGradient(cx1, cy1, 0, cx1, cy1, 18);
+    grd.addColorStop(0, 'rgba(255,240,200,0.9)');
+    grd.addColorStop(0.4, 'rgba(180,160,255,0.4)');
+    grd.addColorStop(1,   'transparent');
+    x1.beginPath();
+    x1.arc(cx1, cy1, 18, 0, Math.PI * 2);
+    x1.fillStyle = grd;
+    x1.fill();
+  }
+
+  /* ─────────────────────────────────
+     06 — DNA HELIX
+  ───────────────────────────────── */
+  const c6 = document.getElementById('c6');
+  const x6 = c6.getContext('2d');
+  const { W: W6, H: H6 } = sizeCanvas(c6);
+  const amp6 = W6 * 0.27;
+  const STEPS6 = 55;
+
+  function drawDNA(t) {
+    x6.fillStyle = '#03030a';
+    x6.fillRect(0, 0, W6, H6);
+
+    for (let i = 0; i < STEPS6; i++) {
+      const y     = (i / STEPS6) * H6;
+      const phase = (i / STEPS6) * Math.PI * 5 + t;
+      const px1   = W6 / 2 + Math.cos(phase) * amp6;
+      const px2   = W6 / 2 + Math.cos(phase + Math.PI) * amp6;
+      const d1    = (Math.cos(phase) + 1) / 2;
+      const d2    = (Math.cos(phase + Math.PI) + 1) / 2;
+
+      // Rungs every ~4 steps
+      if (Math.round(i * 2) % 7 === 0) {
+        const grd = x6.createLinearGradient(px1, y, px2, y);
+        grd.addColorStop(0, `rgba(80,180,255,${d1 * 0.55})`);
+        grd.addColorStop(1, `rgba(200,80,255,${d2 * 0.55})`);
+        x6.beginPath();
+        x6.moveTo(px1, y);
+        x6.lineTo(px2, y);
+        x6.strokeStyle = grd;
+        x6.lineWidth = 1.5;
+        x6.stroke();
+      }
+
+      // Strand 1 — cyan
+      x6.beginPath();
+      x6.arc(px1, y, 2.5 + d1 * 3.5, 0, Math.PI * 2);
+      x6.fillStyle = `rgba(0,200,255,${0.35 + d1 * 0.65})`;
+      x6.fill();
+
+      // Strand 2 — purple
+      x6.beginPath();
+      x6.arc(px2, y, 2.5 + d2 * 3.5, 0, Math.PI * 2);
+      x6.fillStyle = `rgba(200,80,255,${0.35 + d2 * 0.65})`;
+      x6.fill();
+    }
+  }
+
+  /* ─────────────────────────────────
+     08 — MAGNETIC GRID
+  ───────────────────────────────── */
+  const c8 = document.getElementById('c8');
+  const x8 = c8.getContext('2d');
+  const { W: W8, H: H8 } = sizeCanvas(c8);
+
+  const COLS8 = 14, ROWS8 = 9;
+  const gdots = [];
+  for (let r = 0; r <= ROWS8; r++) {
+    for (let c = 0; c <= COLS8; c++) {
+      const bx = (c / COLS8) * W8;
+      const by = (r / ROWS8) * H8;
+      gdots.push({ bx, by, x: bx, y: by });
+    }
+  }
+
+  let m8x = -999, m8y = -999;
+  c8.parentElement.addEventListener('mousemove', e => {
+    const r = c8.getBoundingClientRect();
+    m8x = e.clientX - r.left;
+    m8y = e.clientY - r.top;
+  });
+  c8.parentElement.addEventListener('mouseleave', () => { m8x = -999; m8y = -999; });
+
+  function drawGrid() {
+    x8.fillStyle = '#03030a';
+    x8.fillRect(0, 0, W8, H8);
+
+    const FORCE = 50, RAD = 90;
+
+    gdots.forEach(d => {
+      const dx   = m8x - d.bx;
+      const dy   = m8y - d.by;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      let tx = d.bx, ty = d.by;
+
+      if (dist < RAD && dist > 0.1) {
+        const f = (1 - dist / RAD) * FORCE;
+        tx = d.bx - (dx / dist) * f;
+        ty = d.by - (dy / dist) * f;
+      }
+
+      d.x += (tx - d.x) * 0.18;
+      d.y += (ty - d.y) * 0.18;
+
+      const dd    = Math.sqrt((m8x - d.x) ** 2 + (m8y - d.y) ** 2);
+      const alpha = Math.max(0.15, 1 - dd / 110);
+      const hue   = 200 + (1 - alpha) * 40;
+
+      x8.beginPath();
+      x8.arc(d.x, d.y, 2.2, 0, Math.PI * 2);
+      x8.fillStyle = `hsla(${hue},80%,70%,${alpha})`;
+      x8.fill();
+    });
+  }
+
+  /* ─────────────────────────────────
+     09 — SHATTER GLASS
+  ───────────────────────────────── */
+  const c9 = document.getElementById('c9');
+  const x9 = c9.getContext('2d');
+  const { W: W9, H: H9 } = sizeCanvas(c9);
+
+  let shards    = [];
+  let smashing  = false;
+
+  function drawGlass() {
+    const g = x9.createLinearGradient(0, 0, W9, H9);
+    g.addColorStop(0,   '#080f20');
+    g.addColorStop(0.5, '#121e3a');
+    g.addColorStop(1,   '#080f20');
+    x9.fillStyle = g;
+    x9.fillRect(0, 0, W9, H9);
+
+    // Reflection streaks
+    x9.save();
+    for (let i = 0; i < 4; i++) {
+      const sx = W9 * (0.15 + i * 0.22);
+      x9.beginPath();
+      x9.moveTo(sx, 0);
+      x9.lineTo(sx + 30, H9);
+      x9.strokeStyle = 'rgba(180,210,255,0.08)';
+      x9.lineWidth = 8;
+      x9.stroke();
+    }
+    x9.restore();
+
+    x9.fillStyle = 'rgba(180,210,255,0.5)';
+    x9.font = `bold ${Math.round(W9 * 0.043)}px Segoe UI`;
+    x9.textAlign = 'center';
+    x9.fillText('Click to shatter', W9 / 2, H9 / 2 - 6);
+    x9.fillStyle = 'rgba(100,150,255,0.25)';
+    x9.font = `${Math.round(W9 * 0.03)}px Segoe UI`;
+    x9.fillText('↑ tap here', W9 / 2, H9 / 2 + 16);
+  }
+
+  function buildShards() {
+    shards = [];
+    const COLS = 10, ROWS = 7;
+    const cw = W9 / COLS, ch = H9 / ROWS;
+    const j = () => (Math.random() - 0.5) * 9;
+
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const x0=c*cw+j(),     y0=r*ch+j();
+        const x1=(c+1)*cw+j(), y1=r*ch+j();
+        const x2=c*cw+j(),     y2=(r+1)*ch+j();
+        const x3=(c+1)*cw+j(), y3=(r+1)*ch+j();
+
+        [[x0,y0,x1,y1,x3,y3],[x0,y0,x3,y3,x2,y2]].forEach(([ax,ay,bx,by,px,py]) => {
+          const cx = (ax+bx+px)/3, cy = (ay+by+py)/3;
+          shards.push({
+            pts:  [[ax-cx,ay-cy],[bx-cx,by-cy],[px-cx,py-cy]],
+            x:    cx, y: cy,
+            vx:   (cx - W9/2) * 0.035 + (Math.random()-.5) * 3,
+            vy:   (cy - H9/2) * 0.035 + (Math.random()-.5) * 3 - 1,
+            rot:  0,
+            rotV: (Math.random() - 0.5) * 0.1,
+            alpha: 1,
+          });
+        });
+      }
+    }
+  }
+
+  function drawShards() {
+    x9.fillStyle = '#03030a';
+    x9.fillRect(0, 0, W9, H9);
+
+    let alive = false;
+    shards.forEach(s => {
+      if (s.alpha <= 0) return;
+      alive = true;
+
+      x9.save();
+      x9.globalAlpha = Math.max(0, s.alpha);
+      x9.translate(s.x, s.y);
+      x9.rotate(s.rot);
+
+      x9.beginPath();
+      x9.moveTo(s.pts[0][0], s.pts[0][1]);
+      x9.lineTo(s.pts[1][0], s.pts[1][1]);
+      x9.lineTo(s.pts[2][0], s.pts[2][1]);
+      x9.closePath();
+
+      const grd = x9.createLinearGradient(-15,-15,15,15);
+      grd.addColorStop(0, 'rgba(120,180,255,0.75)');
+      grd.addColorStop(1, 'rgba(210,235,255,0.35)');
+      x9.fillStyle = grd;
+      x9.fill();
+      x9.strokeStyle = 'rgba(210,230,255,0.85)';
+      x9.lineWidth   = 0.6;
+      x9.stroke();
+      x9.restore();
+
+      s.x    += s.vx;
+      s.y    += s.vy;
+      s.vy   += 0.13;
+      s.rot  += s.rotV;
+      s.alpha -= 0.013;
+    });
+
+    return alive;
+  }
+
+  c9.parentElement.addEventListener('click', () => {
+    if (smashing) return;
+    smashing = true;
+    buildShards();
+  });
+
+  drawGlass();
+
+  /* ─────────────────────────────────
+     SINGLE ANIMATION LOOP
+  ───────────────────────────────── */
+  function loop() {
+    requestAnimationFrame(loop);
+    const t = Date.now() * 0.001;
+
+    drawGalaxy();
+    drawDNA(t * 0.85);
+    drawGrid();
+
+    if (smashing) {
+      const alive = drawShards();
+      if (!alive) {
+        smashing = false;
+        drawGlass();
+      }
+    }
+  }
+
+  loop();
+});
+</script>
+</body>
+</html>
