@@ -9,7 +9,8 @@
       "Bash(cp 'C:/Users/Lenovo/Desktop/August web foundtation 1 hr/practice-1/cat-temp-area/images/*' 'C:/Users/Lenovo/Desktop/August web foundtation 1 hr/practice-1/PROJECTS.HTML/general practice/temp-area-projects/cat/images/')",
       "Bash(rm -rf 'C:/Users/Lenovo/Desktop/August web foundtation 1 hr/practice-1/PROJECTS.HTML/general practice/temp-area-projects/pf/.git')",
       "Bash(gh repo *)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(code \"C:\\\\Users\\\\Lenovo\\\\Desktop\\\\August web foundtation 1 hr\\\\practice-1\\\\PROJECTS.HTML\")"
     ]
   }
 }
