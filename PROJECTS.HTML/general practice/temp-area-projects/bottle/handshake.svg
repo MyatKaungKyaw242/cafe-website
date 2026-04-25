@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 116" width="196" height="116">
+  <!-- background -->
+  <rect width="196" height="116" fill="#d4a8f0"/>
+
+  <!-- pixel size: 8px, grid origin offset: x=10, y=10 -->
+  <!-- Row 0: fingers/thumbs tips -->
+  <rect x="50" y="10" width="16" height="8" fill="#2d1963"/>
+  <rect x="130" y="10" width="16" height="8" fill="#2d1963"/>
+
+  <!-- Row 1 -->
+  <rect x="42" y="18" width="32" height="8" fill="#2d1963"/>
+  <rect x="122" y="18" width="32" height="8" fill="#2d1963"/>
+
+  <!-- Row 2 -->
+  <rect x="34" y="26" width="48" height="8" fill="#2d1963"/>
+  <rect x="114" y="26" width="48" height="8" fill="#2d1963"/>
+
+  <!-- Row 3: hands starting to meet -->
+  <rect x="42" y="34" width="48" height="8" fill="#2d1963"/>
+  <rect x="106" y="34" width="48" height="8" fill="#2d1963"/>
+
+  <!-- Row 4: clasped -->
+  <rect x="50" y="42" width="96" height="8" fill="#2d1963"/>
+
+  <!-- Row 5: clasped wider -->
+  <rect x="42" y="50" width="112" height="8" fill="#2d1963"/>
+
+  <!-- Row 6: full width body -->
+  <rect x="34" y="58" width="128" height="8" fill="#2d1963"/>
+
+  <!-- Row 7: lower fingers split -->
+  <rect x="26" y="66" width="24" height="8" fill="#2d1963"/>
+  <rect x="66" y="66" width="64" height="8" fill="#2d1963"/>
+  <rect x="146" y="66" width="24" height="8" fill="#2d1963"/>
+
+  <!-- Row 8: lower fingers spread more -->
+  <rect x="18" y="74" width="24" height="8" fill="#2d1963"/>
+  <rect x="74" y="74" width="48" height="8" fill="#2d1963"/>
+  <rect x="154" y="74" width="24" height="8" fill="#2d1963"/>
+
+  <!-- Row 9: fingertips bottom -->
+  <rect x="18" y="82" width="16" height="8" fill="#2d1963"/>
+  <rect x="82" y="82" width="32" height="8" fill="#2d1963"/>
+  <rect x="162" y="82" width="16" height="8" fill="#2d1963"/>
+
+  <!-- Row 10: bottom tips -->
+  <rect x="18" y="90" width="8" height="8" fill="#2d1963"/>
+  <rect x="90" y="90" width="16" height="8" fill="#2d1963"/>
+  <rect x="170" y="90" width="8" height="8" fill="#2d1963"/>
+</svg>
