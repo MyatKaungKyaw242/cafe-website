@@ -257,38 +257,3 @@ body {
     }
 }
 
-/* ── TABLET — max-width: 768px ── */
-@media (max-width: 768px) {
-    body {
-        padding: 1.5rem 1rem;
-        align-items: flex-start;
-    }
-
-    .container {
-        grid-auto-columns: clamp(120px, 28vw, 200px);
-        grid-template-rows: clamp(90px, 22vw, 150px) clamp(90px, 22vw, 150px) clamp(70px, 16vw, 120px);
-        gap: clamp(0.35rem, 1.5vw, 0.6rem);
-    }
-
-    .box-1::before {
-        font-size: clamp(8rem, 20vw, 18rem);
-    }
-}
-
-/* ── MOBILE — max-width: 480px ── */
-@media (max-width: 480px) {
-    .container {
-        grid-auto-columns: clamp(100px, 42vw, 160px);
-        grid-template-rows: clamp(80px, 35vw, 130px) clamp(80px, 35vw, 130px) clamp(65px, 28vw, 100px);
-        gap: 0.4rem;
-    }
-
-    .box-4 h2 {
-        font-size: clamp(0.65rem, 3.5vw, 0.9rem);
-        line-height: clamp(16px, 5vw, 24px);
-    }
-
-    .box-5 {
-        line-height: clamp(18px, 5vw, 28px);
-    }
-}
