@@ -24,14 +24,13 @@ body {
 .container {
     background: transparent;
     display: grid;
-    grid-auto-columns: 300px;
-    grid-template-rows: 200px 200px 160px;
-    /* grid-template-rows: 1fr; */
+    grid-auto-columns: clamp(140px, 20vw, 300px);
+    grid-template-rows: clamp(100px, 14vw, 200px) clamp(100px, 14vw, 200px) clamp(80px, 11vw, 160px);
     grid-template-areas:
         "box-1 box-1 box-2"
         "box-3 box-4 box-2"
         "box-3 box-4 box-5";
-    gap: 1em;
+    gap: clamp(0.4rem, 1vw, 1rem);
     border-radius: 2em;
 }
 
@@ -93,8 +92,8 @@ body {
 }
 
 .box-1 h1 {
-    padding: 20px;
-    font-size: 2.5rem;
+    padding: clamp(10px, 1.5vw, 20px);
+    font-size: clamp(1.2rem, 2.5vw, 2.5rem);
     font-weight: 700;
     color: #1a1a1a;
 }
@@ -102,17 +101,17 @@ body {
 .two-text {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: clamp(10px, 1.5vw, 20px);
 }
 
 .two-text h3 {
-    font-size: 1.2rem;
+    font-size: clamp(0.7rem, 1.2vw, 1.2rem);
     font-weight: 700;
     color: #1a1a1a;
 }
 
 .two-text h4 {
-    font-size: 0.7rem;
+    font-size: clamp(0.5rem, 0.7vw, 0.7rem);
     color: #333;
     max-width: 200px;
     line-height: 1;
@@ -140,7 +139,7 @@ body {
     left: 50%;
     transform: translate(-50%);
     color: #ffffff;
-    font-size: 1.2rem;
+    font-size: clamp(0.7rem, 1.2vw, 1.2rem);
     font-weight: 650;
 }
 
@@ -151,9 +150,9 @@ body {
 
 .just-text-two p {
     color: #ffffff;
-    font-size: 0.85rem;
+    font-size: clamp(0.55rem, 0.85vw, 0.85rem);
     font-weight: 500;
-    padding: 0 20px;
+    padding: 0 clamp(10px, 1.5vw, 20px);
 }
 
 
@@ -175,12 +174,12 @@ body {
     bottom: 0;
     position: absolute;
     width: 100%;
-    padding: 1em;
+    padding: clamp(0.5em, 1.2vw, 1em);
     text-align: center;
 }
 
 .text-box-3 h5 {
-    font-size: 1.2rem;
+    font-size: clamp(0.7rem, 1.2vw, 1.2rem);
     color: #f5c518;
     font-weight: 700;
 }
@@ -192,12 +191,13 @@ body {
     justify-content: center;
     background: #1c1c1e;
     border-radius: 2em;
-    gap: 8px;
-    padding: 1em;
+    gap: clamp(4px, 0.8vw, 8px);
+    padding: clamp(0.5em, 1.2vw, 1em);
 }
 
 .box-4 h2 {
-    line-height: 40px;
+    line-height: clamp(22px, 3vw, 40px);
+    font-size: clamp(0.8rem, 1.4vw, 1.5rem);
     color: #f0f0f0;
     width: 100%;
     text-align: center;
@@ -220,28 +220,27 @@ body {
 .box-5 {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     align-items: center;
     text-align: center;
     background: #3a3a3c;
-    padding: 20px 0;
+    padding: clamp(10px, 1.5vw, 20px) 0;
     border-radius: 2em;
-    line-height: 50px;
+    line-height: clamp(28px, 4vw, 50px);
 }
 
 .box-5 h2 {
-    font-size: 1.4rem;
+    font-size: clamp(0.85rem, 1.4vw, 1.4rem);
     color: #f5c518;
 }
 
 .box-5 h3 {
-    font-size: 0.85rem;
+    font-size: clamp(0.6rem, 0.85vw, 0.85rem);
     color: #f0f0f0;
     line-height: 1.5;
 }
 
 .box-5 p {
-    font-size: 0.8rem;
+    font-size: clamp(0.55rem, 0.8vw, 0.8rem);
     color: #aaaaaa;
 }
 
@@ -255,5 +254,41 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* ── TABLET — max-width: 768px ── */
+@media (max-width: 768px) {
+    body {
+        padding: 1.5rem 1rem;
+        align-items: flex-start;
+    }
+
+    .container {
+        grid-auto-columns: clamp(120px, 28vw, 200px);
+        grid-template-rows: clamp(90px, 22vw, 150px) clamp(90px, 22vw, 150px) clamp(70px, 16vw, 120px);
+        gap: clamp(0.35rem, 1.5vw, 0.6rem);
+    }
+
+    .box-1::before {
+        font-size: clamp(8rem, 20vw, 18rem);
+    }
+}
+
+/* ── MOBILE — max-width: 480px ── */
+@media (max-width: 480px) {
+    .container {
+        grid-auto-columns: clamp(100px, 42vw, 160px);
+        grid-template-rows: clamp(80px, 35vw, 130px) clamp(80px, 35vw, 130px) clamp(65px, 28vw, 100px);
+        gap: 0.4rem;
+    }
+
+    .box-4 h2 {
+        font-size: clamp(0.65rem, 3.5vw, 0.9rem);
+        line-height: clamp(16px, 5vw, 24px);
+    }
+
+    .box-5 {
+        line-height: clamp(18px, 5vw, 28px);
     }
 }
