@@ -230,10 +230,18 @@ display: flex;
     border-radius: 999px;
 }
 
-.pink  { background-color: #f4a7a0; flex: 1; }
-.yellow { background-color: #f5e642; flex: 1; }
-.gray  { background-color: #d4d4d4; flex: 2; }
-.black { background-color: #1a1a1a; flex: 3; }
+.pink  { 
+    background-color: #f4a7a0; flex: 1; 
+}
+.yellow { 
+    background-color: #f5e642; flex: 1; 
+}
+.gray  {
+     background-color: #d4d4d4; flex: 2; 
+    }
+.black {
+     background-color: #1a1a1a; flex: 3; 
+    }
 
 .yellow{
     margin-left: -4px;
@@ -322,8 +330,7 @@ display: flex;
     
 }
 .the-box-two h5{
-    font-weight: normal
-    ;
+    font-weight: normal;
 }
 
 .box-5{
@@ -377,24 +384,7 @@ display: flex;
 }
 
 
-.luxury-row{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.luxury-icon{
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 16px;
-    flex-shrink: 0;
-}
+
 .box-6{
     grid-area: box-6;
     background: #fffad6;
@@ -526,34 +516,19 @@ display: flex;
     display: flex;
 
 }
-/* .box-8::before{
-    content: "※";
-    font-size: 12rem;
-    color: yellow;
-    line-height: 1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    position: absolute;
-    z-index: 0;
-   
-} */
+
 .box-8 img{
     height: 100%;
     width: 100%;
     object-fit: contain;
-    /* object-position: 50% 2%;  */
     object-position: left;
-   /* object-position: center; */
+  
 }
 .detail-1{
-    /* background: red; */
     padding-top: 15px;
     padding-bottom: 15px;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
 
 }
 .detail-1 h3{
@@ -705,18 +680,7 @@ border-radius: 50%;
     opacity: 0.3;
 
 }
-/* .gray  { background-color: #d4d4d4; flex: 2; }
-.black { background-color: #1a1a1a; flex: 3; } */
 
-/* .yellow{
-    margin-left: -4px;
-}
-.gray{
-    margin-left: -4px;
-}
-.black{
-    margin-left: -4px;
-} */
 .anotherblack{
     margin-left: -5px;
 }
